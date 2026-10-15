@@ -1,0 +1,423 @@
+"use client";
+
+import Link from "next/link";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Camera,
+  Check,
+  ClipboardCheck,
+  MessageSquare,
+  Pencil,
+  TriangleAlert,
+} from "lucide-react";
+import { useReport, MissingReport } from "../report-context";
+import { BackLink, PageHeading, Progress, Stepper } from "../ui";
+import {
+  missingDetails,
+  needsAttention,
+  reportStats,
+  reportTitle,
+  requiresDamage,
+  roomStats,
+} from "@/lib/model";
+import { is } from "@/lib/locale/is";
+import { SampleSummary } from "./sample-summary";
+import { SaveStatus } from "../app-shell";
+
+export function ReviewScreen() {
+  const { report, id, state } = useReport();
+  if (state.status === "loading" || !report)
+    return <MissingReport loading={state.status === "loading"} />;
+  if (report.sampleReviewed || report.assetType !== "apartment")
+    return <SampleSummary report={report} />;
+  const stats = reportStats(report);
+  const missing = missingDetails(report.details);
+  const unnamedRooms = report.rooms.filter((r) => !r.name.trim());
+  const missingOverviews = report.rooms.filter(
+    (r) => !state.photos[`${id}:${r.id}:overview`]?.length,
+  );
+  const photos = Object.entries(state.photos)
+    .filter(([key]) => key.startsWith(`${id}:`))
+    .reduce((sum, [, p]) => sum + p.length, 0);
+  const roomHref = (roomId: string) =>
+    `/skyrslur/${id}/skraning?rymi=${encodeURIComponent(roomId)}`;
+  const missingDamagePhotos = report.rooms.reduce(
+    (sum, r) =>
+      sum +
+      r.items.filter(
+        (i) =>
+          requiresDamage(r.observations[i.id]) &&
+          !state.photos[`${id}:${r.id}:${i.id}`]?.length,
+      ).length,
+    0,
+  );
+  const hasAttention =
+    missing.length ||
+    stats.attention ||
+    missingOverviews.length ||
+    missingDamagePhotos ||
+    !report.rooms.length ||
+    unnamedRooms.length;
+  return (
+    <>
+      <BackLink />
+      <Stepper reportId={id} step={3} />
+      <PageHeading
+        eyebrow={reportTitle(report)}
+        title="Yfirferð skráningar"
+        description="Skoðaðu það sem hefur verið skráð og það sem vantar. Drögin eru áfram breytanleg."
+      />
+      <div
+        className={`review-state ${hasAttention ? "review-state-attention" : "review-state-ready"}`}
+      >
+        {hasAttention ? (
+          <TriangleAlert size={22} aria-hidden="true" />
+        ) : (
+          <ClipboardCheck size={22} aria-hidden="true" />
+        )}
+        <div>
+          <h2>
+            {hasAttention
+              ? "Nokkur atriði þarfnast yfirferðar"
+              : "Skráning hefur verið yfirfarin í sýniham"}
+          </h2>
+          <p>
+            {hasAttention
+              ? "Þú getur haldið áfram með drög og bætt við upplýsingum þegar þær liggja fyrir."
+              : "Öllum svörum og myndaforskoðunum hefur verið bætt við. Drögin haldast opin."}
+          </p>
+        </div>
+        <span className="draft-tag">DRÖG</span>
+      </div>
+      <div className="review-summary">
+        <div>
+          <strong>{report.rooms.length}</strong>
+          <span>rými</span>
+        </div>
+        <div>
+          <strong>
+            {stats.recorded}
+            <span> / {stats.total}</span>
+          </strong>
+          <span>atriði skráð</span>
+        </div>
+        <div>
+          <strong>{stats.unanswered}</strong>
+          <span>ósvarað</span>
+        </div>
+        <div>
+          <strong>{stats.deviations}</strong>
+          <span>frávik</span>
+        </div>
+        <div>
+          <strong>{photos}</strong>
+          <span>myndaforskoðanir</span>
+        </div>
+      </div>
+      <div className="review-layout">
+        <div className="review-main">
+          <section className="panel review-property">
+            <div className="panel-heading">
+              <h2>Upplýsingar um íbúð</h2>
+              <Link className="text-link" href={`/skyrslur/${id}/upplysingar`}>
+                <Pencil size={14} aria-hidden="true" />
+                Breyta
+              </Link>
+            </div>
+            <dl className="property-details">
+              <div>
+                <dt>Heimilisfang</dt>
+                <dd>
+                  {report.details.address || "Óskráð"}
+                  {report.details.postalCode || report.details.municipality ? (
+                    <span>
+                      {report.details.postalCode} {report.details.municipality}
+                    </span>
+                  ) : null}
+                </dd>
+              </div>
+              <div>
+                <dt>Tegund skráningar</dt>
+                <dd>
+                  {report.details.inspectionType
+                    ? is.inspectionTypes[report.details.inspectionType]
+                    : "Óskráð"}
+                </dd>
+              </div>
+              <div>
+                <dt>Íbúð / hæð</dt>
+                <dd>{report.details.unit || "Ekki tilgreint"}</dd>
+              </div>
+              <div>
+                <dt>Hlutverk stofnanda</dt>
+                <dd>
+                  {report.details.role
+                    ? is.roles[report.details.role]
+                    : "Óskráð"}
+                </dd>
+              </div>
+              <div>
+                <dt>Afhending</dt>
+                <dd>{report.details.deliveryDate || "Óskráð"}</dd>
+              </div>
+              <div>
+                <dt>Húsgögn</dt>
+                <dd>
+                  {
+                    {
+                      yes: "Fylgja",
+                      no: "Fylgja ekki",
+                      partly: "Fylgja að hluta",
+                      "": "Óskráð",
+                    }[report.details.furnished]
+                  }
+                </dd>
+              </div>
+            </dl>
+            {report.details.notes ? (
+              <div className="review-general-note">
+                <MessageSquare size={16} aria-hidden="true" />
+                <p>{report.details.notes}</p>
+              </div>
+            ) : null}
+          </section>
+          <section
+            className="review-rooms"
+            aria-labelledby="review-rooms-title"
+          >
+            <div className="section-heading">
+              <h2 id="review-rooms-title">Rými og niðurstöður</h2>
+              <Link className="text-link" href={`/skyrslur/${id}/rymi`}>
+                Breyta rýmum
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+            {report.rooms.map((room) => {
+              const s = roomStats(room);
+              const flagged = room.items.filter((item) => {
+                const o = room.observations[item.id];
+                return (
+                  requiresDamage(o) ||
+                  o?.note ||
+                  (o?.condition !== "na" && o?.cleanliness === "dirty") ||
+                  (o?.condition && needsAttention(item, o))
+                );
+              });
+              return (
+                <section className="panel review-room" key={room.id}>
+                  <div className="review-room-heading">
+                    <div>
+                      <h3>{room.name || "Ónefnt rými"}</h3>
+                      <p>
+                        {s.recorded} af {s.total} atriðum skráð · {s.attention}{" "}
+                        þarfnast athygli
+                      </p>
+                    </div>
+                    <Link
+                      href={roomHref(room.id)}
+                      className="button button-secondary button-small"
+                      aria-label={`Breyta skráningu: ${room.name || "Ónefnt rými"}`}
+                    >
+                      <Pencil size={14} aria-hidden="true" />
+                      Breyta
+                    </Link>
+                  </div>
+                  <Progress
+                    value={s.recorded}
+                    max={s.total}
+                    label={`Framvinda í ${room.name}`}
+                  />
+                  {flagged.length ? (
+                    <ul className="review-observations">
+                      {flagged.map((item) => {
+                        const o = room.observations[item.id];
+                        return (
+                          <li key={item.id}>
+                            <div className="review-observation-heading">
+                              <strong>{item.name}</strong>
+                              <span
+                                className={`item-condition text-condition-${o.condition}`}
+                              >
+                                {o.condition
+                                  ? is.conditions[o.condition]
+                                  : "Óskráð"}
+                              </span>
+                            </div>
+                            {o.functionality && o.condition !== "na" ? (
+                              <p className="review-answer">
+                                Virkni: {is.functionality[o.functionality]}
+                              </p>
+                            ) : null}
+                            {o.cleanliness && o.condition !== "na" ? (
+                              <p className="review-answer">
+                                Þrif: {is.cleanliness[o.cleanliness]}
+                              </p>
+                            ) : null}
+                            {requiresDamage(o) ? (
+                              <>
+                                <p>
+                                  {o.damageType || "Tegund vantar"} ·{" "}
+                                  {o.location || "Staðsetning vantar"}
+                                </p>
+                                <p>
+                                  {o.description || "Lýsing á fráviki vantar."}
+                                </p>
+                                {!state.photos[`${id}:${room.id}:${item.id}`]
+                                  ?.length ? (
+                                  <span className="review-missing">
+                                    <Camera size={13} aria-hidden="true" />
+                                    Mynd af fráviki vantar
+                                  </span>
+                                ) : null}
+                              </>
+                            ) : null}
+                            {o.note ? (
+                              <p className="review-note">{o.note}</p>
+                            ) : null}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : null}
+                  {s.unanswered ? (
+                    <details className="unanswered-details">
+                      <summary>
+                        {s.unanswered} ósvarað atriði — sjá lista
+                      </summary>
+                      <ul>
+                        {room.items
+                          .filter((i) => !room.observations[i.id]?.condition)
+                          .map((i) => (
+                            <li key={i.id}>{i.name}</li>
+                          ))}
+                      </ul>
+                      <Link className="text-link" href={roomHref(room.id)}>
+                        Skrá atriðin
+                        <ArrowRight size={14} aria-hidden="true" />
+                      </Link>
+                    </details>
+                  ) : null}
+                  {!state.photos[`${id}:${room.id}:overview`]?.length ? (
+                    <p className="review-missing overview-missing">
+                      <Camera size={14} aria-hidden="true" />
+                      Yfirlitsmynd rýmis vantar
+                    </p>
+                  ) : (
+                    <p className="review-photo-count">
+                      <Check size={14} aria-hidden="true" />
+                      {state.photos[`${id}:${room.id}:overview`].length}{" "}
+                      yfirlitsmyndir í tímabundinni forskoðun
+                    </p>
+                  )}
+                </section>
+              );
+            })}
+          </section>
+        </div>
+        <aside
+          className="review-attention panel"
+          aria-labelledby="attention-title"
+        >
+          <h2 id="attention-title">Til að yfirfara</h2>
+          {missing.length ? (
+            <div className="attention-group">
+              <h3>Grunnupplýsingar vantar</h3>
+              <ul>
+                {missing.map((label) => (
+                  <li key={label}>{label}</li>
+                ))}
+              </ul>
+              <Link className="text-link" href={`/skyrslur/${id}/upplysingar`}>
+                Fylla út upplýsingar
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          ) : null}
+          {!report.rooms.length || unnamedRooms.length ? (
+            <div className="attention-group">
+              <h3>
+                {!report.rooms.length
+                  ? "Engin rými valin"
+                  : "Heiti rýma vantar"}
+              </h3>
+              <Link className="text-link" href={`/skyrslur/${id}/rymi`}>
+                Breyta rýmum
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          ) : null}
+          {stats.attention ? (
+            <div className="attention-group">
+              <h3>{stats.attention} atriði þarfnast athygli</h3>
+              <p>
+                Ófullgerð svör, óskoðuð atriði eða búnaður sem hefur ekki verið
+                prófaður.
+              </p>
+              <ul className="attention-room-links">
+                {report.rooms
+                  .filter((r) => roomStats(r).attention)
+                  .map((r) => (
+                    <li key={r.id}>
+                      <Link href={roomHref(r.id)}>
+                        {r.name || "Ónefnt rými"}
+                        <span>
+                          {roomStats(r).attention}
+                          <ArrowRight size={13} aria-hidden="true" />
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ) : null}
+          {missingOverviews.length || missingDamagePhotos ? (
+            <div className="attention-group">
+              <h3>Myndir vantar</h3>
+              <p>
+                {missingOverviews.length} rými án yfirlitsmyndar
+                {missingDamagePhotos
+                  ? ` · ${missingDamagePhotos} frávik án myndar`
+                  : ""}
+                .
+              </p>
+              <p className="field-hint">
+                Myndir eru aðeins forskoðaðar í þessari setu og hverfa við
+                endurhleðslu.
+              </p>
+            </div>
+          ) : null}
+          {!hasAttention ? (
+            <p className="attention-complete">
+              <Check size={18} aria-hidden="true" />
+              Ekkert óskráð í þessari setu.
+            </p>
+          ) : null}
+          <div className="review-scope">
+            <h3>Drög í sýniham</h3>
+            <p>
+              Enginn óafturkræfur frágangur eða boð eru virk. Þú getur áfram
+              breytt skráningunni.
+            </p>
+          </div>
+        </aside>
+      </div>
+      <div className="review-footer">
+        <Link
+          className="button button-secondary"
+          href={`/skyrslur/${id}/skraning`}
+        >
+          <ArrowLeft size={17} aria-hidden="true" />
+          Aftur í skráningu
+        </Link>
+        <Link className="button button-primary" href="/">
+          Fara í mínar skýrslur
+          <ArrowRight size={17} aria-hidden="true" />
+        </Link>
+      </div>
+      <div className="local-save">
+        <SaveStatus />
+      </div>
+    </>
+  );
+}

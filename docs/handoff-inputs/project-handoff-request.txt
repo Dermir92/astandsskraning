@@ -1,0 +1,249 @@
+# Project Handoff — Preserve All Work, Decisions and Context
+
+We are about to start a new Codex conversation for the next development phase of our digital condition-reporting SaaS application.
+
+Before ending this conversation, I want you to create a thorough, accurate and reusable project handoff inside the existing repository.
+
+**This is a documentation and preservation task only. Do not implement new features or redesign the application.**
+
+## 1. Review the current project
+
+Inspect:
+
+- Existing application code and structure.
+- Current Git branch, commit and working-tree status.
+- Project documentation and original MVP specification.
+- Existing functionality and prototype limitations.
+- All UI design explorations completed in this conversation.
+- Existing screenshots, HTML prototypes and artifacts.
+- Testing and accessibility reports.
+- Relevant decisions from this conversation.
+
+Do not rely on memory alone. Cross-check decisions against the actual repository and previous outputs where available.
+
+Clearly distinguish verified implementation from proposed, approved or unfinished work.
+
+## 2. Create or update handoff documentation
+
+Create the following documents under `docs/`, reusing or integrating existing documentation where appropriate rather than creating conflicting duplicates.
+
+### A. PROJECT_HANDOFF.md
+
+Include:
+
+- Product vision and purpose.
+- Target users and market.
+- Supported property/asset categories.
+- MVP scope.
+- Current technical stack.
+- Existing application structure.
+- Features already implemented.
+- Features still mocked or using demo data.
+- Persistence limitations.
+- Known issues.
+- Current development phase.
+- Clear instructions for running the project locally.
+- Recommended next development tasks.
+
+The product is an independent condition-reporting platform for:
+
+1. Residential rental properties.
+2. Rental vehicles.
+3. Storage spaces and garages.
+4. Commercial properties.
+
+The core product allows users to document asset condition at handover and return, record photographs and observations, invite counterparties, compare condition reports and generate final documentation.
+
+### B. PRODUCT_DECISIONS.md
+
+Record all established product decisions.
+
+Important decisions include:
+
+- One shared platform with asset-specific inspection templates.
+- Residential inspections use Icelandic HMS inspection practices as a reference, without claiming automatic legal compliance.
+- Guided inspections and condition checklists.
+- Condition, cleanliness and functionality recorded separately when appropriate.
+- Initial and final condition reports.
+- Photos attached to specific rooms, items and observations.
+- Secure counterparty invitations without mandatory account registration.
+- An invitation link alone must not grant report access.
+- One-time email verification codes and appropriately scoped access.
+- Counterparties can comment, add photos and dispute individual findings.
+- Parties cannot silently alter each other's submitted evidence.
+- Finalized reports must preserve history and support traceable amendments.
+- Viewing a report is not the same as accepting liability.
+- No response must never be interpreted as acceptance.
+- The platform does not automatically determine responsibility for damage.
+- Professional PDF comparison reports are planned.
+- Mobile-first inspection workflows.
+- Accessibility is a core requirement.
+
+Clearly identify which decisions are approved product direction but not yet implemented.
+
+Pricing hypotheses:
+
+- Initial inspections and counterparty participation are free.
+- Proposed individual final report price: ISK 1,990.
+- Business subscription pricing remains provisional.
+- A promotional offer involving approximately 70 free reports or credits is under consideration.
+- Exact promotional eligibility, allocation and duration are NOT finalized.
+- No real payment processing is authorized at this stage.
+
+Do not turn unresolved pricing questions into final decisions.
+
+### C. UX_UI_HANDOFF.md
+
+Document our design journey and approved direction.
+
+The original dashboard was rejected because it resembled a generic AI-generated SaaS interface.
+
+Problems included:
+
+- Oversized dark sidebar.
+- Excessive cards and containers.
+- Large highlighted progress panel.
+- Excessive whitespace.
+- Generic dashboard composition.
+- Weak product identity.
+- Insufficient readability of some secondary information.
+
+We explored two color directions and selected the navy/petrol/teal direction (Option A) as the preferred starting point.
+
+A prominent brown/gold accent is not desired.
+
+We subsequently created two fundamentally different layout concepts.
+
+**Concept 1**
+- Compact top navigation.
+- Reports-first layout.
+- Simple data table.
+- Straightforward mobile experience.
+
+**Concept 2**
+- Compact navigation rail.
+- Reports list and contextual details panel.
+- Stronger inspection-specific product identity.
+
+**Approved direction for the next implementation phase:**
+
+- Concept 2 as the desktop foundation.
+- Simpler mobile experience inspired by Concept 1.
+- On mobile, show contextual details through an accessible drawer or bottom sheet where appropriate.
+- Refine the contextual panel to emphasize essential information.
+- Maintain high text readability.
+- Use a professional Nordic B2B design language.
+- Avoid generic dashboard cards and unnecessary visual decoration.
+- Preserve existing application functionality.
+
+IMPORTANT: This direction has been selected for implementation, but do not claim it is already implemented if the repository still contains the old production UI.
+
+Only the shared application shell and "Mínar skýrslur" screen have been approved for the immediate redesign. Other screens are not yet authorized for redesign.
+
+Accessibility:
+
+- Target WCAG 2.2 AA.
+- Normal text contrast at least 4.5:1.
+- Relevant non-text components at least 3:1.
+- Strong visible focus indicators.
+- Keyboard accessibility.
+- Excellent readability on desktop and mobile.
+
+Previous design comparison results reportedly included:
+- Chromium visual review at 1440, 390 and 360 px.
+- 17 interface states passing axe checks.
+- Minimum reported text contrast 6.38:1.
+- Minimum reported control contrast 3.85:1.
+
+Verify these against available artifacts and reports before recording them as confirmed results.
+
+### D. IMPLEMENTATION_NEXT_STEPS.md
+
+Create a clear plan for the next Codex conversation.
+
+The immediate task is:
+
+**Implement the approved Concept 2 desktop layout with a Concept 1-inspired mobile experience.**
+
+Scope:
+
+1. Shared navigation/application shell.
+2. "Mínar skýrslur" screen.
+3. Contextual inspection details panel.
+4. Mobile report listing and accessible details interaction.
+5. Typography, spacing and color refinements.
+6. Accessibility and contrast validation.
+7. Responsive visual QA.
+8. Preservation of current application behavior.
+
+Do not redesign the remaining screens yet.
+
+List concrete acceptance criteria and tests.
+
+## 3. Preserve design artifacts
+
+Locate existing artifacts for:
+
+- Concept 1 desktop.
+- Concept 1 mobile.
+- Concept 2 desktop.
+- Concept 2 mobile.
+- Color comparisons.
+- Design review reports.
+- Accessibility results.
+
+Preserve all relevant existing artifacts.
+
+Create an index explaining what each artifact represents and which concept was selected.
+
+Reference real paths rather than inventing file locations.
+
+If any artifact is missing, document that fact.
+
+Do not recreate original screenshots and present them as historical evidence.
+
+## 4. Protect existing work
+
+Before making documentation changes:
+
+- Inspect Git status.
+- Do not overwrite or discard uncommitted work.
+- Do not reset branches.
+- Do not delete prototypes.
+- Do not remove code or dependencies.
+- Do not modify application behavior.
+- Do not deploy.
+- Do not push to GitHub.
+- Do not include credentials, secrets or real customer information in documentation.
+
+Do not make a Git commit unless explicitly authorized.
+
+Preserve any existing documentation that contains important historical decisions.
+
+## 5. Verification
+
+After writing the handoff:
+
+- Verify that all generated Markdown files exist.
+- Confirm links to internal files and artifacts are correct.
+- Confirm the recorded implementation status matches the actual repository.
+- Report the current Git branch, commit and working-tree status.
+- List documentation files created or updated.
+- State whether any documentation or design artifacts remain untracked.
+- Identify information that could not be recovered or verified.
+
+## 6. Final handoff summary
+
+Provide a concise final report containing:
+
+1. Current project status.
+2. Files created or updated.
+3. Decisions preserved.
+4. Artifact locations.
+5. Outstanding issues and uncertainties.
+6. The exact next implementation task.
+7. A short ready-to-paste opening instruction for a new Codex conversation.
+
+**Do not start the next development phase.**
+
+The goal is to preserve everything necessary for another Codex conversation to continue this project safely, without repeating the design discussions or losing important decisions.

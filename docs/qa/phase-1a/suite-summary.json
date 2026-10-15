@@ -1,0 +1,17 @@
+{
+  "stats": {
+    "startTime": "2026-10-15T09:29:51.914Z",
+    "duration": 123207.892,
+    "expected": 85,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "auditStates": 69,
+  "checks": 6370,
+  "textChecks": 4167,
+  "minText": 5.981547962168809,
+  "minNonText": 3.141148709275876,
+  "failures": [],
+  "typeFailures": []
+}

@@ -1,0 +1,156 @@
+{
+  "createdAtUtc": "2026-10-15T10:21:56.1165064Z",
+  "files": [
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-360/default-list.png",
+      "sha256": "AA8B5A66D753D67B05E3328CEA2E623FBA1226A31462D43E6C065E4FDF1BC903",
+      "file": "mobile-360/default-list.png",
+      "bytes": 54275
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-360/filters-expanded.png",
+      "sha256": "CC630D3EC276995DAD604A0C623A776DB591AADD257F2DBCB5AF1B158F52FBCC",
+      "file": "mobile-360/filters-expanded.png",
+      "bytes": 51796
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-360/filters-applied.png",
+      "sha256": "1DE661B0D855580A50F251764C0A31FBBA7316FF4EC383FB381740FD672DE3A1",
+      "file": "mobile-360/filters-applied.png",
+      "bytes": 43052
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-360/bottom-sheet.png",
+      "sha256": "E5072554994D51943A43D86DA6EF2A9794D434D4850CDA096256A92EFFC88C49",
+      "file": "mobile-360/bottom-sheet.png",
+      "bytes": 44344
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-360/long-content-sheet.png",
+      "sha256": "EF42552736AE98EF31DC5E3ED4CE3B989E97B6B33E61068EFB1838E4BD0462BB",
+      "file": "mobile-360/long-content-sheet.png",
+      "bytes": 50618
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-360/long-content-sheet-scrolled.png",
+      "sha256": "6DC73E57F05319ABAB127C886922BFD56D40C91C6C38C49727E11E76F60100A7",
+      "file": "mobile-360/long-content-sheet-scrolled.png",
+      "bytes": 64839
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/default-list.png",
+      "sha256": "7C3D54549897FBF95D196BE59AC29C69D8318C60E08FC08104978E843625AC0A",
+      "file": "mobile-390/default-list.png",
+      "bytes": 60009
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/filters-expanded.png",
+      "sha256": "6BD7BD08592A3E311F39379FFC175596FF732ADE03FA4F9300BBAA0E80C1B9F0",
+      "file": "mobile-390/filters-expanded.png",
+      "bytes": 55677
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/filters-applied.png",
+      "sha256": "34CDB6A741FD2CD7ABB547EE6759C4B54E25E1DBBC5B3922B5BFC0A9B876CC74",
+      "file": "mobile-390/filters-applied.png",
+      "bytes": 43552
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/bottom-sheet.png",
+      "sha256": "FC9323939728AAC06701DB1443FA5FAA40D0487CD438E2029C67DC1093E7B120",
+      "file": "mobile-390/bottom-sheet.png",
+      "bytes": 46177
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/long-content-sheet.png",
+      "sha256": "37C000086A63DBB7EA16C7DC12F7E0D06A1ED81ECA596FB67E797A239A93D5D8",
+      "file": "mobile-390/long-content-sheet.png",
+      "bytes": 52848
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/long-content-sheet-scrolled.png",
+      "sha256": "8980F7E1145B2EED7F5DF0E05F7060A9C2A9BBD5B0E04A962BEC4256A2D1B735",
+      "file": "mobile-390/long-content-sheet-scrolled.png",
+      "bytes": 77650
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/desktop-1440/default-list.png",
+      "sha256": "CCD8D7082216C9F197C5D14A36164423DE9AE4EA7B1314E75A9ED85FE05786FA",
+      "file": "desktop-1440/default-list.png",
+      "bytes": 127707
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/width-320/expanded-filters.png",
+      "sha256": "FA3482521DFCAF75C7056FFDACE3420E1BE054467B7EF9DFBFCF50AC08BF9191",
+      "file": "width-320/expanded-filters.png",
+      "bytes": 91734
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/width-320/bottom-sheet.png",
+      "sha256": "FF5344A973A2206CD144AB4E781CA8045C15E13E04C1D3CFA63C972F7EFD1F71",
+      "file": "width-320/bottom-sheet.png",
+      "bytes": 43923
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/text-scale-200/expanded-filters.png",
+      "sha256": "70B2914851181477E0FC1F1B0277453DBB6BD86751819A6BC5A4203B6D32CF21",
+      "file": "text-scale-200/expanded-filters.png",
+      "bytes": 183496
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/sort-name-reset.png",
+      "sha256": "285083C2CF8B18F4A7CC9F10B8E71FA5C2C59A5C85924512FA4EDDB45748CD02",
+      "file": "mobile-390/sort-name-reset.png",
+      "bytes": 60043
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/no-results.png",
+      "sha256": "38038B154567FEC37BC878E2E604892EE903FAE4FF9A56D990EB4EE81C1E6CDD",
+      "file": "mobile-390/no-results.png",
+      "bytes": 38646
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/empty-account.png",
+      "sha256": "1C5A21DBEC5DDBA69B481EC8F15FE593DDD58F7F3EAABBDC55CA55493F98B7B8",
+      "file": "mobile-390/empty-account.png",
+      "bytes": 39436
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/mobile-390/corrupt-storage.png",
+      "sha256": "8A0D01CD10BA7CD8C9CE795D96EE19A7D8FB6C59A13BBD0084C54877B7B78E78",
+      "file": "mobile-390/corrupt-storage.png",
+      "bytes": 61007
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/suite-summary.json",
+      "sha256": "C7BEAEED67A2F273F4301ACFEF7F3BE71877D3028E7A39342488E1D073C1177D",
+      "file": "suite-summary.json",
+      "bytes": 335
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/manual-review.json",
+      "sha256": "B99EBB4F395864AF1598885B6598696A1040CACF305EF68AB55F612D7D3CF5DB",
+      "file": "manual-review.json",
+      "bytes": 2003
+    },
+    {
+      "source": "artifacts/phase-1a-final-review-2026-10-15/source-preservation.json",
+      "sha256": "5B2FEA39BC5087D936D2730E7ED67386DF96C3364CAEB8DD5F0F8BFBCE5EB66E",
+      "file": "source-preservation.json",
+      "bytes": 41
+    },
+    {
+      "source": "artifacts/approved-shell-2026-10-14/verification-summary.json",
+      "sha256": "0AE5E952314DBF5F271800EBBEAC463F5A4535DCB349A91A10D0C32007E27987",
+      "file": "phase-1a-verification-summary.json",
+      "bytes": 1592
+    },
+    {
+      "source": "artifacts/phase-1a-1-2026-10-14/verification-summary.json",
+      "sha256": "6687C2AFCAE558396F2A2D35DFFDFD501F0CE14DE5FB99422F17DDF78501C48E",
+      "file": "phase-1a-1-verification-summary.json",
+      "bytes": 1471
+    }
+  ],
+  "purpose": "Curated accepted Phase 1A and Phase 1A.1 baseline evidence; originals preserved"
+}

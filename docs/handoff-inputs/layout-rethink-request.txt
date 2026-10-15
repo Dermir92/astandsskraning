@@ -1,0 +1,184 @@
+# UX/UI Redesign — Fundamental Layout Rethink Required
+
+The two design explorations are complete, but neither meets the intended design direction.
+
+**Option A has a preferable color palette, but both options still look like the same generic AI-generated SaaS dashboard.**
+
+The problem is no longer primarily about colors. It is about visual composition, information hierarchy, typography, navigation and product identity.
+
+Previous iterations preserved almost exactly the same layout, changing little beyond colors and minor spacing.
+
+This is not sufficient.
+
+## Your task
+
+Stop refining the existing dashboard.
+
+I want you to fundamentally reconsider its layout and interaction design.
+
+Act as a senior product designer working on a mature, commercially successful B2B product.
+
+Do not treat the existing layout as a design reference that must be preserved. Preserve functionality, but challenge its presentation.
+
+## What must change
+
+1. **Navigation architecture**
+
+   Challenge whether we need a traditional sidebar at all.
+
+   Explore a compact top navigation or a genuinely minimal application rail.
+
+   We currently have very few navigation destinations. A large permanent sidebar wastes valuable screen space.
+
+2. **Remove the oversized progress card**
+
+   The highlighted "Continue inspection" panel is disproportionately large.
+
+   Integrate unfinished work naturally into the reports list or into a much smaller contextual area.
+
+   Do not simply shrink the existing card.
+
+3. **Reconsider the entire page hierarchy**
+
+   Reports are the primary purpose of this screen.
+
+   The screen should prioritize finding reports, checking their status and continuing work.
+
+   Do not repeat the conventional AI-dashboard formula:
+
+   Sidebar → Page heading → Large highlighted card → Tabs → Search card → Table card.
+
+4. **Remove unnecessary containers**
+
+   No giant white card around the reports table.
+
+   No excessive tinted surfaces.
+
+   No decorative dashboard blocks.
+
+   Use alignment, typography, spacing and understated separators to create hierarchy.
+
+5. **Typography and readability**
+
+   Text readability is non-negotiable.
+
+   Metadata, dates, descriptions and status information must all remain clearly visible.
+
+   Normal text should achieve at least 4.5:1 contrast, large text at least 3:1 and relevant non-text UI elements at least 3:1.
+
+   Use appropriate text sizing rather than overly small text just to increase density.
+
+   Aim for WCAG 2.2 AA accessibility.
+
+6. **Product identity**
+
+   The interface must look purpose-built for property and vehicle condition reporting.
+
+   Draw inspiration from the visual discipline of mature software such as Linear and Stripe Dashboard, but do not copy their branding or layouts.
+
+   Avoid shadcn-style boilerplate dashboards.
+
+   Avoid generic startup aesthetics.
+
+   Avoid unnecessary metrics and widgets.
+
+   The interface should feel confident, practical and professionally art-directed.
+
+## Preferred color direction
+
+Option A is the preferred starting point:
+
+- Deep navy/petrol.
+- Refined teal accents.
+- High-contrast typography.
+- White or subtly tinted surfaces.
+- No brown/gold as a prominent brand color.
+
+However, color is secondary to layout quality.
+
+Do not produce another pair of almost identical designs differing mainly in color.
+
+## Required design exploration
+
+Create two FUNDAMENTALLY DIFFERENT layout concepts for the actual "Mínar skýrslur" screen:
+
+**Concept 1: Compact top navigation**
+
+- No permanent sidebar.
+- Product navigation integrated into a restrained application header.
+- Reports-first workspace.
+- Minimal containers.
+- Compact contextual handling of unfinished inspections.
+- Professional table/list presentation.
+
+**Concept 2: Minimal navigation rail and workspace**
+
+- Extremely compact navigation rail.
+- Reports take most of the available space.
+- Efficient typography and alignment.
+- More operational and desktop-oriented.
+- No conventional oversized dashboard cards.
+
+Both concepts must use the same actual report data and have meaningfully different layouts.
+
+Do not merely rearrange existing card components.
+
+## Important: Build realistic visual prototypes
+
+I want to evaluate actual rendered interfaces, not only written descriptions or color swatches.
+
+If possible, build the prototypes as standalone HTML/CSS previews or isolated prototype routes under an artifacts directory.
+
+Do not overwrite the current application or modify its working business logic at this stage.
+
+Render screenshots at desktop width and mobile width.
+
+Use realistic Icelandic content and proper Icelandic typography.
+
+Make sure all text is comfortable to read.
+
+Critically evaluate whether either concept still looks like an AI-generated template, and revise it before presenting.
+
+## Quality expectations
+
+Pay particular attention to:
+
+- Visual balance.
+- Typography.
+- Alignment.
+- Information density.
+- Whitespace.
+- Button placement.
+- Status visibility.
+- Search and filtering.
+- Responsive behavior.
+- Accessible contrast.
+- Product-specific visual character.
+
+The result should look like something produced through a deliberate professional design process.
+
+Not a boilerplate admin interface with different tokens.
+
+## Constraints
+
+- Preserve all current functional requirements.
+- Do not invent new business features.
+- Do not modify production code yet.
+- Do not change database, authentication or persistence.
+- Do not deploy.
+- Do not push changes to GitHub.
+
+## Deliverables
+
+1. Two genuinely different rendered layout concepts.
+2. Desktop previews of both.
+3. Mobile preview of each, if feasible.
+4. Concise explanation of design decisions.
+5. Readability and contrast assessment.
+6. Your recommendation with specific reasoning.
+
+**Stop and wait for my approval before implementing the selected layout.**
+
+Success is not a better-looking version of the old dashboard.
+
+Success is a substantially improved, purpose-built interface that no longer resembles a generic AI-generated SaaS template.

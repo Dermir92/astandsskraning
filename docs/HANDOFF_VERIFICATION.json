@@ -1,0 +1,52 @@
+{
+  "verifiedDate": "2026-10-14",
+  "timezone": "Atlantic/Reykjavik",
+  "root": ".",
+  "git": {
+    "status": "fatal: not a git repository (or any of the parent directories): .git",
+    "branch": "fatal: not a git repository (or any of the parent directories): .git",
+    "commit": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "markdownDocuments": [
+    "PROJECT_HANDOFF.md",
+    "PRODUCT_DECISIONS.md",
+    "UX_UI_HANDOFF.md",
+    "IMPLEMENTATION_NEXT_STEPS.md",
+    "DESIGN_ARTIFACTS.md"
+  ],
+  "internalLinksChecked": 60,
+  "brokenLinks": [],
+  "protectedFilesChecked": 43,
+  "changedProtectedFiles": [],
+  "originalSpecIdentical": true,
+  "historicalPlaywrightReportStats": {
+    "total": 48,
+    "expected": 46,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 2,
+    "ok": true
+  },
+  "historicalLastRun": {
+    "status": "passed",
+    "failedTests": []
+  },
+  "historicalLayoutSummary": {
+    "viewports": 6,
+    "states": 17,
+    "contrastChecks": 1575,
+    "textChecks": 1184,
+    "minimumTextContrast": 6.378399617979921,
+    "minimumNonTextContrast": 3.854800722998102,
+    "axeViolations": [],
+    "contrastFailures": [],
+    "typeFailures": [],
+    "unchangedSourceFiles": 43,
+    "changedSourceFiles": []
+  },
+  "applicationTestsRerun": false,
+  "featuresImplemented": false,
+  "deployed": false,
+  "committed": false,
+  "pushed": false
+}

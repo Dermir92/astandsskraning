@@ -1,0 +1,237 @@
+{
+  "files": [
+    {
+      "sha256": "82C3919F7641A359ACA4DCEC31C0F0AEE1C67CF8FA32332EA02AD5BC6C6D22E2",
+      "matchesPreGitBackup": true,
+      "path": "scripts/capture-approved-shell.mjs"
+    },
+    {
+      "sha256": "9B635ACC211360ADAC85A03DAFDA9F8CEDFFAC2C022D45C97FE2628ED85A6770",
+      "matchesPreGitBackup": true,
+      "path": "scripts/capture-mobile-refinement.mjs"
+    },
+    {
+      "sha256": "8743EEA2820E3AE12C57ECA672EDC3BAC1C6E4E941EDE394C22C1CEC4D07C7C3",
+      "matchesPreGitBackup": true,
+      "path": "scripts/compare-colors.mjs"
+    },
+    {
+      "sha256": "13D4EE90BA3D05E0C64ED88865825AF068A7C86772C71999F01E834639A37ACA",
+      "matchesPreGitBackup": true,
+      "path": "src/app/globals.css"
+    },
+    {
+      "sha256": "1D5647AFC86EB3050893A3B307B98C858098BB49BBB05FA178E7F40AFD8EBF66",
+      "matchesPreGitBackup": true,
+      "path": "src/app/icon.svg"
+    },
+    {
+      "sha256": "08B8B2293EAFDF20F261CD7507E7F6AAE8C2E8B2B09285E6633F76FF9325FBB2",
+      "matchesPreGitBackup": true,
+      "path": "src/app/layout.tsx"
+    },
+    {
+      "sha256": "8462086FD15E6CB654148A56F38FF5F9055FB5D1974E7AB4E966ED8F0DD499F7",
+      "matchesPreGitBackup": true,
+      "path": "src/app/not-found.tsx"
+    },
+    {
+      "sha256": "64422AE734509203D1E56743873F3833C5C15ABC54683D8497629D871DC617EA",
+      "matchesPreGitBackup": true,
+      "path": "src/app/page.tsx"
+    },
+    {
+      "sha256": "BEC4F7571A6F6968BF0901F790885A20596FA2246F34798175DC8F32B491E431",
+      "matchesPreGitBackup": true,
+      "path": "src/app/skyrslur/ny/page.tsx"
+    },
+    {
+      "sha256": "B1986EB9F90FF2DABE9285856709BBA892144F8D01F09558E6C3F220A653ECBC",
+      "matchesPreGitBackup": true,
+      "path": "src/app/skyrslur/[id]/rymi/page.tsx"
+    },
+    {
+      "sha256": "BCAD761B428A8DB4F794A484A711B8755827AC30E62C07F68FA756FED8961DB0",
+      "matchesPreGitBackup": true,
+      "path": "src/app/skyrslur/[id]/skraning/page.tsx"
+    },
+    {
+      "sha256": "A4C21B798957EA32EAB5A0CD591A84C40C1720D06070289B1FCD50BB4B8ACA62",
+      "matchesPreGitBackup": true,
+      "path": "src/app/skyrslur/[id]/upplysingar/page.tsx"
+    },
+    {
+      "sha256": "EBFDCEE6DED78ECBBC33113746CBAA41A56429510AF96F379E6C1D31C50EC79A",
+      "matchesPreGitBackup": true,
+      "path": "src/app/skyrslur/[id]/yfirferd/page.tsx"
+    },
+    {
+      "sha256": "BF425B010806BB2400D07D56A9BECB8777B09EEA5B36D7EC1C96C4DE6B7298F4",
+      "matchesPreGitBackup": true,
+      "path": "src/components/app-shell.tsx"
+    },
+    {
+      "sha256": "E26304C7192EC3113849DCF156579DA39EB430070E489A33E8D2FCC196AA8F9E",
+      "matchesPreGitBackup": true,
+      "path": "src/components/context-dialog.tsx"
+    },
+    {
+      "sha256": "262C9EA022C1308D712DF8841C0232ECE9CA0AF0DCC8FEA19D12C1B7523D8A6B",
+      "matchesPreGitBackup": true,
+      "path": "src/components/demo-provider.tsx"
+    },
+    {
+      "sha256": "0B1B891CFE904D019D321279AB239E5D277E9EC20000D26660C1763549700CF1",
+      "matchesPreGitBackup": true,
+      "path": "src/components/form-field.tsx"
+    },
+    {
+      "sha256": "C942879E7A9CF809BD945E70BBCCB60E3D73F616063D0B1F28B032EEF7FD2496",
+      "matchesPreGitBackup": true,
+      "path": "src/components/observation-editor.tsx"
+    },
+    {
+      "sha256": "A74644B5E8B80BE0BC92B4B4FB4C131206320DF30AF0E2E0C924164CF2312514",
+      "matchesPreGitBackup": true,
+      "path": "src/components/photo-preview.tsx"
+    },
+    {
+      "sha256": "C4C3AE798BE1799F55BE2406F4A3969E11BACCDCF245C198377A2D83A2951010",
+      "matchesPreGitBackup": true,
+      "path": "src/components/report-context.tsx"
+    },
+    {
+      "sha256": "34A2174521A50C4CEC8B3E89A5E4156E5708E8FC4288A3A60B92E02150CE1825",
+      "matchesPreGitBackup": true,
+      "path": "src/components/report-overview.tsx"
+    },
+    {
+      "sha256": "9E0DCEAE11739693DF482410928E3AE982B2F938CD8C71A3DAFB2EFBC1EF4B80",
+      "matchesPreGitBackup": true,
+      "path": "src/components/ui.tsx"
+    },
+    {
+      "sha256": "E926BD2B849002E1A958FD1DDFADA2FBF4576C5771EF952CBB94764260634FF5",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/details-screen.tsx"
+    },
+    {
+      "sha256": "5CCF6DB5A2C430B3CDE148D2E5CB9D9FEC2A7816B1F52F3F0B5D8B699F925215",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/inspection-screen.tsx"
+    },
+    {
+      "sha256": "5227D7F67EA467161F71726040F93E90AECFA12B51111FD63E00F8E825EAB983",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/new-report-screen.tsx"
+    },
+    {
+      "sha256": "CFB3C5AD8158433060D4F649E08C4D203CD9C6FBC505712CDA324D0DCEF2AAF3",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/reports-screen.tsx"
+    },
+    {
+      "sha256": "7FC2692A32485816036710AE2FB2096B86743E5CAB2AFFA62E85FF37D9D2B7EA",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/review-screen.tsx"
+    },
+    {
+      "sha256": "C2C37A685F8C2D683E75EE943A58F57A03D3084502F958A8866AD4B75D25D3C6",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/rooms-screen.tsx"
+    },
+    {
+      "sha256": "3E48BD56B942D8CA1F7491086247D0C2B1BE7211622DF6571873B2967D438091",
+      "matchesPreGitBackup": true,
+      "path": "src/components/screens/sample-summary.tsx"
+    },
+    {
+      "sha256": "45C0FEDD20E711AE331C7CF136EA2419BD41E698A01AAC085B8227544B99C3E1",
+      "matchesPreGitBackup": true,
+      "path": "src/lib/fixtures.ts"
+    },
+    {
+      "sha256": "B9F56E0F647C9619F4B4D997533B864A5B2A2218A923C56096622755EA3C9A43",
+      "matchesPreGitBackup": true,
+      "path": "src/lib/model.ts"
+    },
+    {
+      "sha256": "9896E997F45F8438DBFEFDEAEBECD8E3802685A9675EE75EF78EB4883106EFE2",
+      "matchesPreGitBackup": true,
+      "path": "src/lib/locale/is.ts"
+    },
+    {
+      "sha256": "21C3C1B963914819C84E64607A931512A400C2E5B0B545C3B709D59B22E63817",
+      "matchesPreGitBackup": true,
+      "path": "tests/contrast-helpers.ts"
+    },
+    {
+      "sha256": "4353306C1C3CBB5FD174EF1F2668F22A05945A45BFFDEFD8E543731D4060CD70",
+      "matchesPreGitBackup": true,
+      "path": "tests/mobile-refinement.spec.ts"
+    },
+    {
+      "sha256": "048DA7908BC68467C74C72E97297907CE9E79CC1378983BC01FCE3833273B25B",
+      "matchesPreGitBackup": true,
+      "path": "tests/prototype.spec.ts"
+    },
+    {
+      "sha256": "14254A88A75CCA82B2CB6A4F5180EBA501ADA0521F2D3FBA5580EEB2B52EC081",
+      "matchesPreGitBackup": true,
+      "path": "tests/readability.spec.ts"
+    },
+    {
+      "sha256": "72CA9D99C1A7405318B0A16ACD7E24E547FB8E943BD1EF0FDE81AF870BE25D27",
+      "matchesPreGitBackup": true,
+      "path": "tests/report-list-helpers.ts"
+    },
+    {
+      "sha256": "C8CA43AD5A35369E6CAFD3D33E231B352510D3140CD84AFFC42EC65E83325DC7",
+      "matchesPreGitBackup": true,
+      "path": "tests/reports-shell.spec.ts"
+    },
+    {
+      "sha256": "063098F6CB31BB44C6F8FBEA25B3876DE7EE1E5F7D00A50DBAB506F6415EB7F0",
+      "matchesPreGitBackup": true,
+      "path": "AGENTS.md"
+    },
+    {
+      "sha256": "0B54A1544E7436DF0ECEA4EA9CFBF378E44793E4EE105BF6CEC721A586497352",
+      "matchesPreGitBackup": true,
+      "path": "eslint.config.mjs"
+    },
+    {
+      "sha256": "E2E825375D62C5A8ED7DDA47970FCA2A90AB8E17C59637076A05442E96E78173",
+      "matchesPreGitBackup": true,
+      "path": "next.config.ts"
+    },
+    {
+      "sha256": "BD135F97CA2D362B6E10C8B78CABE531765422ED0FF26138A92B2BB2BB65FE43",
+      "matchesPreGitBackup": true,
+      "path": "package-lock.json"
+    },
+    {
+      "sha256": "CD9F3B3D216A02DAF8BDFA8D26FC216C24A149196B350C0489C5CF898CA22978",
+      "matchesPreGitBackup": true,
+      "path": "package.json"
+    },
+    {
+      "sha256": "A36ECEF109B836BF87A0C3010921D9839E983FB719C0D8BE78178BFA0E599B85",
+      "matchesPreGitBackup": true,
+      "path": "playwright.config.ts"
+    },
+    {
+      "sha256": "B783348D5618047D0F37E12ACD15C5A2C5F02809D8711E0764C9CEA52750346C",
+      "matchesPreGitBackup": true,
+      "path": "postcss.config.mjs"
+    },
+    {
+      "sha256": "D88B60C515BC31B4E69138F4548C378268CB4B1C61E28F632194EDF950D22D59",
+      "matchesPreGitBackup": true,
+      "path": "tsconfig.json"
+    }
+  ],
+  "checked": 46,
+  "checkedAtUtc": "2026-10-15T10:21:56.2349561Z",
+  "allMatchPreGitBackup": true
+}

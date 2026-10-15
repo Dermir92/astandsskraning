@@ -1,0 +1,199 @@
+# Verkefni: Ástandsskráning — MVP, áfangi 1A
+
+Þú ert senior full-stack engineer og product-focused UX/UI designer með reynslu af faglegum B2B SaaS-lausnum, skráningarkerfum og aðgengilegum vefviðmótum.
+
+Við erum að byggja nýja, sjálfstæða íslenska SaaS-vöru með vinnuheitið **Ástandsskráning**.
+
+Lestu fyrst `docs/astandsskraning-mvp-v1.md`. Það er grunnforskrift verkefnisins. Ef skjalið finnst ekki skaltu láta vita áður en þú byrjar að innleiða vöruna.
+
+## Markmið
+
+Byggja fyrstu nothæfu framendafrumgerðina með sérstakri áherslu á faglegt UX/UI, skýrt notendaflæði og vandaða farsímaupplifun.
+
+Þetta er fyrsti þróunaráfanginn, ekki endanleg útgáfa vörunnar.
+
+### 1. Kannaðu verkefnið áður en þú byrjar
+
+- Skoðaðu núverandi verkefnamöppu og fyrirliggjandi kóða.
+- Ekki eyða eða yfirskrifa fyrirliggjandi vinnu.
+- Ef verkefnið er tómt skaltu setja upp Next.js (App Router), TypeScript og Tailwind CSS.
+- Notaðu skýra komponentaskipan og einfalt, viðhaldanlegt gagnalíkan.
+- Enginn backend, Supabase eða ytri auðkenningarþjónusta í þessum áfanga.
+- Notaðu eingöngu tilbúin, óviðkvæm sýnigögn.
+
+### 2. Hönnunarstefna — mjög mikilvægt
+
+Ég vil EKKI hefðbundið AI-generated SaaS UI.
+
+Forðastu sérstaklega:
+- Generic shadcn dashboard templates eða óbreytt tilbúin admin-sniðmát.
+- Of stór KPI-kort og óþarfa upplýsingakort.
+- Fjólubláa gradienta og handahófskennda áhersluliti.
+- Of mikið autt pláss.
+- Alltof hlutlausa, gráa og persónulausa litasamsetningu.
+- Óþarfa myndskreytingar, skrauttákn og risastórar fyrirsagnir.
+- Viðmót sem lítur vel út á skjáskoti en er óþægilegt í raunverulegri notkun.
+
+Hannaðu þess í stað faglegan, vandaðan B2B-hugbúnað með norrænum karakter.
+
+Hafðu til hliðsjónar gæði og notendaupplifun rótgróinna hugbúnaðarlausna á borð við RentCheck og Record360, án þess að afrita þær.
+
+Notaðu:
+- Skýra upplýsingastigskiptingu.
+- Vel úthugsað litakerfi með persónuleika.
+- Vandaða leturfræði.
+- Samræmda hnappa, eyðublöð og töflur.
+- Hófleg og samræmd bil.
+- Skýrar stöðumerkingar og leiðbeiningar.
+- Raunverulega verkefnamiðaða hönnun.
+
+Tilraunalitir í vöruforskriftinni eru aðeins upphafspunktur. Þú mátt útfæra eða bæta þá ef útkoman verður faglegri.
+
+**Aðgengi er forgangsatriði.** Stefndu að WCAG 2.2 AA, góðum birtuskilum, sýnilegum fókus, lyklaborðsaðgengi, skýrum villuskilaboðum og þægilegum snertiflötum.
+
+Viðmótið skal vera á góðri íslensku, með arkitektúr sem leyfir ensku síðar.
+
+### 3. Fyrstu skjáirnir
+
+Byggðu eftirfarandi:
+
+**A. Mínar skýrslur**
+
+- Faglegt yfirlit yfir skýrslur með tilbúnum gögnum.
+- Heiti eignar, tegund, dagsetning, staða og næsta aðgerð.
+- Leit og einfaldar síur.
+- Skýr aðgerð til að stofna nýja skýrslu.
+- Notaðu töflur eða lista þegar það er betra en kort.
+
+**B. Ný skýrsla**
+
+Notandi getur valið:
+- Íbúðarhúsnæði.
+- Ökutæki.
+- Geymslu/bílskúr.
+- Atvinnuhúsnæði.
+
+Allar fjórar eignategundir eiga að sjást. Í þessum áfanga þarf aðeins íbúðaskráningin að vera fullvirk. Hinar mega vera skýrt merktar „Í undirbúningi“ í stað þess að líta út fyrir að vera tilbúnar.
+
+**C. Upplýsingar um íbúð**
+
+- Tegund skráningar.
+- Heimilisfang og póstnúmer.
+- Íbúðarnúmer/hæð.
+- Hlutverk stofnanda.
+- Dagsetning afhendingar.
+- Hvort húsgögn fylgi.
+- Valfrjálsar athugasemdir.
+
+Skildu á milli skyldureita og valfrjálsra reita. Leyfðu ófullgerðum drögum.
+
+**D. Velja rými**
+
+- Sjálfgefin rými eins og stofa, eldhús, baðherbergi og svefnherbergi.
+- Hægt að breyta fjölda rýma.
+- Hægt að bæta við sérsniðnu rými.
+- Hægt að endurnefna rými.
+- Skýr yfirsýn yfir þau rými sem verða skoðuð.
+
+**E. Ástandsskráning**
+
+Þetta er mikilvægasti skjárinn.
+
+- Sýndu eitt rými í einu.
+- Sýndu framvindu, vistunarstöðu og skoðunaratriði.
+- Ástand: í lagi, notkunarmerki, slit/galli, skemmt, ekki skoðað, á ekki við.
+- Aðskilin svör fyrir virkni og þrif þegar við á.
+- Skilyrtir reitir fyrir skemmdir: tegund, staðsetning og lýsing.
+- Myndasvæði og leiðbeiningar um myndatöku.
+- Notandi getur farið til baka, áfram og breytt svörum.
+- Aldrei merkja ósvarað atriði sjálfkrafa „Í lagi“.
+
+Í þessum áfanga má útfæra myndasvæðið með sýnigögnum eða staðbundinni forskoðun. Ekki gefa í skyn að raunverulegar myndir hafi verið vistaðar á öruggum þjóni.
+
+**F. Yfirferð skráningar**
+
+- Sýndu valin rými.
+- Fjölda skráðra atriða.
+- Athugasemdir og skemmdir.
+- Atriði sem eru óskráð eða þarfnast athygli.
+- Hægt að fara aftur í viðeigandi rými til að laga upplýsingar.
+
+Ekki útfæra raunverulegan, óafturkræfan frágang eða senda boð í þessum áfanga.
+
+### 4. Notkun sýnigagna
+
+Útbúðu trúverðug íslensk sýnigögn svo viðmótið líti út eins og raunverulegt kerfi.
+
+Þar á meðal:
+- Nokkrar eignir af mismunandi tegundum.
+- Íbúð með sex rýmum.
+- Skoðunaratriði í mismunandi stöðum.
+- Nokkrar athugasemdir og skráð frávik.
+
+Ekki nota raunverulegar persónuupplýsingar.
+
+Það má nota staðbundna vistun fyrir frumgerðina ef hún bætir prófanleika, en merktu skýrt að það sé aðeins sýnihamur. Ekki hanna slíka vistun sem örugga geymslu raunverulegra úttektargagna.
+
+### 5. Mobile-first
+
+Ástandsskráning fer oft fram á staðnum.
+
+Forgangsraðaðu því góðri farsímaupplifun:
+- 360–390 px breidd.
+- Skýrum framvinduvísi.
+- Auðveldri leið milli rýma.
+- Stórum og aðgengilegum aðgerðarhnöppum.
+- Eyðublöðum sem eru þægileg með einum þumli.
+- Engu láréttu skrolli í meginviðmóti.
+
+Á tölvu á kerfið að nýta plássið betur með skýrri yfirsýn og hentugri staðsetningu rýmalista og skoðunaratriða.
+
+### 6. Verkaskipting og gæði
+
+Innleiddu verkefnið í rökréttum skrefum.
+
+Settu upp endurnýtanlegar UI-einingar og forðastu endurtekinn kóða.
+
+Prófaðu:
+- TypeScript.
+- Lint.
+- Build.
+- Grunnflæði frá stofnun skýrslu til yfirferðar.
+- Breytingu svara og rýma.
+- Farsíma- og tölvuútlit.
+- Aðgengi að eyðublöðum og hnöppum.
+
+Ef vafraprófun er í boði skaltu fara í gegnum helstu skjáina og yfirfara útlitið sjónrænt, ekki aðeins skoða hvort kóðinn keyri.
+
+Ekki fullyrða að prófun hafi verið framkvæmd ef hún var ekki framkvæmd.
+
+### 7. Afmörkun
+
+Ekki gera eftirfarandi í þessum áfanga:
+
+- Engin raunveruleg innskráning.
+- Enginn gagnagrunnur.
+- Enginn Supabase.
+- Engin tölvupóstsending.
+- Engir virkir OTP-kóðar eða opin boð.
+- Engin raunveruleg greiðsla.
+- Engin tilbúin rafræn undirskrift.
+- Engar fullyrðingar um lagalega staðfestingu skýrslna.
+- Ekkert deployment í production.
+- Ekkert push á GitHub án sérstaks samþykkis.
+
+Ekki byggja óumbeðna eiginleika. Ef eitthvað er óljóst skaltu velja einfalda, örugga leið sem samræmist vöruforskriftinni og skrá forsenduna.
+
+### 8. Skil
+
+Þegar þú hefur lokið verkefninu:
+
+1. Taktu saman hvað var byggt.
+2. Segðu nákvæmlega hvernig ég ræsi verkefnið staðbundið, t.d. með `npm run dev`.
+3. Teldu upp þá skjái og flæði sem ég get prófað.
+4. Segðu hvað er eingöngu sýnihamur.
+5. Taktu fram hvaða próf voru keyrð og niðurstöður þeirra.
+6. Nefndu opin UX/UI-atriði eða þekkta galla.
+7. Leggðu fram afmarkaða tillögu að næsta þróunarskrefi.
+
+**Mikilvægasta samþykktarviðmiðið:** Fyrsta útgáfan á að líta út og hegða sér eins og vönduð íslensk hugbúnaðarvara, ekki almenn AI-frumgerð. Notandinn á að geta stofnað íbúðaskráningu, valið rými, skráð ástand og farið yfir niðurstöðurnar í samfelldu, skiljanlegu flæði.

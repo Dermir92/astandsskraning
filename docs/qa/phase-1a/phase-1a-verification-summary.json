@@ -1,0 +1,34 @@
+{
+  "statistics": {
+    "startTime": "2026-10-14T17:58:33.227Z",
+    "duration": 68225.977,
+    "expected": 70,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "sourceDifferences": [
+    "src/app/globals.css",
+    "src/components/app-shell.tsx",
+    "src/components/screens/reports-screen.tsx"
+  ],
+  "protectedFilesUnchanged": 28,
+  "auditFiles": [
+    "test-results\\readability-all-six-screen-f5bbe-ders-and-control-boundaries-desktop\\contrast-audit.json",
+    "test-results\\readability-all-six-screen-f5bbe-ders-and-control-boundaries-mobile-360\\contrast-audit.json",
+    "test-results\\readability-all-six-screen-f5bbe-ders-and-control-boundaries-mobile-390\\contrast-audit.json",
+    "test-results\\readability-damage-form-er-56747-led-actions-remain-readable-desktop\\operational-contrast.json",
+    "test-results\\readability-damage-form-er-56747-led-actions-remain-readable-mobile-360\\operational-contrast.json",
+    "test-results\\readability-damage-form-er-56747-led-actions-remain-readable-mobile-390\\operational-contrast.json",
+    "test-results\\reports-shell-selected-sam-406b8-s-axe-and-rendered-contrast-desktop\\shell-contrast.json",
+    "test-results\\reports-shell-selected-sam-406b8-s-axe-and-rendered-contrast-mobile-360\\shell-contrast.json",
+    "test-results\\reports-shell-selected-sam-406b8-s-axe-and-rendered-contrast-mobile-390\\shell-contrast.json"
+  ],
+  "states": 54,
+  "checks": 6059,
+  "textChecks": 4115,
+  "minimumTextRatio": 5.981547962168809,
+  "minimumNonTextRatio": 3.2440876589048813,
+  "contrastFailures": [],
+  "typeFailures": []
+}

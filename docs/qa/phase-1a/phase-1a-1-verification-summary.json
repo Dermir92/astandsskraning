@@ -1,0 +1,58 @@
+{
+  "statistics": {
+    "startTime": "2026-10-14T19:03:02.390Z",
+    "duration": 94807.70400000001,
+    "expected": 85,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "sourceDifferences": [
+    "src/app/globals.css",
+    "src/components/app-shell.tsx",
+    "src/components/screens/reports-screen.tsx"
+  ],
+  "protectedFilesUnchanged": 30,
+  "desktopComparison": {
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "identical": true
+  },
+  "density": [
+    {
+      "width": 360,
+      "beforeFirstReportTop": 529.828125,
+      "afterFirstReportTop": 299.65625,
+      "beforeRowHeight": 191.796875,
+      "afterRowHeight": 121.390625,
+      "rowReductionPercent": 36.70875763747454,
+      "fullyVisibleReports": 4
+    },
+    {
+      "width": 390,
+      "beforeFirstReportTop": 529.828125,
+      "afterFirstReportTop": 299.65625,
+      "beforeRowHeight": 191.796875,
+      "afterRowHeight": 121.390625,
+      "rowReductionPercent": 36.70875763747454,
+      "fullyVisibleReports": 4
+    },
+    {
+      "width": 768,
+      "beforeFirstReportTop": 608.84375,
+      "afterFirstReportTop": 301.96875,
+      "beforeRowHeight": 121,
+      "afterRowHeight": 121.390625,
+      "rowReductionPercent": -0.3228305785123967,
+      "fullyVisibleReports": 4
+    }
+  ],
+  "states": 69,
+  "checks": 6370,
+  "textChecks": 4167,
+  "minimumTextRatio": 5.981547962168809,
+  "minimumNonTextRatio": 3.141148709275876,
+  "contrastFailures": [],
+  "typeFailures": []
+}

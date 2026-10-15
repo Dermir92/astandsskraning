@@ -1,0 +1,46 @@
+# Dependencies and reproducible build output
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated QA output; curated baseline evidence lives in docs/qa/phase-1a/
+playwright-report/
+test-results/
+artifacts/
+
+# Local environment, deployment state and credential material
+.env*
+!.env.example
+.vercel/
+.netlify/
+.npmrc
+.netrc
+.git-credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials*.json
+service-account*.json
+service_account*.json
+client_secret*.json
+secrets*.json
+secrets/
+credentials/
+
+# Local logs, editor state and operating-system files
+*.log
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*.tmp
+.DS_Store
+Thumbs.db
+Desktop.ini

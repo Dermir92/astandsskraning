@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-15",
+  "method": "Manual CUA keyboard interaction, native accessibility tree and visual screenshots in Codex in-app Chromium browser",
+  "viewports": [
+    {
+      "width": 360,
+      "height": 800
+    },
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 320,
+      "height": 800
+    }
+  ],
+  "passed": [
+    "Skip link moves focus to main; subsequent Tab reaches creation, search, filter disclosure",
+    "Space expands filters; keyboard Home/Down changes native status and asset selects",
+    "Two active filters and current sort exposed in collapsed control",
+    "Disclosure reset restores toggle focus, clears search/status/asset and preserves sort",
+    "Escape closes filters and restores toggle",
+    "Report title Enter opens named native modal with initial close focus",
+    "Background excluded from modal accessibility tree",
+    "Shift+Tab reaches final context link; Tab wraps to close",
+    "Sticky close remains visible after scrolling; visible focus outline",
+    "Escape dismisses sheet and restores report title",
+    "320 CSS px filters stack without horizontal page overflow"
+  ],
+  "observedIssue": "No-results reset removes the focused button; focus becomes page/BODY; subsequent Tab reaches first returned report",
+  "zoom": {
+    "attempt": "Ctrl+plus twice, then Ctrl+0",
+    "before": {
+      "width": 390,
+      "height": 844,
+      "dpr": 1.0000000298023224,
+      "visualViewportScale": 1
+    },
+    "after": {
+      "width": 390,
+      "height": 844,
+      "dpr": 1.0000000298023224,
+      "visualViewportScale": 1
+    },
+    "result": "No native zoom achieved; no zoom certification"
+  },
+  "consoleWarningsErrors": [],
+  "limits": [
+    "No actual screen-reader session",
+    "No physical device test",
+    "Firefox and Safari not tested",
+    "Actual browser zoom and OS/browser text scaling unverified"
+  ],
+  "cleanup": "Temporary review tab closed; browser viewport override reset; user tab and stored drafts preserved"
+}
