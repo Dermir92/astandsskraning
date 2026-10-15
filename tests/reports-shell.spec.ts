@@ -245,9 +245,10 @@ test("empty storage, zero-room and zero-item drafts have honest context and reco
     key,
   );
   await page.reload();
+  await expect(page.locator(".reports-heading p")).toHaveText("0 skýrslur");
   await expect(
     page.getByText("0 af 0 skýrslum", { exact: true }),
-  ).toBeVisible();
+  ).toHaveClass("sr-only");
   await expect(
     page.getByRole("link", { name: "Stofna skýrslu", exact: true }),
   ).toHaveAttribute("href", "/skyrslur/ny");

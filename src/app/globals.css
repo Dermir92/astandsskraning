@@ -3476,6 +3476,11 @@ input[type="radio"] {
   }
   .reports-heading {
     margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .reports-heading .button {
+    max-width: 100%;
+    white-space: normal;
   }
   .register-toolbar {
     display: block;
@@ -3503,7 +3508,7 @@ input[type="radio"] {
     padding: 0;
     text-align: left;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
   }
   .mobile-filter-toggle > span:first-of-type {
     flex: 1;
@@ -3520,15 +3525,22 @@ input[type="radio"] {
     transform: rotate(180deg);
   }
   .mobile-sort-hint {
-    font-size: 12px;
-    white-space: nowrap;
+    max-width: 46%;
+    font-size: 14px;
+    text-align: right;
+    overflow-wrap: anywhere;
   }
   .mobile-filter-fields:not([hidden]) {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Retain two columns when they fit; grow with enlarged working text. */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, max(10em, calc(50% - 6px))), 1fr)
+    );
     gap: 12px;
     border-top: 1px solid var(--line);
     padding: 12px 0 14px;
+    font-size: 14px;
   }
   .mobile-filter-fields select {
     font-size: 14px;
@@ -3537,7 +3549,7 @@ input[type="radio"] {
   .mobile-filter-reset {
     align-self: end;
     padding: 8px;
-    font-size: 13px;
+    font-size: 14px;
     white-space: normal;
   }
   .register-heading {
@@ -3571,13 +3583,25 @@ input[type="radio"] {
     min-width: 0;
     overflow-wrap: anywhere;
   }
-  .register-mobile-property .property-name {
+  .mobile-report-title {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     gap: 8px;
+  }
+  .register-mobile-property .property-name {
+    min-width: 0;
     font-size: 16px;
     line-height: 1.5;
+  }
+  .mobile-preview-cue {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 3px;
+    color: var(--teal);
+    font-size: 14px;
+    font-weight: 600;
   }
   .register-mobile-property:hover .property-name {
     color: var(--teal);
@@ -3594,7 +3618,7 @@ input[type="radio"] {
   .register-metadata {
     margin-left: 32px;
     gap: 2px;
-    font-size: 13px;
+    font-size: 14px;
   }
   .register-metadata time {
     display: none;
@@ -3605,10 +3629,11 @@ input[type="radio"] {
     align-self: center;
   }
   .register-next {
-    max-width: 140px;
+    max-width: 160px;
     white-space: normal;
     text-align: right;
     line-height: 1.5;
+    font-size: 14px;
   }
   .register-next-active {
     background: var(--teal);
@@ -3621,6 +3646,38 @@ input[type="radio"] {
   }
   .mobile-report-action {
     display: inline;
+  }
+  .reports-heading .button,
+  .register-metadata .badge,
+  .register-heading p,
+  .register-filter > span,
+  .register-footer .text-button,
+  .context-status,
+  .context-status .badge,
+  .context-progress,
+  .context-section,
+  .context-section-heading > span,
+  .context-rooms a,
+  .context-deviations a,
+  .context-deviations p,
+  .context-actions .text-link,
+  .context-definition dt {
+    font-size: 14px;
+  }
+  .register-filter > .mobile-sort-help {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .context-progress > div:first-child,
+  .context-section-heading,
+  .context-rooms a {
+    flex-wrap: wrap;
+  }
+  .register-metadata,
+  .register-actions,
+  .register-next {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 }
 @media (max-width: 350px) {

@@ -46,6 +46,7 @@ export function ReportsScreen() {
   const [sort, setSort] = useState("newest");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const filterToggle = useRef<HTMLButtonElement>(null);
+  const searchInput = useRef<HTMLInputElement>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawerId, setDrawerId] = useState<string | null>(null);
   const visible = state.reports
@@ -80,6 +81,10 @@ export function ReportsScreen() {
     setStatus("all");
     setAsset("all");
   };
+  const resetToSearch = () => {
+    reset();
+    searchInput.current?.focus();
+  };
   const groups = [
     {
       name: "Ólokið",
@@ -107,6 +112,7 @@ export function ReportsScreen() {
         <div className="search-field">
           <Search size={18} aria-hidden="true" />
           <input
+            ref={searchInput}
             aria-label="Leita að eign eða heimilisfangi"
             placeholder="Leita að eign eða heimilisfangi…"
             value={query}
@@ -115,7 +121,10 @@ export function ReportsScreen() {
           {query ? (
             <button
               className="icon-button"
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQuery("");
+                searchInput.current?.focus();
+              }}
               aria-label="Hreinsa leit"
             >
               <X size={16} aria-hidden="true" />
@@ -151,7 +160,7 @@ export function ReportsScreen() {
               ) : null}
             </span>
             <span className="mobile-sort-hint">
-              {sort === "newest" ? "Nýjast fyrst" : "Eftir heiti"}
+              {sort === "newest" ? "Nýjast fyrst" : "Eftir heiti innan hópa"}
             </span>
             <ChevronDown size={16} aria-hidden="true" />
           </button>
@@ -198,12 +207,16 @@ export function ReportsScreen() {
               <span>Röðun</span>
               <select
                 aria-label="Röðun skýrslna"
+                aria-describedby="mobile-sort-help"
                 value={sort}
                 onChange={(event) => setSort(event.target.value)}
               >
                 <option value="newest">Nýjast fyrst</option>
                 <option value="name">Eftir heiti</option>
               </select>
+              <span id="mobile-sort-help" className="mobile-sort-help">
+                Raðað innan hópa · ólokið fyrst.
+              </span>
             </label>
             <button
               className="button button-secondary mobile-filter-reset"
@@ -256,7 +269,11 @@ export function ReportsScreen() {
           <div className="register-heading">
             <div>
               <h2>Skýrsluskrá</h2>
-              <p role="status">
+              <p
+                role="status"
+                aria-atomic="true"
+                className={filtered ? undefined : "sr-only"}
+              >
                 {visible.length} af {state.reports.length} skýrslum
               </p>
             </div>
@@ -326,9 +343,17 @@ export function ReportsScreen() {
                         >
                           <AssetIcon type={report.assetType} />
                           <span className="mobile-report-identity">
-                            <span className="property-name">
-                              {reportTitle(report)}
-                              <ChevronDown size={16} aria-hidden="true" />
+                            <span className="mobile-report-title">
+                              <span className="property-name">
+                                {reportTitle(report)}
+                              </span>
+                              <span
+                                className="mobile-preview-cue"
+                                aria-hidden="true"
+                              >
+                                Yfirlit
+                                <ChevronDown size={16} />
+                              </span>
                             </span>
                             <span
                               className="mobile-report-location"
@@ -408,7 +433,10 @@ export function ReportsScreen() {
                   : "Stofnaðu nýja skýrslu til að hefja skráningu."}
               </p>
               {state.reports.length ? (
-                <button className="button button-secondary" onClick={reset}>
+                <button
+                  className="button button-secondary"
+                  onClick={resetToSearch}
+                >
                   Hreinsa leit og síur
                 </button>
               ) : (
@@ -420,7 +448,7 @@ export function ReportsScreen() {
           ) : null}
           <div className="register-footer">
             {filtered ? (
-              <button className="text-button" onClick={reset}>
+              <button className="text-button" onClick={resetToSearch}>
                 Hreinsa síur
               </button>
             ) : (

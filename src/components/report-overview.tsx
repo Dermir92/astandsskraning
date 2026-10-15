@@ -58,6 +58,7 @@ export function ReportOverview({ report }: { report: Report }) {
   const missingOverviews = report.rooms.filter(
     (room) => !state.photos[`${report.id}:${room.id}:overview`]?.length,
   ).length;
+  const previewedDeviations = deviations.slice(0, 2);
   const missingDamagePhotos = deviations.filter(
     ({ room, item, observation }) =>
       requiresDamage(observation) &&
@@ -226,10 +227,12 @@ export function ReportOverview({ report }: { report: Report }) {
             <div className="context-section">
               <div className="context-section-heading">
                 <h3>Skráð frávik</h3>
-                <span>{deviations.length}</span>
+                <span>
+                  Sýnir {previewedDeviations.length} af {deviations.length}
+                </span>
               </div>
               <ul className="context-deviations">
-                {deviations.slice(0, 2).map(({ room, item, observation }) => (
+                {previewedDeviations.map(({ room, item, observation }) => (
                   <li key={`${room.id}:${item.id}`}>
                     <Link href={roomHref(room.id)}>
                       {room.name || "Ónefnt rými"} · {item.name}
