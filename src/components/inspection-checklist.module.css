@@ -48,6 +48,22 @@
 .roomPhotos summary::after { content: "+"; margin-left: auto; font-size: 20px; }
 .roomPhotos[open] summary::after { content: "−"; }
 .roomPhotos :global(.photo-preview) { margin: 0 0 16px; }
+.incompleteList { width: 100%; font-size: 14px; }
+.incompleteList summary, .itemIndex summary { min-height: 44px; align-content: center; cursor: pointer; color: var(--teal-dark); font-weight: 700; }
+.incompleteList h3 { font-size: 14px; margin: 12px 0 4px; }
+.navigationItems { list-style: none; margin: 0; padding: 0; }
+.navigationItems li { margin: 0; }
+.navigationItems a { display: flex; flex-direction: column; justify-content: center; gap: 3px; min-height: 44px; padding: 8px 4px; color: var(--teal-dark); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.navigationItems a span { font-size: 14px; font-weight: 500; color: var(--muted); }
+.navigationItems a strong { font-size: 15px; }
+.itemIndex .navigationItems { padding: 0; margin-top: 8px; }
+.reviewItemLink { display: inline-flex; align-items: center; min-height: 44px; color: var(--teal-dark); text-underline-offset: 3px; }
+.navigationItems a:focus, .reviewItemLink:focus, .incompleteList summary:focus-visible, .itemIndex summary:focus-visible,
+.page :global(.answer-group):focus, .page :global(.damage-fields):focus,
+.page :global(.room-heading h2):focus { outline: 3px solid var(--focus); outline-offset: 3px; }
+.navigationItems a, .reviewItemLink { scroll-margin-block: 110px; }
+.navigationNotice { font-size: 14px; color: var(--warning-text); margin-block: 8px; }
+.page :global(.inspection-overall) { flex-wrap: wrap; }
 @media (max-width: 1100px) {
   .row { grid-template-columns: minmax(0, 1fr) 118px; }
   .rowActions { flex-direction: column; gap: 6px; }

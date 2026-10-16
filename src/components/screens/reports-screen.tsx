@@ -29,6 +29,7 @@ import {
   type ReportStatus,
 } from "@/lib/model";
 import { is } from "@/lib/locale/is";
+import { useInspectionPositions } from "../use-inspection-navigation";
 
 const statuses = ["all", "active", "draft", "reviewed"] as const;
 const statusLabel = (status: ReportStatus | "all") =>
@@ -40,6 +41,7 @@ const statusLabel = (status: ReportStatus | "all") =>
 
 export function ReportsScreen() {
   const { state } = useDemo();
+  const positions = useInspectionPositions(state.reports, state.status !== "loading" && state.status !== "read-error");
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<ReportStatus | "all">("all");
   const [asset, setAsset] = useState<AssetType | "all">("all");
@@ -309,6 +311,7 @@ export function ReportsScreen() {
                   {group.reports.map((report) => {
                     const currentStatus = reportStatus(report);
                     const stats = reportStats(report);
+                    const position = state.status === "read-error" ? null : positions[report.id]?.position;
                     return (
                       <li
                         className={`report-entry ${selected?.id === report.id ? "report-selected" : ""}`}
@@ -319,7 +322,7 @@ export function ReportsScreen() {
                           <div>
                             <Link
                               className="property-name"
-                              href={reportHref(report)}
+                              href={reportHref(report, position)}
                             >
                               {reportTitle(report)}
                             </Link>
@@ -377,17 +380,17 @@ export function ReportsScreen() {
                         <div className="register-actions">
                           <Link
                             className={`register-next ${currentStatus === "active" ? "register-next-active" : ""}`}
-                            href={reportHref(report)}
-                            aria-label={`${reportAction(report)}: ${reportTitle(report)}`}
+                            href={reportHref(report, position)}
+                            aria-label={`${reportAction(report, position)}: ${reportTitle(report)}`}
                           >
                             <span className="desktop-report-action">
                               {currentStatus === "reviewed" ||
                               report.assetType !== "apartment"
                                 ? "Skoða"
-                                : reportAction(report)}
+                                : reportAction(report, position)}
                             </span>
                             <span className="mobile-report-action">
-                              {reportAction(report)}
+                              {reportAction(report, position)}
                             </span>
                             <ArrowRight size={16} aria-hidden="true" />
                           </Link>
