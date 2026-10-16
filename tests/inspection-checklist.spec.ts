@@ -5,6 +5,7 @@ import { CONDITIONS, EMPTY_OBSERVATION, isReportList, observationComplete, repor
 import { is } from "../src/lib/locale/is";
 import { checklistReport } from "./inspection-checklist-fixtures";
 import { auditRenderedContrast } from "./contrast-helpers";
+import { positionKey } from "../src/lib/inspection-navigation";
 
 const route = "/skyrslur/checklist-report/skraning?rymi=checklist-entry";
 const row = (page: Page, id: string) => page.locator(`.checklist-item[data-item="${id}"]`);
@@ -86,7 +87,7 @@ test("quick-good changes condition only and leaves required functionality and cl
   expect(observationComplete((await saved(page)).rooms[0].items[3], (await saved(page)).rooms[0].observations.windows)).toBe(false);
   await windows.getByRole("radio", { name: "Hreint", exact: true }).check();
   await expect(windows).toHaveAttribute("data-state", "recorded");
-  await expect(page.locator(".inspection-overall strong")).toHaveText("2 af 20");
+  await expect(page.locator(".inspection-overall > div strong")).toHaveText("2 af 20");
   await page.reload();
   expect((await saved(page)).rooms[0].observations.windows).toEqual({ ...EMPTY_OBSERVATION, condition: "good", functionality: "works", cleanliness: "clean" });
 });
@@ -125,7 +126,7 @@ test("existing draft values, associations, status distinctions and review statis
   expect({ ...updated, updatedAt: original.updatedAt }).toEqual(expected);
   expect(isReportList([updated])).toBe(true);
   const stats = reportStats(updated);
-  await expect(page.locator(".inspection-overall strong")).toHaveText(`${stats.recorded} af ${stats.total}`);
+  await expect(page.locator(".inspection-overall > div strong")).toHaveText(`${stats.recorded} af ${stats.total}`);
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
   const numbers = page.locator(".review-summary > div > strong");
   await expect(numbers.nth(1)).toHaveText(`${stats.recorded} / ${stats.total}`);
@@ -200,9 +201,10 @@ test("room selection, previous/next navigation and existing review return do not
   await expect(page.getByRole("heading", { name: "Svefnherbergi", exact: true })).toBeVisible();
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
   await page.getByRole("link", { name: "Breyta skráningu: Stofa", exact: true }).click();
-  await expect(page).toHaveURL(/rymi=checklist-living$/);
+  await expect(page).toHaveURL(/rymi=checklist-living&fra=yfirferd&yfirferdRymi=checklist-living$/);
   expect(await raw(page)).toBe(document);
-  expect(await page.evaluate(() => Object.keys(localStorage).sort())).toEqual([STORAGE_KEY, "unrelated-checklist-sentinel"].sort());
+  expect(await page.evaluate(() => Object.keys(localStorage).sort())).toEqual([STORAGE_KEY, positionKey("checklist-report"), "unrelated-checklist-sentinel"].sort());
+  expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), positionKey("checklist-report"))).toEqual({ version: 1, roomId: "checklist-living", itemId: null });
 });
 
 test("new controls preserve unreadable raw data and valid failed writes still retry", async ({ page }) => {

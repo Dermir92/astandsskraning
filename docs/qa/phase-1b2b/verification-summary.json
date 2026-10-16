@@ -1,0 +1,213 @@
+{
+  "date": "2026-10-16",
+  "status": "Approved for feature-branch publication and draft PR; verification captured before commit; no merge or deployment",
+  "base": "e8d838aa73a40ed7a866e247b6cb3081d1e0f308",
+  "branch": "codex/phase-1b2b-inspection-navigation",
+  "runtime": {
+    "next": "16.4.0",
+    "productionServer": true,
+    "browser": "Chromium"
+  },
+  "checks": {
+    "lint": "passed with no warnings",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "diffWhitespace": "passed"
+  },
+  "tests": {
+    "passed": 247,
+    "skipped": 2,
+    "failures": 0,
+    "flaky": 0,
+    "durationSeconds": 149.009497,
+    "projects": {
+      "desktop": {
+        "passed": 83,
+        "skipped": 0,
+        "failed": 0
+      },
+      "mobile-360": {
+        "passed": 82,
+        "skipped": 1,
+        "failed": 0
+      },
+      "mobile-390": {
+        "passed": 82,
+        "skipped": 1,
+        "failed": 0
+      }
+    },
+    "newNavigationExecutions": 57,
+    "localDataSafetyExecutions": 36
+  },
+  "fourWidthCapture": {
+    "states": 28,
+    "pngs": 56,
+    "viewports": [
+      {
+        "width": 360,
+        "height": 800
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1000
+      },
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    "axeViolations": 0,
+    "runtimeErrors": 0,
+    "overflowStates": 0
+  },
+  "supervisedWalkthrough": {
+    "method": "Agent-supervised visible browser controls and accessibility/screenshot inspection, separate from the automated suite",
+    "viewports": [
+      {
+        "width": 360,
+        "height": 800
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "result": "passed after two confirmed focus corrections",
+    "paths": [
+      "new apartment, details and room setup",
+      "quick and expanded answers",
+      "reload and exact continuation",
+      "cross-room incomplete links and explicit next action",
+      "review edit and source return",
+      "keyboard Tab without selection, explicit arrow/click answers",
+      "Back/Forward destination and focus",
+      "long-address mobile density and first-action visibility"
+    ],
+    "actualMobileHardware": false,
+    "manualScreenReaderSession": false,
+    "viewportReset": true
+  },
+  "correctedIssues": [
+    "Reload focus suppression restricted to the initial matching document entry",
+    "One post-restoration frame keeps the focused review source visible"
+  ],
+  "sourceReview": {
+    "result": "No accidental report mutation path or confirmed Concept B divergence found",
+    "unchanged": [
+      "src/lib/model.ts",
+      "src/components/demo-provider.tsx",
+      "src/components/photo-preview.tsx",
+      "src/app/globals.css",
+      "package.json",
+      "package-lock.json"
+    ],
+    "navigationSources": [
+      {
+        "file": "src/components/use-inspection-navigation.ts",
+        "sha256": "018166b832de3786b46d9c3f5248d63a38942d21ff7c3f28c8c14463e73fa6a8"
+      },
+      {
+        "file": "src/lib/inspection-navigation.ts",
+        "sha256": "b9cd16ea2babe7d0961839ca604a55f0d2309c1f6e0324507c49d7f7e3ea58af"
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "file": "360-checklist.jpg",
+      "format": "jpeg",
+      "width": 345,
+      "height": 767,
+      "cssViewport": {
+        "width": 360,
+        "height": 800
+      },
+      "browserExportScaled": true,
+      "bytes": 31750,
+      "sha256": "d34b43c679cc3e85e1a14147283d096477d03929980ecfb97af69b509874dc29",
+      "source": "Supervised browser walkthrough; newly created synthetic residential draft"
+    },
+    {
+      "file": "360-resume.jpg",
+      "format": "jpeg",
+      "width": 345,
+      "height": 767,
+      "cssViewport": {
+        "width": 360,
+        "height": 800
+      },
+      "browserExportScaled": true,
+      "bytes": 31089,
+      "sha256": "48555e76c9895216142dbf98ff448bde180db50968afbb704bc1455d89e286b8",
+      "source": "Supervised browser walkthrough; exact reload continuation"
+    },
+    {
+      "file": "390-incomplete-editor.jpg",
+      "format": "jpeg",
+      "width": 375,
+      "height": 812,
+      "cssViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browserExportScaled": true,
+      "bytes": 34300,
+      "sha256": "6af302429060fa75250f9831ac12f87efd0de040f45f2d6cf7e5b29e810987f6",
+      "source": "Supervised browser walkthrough; browser Back to an unanswered item"
+    },
+    {
+      "file": "390-review-return.jpg",
+      "format": "jpeg",
+      "width": 375,
+      "height": 812,
+      "cssViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browserExportScaled": true,
+      "bytes": 27780,
+      "sha256": "afefea878cfa2d79ba3f1e179de35e5c8a5df5a510cb42519fff2ed8b03251a7",
+      "source": "Supervised browser walkthrough; source focus after review editing"
+    },
+    {
+      "file": "768-incomplete-list.png",
+      "format": "png",
+      "width": 768,
+      "height": 1000,
+      "cssViewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "browserExportScaled": false,
+      "bytes": 72605,
+      "sha256": "9d95ed9b496df8b333c7468b0960feee2d867254208f73dd16123051eba3d4ce",
+      "source": "Automated disposable synthetic fixture; final four-width capture run"
+    },
+    {
+      "file": "1440-checklist.png",
+      "format": "png",
+      "width": 1440,
+      "height": 1000,
+      "cssViewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "browserExportScaled": false,
+      "bytes": 116314,
+      "sha256": "91e9ad43819e9ddbd655a229fe44b344a7a8510ab84b98dab03fd9422abcf996",
+      "source": "Automated disposable synthetic fixture; final four-width capture run"
+    }
+  ],
+  "evidencePolicy": "These six unmodified images and this summary accompany the approved implementation. Full generated logs, reports, traces, capture harness and all other screenshots remain ignored local QA output; no repository evidence links point there.",
+  "limitations": [
+    "Physical iOS/Android keyboard and camera behavior unverified",
+    "Manual screen-reader, Safari and Firefox checks outstanding",
+    "Navigation metadata is best-effort browser storage; photos remain temporary",
+    "Review restores an item/room anchor, not historical pixel offsets"
+  ]
+}

@@ -15,17 +15,19 @@ import {
   type Report,
 } from "@/lib/model";
 import { is } from "@/lib/locale/is";
+import { validPosition, type InspectionPosition } from "@/lib/inspection-navigation";
+import { useInspectionPositions } from "./use-inspection-navigation";
 
-export function reportHref(report: Report) {
+export function reportHref(report: Report, position?: InspectionPosition | null) {
   if (report.sampleReviewed || report.assetType !== "apartment")
     return `/skyrslur/${report.id}/yfirferd`;
-  return `/skyrslur/${report.id}/${reportStatus(report) === "active" ? "skraning" : "upplysingar"}`;
+  return `/skyrslur/${report.id}/${reportStatus(report) === "active" || validPosition(report, position) ? "skraning" : "upplysingar"}`;
 }
 
-export function reportAction(report: Report) {
+export function reportAction(report: Report, position?: InspectionPosition | null) {
   return report.sampleReviewed || report.assetType !== "apartment"
     ? "Skoða sýniskýrslu"
-    : reportStatus(report) === "active"
+    : reportStatus(report) === "active" || validPosition(report, position)
       ? "Halda áfram"
       : "Opna drög";
 }
@@ -38,6 +40,8 @@ export function reportLocation(report: Report) {
 
 export function ReportOverview({ report }: { report: Report }) {
   const { state } = useDemo();
+  const positions = useInspectionPositions([report], state.status !== "loading" && state.status !== "read-error");
+  const position = state.status === "read-error" ? null : positions[report.id]?.position;
   const sample = report.sampleReviewed || report.assetType !== "apartment";
   const stats = reportStats(report);
   const missing = missingDetails(report.details);
@@ -66,8 +70,8 @@ export function ReportOverview({ report }: { report: Report }) {
   ).length;
   const actions = (
     <div className="context-actions">
-      <Link className="button button-primary" href={reportHref(report)}>
-        {reportAction(report)}
+      <Link className="button button-primary" href={reportHref(report, position)}>
+        {reportAction(report, position)}
         <ArrowRight size={16} aria-hidden="true" />
       </Link>
       {!sample ? (

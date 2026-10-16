@@ -7,7 +7,8 @@ import {
   Circle,
   TriangleAlert,
 } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { itemProgress, navigationTargetId } from "@/lib/inspection-navigation";
 import {
   CONDITIONS,
   FUNCTIONALITIES,
@@ -47,7 +48,7 @@ function AnswerGroup<T extends string>({
   question: Question;
 }) {
   return (
-    <fieldset className="answer-group" data-question={question}>
+    <fieldset className="answer-group" data-question={question} tabIndex={-1}>
       <legend>{label}</legend>
       <div className={conditions ? "condition-options" : "answer-options"}>
         {values.map((option) => (
@@ -86,6 +87,8 @@ export function ObservationEditor({
   onToggle,
   onOpen,
   onClose,
+  onActivate,
+  nextAction,
 }: {
   item: ChecklistItem;
   observation?: Observation;
@@ -96,6 +99,8 @@ export function ObservationEditor({
   onToggle: () => void;
   onOpen: () => void;
   onClose: () => void;
+  onActivate: () => void;
+  nextAction: ReactNode;
 }) {
   const { store, state } = useDemo();
   const fieldPrefix = useId();
@@ -111,12 +116,13 @@ export function ObservationEditor({
   const damage = requiresDamage(o);
   const attention = needsAttention(item, o);
   const deviation = damage || (o.condition !== "na" && o.cleanliness === "dirty");
-  const status = !o.condition ? "Óskráð" : !complete ? "Ófullskráð" : "Skráð";
+  const progress = itemProgress(item, o);
+  const status = progress === "unanswered" ? "Óskráð" : !complete ? "Ófullskráð" : "Skráð";
   const flags = [
     deviation && "Frávik",
     complete && attention && "Þarf athygli",
   ].filter(Boolean);
-  const rowState = !o.condition
+  const rowState = progress === "unanswered"
     ? "unanswered"
     : !complete
       ? "incomplete"
@@ -147,6 +153,7 @@ export function ObservationEditor({
     group?.scrollIntoView({ block: "nearest" });
   }, [open, focusRequest]);
   const chooseGood = () => {
+    onActivate();
     change("condition", "good");
     if (
       item.functionality || item.cleanliness || o.note || o.damageType ||
@@ -187,6 +194,8 @@ export function ObservationEditor({
       className={`checklist-item ${open ? "checklist-item-open" : ""}`}
       aria-labelledby={`${fieldPrefix}-title`}
       data-item={item.id}
+      id={navigationTargetId("inspection", roomId, item.id)}
+      tabIndex={-1}
       data-state={rowState}
       onKeyDownCapture={() => { keyboardNavigation.current = true; }}
       onPointerDownCapture={() => { keyboardNavigation.current = false; }}
@@ -197,6 +206,7 @@ export function ObservationEditor({
           className="checklist-toggle"
           ref={headingRef}
           id={`${fieldPrefix}-title`}
+          data-navigation-heading
           onClick={() => {
             setFocusRequest(null);
             setFoldCondition(false);
@@ -314,10 +324,10 @@ export function ObservationEditor({
             </div>
           )}
           {damage ? (
-            <div className="damage-fields">
+            <div className="damage-fields" tabIndex={-1} role="group" aria-labelledby={`${fieldPrefix}-damage-title`}>
               <div className="damage-heading">
                 <TriangleAlert size={17} aria-hidden="true" />
-                <h4>Lýsing á fráviki</h4>
+                <h4 id={`${fieldPrefix}-damage-title`}>Lýsing á fráviki</h4>
               </div>
               <div className="form-grid">
                 <Field
@@ -395,6 +405,7 @@ export function ObservationEditor({
             />
           </Field>
           <div className="observation-footer">
+            {nextAction}
             <span role="status">
               {complete ? (
                 <>

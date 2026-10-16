@@ -258,7 +258,8 @@ test("unknown and not applicable answers stay distinct, and clearing works", asy
   await expect(
     page.getByRole("heading", { name: "Forstofa", exact: true }),
   ).toBeVisible();
-  await page.locator(".checklist-toggle").filter({ hasText: "Gólfefni" }).click();
+  const resumedFloor = page.locator(".checklist-toggle").filter({ hasText: "Gólfefni" });
+  await expect(resumedFloor).toHaveAttribute("aria-expanded", "true");
   await page.getByRole("button", { name: "Hreinsa svör", exact: true }).click();
   await expect(page.getByRole("radio", { checked: true })).toHaveCount(0);
   await expect(page.getByText("0 af 46", { exact: true })).toBeVisible();

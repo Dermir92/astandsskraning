@@ -24,9 +24,13 @@ import {
 import { is } from "@/lib/locale/is";
 import { SampleSummary } from "./sample-summary";
 import { SaveStatus } from "../app-shell";
+import { useReviewNavigation } from "../use-inspection-navigation";
+import { inspectionHref, itemProgress, missingAnswers, navigationTargetId } from "@/lib/inspection-navigation";
+import styles from "../inspection-checklist.module.css";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
+  const navigation = useReviewNavigation(state.status === "loading" ? undefined : report);
   if (state.status === "loading" || !report)
     return <MissingReport loading={state.status === "loading"} />;
   if (report.sampleReviewed || report.assetType !== "apartment")
@@ -41,7 +45,7 @@ export function ReviewScreen() {
     .filter(([key]) => key.startsWith(`${id}:`))
     .reduce((sum, [, p]) => sum + p.length, 0);
   const roomHref = (roomId: string) =>
-    `/skyrslur/${id}/skraning?rymi=${encodeURIComponent(roomId)}`;
+    inspectionHref(id, { roomId, itemId: null }, { roomId, itemId: null });
   const missingDamagePhotos = report.rooms.reduce(
     (sum, r) =>
       sum +
@@ -104,7 +108,7 @@ export function ReviewScreen() {
         </div>
         <div>
           <strong>{stats.unanswered}</strong>
-          <span>ósvarað</span>
+          <span>ástand vantar</span>
         </div>
         <div>
           <strong>{stats.deviations}</strong>
@@ -187,7 +191,7 @@ export function ReviewScreen() {
             aria-labelledby="review-rooms-title"
           >
             <div className="section-heading">
-              <h2 id="review-rooms-title">Rými og niðurstöður</h2>
+              <h2 id="review-rooms-title" tabIndex={-1}>Rými og niðurstöður</h2>
               <Link className="text-link" href={`/skyrslur/${id}/rymi`}>
                 Breyta rýmum
                 <ArrowRight size={14} aria-hidden="true" />
@@ -208,7 +212,7 @@ export function ReviewScreen() {
                 <section className="panel review-room" key={room.id}>
                   <div className="review-room-heading">
                     <div>
-                      <h3>{room.name || "Ónefnt rými"}</h3>
+                      <h3 id={navigationTargetId("review", room.id)} tabIndex={-1}>{room.name || "Ónefnt rými"}</h3>
                       <p>
                         {s.recorded} af {s.total} atriðum skráð · {s.attention}{" "}
                         þarfnast athygli
@@ -216,6 +220,7 @@ export function ReviewScreen() {
                     </div>
                     <Link
                       href={roomHref(room.id)}
+                      onNavigate={() => navigation.leave({ roomId: room.id, itemId: null })}
                       className="button button-secondary button-small"
                       aria-label={`Breyta skráningu: ${room.name || "Ónefnt rými"}`}
                     >
@@ -235,7 +240,7 @@ export function ReviewScreen() {
                         return (
                           <li key={item.id}>
                             <div className="review-observation-heading">
-                              <strong>{item.name}</strong>
+                              <Link className={styles.reviewItemLink} href={navigation.itemHref({ roomId: room.id, itemId: item.id })} onNavigate={() => navigation.leave({ roomId: room.id, itemId: item.id })}><strong>{item.name}</strong></Link>
                               <span
                                 className={`item-condition text-condition-${o.condition}`}
                               >
@@ -280,22 +285,22 @@ export function ReviewScreen() {
                       })}
                     </ul>
                   ) : null}
-                  {s.unanswered ? (
-                    <details className="unanswered-details">
+                  {room.items.length ? (
+                    <details className={`unanswered-details ${styles.itemIndex}`}>
                       <summary>
-                        {s.unanswered} ósvarað atriði — sjá lista
+                        Skoðunaratriði ({s.total}) · {s.total - s.recorded} ófullskráð
                       </summary>
-                      <ul>
-                        {room.items
-                          .filter((i) => !room.observations[i.id]?.condition)
-                          .map((i) => (
-                            <li key={i.id}>{i.name}</li>
-                          ))}
+                      <ul className={styles.navigationItems}>
+                        {room.items.map(item => {
+                          const o = room.observations[item.id];
+                          const progress = itemProgress(item, o);
+                          const position = { roomId: room.id, itemId: item.id };
+                          return <li key={item.id}><Link id={navigationTargetId("review", room.id, item.id)} href={navigation.itemHref(position)} onNavigate={() => navigation.leave(position)}>
+                            <strong>{item.name}</strong>
+                            <span>{progress === "unanswered" ? "Ósvarað" : progress === "partial" ? "Ófullskráð" : needsAttention(item, o) ? "Skráð · Þarf athygli" : "Skráð"}{progress !== "recorded" ? ` · ${missingAnswers(item, o).map(reason => reason.label).join(" · ")}` : ""}</span>
+                          </Link></li>;
+                        })}
                       </ul>
-                      <Link className="text-link" href={roomHref(room.id)}>
-                        Skrá atriðin
-                        <ArrowRight size={14} aria-hidden="true" />
-                      </Link>
                     </details>
                   ) : null}
                   {!state.photos[`${id}:${room.id}:overview`]?.length ? (
@@ -359,7 +364,7 @@ export function ReviewScreen() {
                   .filter((r) => roomStats(r).attention)
                   .map((r) => (
                     <li key={r.id}>
-                      <Link href={roomHref(r.id)}>
+                      <Link href={roomHref(r.id)} onNavigate={() => navigation.leave({ roomId: r.id, itemId: null })}>
                         {r.name || "Ónefnt rými"}
                         <span>
                           {roomStats(r).attention}
