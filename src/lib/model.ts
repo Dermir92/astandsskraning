@@ -57,6 +57,7 @@ export interface Report {
   details: ApartmentDetails;
   rooms: Room[];
 }
+export const MAX_REPORTS = 500;
 export const EMPTY_OBSERVATION: Observation = {
   damageType: "",
   location: "",
@@ -327,7 +328,7 @@ function optionalChoice(v: unknown, choices: string[]) {
   return v === undefined || (typeof v === "string" && choices.includes(v));
 }
 export function isReportList(value: unknown): value is Report[] {
-  if (!Array.isArray(value) || value.length > 500) return false;
+  if (!Array.isArray(value) || value.length > MAX_REPORTS) return false;
   return (
     value.every((r: unknown) => {
       if (

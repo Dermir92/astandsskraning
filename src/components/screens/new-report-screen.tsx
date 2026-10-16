@@ -42,10 +42,12 @@ export function NewReportScreen() {
             {type === "apartment" ? (
               <button
                 className="button button-primary"
-                disabled={state.status === "loading"}
+                disabled={
+                  state.status === "loading" || state.status === "read-error"
+                }
                 onClick={() => {
                   const id = store.createReport();
-                  router.push(`/skyrslur/${id}/upplysingar`);
+                  if (id) router.push(`/skyrslur/${id}/upplysingar`);
                 }}
               >
                 Velja íbúð

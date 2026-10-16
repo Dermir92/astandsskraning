@@ -17,15 +17,19 @@ import { ContextDialog } from "./context-dialog";
 
 export function SaveStatus() {
   const { state } = useDemo();
+  const failed =
+    state.status === "error" ||
+    state.status === "read-error" ||
+    state.status === "validation-error";
   const Icon =
-    state.status === "error"
+    failed
       ? TriangleAlert
       : state.status === "saved"
         ? Check
         : HardDrive;
   return (
     <span
-      className={`save-status ${state.status === "error" ? "save-error" : ""}`}
+      className={`save-status ${failed ? "save-error" : ""}`}
       role="status"
     >
       <Icon size={14} aria-hidden="true" />
@@ -112,12 +116,14 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="storage-warning" role="alert">
             <TriangleAlert size={18} aria-hidden="true" />
             <p>{state.warning}</p>
-            <button
-              className="button button-small button-secondary"
-              onClick={store.retrySave}
-            >
-              Reyna vistun aftur
-            </button>
+            {state.status === "error" ? (
+              <button
+                className="button button-small button-secondary"
+                onClick={store.retrySave}
+              >
+                Reyna vistun aftur
+              </button>
+            ) : null}
           </div>
         ) : null}
         <main id="main" tabIndex={-1} className="main-content">

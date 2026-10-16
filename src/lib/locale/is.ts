@@ -87,6 +87,8 @@ export const is = {
     pending: "Vista í vafra…",
     saved: "Vistað í þessum vafra",
     error: "Ekki tókst að vista í vafra",
+    "read-error": "Staðbundin gögn læst til verndar",
+    "validation-error": "Breytingu hafnað · gögn óbreytt",
     memory: "Sýnigögn tilbúin",
   },
 };
