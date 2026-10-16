@@ -968,5 +968,6 @@
       "bytes": 618,
       "sha256": "d88b60c515bc31b4e69138f4548c378268cb4b1c61e28f632194edf950d22d59"
     }
-  ]
+  ],
+  "publicationNote": "Historical evidence from the stated date, not a verification of the current publication candidate. The root is normalized to the repository directory. Historical hashes describe the original preserved files before documentation-only privacy sanitization; unchanged application and image hashes retain their original meaning. Full generated evidence remains in a separate local archive."
 }

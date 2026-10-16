@@ -48,5 +48,6 @@
   "featuresImplemented": false,
   "deployed": false,
   "committed": false,
-  "pushed": false
+  "pushed": false,
+  "publicationNote": "Historical evidence from the stated date, not a verification of the current publication candidate. The root is normalized to the repository directory. Historical hashes describe the original preserved files before documentation-only privacy sanitization; unchanged application and image hashes retain their original meaning. Full generated evidence remains in a separate local archive."
 }

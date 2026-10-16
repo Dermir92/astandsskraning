@@ -1,5 +1,7 @@
 # Phase 1B.1a — Safe local data recovery and validation
 
+> **Historical implementation review.** These safety fixes are integrated in the current application. The worktree, branch-state and authorization statements below describe their original checkpoint. See [the current entry point](../README.md) and [publication notes](PUBLICATION.md).
+
 16 October 2026 · **Accepted for local Git integration, subject to final diff review and fresh verification.** The integration results are recorded separately in the [local integration report](../artifacts/phase-1b1a-integration-2026-10-16/integration-report.md). Concept B production integration remains outside this approval.
 
 ## Implementation review — 15 October 2026

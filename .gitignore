@@ -3,6 +3,8 @@ node_modules/
 .next/
 out/
 coverage/
+.cache/
+.turbo/
 *.tsbuildinfo
 next-env.d.ts
 
@@ -16,6 +18,8 @@ artifacts/
 !.env.example
 .vercel/
 .netlify/
+.venv/
+venv/
 .npmrc
 .netrc
 .git-credentials
@@ -41,6 +45,13 @@ credentials/
 *.swp
 *.swo
 *.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*~
+tmp/
+temp/
 .DS_Store
 Thumbs.db
 Desktop.ini

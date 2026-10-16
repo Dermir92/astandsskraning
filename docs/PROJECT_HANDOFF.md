@@ -1,5 +1,7 @@
 # Project handoff — 14 October 2026
 
+> **Historical handoff.** This document preserves the earlier project checkpoint. Later Phase 1A.2, 1B.1a and 1B.2a work is integrated. Start from [the current README](../README.md) and [publication/development continuity](PUBLICATION.md); do not treat earlier pending-work statements below as current implementation status.
+
 > **Accepted baseline update — 15 October 2026:** Phase 1A and Phase 1A.1 are implemented and accepted by the user as the local development baseline. Read [PHASE_1A_BASELINE.md](PHASE_1A_BASELINE.md), [the final review](PHASE_1A_FINAL_REVIEW.md) and [the portable QA index](qa/phase-1a/README.md) first. The 14 October handoff below is preserved as historical context: its statements that the approved layout is unimplemented or Git is absent describe that earlier snapshot. Do not repeat the completed implementation plan. Phase 1A.2 and Phase 1B are not authorized or started.
 
 ## Read first and status precedence

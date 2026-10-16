@@ -1,6 +1,10 @@
-# Ástandsskráning — áfangi 1A
+# Ástandsskráning
 
-**Samþykktur grunnur, 15. október 2026:** Áfangar 1A og 1A.1 eru innleiddir og samþykktir sem staðbundinn þróunargrunnur. Sjá [samþykktar ákvarðanir og Git-grunn](docs/PHASE_1A_BASELINE.md), [lokayfirferð](docs/PHASE_1A_FINAL_REVIEW.md) og [varðveitt QA-gögn](docs/qa/phase-1a/README.md). Eldri prófunartölur og næstu-skref ráðleggingar neðar í þessu skjali eru sögulegar. Áfangar 1A.2 og 1B hafa ekki hafist.
+**Current implementation — 16 October 2026:** Phase 1A/1A.1, the approved Phase 1A.2 refinements, Phase 1B.1a local-data safety fixes, and the bounded Phase 1B.2a residential checklist are integrated. The active inspection implementation is in `src/components/screens/inspection-screen.tsx` and `src/components/observation-editor.tsx`. See [the implementation review](docs/PHASE_1B2A_INSPECTION_CHECKLIST.md) and [publication and development continuity](docs/PUBLICATION.md).
+
+**Archived concepts:** `/hugmyndir`, `/hugmyndir/a` and `/hugmyndir/b` preserve the earlier A/B design comparison. Their scenario data and session storage are isolated demonstrations; their UI and historical approval language do not describe the active inspection workflow. The [concept archive](docs/PHASE_1B_CONCEPTS.md) and [approval record](docs/PHASE_1B_CONCEPT_B_APPROVAL.md) remain available. Exact item continuation and broader optional photo access remain outside the integrated Phase 1B.2a slice.
+
+Earlier Phase 1A test counts, audit results and next-step recommendations below are historical. Use the dated publication verification for the current candidate.
 
 Staðbundin íslensk framendafrumgerð í Next.js App Router, TypeScript og Tailwind CSS. Hún styður samfellda leið frá stofnun íbúðardraga, gegnum rýmaval og ástandsskráningu, að yfirferð.
 
@@ -9,12 +13,11 @@ Staðbundin íslensk framendafrumgerð í Next.js App Router, TypeScript og Tail
 Notaðu Node.js 22 eða nýrra. Opnaðu PowerShell í verkefnamöppunni:
 
 ```powershell
-cd '.'
-npm install
+npm ci
 npm run dev
 ```
 
-Opnaðu **http://127.0.0.1:3000**. `npm install` er aðeins nauðsynlegt við fyrstu uppsetningu eða eftir breytingu á pökkum. Stöðvaðu með `Ctrl+C`.
+Opnaðu **http://127.0.0.1:3000**. `npm ci` er aðeins nauðsynlegt við fyrstu uppsetningu eða eftir breytingu á pökkum. Stöðvaðu með `Ctrl+C`.
 
 Til að prófa staðbundið build:
 
@@ -41,7 +44,7 @@ Fljótleg prófun: opnaðu **Sýnigötu 14**, íbúð með sex rýmum og 53 sko�
 - Vistunarstaða verður „Vistað í þessum vafra“ aðeins þegar `localStorage.setItem` tekst. Bilun birtir viðvörun og aðgerð til að reyna aftur; breytingar haldast í minni gluggans.
 - Myndir eru staðbundnar `blob:`-forskoðanir, bundnar við rými eða atriði. Þær fara ekki á þjón, vistast ekki í `localStorage` og **hverfa við endurhleðslu eða lokun gluggans**. Stuðningur er við JPG, PNG og WebP, mest 10 MB á mynd og átta myndir á svæði.
 - „Yfirfarið · sýni“ á tilbúnum yfirlitsfærslum er sýnd dæmistaða. Þær færslur eru ekki frágengnar úttektir. Nýjar skráningar haldast alltaf í drögum eða skráningu.
-- Engin innskráning, gagnagrunnur, Supabase, tölvupóstur, boð, OTP, greiðsla, rafræn undirritun eða óafturkræfur frágangur. Ekkert hefur verið birt eða sent á GitHub.
+- Engin innskráning, gagnagrunnur, Supabase, tölvupóstur, boð, OTP, greiðsla, rafræn undirritun eða óafturkræfur frágangur. Engin dreifing forritsins fylgir þessum þróunargrunni.
 
 Til að byrja aftur með upprunalegum sýnigögnum: opnaðu síðuna í einkaglugga. Einnig má fjarlægja eingöngu þennan lykil í þróunartólum vafrans; það eyðir staðbundnum sýnidrögum.
 

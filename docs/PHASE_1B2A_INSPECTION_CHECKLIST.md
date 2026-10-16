@@ -1,5 +1,7 @@
 # Phase 1B.2a — Concept B residential checklist review
 
+> **Integrated implementation record.** The bounded Phase 1B.2a checklist is present in the current application. The stopped-for-review and original-main statements below describe the original review checkpoint. Preserved `/hugmyndir` routes are archived prototypes, not additional active inspection modes. See [the current entry point](../README.md) and [publication notes](PUBLICATION.md).
+
 16 October 2026. **Implemented in an isolated worktree; stopped for product and UX review. No commit, merge, push or deployment.**
 
 Worktree: `archived-worktrees/phase-1b2a-inspection-checklist`
