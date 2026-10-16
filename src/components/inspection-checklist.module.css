@@ -1,0 +1,72 @@
+.page :global(.page-heading) { margin-bottom: 12px; }
+.page :global(.inspection-overall) { padding-block: 8px; margin-bottom: 14px; }
+.page :global(.inspection-overall > div) { font-size: 14px; flex-wrap: wrap; }
+.page :global(.inspection-footer) { position: static; }
+.page :global(.room-link-text strong), .page :global(.room-link-text > span), .page :global(.room-sidebar-note) { font-size: 14px; }
+.page :global(.room-inspection) { padding: 0; overflow: clip; }
+.page :global(.room-heading) { position: sticky; top: 0; z-index: 3; padding: 14px 20px; margin: 0; background: #f9fbfa; border-bottom: 1px solid var(--line); }
+.page :global(.room-heading h2) { font-size: 24px; }
+.page :global(.room-heading .eyebrow) { font-size: 12px; }
+.roomProgress { min-width: 100px; font-size: 14px; color: var(--muted); text-align: right; }
+.roomProgress :global(.progress-track) { margin-top: 8px; }
+.page :global(.checklist-heading) { margin: 0; padding: 12px 20px; }
+.page :global(.checklist-heading h3), .page :global(.checklist-heading > span) { font-size: 14px; }
+.page :global(.checklist) { border: 0; border-radius: 0; overflow: visible; }
+.page :global(.checklist-item) { border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 16px 8px 12px; }
+.row h3 { min-width: 0; }
+.page :global(.checklist-toggle) { min-height: 60px; padding: 8px 4px; gap: 10px; border-radius: 3px; }
+.page :global(.checklist-item-open) > .row { background: #f1f6f4; box-shadow: inset 3px 0 var(--teal); }
+.page :global(.checklist-item-open .checklist-toggle) { background: transparent; }
+.page :global(.item-title) { display: block; font-size: 16px; line-height: 1.45; font-weight: 750; overflow-wrap: anywhere; }
+.page :global(.item-completion) { height: 26px; width: 26px; font-size: 14px; border-color: var(--control-border); }
+.rowText { flex: 1; min-width: 0; }
+.rowStatus { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; line-height: 1.5; font-weight: 500; overflow-wrap: anywhere; }
+.rowStatus[data-attention="true"] { color: var(--warning-text); }
+.rowActions { display: flex; gap: 8px; }
+.rowAnswer { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; min-width: 108px; padding: 8px 10px; border: 1px solid var(--control-border); border-radius: 4px; background: white; font-size: 14px; font-weight: 700; line-height: 1.4; }
+.rowAnswer:hover { background: var(--soft); border-color: var(--teal); }
+.rowAnswer[aria-pressed="true"] { background: var(--teal-soft); border-color: var(--teal); color: var(--teal-dark); box-shadow: inset 0 0 0 1px var(--teal); }
+.rowAnswer:focus-visible, .row :global(.checklist-toggle):focus-visible, .foldedCondition summary:focus-visible, .roomPhotos summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.page :global(.observation-body) { padding: 18px 20px; border-top: 1px solid var(--line); scroll-margin-block: 100px; }
+.page :global(.answer-group legend) { font-size: 16px; }
+.page :global(.answer-option > span) { font-size: 15px; min-height: 46px; }
+.page :global(.answer-group), .page :global(.form-field), .page :global(.checklist-toggle) { scroll-margin-top: 110px; scroll-margin-bottom: 100px; }
+.page :global(.observation-body .form-field > label), .page :global(.observation-body textarea), .page :global(.damage-draft-note), .page :global(.missing-photo), .page :global(.not-applicable-note), .page :global(.observation-footer), .page :global(.observation-footer .text-button), .page :global(.photo-title), .page :global(.photo-preview > p) { font-size: 14px; }
+.page :global(.observation-footer) { flex-wrap: wrap; gap: 4px 12px; }
+.page :global(.observation-footer) > span { flex-basis: 100%; }
+.page :global(.observation-footer .text-button) { min-height: 44px; }
+.page :global(.observation-footer .text-button):last-child { margin-left: auto; }
+.page :global(.damage-fields) { background: transparent; border: 0; border-radius: 0; border-top: 1px solid var(--line); padding: 18px 0 0; }
+.page :global(.damage-heading h4) { font-size: 16px; }
+.foldedCondition { padding-bottom: 10px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.foldedCondition summary { display: flex; gap: 12px; align-items: center; min-height: 44px; cursor: pointer; font-size: 14px; }
+.foldedCondition summary span { margin-left: auto; color: var(--teal-dark); text-decoration: underline; text-underline-offset: 3px; }
+.foldedCondition[open] :global(.answer-group) { margin-top: 12px; }
+.roomPhotos { padding: 0 20px; border-top: 1px solid var(--line); }
+.roomPhotos summary { display: flex; align-items: center; gap: 8px; min-height: 52px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.roomPhotos summary::after { content: "+"; margin-left: auto; font-size: 20px; }
+.roomPhotos[open] summary::after { content: "−"; }
+.roomPhotos :global(.photo-preview) { margin: 0 0 16px; }
+@media (max-width: 1100px) {
+  .row { grid-template-columns: minmax(0, 1fr) 118px; }
+  .rowActions { flex-direction: column; gap: 6px; }
+  .rowAnswer { width: 100%; min-width: 0; padding-inline: 5px; }
+}
+@media (max-width: 640px) {
+  .page :global(.stepper) { margin-bottom: 12px; }
+  .page :global(.mobile-room-select) { margin-bottom: 10px; }
+  .page :global(.mobile-room-select label) { font-size: 14px; }
+  .page :global(.mobile-room-select select) { font-size: 16px; }
+  .page :global(.room-heading) { padding: 12px; gap: 8px; }
+  .page :global(.room-heading h2) { font-size: 22px; }
+  .page :global(.checklist-heading) { padding: 10px 12px; }
+  .row { gap: 8px; padding: 8px 10px 8px 8px; }
+  .page :global(.checklist-toggle) { gap: 8px; }
+  .page :global(.item-completion) { width: 24px; height: 24px; }
+  .page :global(.observation-body) { padding: 14px 12px; }
+  .page :global(.observation-body input), .page :global(.observation-body select), .page :global(.observation-body textarea) { font-size: 16px; }
+  .page :global(.inspection-footer .button), .page :global(.room-nav-count) { font-size: 14px; }
+  .roomProgress { min-width: 94px; }
+  .roomPhotos { padding-inline: 12px; }
+}

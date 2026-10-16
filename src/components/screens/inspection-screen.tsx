@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  Camera,
   Check,
   ClipboardCheck,
   ListChecks,
@@ -18,23 +19,16 @@ import {
   reportStats,
   reportTitle,
   roomStats,
-  observationComplete,
   type Report,
   type Room,
 } from "@/lib/model";
-import { SaveStatus } from "../app-shell";
 import { ObservationEditor } from "../observation-editor";
 import { PhotoPreview } from "../photo-preview";
 import { SampleSummary } from "./sample-summary";
+import styles from "../inspection-checklist.module.css";
 
 function RoomInspection({ report, room }: { report: Report; room: Room }) {
-  const [openItem, setOpenItem] = useState<string | null>(
-    () =>
-      room.items.find((i) => !observationComplete(i, room.observations[i.id]))
-        ?.id ??
-      room.items[0]?.id ??
-      null,
-  );
+  const [openItem, setOpenItem] = useState<string | null>(null);
   const stats = roomStats(room);
   return (
     <div className="room-inspection">
@@ -45,17 +39,11 @@ function RoomInspection({ report, room }: { report: Report; room: Room }) {
           </p>
           <h2>{room.name}</h2>
         </div>
-        <span className="room-heading-count">
-          {stats.recorded}
-          <span> / {stats.total} skráð</span>
-        </span>
+        <div className={styles.roomProgress}>
+          <span>{stats.recorded} af {stats.total} skráð</span>
+          <Progress value={stats.recorded} max={stats.total} label={`Skráð atriði í ${room.name}`} />
+        </div>
       </div>
-      <Progress
-        value={stats.recorded}
-        max={stats.total}
-        label={`Skráð atriði í ${room.name}`}
-      />
-      <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} />
       <div className="checklist-heading">
         <h3>Skoðunaratriði</h3>
         <span>{stats.unanswered} ósvarað</span>
@@ -73,9 +61,15 @@ function RoomInspection({ report, room }: { report: Report; room: Room }) {
             onToggle={() =>
               setOpenItem((current) => (current === item.id ? null : item.id))
             }
+            onOpen={() => setOpenItem(item.id)}
+            onClose={() => setOpenItem(null)}
           />
         ))}
       </div>
+      <details className={styles.roomPhotos}>
+        <summary><Camera size={18} aria-hidden="true" />Yfirlitsmyndir rýmis</summary>
+        <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} />
+      </details>
     </div>
   );
 }
@@ -122,7 +116,7 @@ function InspectionBody({ report }: { report: Report }) {
   const roomHref = (roomId: string) =>
     `/skyrslur/${id}/skraning?rymi=${encodeURIComponent(roomId)}`;
   return (
-    <div className="inspection-page">
+    <div className={`inspection-page ${styles.page}`}>
       <BackLink />
       <Stepper reportId={id} step={2} />
       <PageHeading
@@ -147,7 +141,6 @@ function InspectionBody({ report }: { report: Report }) {
           </strong>
           <span>atriðum skráð</span>
         </div>
-        <SaveStatus />
       </div>
       <div className="inspection-layout">
         <aside className="room-sidebar" aria-label="Rými skráningar">

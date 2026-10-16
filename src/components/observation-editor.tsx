@@ -7,13 +7,14 @@ import {
   Circle,
   TriangleAlert,
 } from "lucide-react";
-import { useId } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import {
   CONDITIONS,
   FUNCTIONALITIES,
   CLEANLINESS,
   EMPTY_OBSERVATION,
   observationComplete,
+  needsAttention,
   requiresDamage,
   type ChecklistItem,
   type Observation,
@@ -22,6 +23,9 @@ import { is } from "@/lib/locale/is";
 import { useDemo } from "./demo-provider";
 import { Field } from "./form-field";
 import { PhotoPreview } from "./photo-preview";
+import styles from "./inspection-checklist.module.css";
+
+type Question = "condition" | "functionality" | "cleanliness";
 
 function AnswerGroup<T extends string>({
   label,
@@ -31,6 +35,7 @@ function AnswerGroup<T extends string>({
   onChange,
   name,
   conditions = false,
+  question,
 }: {
   label: string;
   values: T[];
@@ -39,9 +44,10 @@ function AnswerGroup<T extends string>({
   onChange: (value: T) => void;
   name: string;
   conditions?: boolean;
+  question: Question;
 }) {
   return (
-    <fieldset className="answer-group">
+    <fieldset className="answer-group" data-question={question}>
       <legend>{label}</legend>
       <div className={conditions ? "condition-options" : "answer-options"}>
         {values.map((option) => (
@@ -78,6 +84,8 @@ export function ObservationEditor({
   index,
   open,
   onToggle,
+  onOpen,
+  onClose,
 }: {
   item: ChecklistItem;
   observation?: Observation;
@@ -86,12 +94,37 @@ export function ObservationEditor({
   index: number;
   open: boolean;
   onToggle: () => void;
+  onOpen: () => void;
+  onClose: () => void;
 }) {
   const { store, state } = useDemo();
   const fieldPrefix = useId();
+  const headingRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const keyboardNavigation = useRef(false);
+  const [foldCondition, setFoldCondition] = useState(false);
+  const [focusRequest, setFocusRequest] = useState<{
+    question: Question;
+  } | null>(null);
   const o = observation ?? EMPTY_OBSERVATION;
   const complete = observationComplete(item, o);
   const damage = requiresDamage(o);
+  const attention = needsAttention(item, o);
+  const deviation = damage || (o.condition !== "na" && o.cleanliness === "dirty");
+  const status = !o.condition ? "Óskráð" : !complete ? "Ófullskráð" : "Skráð";
+  const flags = [
+    deviation && "Frávik",
+    complete && attention && "Þarf athygli",
+  ].filter(Boolean);
+  const rowState = !o.condition
+    ? "unanswered"
+    : !complete
+      ? "incomplete"
+      : attention
+        ? "attention"
+        : deviation
+          ? "deviation"
+          : "recorded";
   const panelId = `${fieldPrefix}-panel`;
   const change = <K extends keyof Observation>(key: K, value: Observation[K]) =>
     store.updateObservation(reportId, roomId, item.id, { ...o, [key]: value });
@@ -99,29 +132,97 @@ export function ObservationEditor({
     damage &&
     !(o.damageType.trim() && o.location.trim() && o.description.trim());
   const photoKey = `${reportId}:${roomId}:${item.id}`;
+  useEffect(() => {
+    if (!open || !focusRequest) return;
+    const group = panelRef.current?.querySelector<HTMLElement>(
+      `[data-question="${focusRequest.question}"]`,
+    );
+    const target =
+      group?.querySelector<HTMLInputElement>("input:checked") ??
+      group?.querySelector<HTMLInputElement>(
+        focusRequest.question === "condition" ? 'input[value="wear"]' : "input",
+      );
+    target?.focus({ preventScroll: true });
+    // Radios are visually hidden; scroll their group above the room footer.
+    group?.scrollIntoView({ block: "nearest" });
+  }, [open, focusRequest]);
+  const chooseGood = () => {
+    change("condition", "good");
+    if (
+      item.functionality || item.cleanliness || o.note || o.damageType ||
+      o.location || o.description || state.photos[photoKey]?.length
+    ) {
+      setFoldCondition(true);
+      setFocusRequest(
+        item.functionality && !o.functionality
+          ? { question: "functionality" }
+          : item.cleanliness && !o.cleanliness
+            ? { question: "cleanliness" }
+            : null,
+      );
+      onOpen();
+    } else {
+      onClose();
+    }
+  };
+  const openAlternatives = () => {
+    setFoldCondition(false);
+    setFocusRequest({ question: "condition" });
+    onOpen();
+  };
+  const conditions = (
+    <AnswerGroup
+      label="Ástand"
+      question="condition"
+      values={CONDITIONS}
+      labels={is.conditions}
+      value={o.condition}
+      onChange={(value) => change("condition", value)}
+      name={`${fieldPrefix}-condition`}
+      conditions
+    />
+  );
   return (
-    <section className={`checklist-item ${open ? "checklist-item-open" : ""}`}>
+    <section
+      className={`checklist-item ${open ? "checklist-item-open" : ""}`}
+      aria-labelledby={`${fieldPrefix}-title`}
+      data-item={item.id}
+      data-state={rowState}
+      onKeyDownCapture={() => { keyboardNavigation.current = true; }}
+      onPointerDownCapture={() => { keyboardNavigation.current = false; }}
+    >
+      <div className={styles.row}>
       <h3>
         <button
           className="checklist-toggle"
-          onClick={onToggle}
+          ref={headingRef}
+          id={`${fieldPrefix}-title`}
+          onClick={() => {
+            setFocusRequest(null);
+            setFoldCondition(false);
+            onToggle();
+          }}
           aria-expanded={open}
           aria-controls={panelId}
         >
           <span
-            className={`item-completion ${complete ? "item-complete" : ""}`}
+            className={`item-completion ${complete && !attention && !deviation ? "item-complete" : ""}`}
           >
-            {complete ? (
+            {complete && !attention && !deviation ? (
               <Check size={16} aria-hidden="true" />
             ) : (
               <span aria-hidden="true">{index + 1}</span>
             )}
           </span>
-          <span className="item-title">{item.name}</span>
-          <span
-            className={`item-condition ${o.condition ? `text-condition-${o.condition}` : "item-unanswered"}`}
-          >
-            {o.condition ? is.conditions[o.condition] : "Óskráð"}
+          <span className={styles.rowText}>
+            <span className="item-title">{item.name}</span>
+            <span
+              className={styles.rowStatus}
+              data-attention={!!o.condition && (!complete || attention || deviation)}
+            >
+              {o.condition ? `${is.conditions[o.condition]} · ` : ""}
+              {status}{flags.length ? ` · ${flags.join(" · ")}` : ""}
+            </span>
           </span>
           {open ? (
             <ChevronUp size={17} aria-hidden="true" />
@@ -130,17 +231,52 @@ export function ObservationEditor({
           )}
         </button>
       </h3>
-      {open ? (
-        <div className="observation-body" id={panelId}>
-          <AnswerGroup
-            label="Ástand"
-            values={CONDITIONS}
-            labels={is.conditions}
-            value={o.condition}
-            onChange={(value) => change("condition", value)}
-            name={`${fieldPrefix}-condition`}
-            conditions
-          />
+      <div className={styles.rowActions}>
+        <button
+          className={styles.rowAnswer}
+          aria-label={`Í lagi: ${item.name}`}
+          aria-pressed={o.condition === "good"}
+          disabled={state.status === "loading" || state.status === "read-error"}
+          onClick={chooseGood}
+        >
+          {o.condition === "good" ? <Check size={16} aria-hidden="true" /> : null}
+          Í lagi
+        </button>
+        <button
+          className={styles.rowAnswer}
+          aria-label={`Annað ástand: ${item.name}`}
+          aria-expanded={open && !foldCondition}
+          aria-controls={panelId}
+          onClick={openAlternatives}
+        >
+          Annað ástand
+        </button>
+      </div>
+      </div>
+      <div
+        className="observation-body"
+        id={panelId}
+        ref={panelRef}
+        hidden={!open}
+        onFocusCapture={(event) => {
+          if (!keyboardNavigation.current) return;
+          const target = event.target as HTMLElement;
+          const visibleControl = target.closest<HTMLElement>(".answer-option") ?? target;
+          const bounds = visibleControl.getBoundingClientRect();
+          if (bounds.top < 110 || bounds.bottom > window.innerHeight - 100) {
+            visibleControl.scrollIntoView({ block: "center" });
+          }
+        }}
+      >
+      {open ? <>
+          {foldCondition && o.condition ? (
+            <details className={styles.foldedCondition}>
+              <summary>
+                Ástand <strong>{is.conditions[o.condition]}</strong><span>Breyta</span>
+              </summary>
+              {conditions}
+            </details>
+          ) : conditions}
           <p className="condition-hint">
             {o.condition
               ? is.conditionHelp[o.condition]
@@ -151,6 +287,7 @@ export function ObservationEditor({
               {item.functionality ? (
                 <AnswerGroup
                   label="Virkni"
+                  question="functionality"
                   values={FUNCTIONALITIES}
                   labels={is.functionality}
                   value={o.functionality}
@@ -161,6 +298,7 @@ export function ObservationEditor({
               {item.cleanliness ? (
                 <AnswerGroup
                   label="Þrif"
+                  question="cleanliness"
                   values={CLEANLINESS}
                   labels={is.cleanliness}
                   value={o.cleanliness}
@@ -257,7 +395,7 @@ export function ObservationEditor({
             />
           </Field>
           <div className="observation-footer">
-            <span>
+            <span role="status">
               {complete ? (
                 <>
                   <Check size={14} aria-hidden="true" />
@@ -279,9 +417,20 @@ export function ObservationEditor({
                 Hreinsa svör
               </button>
             ) : null}
+            <button
+              className="text-button"
+              onClick={() => {
+                headingRef.current?.scrollIntoView({ block: "nearest" });
+                headingRef.current?.focus({ preventScroll: true });
+                setFocusRequest(null);
+                onClose();
+              }}
+            >
+              Loka atriði
+            </button>
           </div>
-        </div>
-      ) : null}
+      </> : null}
+      </div>
     </section>
   );
 }

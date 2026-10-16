@@ -134,6 +134,7 @@ test("full creation to review, room edits, damage and session-only photos", asyn
     page.getByRole("heading", { name: "Gangur", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("radio", { checked: true })).toHaveCount(0);
+  await page.locator(".checklist-toggle").first().click();
   await page.getByRole("radio", { name: "Í lagi", exact: true }).check();
   await page.getByRole("radio", { name: "Hreint", exact: true }).check();
   await expect(page.getByText("1 af 59", { exact: true })).toBeVisible();
@@ -179,7 +180,7 @@ test("full creation to review, room edits, damage and session-only photos", asyn
   await expect(
     page.getByRole("heading", { name: "Gangur", exact: true }),
   ).toBeVisible();
-  await page.getByRole("button", { name: /Gólfefni/ }).click();
+  await page.locator(".checklist-toggle").filter({ hasText: "Gólfefni" }).click();
   await expect(
     page.getByRole("radio", { name: "Skemmt", exact: true }),
   ).toBeChecked();
@@ -221,6 +222,7 @@ test("unknown and not applicable answers stay distinct, and clearing works", asy
   await createReport(page);
   await page.getByRole("button", { name: "Velja rými" }).click();
   await page.getByRole("button", { name: "Hefja ástandsskráningu" }).click();
+  await page.locator(".checklist-toggle").first().click();
   await page
     .getByRole("radio", { name: "Ekki skoðað", exact: true })
     .first()
@@ -256,7 +258,7 @@ test("unknown and not applicable answers stay distinct, and clearing works", asy
   await expect(
     page.getByRole("heading", { name: "Forstofa", exact: true }),
   ).toBeVisible();
-  await page.getByRole("button", { name: /Gólfefni/ }).click();
+  await page.locator(".checklist-toggle").filter({ hasText: "Gólfefni" }).click();
   await page.getByRole("button", { name: "Hreinsa svör", exact: true }).click();
   await expect(page.getByRole("radio", { checked: true })).toHaveCount(0);
   await expect(page.getByText("0 af 46", { exact: true })).toBeVisible();
@@ -266,6 +268,7 @@ test("unreadable image gives a clear error without a false preview", async ({
   page,
 }) => {
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living");
+  await page.locator("summary").filter({ hasText: "Yfirlitsmyndir rýmis" }).click();
   await page
     .getByLabel("Yfirlitsmyndir rýmis: velja myndir", { exact: true })
     .setInputFiles({
@@ -401,6 +404,7 @@ test("keyboard navigation has visible focus and can change an answer", async ({
   page,
 }) => {
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-bedroom-1");
+  await page.locator(".checklist-toggle").first().click();
   const radio = page.getByRole("radio", { name: "Í lagi", exact: true });
   await radio.focus();
   await expect(radio).toBeFocused();
@@ -423,7 +427,7 @@ test("finishing the last item keeps the selected room open", async ({
   await createReport(page);
   await page.getByRole("button", { name: "Velja rými" }).click();
   await page.getByRole("button", { name: "Hefja ástandsskráningu" }).click();
-  for (const [index, name] of [
+  for (const name of [
     "Gólfefni",
     "Veggir",
     "Loft",
@@ -431,9 +435,8 @@ test("finishing the last item keeps the selected room open", async ({
     "Hurðir og læsingar",
     "Ljós og rofar",
     "Skápar",
-  ].entries()) {
-    if (index > 0)
-      await page.getByRole("button", { name: new RegExp(name) }).click();
+  ]) {
+    await page.locator(".checklist-toggle").filter({ hasText: name }).click();
     await page
       .getByRole("radio", { name: "Á ekki við", exact: true })
       .first()

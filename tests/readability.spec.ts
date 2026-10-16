@@ -37,7 +37,7 @@ test("damage, form errors and disabled actions remain readable", async ({
 }, testInfo) => {
   const audits = [];
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living");
-  await page.getByRole("button", { name: /Veggir/ }).click();
+  await page.locator(".checklist-toggle").filter({ hasText: "Veggir" }).click();
   await expect(page.getByRole("textbox", { name: /^Lýsing/ })).toBeVisible();
   audits.push({ name: "damage", ...(await auditRenderedContrast(page)) });
   await page.screenshot({

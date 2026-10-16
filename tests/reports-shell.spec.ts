@@ -155,6 +155,7 @@ test("context reflects room edits, answers and temporary photos after returning 
     .fill("Nýr gangur");
   await page.getByRole("button", { name: "Hefja ástandsskráningu" }).click();
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-bedroom-1");
+  await page.locator(".checklist-toggle").first().click();
   await page
     .getByRole("radio", { name: "Á ekki við", exact: true })
     .first()
@@ -168,6 +169,7 @@ test("context reflects room edits, answers and temporary photos after returning 
     }),
     "base64",
   );
+  await page.locator("summary").filter({ hasText: "Yfirlitsmyndir rýmis" }).click();
   await page
     .getByLabel("Yfirlitsmyndir rýmis: velja myndir", { exact: true })
     .setInputFiles({ name: "rými.png", mimeType: "image/png", buffer: png });

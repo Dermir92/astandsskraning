@@ -130,6 +130,7 @@ test("499 to 500: normal creation and editing succeed, the next creation is reje
   await page.getByRole("button", { name: "Velja rými", exact: true }).click();
   await page.getByRole("textbox", { name: "Heiti rýmis 1", exact: true }).fill("Prófunargangur");
   await page.getByRole("button", { name: "Hefja ástandsskráningu", exact: true }).click();
+  await page.locator(".checklist-toggle").first().click();
   await page.getByRole("radio", { name: "Í lagi", exact: true }).check();
   await page.getByRole("radio", { name: "Hreint", exact: true }).check();
   const afterCreation = JSON.parse((await rawDocument(page))!);
