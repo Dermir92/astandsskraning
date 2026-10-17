@@ -59,6 +59,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
             observation={room.observations[item.id]}
             reportId={report.id}
             roomId={room.id}
+            roomName={room.name || "Ónefnt rými"}
             index={index}
             open={openItem === item.id}
             onActivate={() => navigation.activate({ roomId: room.id, itemId: item.id }, openItem === item.id)}
@@ -77,7 +78,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
       </div>
       <details className={styles.roomPhotos}>
         <summary><Camera size={18} aria-hidden="true" />Yfirlitsmyndir rýmis</summary>
-        <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} />
+        <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />
       </details>
     </div>
   );

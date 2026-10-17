@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-17",
+  "status": "Approved for feature-branch publication and a draft PR; verification captured before commit; no merge or deployment",
+  "branch": "codex/phase-1b2c-evidence-review",
+  "base": "9ba5935c4d9c89459344b8ec348208c9db807d84",
+  "head": "9ba5935c4d9c89459344b8ec348208c9db807d84",
+  "runtime": {
+    "next": "16.4.0",
+    "productionServer": true,
+    "browser": "Chromium",
+    "buildId": "d_6LJbBorMsbvVDENEqLm"
+  },
+  "checks": {
+    "lint": "passed with no warnings",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "diffWhitespace": "passed"
+  },
+  "tests": {
+    "passed": 287,
+    "skipped": 4,
+    "failures": 0,
+    "flaky": 0,
+    "durationSeconds": 276.638211,
+    "projects": {
+      "desktop": {
+        "passed": 97,
+        "skipped": 0
+      },
+      "mobile-360": {
+        "passed": 95,
+        "skipped": 2
+      },
+      "mobile-390": {
+        "passed": 95,
+        "skipped": 2
+      }
+    },
+    "evidenceExecutions": 40,
+    "navigationExecutions": 57,
+    "localDataSafetyExecutions": 36,
+    "skippedReasons": [
+      "Existing intermediate-width case runs only in desktop (two mobile duplicates).",
+      "Five-width evidence matrix creates its own isolated contexts and runs only in desktop (two mobile duplicates)."
+    ]
+  },
+  "browserVerification": {
+    "widths": [
+      320,
+      360,
+      390,
+      768,
+      1440
+    ],
+    "auditedStates": 45,
+    "fullPageCaptures": 45,
+    "viewportCaptures": 20,
+    "textScalePercent": 200,
+    "axeTags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21aa",
+      "wcag22aa"
+    ],
+    "axeViolations": 0,
+    "contrastFailures": 0,
+    "horizontalOverflows": 0,
+    "pageOrConsoleErrors": 0,
+    "minimumNewTouchTargetPx": 44,
+    "keyboard": [
+      "Preview focus trap, Tab and Shift+Tab",
+      "Escape dismissal and trigger focus restoration",
+      "Removal cancel focus and adjacent/upload destinations",
+      "Existing native assessment and exact-navigation regressions"
+    ],
+    "visualInspection": "Browser screenshots inspected; compact thumbnails, retained/current separation, visible context and enlarged text checked"
+  },
+  "dataSafety": {
+    "isolatedSyntheticContexts": true,
+    "personalBrowserDraftsAccessed": false,
+    "photoActionsPreserveReportBytesTimestampsAnswersStatisticsAndSaveStatus": true,
+    "photoActionsPreserveNavigationAndUnrelatedStorage": true,
+    "protectedSourceAndPendingWriteRetryPassed": true,
+    "liveEightPhotoLimitAndRemovedTargetsPassed": true,
+    "invalidFilesAndExact10MiBBoundaryPassed": true,
+    "rejectedAndRemovedObjectURLsReleased": true,
+    "noSchemaOrDependencyChanges": true,
+    "originalArchiveStatusAndHeadUnchanged": true
+  },
+  "sourceReview": {
+    "changedSources": [
+      {
+        "file": "src/components/context-dialog.tsx",
+        "sha256": "56c0a22745844d1da69dc8b1376a123eeba22d6fe054c60f2054675dd936a792"
+      },
+      {
+        "file": "src/components/demo-provider.tsx",
+        "sha256": "394b88ef7cecbb183d9eea2178beab980a55fd6e015f0316038d76cc0ad9bde8"
+      },
+      {
+        "file": "src/components/inspection-checklist.module.css",
+        "sha256": "8a03fe6aab29ea7250475977a699218ea052262655d9fff83867ef42c08bcc2b"
+      },
+      {
+        "file": "src/components/observation-editor.tsx",
+        "sha256": "7ba17bf9cbeee8e1155a48f789d2bee53a080a5a4ebd3256a79d4a0a93c74bf0"
+      },
+      {
+        "file": "src/components/photo-preview.tsx",
+        "sha256": "bea6c096ca350263ffe933e3778616062018ed51bbb2e58ea25058bd88f239bc"
+      },
+      {
+        "file": "src/components/screens/inspection-screen.tsx",
+        "sha256": "3a61b7318a309322bade10fa74935311dfaf32bf4ac557ffa8fc197d5c0aa2c7"
+      },
+      {
+        "file": "src/components/screens/review-screen.tsx",
+        "sha256": "9bef0e80cb87afd54dd24bce363338a9e3b4239be4a41f9e7335cf3dd33dff01"
+      },
+      {
+        "file": "src/components/evidence-gallery.tsx",
+        "sha256": "df3be2f80e41bcc30be6ca0d067cecd594576b7a15b2e484e198bbd5d7b7074e"
+      },
+      {
+        "file": "src/components/evidence.module.css",
+        "sha256": "eba6e698ea0052bb2ab0da7505ae1b20a80c634b338b0e9b845e655f9a5daf85"
+      },
+      {
+        "file": "src/lib/inspection-evidence.ts",
+        "sha256": "4910346cf5cd9ffd75c1d8f36da8e9b99969b88a173d037d8df27ac1f77a4986"
+      },
+      {
+        "file": "tests/inspection-checklist.spec.ts",
+        "sha256": "c0242657bdbd56e5b3c02e51af573ee87caa639137f9e4b501dc4fa08ce4d98e"
+      },
+      {
+        "file": "tests/prototype.spec.ts",
+        "sha256": "7a66d2dd44e8e120c9e19e7548371e0a4236277c0fa263a212c5f8a5d502914a"
+      },
+      {
+        "file": "tests/inspection-evidence.spec.ts",
+        "sha256": "6b9710a29ebec7ebc969fe4445d535861e4bd4c26896e97ecbe5ce40c39ebcec"
+      }
+    ],
+    "protectedFiles": [
+      {
+        "file": "src/lib/model.ts",
+        "sha256": "c43b1ec1d82e4dbecb8733e2fe21ccc329d914e07b087b77a5b737bd888b8243",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "src/lib/inspection-navigation.ts",
+        "sha256": "223fb813ca4d5cb41aba62f239109d8afa054573f9fb71470e2c0319782ed165",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "src/components/use-inspection-navigation.ts",
+        "sha256": "9de019ca7f6819d90fbde5f5986031d7d92e2d547101dd31e109e9b53bffe620",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "src/app/globals.css",
+        "sha256": "57a662b604fa1642f93cf9f98c9c3002d84f7144ca3f30e7314badcfa6a72252",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "src/components/screens/rooms-screen.tsx",
+        "sha256": "c2c37a685f8c2d683e75ee943a58f57a03d3084502f958a8866ad4b75d25d3c6",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "src/components/app-shell.tsx",
+        "sha256": "a65eb51682d178d986eaf989b02fa72a4d9531844a9d9fd697e68326ad8a147c",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "src/lib/fixtures.ts",
+        "sha256": "45c0fedd20e711ae331c7cf136ea2419bd41e698a01aac085b8227544b99c3e1",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "package.json",
+        "sha256": "cd9f3b3d216a02daf8bdfa8d26fc216c24a149196b350c0489c5cf898ca22978",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      },
+      {
+        "file": "package-lock.json",
+        "sha256": "bd135f97ca2d362b6e10c8b78cabe531765422ed0ff26138a92b2bb2bb65fe43",
+        "contentUnchangedFromMain": true,
+        "comparison": "Git content; checkout CRLF normalized"
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "file": "320-preview-text-200.png",
+      "source": "artifacts/phase-1b2c/screenshots/320-preview-viewport.png",
+      "width": 320,
+      "height": 844,
+      "textScalePercent": 200,
+      "bytes": 45496,
+      "sha256": "1b08395a36a6e38d1d88f7e6ae8ae35ff3efea4f5e4cfd0ee0f5fe1ec38daac7",
+      "synthetic": true
+    },
+    {
+      "file": "360-editor.png",
+      "source": "artifacts/phase-1b2c/screenshots/360-editor-viewport.png",
+      "width": 360,
+      "height": 844,
+      "textScalePercent": 100,
+      "bytes": 47165,
+      "sha256": "8029335b545863b3cbfd521369ff6500a1d14902f03cc2f88b0efc9120bb122a",
+      "synthetic": true
+    },
+    {
+      "file": "390-review.png",
+      "source": "artifacts/phase-1b2c/screenshots/390-review-viewport.png",
+      "width": 390,
+      "height": 844,
+      "textScalePercent": 100,
+      "bytes": 41233,
+      "sha256": "1d73f68cb083d9d9f9467bfc4c3413e9cc3fa03d953e175a7e6699100126d07a",
+      "synthetic": true
+    },
+    {
+      "file": "768-review.png",
+      "source": "artifacts/phase-1b2c/screenshots/768-review-viewport.png",
+      "width": 768,
+      "height": 1000,
+      "textScalePercent": 100,
+      "bytes": 51994,
+      "sha256": "98a4cb864d3d973a4ebe6764f193b3551e7d7823ef3f58a476a66308601a0b9f",
+      "synthetic": true
+    },
+    {
+      "file": "1440-review.png",
+      "source": "artifacts/phase-1b2c/screenshots/1440-review-viewport.png",
+      "width": 1440,
+      "height": 1000,
+      "textScalePercent": 100,
+      "bytes": 97629,
+      "sha256": "3f50fe4a5c456c5ba9ebc27647a4ae7a0d8d76fa51a53d3d1a1ff9e378393ed6",
+      "synthetic": true
+    }
+  ],
+  "limitations": [
+    "Photos remain session-only in-memory previews and disappear on reload/closing.",
+    "No chronology, provenance, verification or past-condition association is inferred for photos or notes.",
+    "HEIC/HEIF conversion and physical iPhone camera/library behavior are not implemented or verified.",
+    "Safari, Firefox and manual screen-reader/physical-device testing are unverified.",
+    "Existing browser-local persistence and best-effort navigation remain; no cross-device or cross-tab conflict system."
+  ],
+  "generatedEvidenceDirectory": "artifacts/phase-1b2c/"
+}

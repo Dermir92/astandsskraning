@@ -138,7 +138,7 @@ test("existing draft values, associations, status distinctions and review statis
   expect(await page.evaluate(() => localStorage.getItem("unrelated-checklist-sentinel"))).toBe("unchanged");
 });
 
-test("condition changes retain damage text, notes and temporary photos without extending attachment rules", async ({ page }) => {
+test("condition changes retain damage text, notes and accessible temporary photos", async ({ page }) => {
   await seed(page, checklistReport(true));
   const editor = await openItem(page, "walls");
   const png = Buffer.from(await page.evaluate(() => {
@@ -147,13 +147,14 @@ test("condition changes retain damage text, notes and temporary photos without e
     canvas.getContext("2d")!.fillRect(0, 0, 16, 16);
     return canvas.toDataURL("image/png").split(",")[1];
   }), "base64");
-  await editor.getByLabel("Myndir af fráviki: velja myndir", { exact: true }).setInputFiles({ name: "tilbuin.png", mimeType: "image/png", buffer: png });
+  await editor.getByLabel("Myndir við atriði: velja myndir", { exact: true }).setInputFiles({ name: "tilbuin.png", mimeType: "image/png", buffer: png });
   await expect(editor.getByRole("img", { name: "Staðbundin forskoðun: tilbuin.png", exact: true })).toBeVisible();
   await expect(editor).toContainText("hverfa við endurhleðslu");
   const previous = (await saved(page)).rooms[0].observations.walls;
   await row(page, "walls").getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
   expect((await saved(page)).rooms[0].observations.walls).toEqual({ ...previous, condition: "good" });
-  await expect(editor.getByLabel("Myndir af fráviki: velja myndir", { exact: true })).toHaveCount(0);
+  await expect(editor.getByLabel("Myndir við atriði: velja myndir", { exact: true })).toBeEnabled();
+  await expect(editor.getByText("Varðveitt frávikslýsing", { exact: true })).toBeVisible();
   await row(page, "walls").getByRole("button", { name: "Annað ástand: Veggir", exact: true }).click();
   await editor.getByRole("radio", { name: "Skemmt", exact: true }).check();
   await expect(editor.getByRole("img", { name: "Staðbundin forskoðun: tilbuin.png", exact: true })).toBeVisible();

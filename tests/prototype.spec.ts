@@ -161,7 +161,7 @@ test("full creation to review, room edits, damage and session-only photos", asyn
     "base64",
   );
   await page
-    .getByLabel("Myndir af fráviki: velja myndir", { exact: true })
+    .getByLabel("Myndir við atriði: velja myndir", { exact: true })
     .setInputFiles({
       name: "synimynd.png",
       mimeType: "image/png",
