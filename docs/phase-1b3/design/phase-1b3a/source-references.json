@@ -1,0 +1,30 @@
+{
+  "researchDate": "2026-10-17",
+  "distribution": "References only. Publisher files are not redistributed.",
+  "sources": [
+    {
+      "id": "insight",
+      "url": "https://inventoryinsight.co.uk/wp-content/uploads/2026/02/Sample-Inventory-Report-Demo-Anonymised.pdf",
+      "pages": 67,
+      "parsedPages": 66,
+      "limitation": "Malformed first page; cover inaccessible. Body rendered using PDFium.",
+      "sha256": "3987333f38818d13994584c249b8580124561c4ec34bbe1f0f576dde3b4970d5"
+    },
+    {
+      "id": "base",
+      "url": "https://inventorybase.co.uk/wp-content/uploads/ib/2022/09/Sample-Report.pdf",
+      "pages": 48,
+      "parsedPages": 48,
+      "limitation": null,
+      "sha256": "56b5d1e7cb9250ebd4e96e41f62bb905193ffc02dd2a94497931c0bdeb087045"
+    },
+    {
+      "id": "hive",
+      "url": "https://www.inventoryhive.co.uk/documents/sample_reports/inventory.pdf?v=7",
+      "pages": 52,
+      "parsedPages": 52,
+      "limitation": null,
+      "sha256": "e5d9c2c3e93761c757b03af1a66080171a2bad6870298c0b632b91370649b20d"
+    }
+  ]
+}

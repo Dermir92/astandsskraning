@@ -1,0 +1,86 @@
+{
+  "tool": "built-in image_gen",
+  "disclosure": "Independent synthetic images, no real inspection, provenance or chronology. No alteration to preserved assets.",
+  "prompts": [
+    {
+      "name": "entry-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. An empty modest apartment entrance hall, oak floor, white walls, white entry door, shallow white coat cupboard. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "entry-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of oak parquet beside an entrance threshold with a few light normal-use surface scratches; white skirting, no measuring tool. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "living-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A modest empty living room in a Nordic apartment, pale oak floor, white walls, large window, white radiator, no furniture. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "living-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of a white painted wall beside a radiator with a small chipped paint patch; no measuring tool. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "kitchen-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A modest kitchen with matte white cabinets, grey laminate worktop, stainless steel sink, induction cooktop and a built-in black oven; no decor. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "kitchen-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of a metal kitchen extractor hood filter showing a visible light grease deposit, seen from below; no people or text. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "bedroom1-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A modest empty bedroom, oak flooring, white painted walls, white built-in wardrobe with two doors, one broad window. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "bedroom1-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of a white painted window frame with a short section of visibly loose rubber seal, indoor view with context. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "bedroom2-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A second modest empty bedroom, white walls, oak floor, narrow window, a simple white wardrobe. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "bedroom2-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of an oak floor surface near a bedroom doorway with light shallow normal-use scratches, no major damage. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "office-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A modest empty home office room, white walls, pale timber floor, one window and a plain white door; no furniture. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "office-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of a white interior door jamb with a small chip to the painted lower edge, surrounding paint intact. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "bath-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A compact bathroom, grey floor tiles, plain white sink cabinet, mirror, wall-mounted toilet and white shower tray with clear screen. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "bath-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of intact light grey tiled bathroom floor and floor drain, clean dry surfaces; no assertions about hidden waterproofing. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "laundry-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A small apartment laundry room, light grey tile floor, washing machine under white counter, white wall and utility sink. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "laundry-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of a utility sink chrome tap and its base with visible chalky water deposits on the surface, no visible leak. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "storage-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A modest empty indoor storage room with white walls, plain painted concrete floor, white door and simple white shelf. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "storage-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of an inaccessible shadowed rear floor corner behind a fixed shelf unit, view obstructed; no claimed defect. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "balcony-overview",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. A small apartment balcony, grey concrete floor, simple grey metal railing and white glazed balcony door; overcast daylight, no identifiable address. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    },
+    {
+      "name": "balcony-detail",
+      "prompt": "Photorealistic fictional residential condition-report photograph, landscape 3:2. Close-up of small accumulated dry leaves partly covering a balcony floor drain; intact surrounding concrete, no water. Realistic modest Icelandic apartment materials, neutral natural light, straightforward handheld phone documentation, sharp contextual detail, no stylization. No people, no text, no watermark, no branding, no identifiable real address. This is synthetic design test material, not real evidence."
+    }
+  ]
+}

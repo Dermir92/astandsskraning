@@ -1,0 +1,54 @@
+{
+  "verifiedDate": "2026-10-17",
+  "files": [
+    {
+      "url": "https://assets.ctfassets.net/8k0h54kbe6bj/4S3WMgj9WSR1lVXBrM64Wd/d8579f595f2597f6610ce75bbc6a1c94/_stands_og_bruna_ttekt_1sept2024.pdf",
+      "retrieved": "2026-10-17",
+      "bytes": 54729,
+      "sha256": "4e36f5004d096e7829dd57e0e33f6e28e31d3cc4fda19cfacf8b012935cd6387",
+      "pages": 3
+    },
+    {
+      "url": "https://assets.ctfassets.net/8k0h54kbe6bj/28hOipmGJso6ylesdW3fxJ/df32d6e7412f728cc64e836a84796477/Leigusamningur.pdf",
+      "retrieved": "2026-10-17",
+      "bytes": 216214,
+      "sha256": "4250930d4fa52cd5b7300e8cf1f3c99dc8c2949a8e0494e52353565dbcafda50",
+      "pages": 9
+    },
+    {
+      "url": "https://assets.ctfassets.net/8k0h54kbe6bj/4S3WMgj9WSR1lVXBrM64Wd/a94391333486eb09d1c83ea69e19c12a/Yfirlysing_um_uttekt_a_ibudarhusnaedi_FORMID__1_.pdf",
+      "retrieved": "2026-10-17",
+      "bytes": 555469,
+      "sha256": "69370f9bce6cade7e601b232f46bbc24225a92d3abfac65b670ef439ed2cf4f0",
+      "pages": 2
+    },
+    {
+      "url": "https://assets.ctfassets.net/8k0h54kbe6bj/28hOipmGJso6ylesdW3fxJ/64cc1ac6471d863ce03ac9ad0091dc07/Leigusamningur_HMS_lagf_C3_83_r_C3_83_ur_3.pdf",
+      "retrieved": "2026-10-17",
+      "bytes": 132435,
+      "sha256": "8454c76d82d91c67a59fab9fa6bcee2ed1a5d2e53422b12e03c58f39e327a150",
+      "pages": 9
+    },
+    {
+      "url": "https://files.reglugerd.is/pdf/0723-2017/current",
+      "retrieved": "2026-10-17",
+      "bytes": 129195,
+      "sha256": "a1b61698aa8a69c83be8841f66b4431fb9706bed01ee64567978033acab30e06",
+      "pages": 8
+    },
+    {
+      "url": "https://files.reglugerd.is/pdf/1068-2011/current",
+      "retrieved": "2026-10-17",
+      "bytes": 87097,
+      "sha256": "23635d76562504b6e25280da79b2a8c10fff53799761d84057bfd9b113c82ec8",
+      "pages": 3
+    },
+    {
+      "url": "https://island.is/s/hms/umsoknir-og-eydublod",
+      "retrieved": "2026-10-17",
+      "bytes": 411839,
+      "sha256": "22700769c72ecc4bdfd8e6d8695e8a77c177a0e242f04c66fdb7bcf42ae82547"
+    }
+  ],
+  "distribution": "Reference URLs and identification hashes only; no third-party PDFs or source HTML are redistributed."
+}
