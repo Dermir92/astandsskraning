@@ -24,6 +24,8 @@ import { is } from "@/lib/locale/is";
 import { useDemo } from "./demo-provider";
 import { Field } from "./form-field";
 import { PhotoPreview } from "./photo-preview";
+import { RetainedDefectDetails } from "./evidence-gallery";
+import { hasRetainedDefect } from "@/lib/inspection-evidence";
 import styles from "./inspection-checklist.module.css";
 
 type Question = "condition" | "functionality" | "cleanliness";
@@ -82,6 +84,7 @@ export function ObservationEditor({
   observation,
   reportId,
   roomId,
+  roomName,
   index,
   open,
   onToggle,
@@ -94,6 +97,7 @@ export function ObservationEditor({
   observation?: Observation;
   reportId: string;
   roomId: string;
+  roomName: string;
   index: number;
   open: boolean;
   onToggle: () => void;
@@ -232,6 +236,9 @@ export function ObservationEditor({
             >
               {o.condition ? `${is.conditions[o.condition]} · ` : ""}
               {status}{flags.length ? ` · ${flags.join(" · ")}` : ""}
+              {state.photos[photoKey]?.length ? ` · ${state.photos[photoKey].length} myndir` : ""}
+              {o.note.trim() ? " · Athugasemd" : ""}
+              {hasRetainedDefect(o) ? " · Varðveitt frávikslýsing" : ""}
             </span>
           </span>
           {open ? (
@@ -382,11 +389,6 @@ export function ObservationEditor({
                   Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta.
                 </p>
               ) : null}
-              <PhotoPreview
-                photoKey={photoKey}
-                title="Myndir af fráviki"
-                detail
-              />
               {!state.photos[photoKey]?.length ? (
                 <p className="missing-photo">
                   <TriangleAlert size={14} aria-hidden="true" />
@@ -404,6 +406,8 @@ export function ObservationEditor({
               placeholder="Bættu við samhengi ef þörf er á."
             />
           </Field>
+          <RetainedDefectDetails observation={o} />
+          <PhotoPreview photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item />
           <div className="observation-footer">
             {nextAction}
             <span role="status">

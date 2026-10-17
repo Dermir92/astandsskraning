@@ -9,10 +9,12 @@ export function ContextDialog({
   title,
   onClose,
   children,
+  closeLabel = "Loka yfirliti",
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
+  closeLabel?: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
@@ -66,7 +68,7 @@ export function ContextDialog({
         <h2 id={titleId}>{title}</h2>
         <button
           className="icon-button"
-          aria-label="Loka yfirliti"
+          aria-label={closeLabel}
           onClick={() => dialogRef.current?.close()}
         >
           <X size={20} aria-hidden="true" />

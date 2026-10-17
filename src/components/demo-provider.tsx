@@ -188,7 +188,17 @@ export class DemoStore {
       observations: { ...room.observations, [itemId]: observation },
     }));
   };
-  addPhoto = (key: string, photo: PreviewPhoto) =>
+  addPhoto = (key: string, photo: PreviewPhoto) => {
+    const targetExists = this.snapshot.reports.some(report =>
+      report.assetType === "apartment" && !report.sampleReviewed && report.rooms.some(room =>
+        key === `${report.id}:${room.id}:overview` ||
+        room.items.some(item => key === `${report.id}:${room.id}:${item.id}`),
+      ),
+    );
+    if (!this.canEdit() || !targetExists || (this.snapshot.photos[key]?.length ?? 0) >= 8) {
+      URL.revokeObjectURL(photo.url);
+      return false;
+    }
     this.emit({
       ...this.snapshot,
       photos: {
@@ -196,8 +206,12 @@ export class DemoStore {
         [key]: [...(this.snapshot.photos[key] ?? []), photo],
       },
     });
+    return true;
+  };
   removePhoto = (key: string, id: string) => {
+    if (!this.canEdit()) return;
     const photo = this.snapshot.photos[key]?.find((p) => p.id === id);
+    if (!photo) return;
     if (photo) URL.revokeObjectURL(photo.url);
     this.emit({
       ...this.snapshot,

@@ -20,6 +20,7 @@ import {
   reportTitle,
   requiresDamage,
   roomStats,
+  EMPTY_OBSERVATION,
 } from "@/lib/model";
 import { is } from "@/lib/locale/is";
 import { SampleSummary } from "./sample-summary";
@@ -27,6 +28,9 @@ import { SaveStatus } from "../app-shell";
 import { useReviewNavigation } from "../use-inspection-navigation";
 import { inspectionHref, itemProgress, missingAnswers, navigationTargetId } from "@/lib/inspection-navigation";
 import styles from "../inspection-checklist.module.css";
+import { EvidenceGallery, RetainedDefectDetails } from "../evidence-gallery";
+import { hasRetainedDefect } from "@/lib/inspection-evidence";
+import evidenceStyles from "../evidence.module.css";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
@@ -64,7 +68,7 @@ export function ReviewScreen() {
     !report.rooms.length ||
     unnamedRooms.length;
   return (
-    <>
+    <div className={evidenceStyles.review}>
       <BackLink />
       <Stepper reportId={id} step={3} />
       <PageHeading
@@ -203,6 +207,8 @@ export function ReviewScreen() {
                 const o = room.observations[item.id];
                 return (
                   requiresDamage(o) ||
+                  hasRetainedDefect(o) ||
+                  state.photos[`${id}:${room.id}:${item.id}`]?.length ||
                   o?.note ||
                   (o?.condition !== "na" && o?.cleanliness === "dirty") ||
                   (o?.condition && needsAttention(item, o))
@@ -236,9 +242,9 @@ export function ReviewScreen() {
                   {flagged.length ? (
                     <ul className="review-observations">
                       {flagged.map((item) => {
-                        const o = room.observations[item.id];
+                        const o = room.observations[item.id] ?? EMPTY_OBSERVATION;
                         return (
-                          <li key={item.id}>
+                          <li key={item.id} data-evidence-item={item.id}>
                             <div className="review-observation-heading">
                               <Link className={styles.reviewItemLink} href={navigation.itemHref({ roomId: room.id, itemId: item.id })} onNavigate={() => navigation.leave({ roomId: room.id, itemId: item.id })}><strong>{item.name}</strong></Link>
                               <span
@@ -278,8 +284,10 @@ export function ReviewScreen() {
                               </>
                             ) : null}
                             {o.note ? (
-                              <p className="review-note">{o.note}</p>
+                              <div className="review-note"><strong>Athugasemd við atriði</strong><p>{o.note}</p></div>
                             ) : null}
+                            <RetainedDefectDetails observation={o} />
+                            <EvidenceGallery photos={state.photos[`${id}:${room.id}:${item.id}`] ?? []} context={`${room.name || "Ónefnt rými"} · ${item.name}`} />
                           </li>
                         );
                       })}
@@ -315,6 +323,7 @@ export function ReviewScreen() {
                       yfirlitsmyndir í tímabundinni forskoðun
                     </p>
                   )}
+                  <EvidenceGallery photos={state.photos[`${id}:${room.id}:overview`] ?? []} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />
                 </section>
               );
             })}
@@ -423,6 +432,6 @@ export function ReviewScreen() {
       <div className="local-save">
         <SaveStatus />
       </div>
-    </>
+    </div>
   );
 }
