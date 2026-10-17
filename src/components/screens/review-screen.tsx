@@ -14,7 +14,7 @@ import {
 import { useReport, MissingReport } from "../report-context";
 import { BackLink, PageHeading, Progress, Stepper } from "../ui";
 import {
-  missingDetails,
+  detailIssues,
   needsAttention,
   reportStats,
   reportTitle,
@@ -25,6 +25,8 @@ import {
 import { is } from "@/lib/locale/is";
 import { SampleSummary } from "./sample-summary";
 import { SaveStatus } from "../app-shell";
+import { CoreCaptureSummary } from "../core-capture-summary";
+import { detailsCorrectionHref } from "../use-details-correction";
 import { useReviewNavigation } from "../use-inspection-navigation";
 import { inspectionHref, itemProgress, missingAnswers, navigationTargetId } from "@/lib/inspection-navigation";
 import styles from "../inspection-checklist.module.css";
@@ -40,7 +42,19 @@ export function ReviewScreen() {
   if (report.sampleReviewed || report.assetType !== "apartment")
     return <SampleSummary report={report} />;
   const stats = reportStats(report);
-  const missing = missingDetails(report.details);
+  const missing = detailIssues(report.details);
+  const rental = report.details.inspectionContext === "residential_rental";
+  const retainedContext = !!(report.details.deliveryDate || report.details.furnished);
+  const handoverDetails = <>
+    {rental || report.details.deliveryDate ? <div>
+      <dt>Afhending</dt>
+      <dd>{report.details.deliveryDate || "Óskráð"}</dd>
+    </div> : null}
+    {rental || report.details.furnished ? <div>
+      <dt>Húsgögn</dt>
+      <dd>{{ yes: "Fylgja", no: "Fylgja ekki", partly: "Fylgja að hluta", "": "Óskráð" }[report.details.furnished]}</dd>
+    </div> : null}
+  </>;
   const unnamedRooms = report.rooms.filter((r) => !r.name.trim());
   const missingOverviews = report.rooms.filter(
     (r) => !state.photos[`${id}:${r.id}:overview`]?.length,
@@ -68,7 +82,7 @@ export function ReviewScreen() {
     !report.rooms.length ||
     unnamedRooms.length;
   return (
-    <div className={evidenceStyles.review}>
+    <div className={`${evidenceStyles.review} core-review`}>
       <BackLink />
       <Stepper reportId={id} step={3} />
       <PageHeading
@@ -88,12 +102,12 @@ export function ReviewScreen() {
           <h2>
             {hasAttention
               ? "Nokkur atriði þarfnast yfirferðar"
-              : "Skráning hefur verið yfirfarin í sýniham"}
+              : "Skráð atriði tilbúin til yfirferðar"}
           </h2>
           <p>
             {hasAttention
               ? "Þú getur haldið áfram með drög og bætt við upplýsingum þegar þær liggja fyrir."
-              : "Öllum svörum og myndaforskoðunum hefur verið bætt við. Drögin haldast opin."}
+              : "Drögin eru áfram breytanleg. Skráð svör staðfesta ekki samþykki annarra eða lögbundinn frágang."}
           </p>
         </div>
         <span className="draft-tag">DRÖG</span>
@@ -128,7 +142,7 @@ export function ReviewScreen() {
           <section className="panel review-property">
             <div className="panel-heading">
               <h2>Upplýsingar um íbúð</h2>
-              <Link className="text-link" href={`/skyrslur/${id}/upplysingar`}>
+              <Link className="text-link" href={detailsCorrectionHref(id, "address")}>
                 <Pencil size={14} aria-hidden="true" />
                 Breyta
               </Link>
@@ -157,31 +171,7 @@ export function ReviewScreen() {
                 <dt>Íbúð / hæð</dt>
                 <dd>{report.details.unit || "Ekki tilgreint"}</dd>
               </div>
-              <div>
-                <dt>Hlutverk stofnanda</dt>
-                <dd>
-                  {report.details.role
-                    ? is.roles[report.details.role]
-                    : "Óskráð"}
-                </dd>
-              </div>
-              <div>
-                <dt>Afhending</dt>
-                <dd>{report.details.deliveryDate || "Óskráð"}</dd>
-              </div>
-              <div>
-                <dt>Húsgögn</dt>
-                <dd>
-                  {
-                    {
-                      yes: "Fylgja",
-                      no: "Fylgja ekki",
-                      partly: "Fylgja að hluta",
-                      "": "Óskráð",
-                    }[report.details.furnished]
-                  }
-                </dd>
-              </div>
+              {rental ? handoverDetails : null}
             </dl>
             {report.details.notes ? (
               <div className="review-general-note">
@@ -189,7 +179,20 @@ export function ReviewScreen() {
                 <p>{report.details.notes}</p>
               </div>
             ) : null}
+            {!rental && retainedContext ? (
+              <section className="review-context-details" aria-labelledby="review-context-title">
+                <div className="panel-heading">
+                  <h3 id="review-context-title">Aðrar upplýsingar</h3>
+                  <Link className="text-link" href={detailsCorrectionHref(id, report.details.deliveryDate ? "deliveryDate" : "furnished")} aria-label="Breyta afhendingu og húsgögnum">
+                    <Pencil size={14} aria-hidden="true" />Breyta
+                  </Link>
+                </div>
+                <p className="field-hint">Valfrjálsar samhengisupplýsingar; ekki krafa um útfyllingu.</p>
+                <dl className="property-details">{handoverDetails}</dl>
+              </section>
+            ) : null}
           </section>
+          <CoreCaptureSummary report={report} />
           <section
             className="review-rooms"
             aria-labelledby="review-rooms-title"
@@ -337,15 +340,11 @@ export function ReviewScreen() {
           {missing.length ? (
             <div className="attention-group">
               <h3>Grunnupplýsingar vantar</h3>
-              <ul>
-                {missing.map((label) => (
-                  <li key={label}>{label}</li>
+              <ul className="core-missing-links">
+                {missing.map(({ field, label }) => (
+                  <li key={field}><Link href={detailsCorrectionHref(id, field)}>{label}</Link></li>
                 ))}
               </ul>
-              <Link className="text-link" href={`/skyrslur/${id}/upplysingar`}>
-                Fylla út upplýsingar
-                <ArrowRight size={14} aria-hidden="true" />
-              </Link>
             </div>
           ) : null}
           {!report.rooms.length || unnamedRooms.length ? (
@@ -404,7 +403,7 @@ export function ReviewScreen() {
           {!hasAttention ? (
             <p className="attention-complete">
               <Check size={18} aria-hidden="true" />
-              Ekkert óskráð í þessari setu.
+              Engin atriði merkt til yfirferðar.
             </p>
           ) : null}
           <div className="review-scope">
