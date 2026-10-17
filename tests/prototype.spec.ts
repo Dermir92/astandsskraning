@@ -101,6 +101,10 @@ test("full creation to review, room edits, damage and session-only photos", asyn
   page,
 }) => {
   await createReport(page);
+  await page.getByLabel("Tengsl við íbúðarleigu").selectOption("residential_rental");
+  await page.getByLabel("Dagsetning skoðunar").fill("2026-10-16");
+  await page.getByLabel("Nafn skráningaraðila").fill("Sýni Skráningaraðili");
+  await page.getByLabel("Hvað var skoðað?").fill("Aðgengilegir fletir í völdum rýmum.");
   await page
     .getByRole("radio", { name: "Upphafsskráning", exact: true })
     .check();

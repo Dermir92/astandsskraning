@@ -76,6 +76,24 @@ export const is = {
     final: "Lokaskráning",
     independent: "Sjálfstæð skráning",
   },
+  inspectionContexts: {
+    standalone: "Ekki tengt íbúðarleigu",
+    residential_rental: "Tengt íbúðarleigu",
+  },
+  inspectionContextChoices: {
+    standalone: "Ekki tengt",
+    residential_rental: "Tengt",
+  },
+  core: {
+    unknown: "Óskráð",
+    attribution: "Nafn og hlutverk eru sjálfskráð; auðkenni er ekki staðfest.",
+    dateHint: "Dagurinn sem skoðunin fór fram, ekki afhendingardagur.",
+    scopeHint: "Lýstu aðeins því sem var skoðað eða prófað.",
+    limitationsHint: "T.d. svæði utan skoðunar, takmarkað aðgengi eða búnaður sem var ekki prófaður.",
+    limitationsUnknown: "Takmarkanir óskráðar",
+    examinerHint: "Sjálfstæð skráning staðfestir ekki samkomulag um óvilhallan úttektaraðila.",
+    rentalLimit: "Þetta eru drög að grunnskráningu, ekki fullbúin leiguúttekt.",
+  },
   roles: {
     landlord: "Leigusali",
     tenant: "Leigjandi",

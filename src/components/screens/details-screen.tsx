@@ -7,215 +7,129 @@ import { BackLink, FlowFooter, PageHeading, Stepper } from "../ui";
 import { Field } from "../form-field";
 import { SampleSummary } from "./sample-summary";
 import { SaveStatus } from "../app-shell";
+import { useDetailsCorrection } from "../use-details-correction";
 import { is } from "@/lib/locale/is";
-import type { ApartmentDetails } from "@/lib/model";
+import { inspectionDateWarning, isCalendarDate, rentalRequirements, type ApartmentDetails } from "@/lib/model";
 import Link from "next/link";
 
 export function DetailsScreen() {
   const { report, id, store, state } = useReport();
   const router = useRouter();
+  const fromReview = useDetailsCorrection(state.status !== "loading" && !!report);
   if (state.status === "loading" || !report)
     return <MissingReport loading={state.status === "loading"} />;
   if (report.sampleReviewed || report.assetType !== "apartment")
     return <SampleSummary report={report} />;
   const d = report.details;
-  const change = <K extends keyof ApartmentDetails>(
-    key: K,
-    value: ApartmentDetails[K],
-  ) =>
-    store.updateReport(id, (r) => ({
-      ...r,
-      details: { ...r.details, [key]: value },
-    }));
-  const postalError =
-    d.postalCode !== "" && !/^\d{3}$/.test(d.postalCode)
-      ? "Póstnúmer þarf að vera þrír tölustafir, t.d. 101."
-      : undefined;
+  const required = rentalRequirements(d);
+  const rental = d.inspectionContext === "residential_rental";
+  const change = <K extends keyof ApartmentDetails>(key: K, value: ApartmentDetails[K]) =>
+    store.updateReport(id, (r) => ({ ...r, details: { ...r.details, [key]: value } }));
+  const postalError = d.postalCode !== "" && !/^\d{3}$/.test(d.postalCode)
+    ? "Póstnúmer þarf að vera þrír tölustafir, t.d. 101." : undefined;
+  const dateError = inspectionDateWarning(d.inspectionDate);
+  const preservedDate = !!d.inspectionDate && !isCalendarDate(d.inspectionDate);
+  const extras = [d.deliveryDate, d.furnished, d.notes.trim()].filter(Boolean).length;
+  const reviewHref = `/skyrslur/${encodeURIComponent(id)}/yfirferd#review-core-details`;
   return (
-    <div className="form-page">
+    <div className="form-page core-details">
       <BackLink />
       <Stepper reportId={id} step={0} />
-      <PageHeading
-        title="Upplýsingar um íbúð"
-        description="Skráðu grunnupplýsingarnar. Þú getur haldið áfram með ófullgerð drög."
-      />
-      <form
-        noValidate
-        onSubmit={(e) => {
-          e.preventDefault();
-          router.push(`/skyrslur/${id}/rymi`);
-        }}
-      >
+      <PageHeading title="Upplýsingar um íbúð" description="Grunnur að skýrri skráningu. Þú getur fyllt út það sem vantar síðar." />
+      {fromReview ? <Link className="text-link core-return" href={reviewHref}>Aftur í yfirferð</Link> : null}
+      <form noValidate onSubmit={(e) => { e.preventDefault(); router.push(fromReview ? reviewHref : `/skyrslur/${id}/rymi`); }}>
         <section className="panel form-panel">
-          <div className="panel-heading">
-            <h2>Skráning og eign</h2>
-            <p>
-              <span className="required-mark">*</span> Nauðsynlegt fyrir fulla
-              skráningu
-            </p>
-          </div>
-          <fieldset className="choice-field">
-            <legend>
-              Tegund skráningar <span className="required-mark">*</span>
-            </legend>
+          <div className="panel-heading"><h2>Skráning og eign</h2><p>* Má fylla út síðar</p></div>
+          <Field id="inspectionContext" label="Tengsl við íbúðarleigu" className="core-context">
+            <select id="inspectionContext" value={d.inspectionContext ?? ""} onChange={e => change("inspectionContext", e.target.value as ApartmentDetails["inspectionContext"])}>
+              <option value="">Óskráð</option>
+              {Object.entries(is.inspectionContextChoices).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+            </select>
+          </Field>
+          <fieldset className="choice-field" aria-describedby={d.inspectionType === "independent" ? "independent-hint" : undefined}>
+            <legend>Tegund skráningar <span className="required-mark">*</span></legend>
             <div className="radio-options">
               {Object.entries(is.inspectionTypes).map(([value, label]) => (
-                <label
-                  className={`radio-option ${d.inspectionType === value ? "radio-selected" : ""}`}
-                  key={value}
-                >
-                  <input
-                    type="radio"
-                    name="inspectionType"
-                    value={value}
-                    checked={d.inspectionType === value}
-                    onChange={() =>
-                      change(
-                        "inspectionType",
-                        value as ApartmentDetails["inspectionType"],
-                      )
-                    }
-                  />
+                <label className={`radio-option ${d.inspectionType === value ? "radio-selected" : ""}`} key={value}>
+                  <input id={value === "initial" ? "inspectionType" : undefined} type="radio" name="inspectionType" value={value} checked={d.inspectionType === value} onChange={() => change("inspectionType", value as ApartmentDetails["inspectionType"])} />
                   <span>{label}</span>
                 </label>
               ))}
             </div>
+            {d.inspectionType === "independent" ? <p id="independent-hint" className="field-hint">{is.core.examinerHint}</p> : null}
           </fieldset>
           <div className="form-grid">
             <Field id="address" label="Heimilisfang" className="field-full">
-              <input
-                id="address"
-                value={d.address}
-                onChange={(e) => change("address", e.target.value)}
-                placeholder="T.d. Sýnigata 14"
-                autoComplete="off"
-              />
+              <input id="address" value={d.address} onChange={e => change("address", e.target.value)} placeholder="T.d. Sýnigata 14" autoComplete="off" />
             </Field>
             <Field id="postalCode" label="Póstnúmer" error={postalError}>
-              <input
-                id="postalCode"
-                value={d.postalCode}
-                onChange={(e) => change("postalCode", e.target.value)}
-                inputMode="numeric"
-                maxLength={3}
-                placeholder="101"
-                aria-invalid={!!postalError}
-                aria-describedby={postalError ? "postalCode-error" : undefined}
-                autoComplete="off"
-              />
+              <input id="postalCode" value={d.postalCode} onChange={e => change("postalCode", e.target.value)} inputMode="numeric" maxLength={3} placeholder="101" aria-invalid={!!postalError} aria-describedby={postalError ? "postalCode-error" : undefined} autoComplete="off" />
             </Field>
             <Field id="municipality" label="Sveitarfélag">
-              <input
-                id="municipality"
-                value={d.municipality}
-                onChange={(e) => change("municipality", e.target.value)}
-                placeholder="T.d. Reykjavík"
-                autoComplete="off"
-              />
+              <input id="municipality" value={d.municipality} onChange={e => change("municipality", e.target.value)} placeholder="T.d. Reykjavík" autoComplete="off" />
             </Field>
-            <Field
-              id="unit"
-              label="Íbúðarnúmer / hæð"
-              optional
-              className="field-full"
-            >
-              <input
-                id="unit"
-                value={d.unit}
-                onChange={(e) => change("unit", e.target.value)}
-                placeholder="T.d. 0201 · 2. hæð"
-              />
+            <Field id="unit" label="Íbúðarnúmer / hæð" optional className="field-full">
+              <input id="unit" value={d.unit} onChange={e => change("unit", e.target.value)} placeholder="T.d. 0201 · 2. hæð" autoComplete="off" />
             </Field>
           </div>
         </section>
         <section className="panel form-panel">
-          <div className="panel-heading">
-            <h2>Afhending</h2>
-            <p>Hvað á að skrá og hvenær?</p>
-          </div>
+          <div className="panel-heading"><h2>Skoðun og skráningaraðili</h2></div>
           <div className="form-grid">
-            <Field id="role" label="Hlutverk stofnanda">
-              <select
-                id="role"
-                value={d.role}
-                onChange={(e) =>
-                  change("role", e.target.value as ApartmentDetails["role"])
-                }
-              >
-                <option value="">Veldu hlutverk</option>
-                {Object.entries(is.roles).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
+            <Field id="inspectionDate" label="Dagsetning skoðunar" hint={is.core.dateHint} error={dateError}>
+              <input id="inspectionDate" type={preservedDate ? "text" : "date"} value={d.inspectionDate ?? ""} onChange={e => change("inspectionDate", e.target.value)} aria-invalid={!!dateError} aria-describedby={dateError ? "inspectionDate-error" : "inspectionDate-hint"} autoComplete="off" />
+            </Field>
+            <Field id="recorderName" label="Nafn skráningaraðila">
+              <input id="recorderName" value={d.recorderName ?? ""} onChange={e => change("recorderName", e.target.value)} autoComplete="off" aria-describedby="recorder-attribution" />
+            </Field>
+            <Field id="role" label="Hlutverk stofnanda" optional={!required.role}>
+              <select id="role" value={d.role} onChange={e => change("role", e.target.value as ApartmentDetails["role"])} aria-describedby="recorder-attribution">
+                <option value="">Óskráð</option>
+                {Object.entries(is.roles).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
               </select>
             </Field>
-            <Field id="deliveryDate" label="Dagsetning afhendingar">
-              <input
-                id="deliveryDate"
-                type="date"
-                value={d.deliveryDate}
-                onChange={(e) => change("deliveryDate", e.target.value)}
-              />
+          </div>
+          <p id="recorder-attribution" className="field-hint core-attribution">{is.core.attribution}</p>
+        </section>
+        <section className="panel form-panel">
+          <div className="panel-heading"><h2>Umfang og takmarkanir</h2></div>
+          <div className="form-grid">
+            <Field id="scopeDescription" label="Hvað var skoðað?" hint={is.core.scopeHint} className="field-full">
+              <textarea id="scopeDescription" rows={2} value={d.scopeDescription ?? ""} onChange={e => change("scopeDescription", e.target.value)} aria-describedby="scopeDescription-hint" />
+            </Field>
+            <Field id="scopeLimitations" label="Takmarkanir skoðunar" optional hint={is.core.limitationsHint} className="field-full">
+              <textarea id="scopeLimitations" rows={2} value={d.scopeLimitations ?? ""} onChange={e => change("scopeLimitations", e.target.value)} aria-describedby="scopeLimitations-hint" />
             </Field>
           </div>
-          <fieldset className="choice-field">
-            <legend>
-              Fylgja húsgögn? <span className="required-mark">*</span>
-            </legend>
-            <div className="radio-options radio-compact">
-              {(
-                [
-                  ["yes", "Já"],
-                  ["no", "Nei"],
-                  ["partly", "Að hluta"],
-                ] as const
-              ).map(([value, label]) => (
-                <label
-                  key={value}
-                  className={`radio-option ${d.furnished === value ? "radio-selected" : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="furnished"
-                    checked={d.furnished === value}
-                    onChange={() => change("furnished", value)}
-                  />
-                  <span>{label}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-          <Field
-            id="notes"
-            label="Athugasemdir um íbúð eða afhendingu"
-            optional
-          >
-            <textarea
-              id="notes"
-              rows={3}
-              value={d.notes}
-              onChange={(e) => change("notes", e.target.value)}
-              placeholder="T.d. hvaða búnaður eða húsgögn fylgja."
-            />
-          </Field>
         </section>
-        <div className="info-note">
-          <Info size={18} aria-hidden="true" />
-          <p>
-            Breytingar vistast sem drög í þessum vafra þegar vistun tekst.
-            Fylgstu með vistunarstöðunni. Reitir sem vantar birtast í
-            yfirferðinni.
-          </p>
-        </div>
-        <FlowFooter backHref="/" nextText="Velja rými">
-          <Link href="/" className="draft-link">
-            Fara í yfirlit draga
-          </Link>
+        <details className="panel form-panel core-extras" open={rental}>
+          <summary><span>{rental ? "Afhending og húsgögn" : "Aðrar upplýsingar"}</span><span className="core-extras-count">{extras ? `${extras === 1 ? "1 upplýsing varðveitt" : `${extras} upplýsingar varðveittar`} · skoða og breyta` : "Afhending, húsgögn og athugasemdir"}</span></summary>
+          <div className="core-extras-body">
+            <div className="form-grid">
+              <Field id="deliveryDate" label="Dagsetning afhendingar" optional={!required.deliveryDate} hint="Aðskilin frá dagsetningu skoðunar.">
+                <input id="deliveryDate" type={d.deliveryDate && !isCalendarDate(d.deliveryDate) ? "text" : "date"} value={d.deliveryDate} onChange={e => change("deliveryDate", e.target.value)} aria-describedby="deliveryDate-hint" />
+              </Field>
+            </div>
+            <fieldset className="choice-field">
+              <legend>Fylgja húsgögn? {required.furnished ? <span className="required-mark">*</span> : <span className="optional-label">Valfrjálst</span>}</legend>
+              <div className="radio-options radio-compact">
+                {([["yes", "Já"], ["no", "Nei"], ["partly", "Að hluta"]] as const).map(([value, label]) => (
+                  <label key={value} className={`radio-option ${d.furnished === value ? "radio-selected" : ""}`}>
+                    <input id={value === "yes" ? "furnished" : undefined} type="radio" name="furnished" checked={d.furnished === value} onChange={() => change("furnished", value)} /><span>{label}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <Field id="notes" label="Athugasemdir um íbúð eða afhendingu" optional>
+              <textarea id="notes" rows={2} value={d.notes} onChange={e => change("notes", e.target.value)} />
+            </Field>
+          </div>
+        </details>
+        <div className="info-note"><Info size={18} aria-hidden="true" /><p>Drög vistast í þessum vafra þegar vistun tekst. Fylgstu með vistunarstöðunni.</p></div>
+        <FlowFooter backHref={fromReview ? reviewHref : "/"} nextText={fromReview ? "Aftur í yfirferð" : "Velja rými"}>
+          <Link href="/" className="draft-link">Fara í yfirlit draga</Link>
         </FlowFooter>
-        <div className="local-save">
-          <SaveStatus />
-        </div>
+        <div className="local-save"><SaveStatus /></div>
       </form>
     </div>
   );

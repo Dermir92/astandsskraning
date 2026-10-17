@@ -24,12 +24,7 @@ export function Field({
         {optional ? (
           <span className="optional-label">Valfrjálst</span>
         ) : (
-          <span
-            className="required-mark"
-            aria-label="Nauðsynlegt fyrir fulla skráningu"
-          >
-            *
-          </span>
+          <><span className="required-mark" aria-hidden="true">*</span><span className="sr-only">Má fylla út síðar</span></>
         )}
       </label>
       {children}

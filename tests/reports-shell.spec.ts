@@ -63,7 +63,8 @@ test("selection follows filters without losing focus or writing draft data", asy
     true,
   );
   await expect(overview).toContainText("0 af 32 atriðum skráð");
-  await expect(overview).toContainText("3 grunnupplýsingar vantar");
+  // Unknown rental context prompts for the four core groups, without rental-only requirements.
+  await expect(overview).toContainText("4 grunnupplýsingar vantar");
   if (!narrow) {
     await expect(trigger).toBeFocused();
     await expect(trigger).toHaveAttribute("aria-pressed", "true");

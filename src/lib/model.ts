@@ -37,6 +37,11 @@ export interface Room {
   observations: Record<string, Observation>;
 }
 export interface ApartmentDetails {
+  inspectionContext?: "" | "standalone" | "residential_rental";
+  inspectionDate?: string;
+  recorderName?: string;
+  scopeDescription?: string;
+  scopeLimitations?: string;
   inspectionType: "" | "initial" | "final" | "independent";
   address: string;
   postalCode: string;
@@ -65,6 +70,11 @@ export const EMPTY_OBSERVATION: Observation = {
   note: "",
 };
 export const EMPTY_DETAILS: ApartmentDetails = {
+  inspectionContext: "",
+  inspectionDate: "",
+  recorderName: "",
+  scopeDescription: "",
+  scopeLimitations: "",
   inspectionType: "",
   address: "",
   postalCode: "",
@@ -283,15 +293,42 @@ export function reportStatus(report: Report): ReportStatus {
     : "draft";
 }
 export function missingDetails(d: ApartmentDetails): string[] {
-  return [
-    !d.inspectionType && "Tegund skráningar",
-    !d.address.trim() && "Heimilisfang",
-    !/^\d{3}$/.test(d.postalCode) && "Póstnúmer (3 tölustafir)",
-    !d.municipality.trim() && "Sveitarfélag",
-    !d.role && "Hlutverk stofnanda",
-    !/^\d{4}-\d{2}-\d{2}$/.test(d.deliveryDate) && "Dagsetning afhendingar",
-    !d.furnished && "Hvort húsgögn fylgi",
-  ].filter((v): v is string => !!v);
+  return detailIssues(d).map(issue => issue.label);
+}
+
+export const DETAIL_FIELDS = ["inspectionContext", "inspectionType", "address", "postalCode", "municipality", "unit", "inspectionDate", "recorderName", "role", "scopeDescription", "scopeLimitations", "deliveryDate", "furnished", "notes"] as const;
+export type DetailField = (typeof DETAIL_FIELDS)[number];
+export function rentalRequirements(d: ApartmentDetails) {
+  const rental = d.inspectionContext === "residential_rental";
+  return { role: rental, furnished: rental, deliveryDate: rental && (d.inspectionType === "initial" || d.inspectionType === "final") };
+}
+// Date-only values are never interpreted in the browser's local timezone.
+export function isCalendarDate(value: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || value.startsWith("0000")) return false;
+  const parsed = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+export function inspectionDateWarning(value = "", today = new Date().toISOString().slice(0, 10)): string | undefined {
+  if (!value) return undefined;
+  if (!isCalendarDate(value)) return "Dagsetningin er ekki gild. Leiðréttu hana eða hreinsaðu reitinn; drögin má áfram vista.";
+  if (value > today) return "Dagsetningin er í framtíðinni. Hún er varðveitt í drögum en staðfestir ekki að skoðun hafi farið fram.";
+}
+export function detailIssues(d: ApartmentDetails, today?: string): { field: DetailField; label: string }[] {
+  const required = rentalRequirements(d);
+  const issues: { field: DetailField; label: string }[] = [];
+  const add = (field: DetailField, missing: boolean, label: string) => { if (missing) issues.push({ field, label }); };
+  add("inspectionContext", !d.inspectionContext, "Tengsl við íbúðarleigu");
+  add("inspectionType", !d.inspectionType, "Tegund skráningar");
+  add("address", !d.address.trim(), "Heimilisfang");
+  add("postalCode", !/^\d{3}$/.test(d.postalCode), "Póstnúmer (3 tölustafir)");
+  add("municipality", !d.municipality.trim(), "Sveitarfélag");
+  add("inspectionDate", !d.inspectionDate || !!inspectionDateWarning(d.inspectionDate, today), d.inspectionDate ? "Dagsetning skoðunar þarfnast yfirferðar" : "Dagsetning skoðunar");
+  add("recorderName", !d.recorderName?.trim(), "Nafn skráningaraðila");
+  add("scopeDescription", !d.scopeDescription?.trim(), "Umfang skoðunar");
+  add("role", required.role && !d.role, "Hlutverk stofnanda");
+  add("deliveryDate", required.deliveryDate && !isCalendarDate(d.deliveryDate), "Dagsetning afhendingar");
+  add("furnished", required.furnished && !d.furnished, "Hvort húsgögn fylgi");
+  return issues;
 }
 export function reportTitle(report: Report) {
   return report.details.address.trim() || report.title || "Ónefnd íbúð";
@@ -352,7 +389,10 @@ export function isReportList(value: unknown): value is Report[] {
       const d = r.details;
       if (
         !record(d) ||
-        !stringFields(d, Object.keys(EMPTY_DETAILS)) ||
+        // Keep the legacy contract independent of defaults for new drafts.
+        !stringFields(d, ["inspectionType", "address", "postalCode", "municipality", "unit", "role", "deliveryDate", "furnished", "notes"]) ||
+        !optionalChoice(d.inspectionContext, ["", "standalone", "residential_rental"]) ||
+        !["inspectionDate", "recorderName", "scopeDescription", "scopeLimitations"].every(key => d[key] === undefined || typeof d[key] === "string") ||
         !["", "initial", "final", "independent"].includes(
           d.inspectionType as string,
         ) ||

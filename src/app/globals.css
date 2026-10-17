@@ -688,6 +688,39 @@ select:focus-visible {
   padding: 24px;
   margin-bottom: 18px;
 }
+.core-context { margin-bottom: 22px; }
+.core-return { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 12px; }
+.core-attribution { margin-top: 14px; }
+.core-details [id], .core-summary { scroll-margin-top: 110px; }
+.core-details input[type="date"] { min-width: 0; max-width: 100%; }
+.core-extras > summary { cursor: pointer; min-height: 44px; font-weight: 750; }
+.core-extras-count { display: block; color: var(--muted); font-size: 13px; font-weight: 500; margin-top: 4px; }
+.core-extras-body { margin-top: 20px; }
+.core-extras-body > .choice-field { margin-top: 20px; }
+.core-prose { white-space: pre-wrap; overflow-wrap: anywhere; }
+.core-summary { margin-top: 18px; }
+.core-summary .panel-heading { flex-wrap: wrap; }
+.core-summary .text-link { min-height: 44px; }
+.core-summary .property-details dd { overflow-wrap: anywhere; }
+.core-summary .property-details dd .field-error { color: var(--danger); }
+.core-missing-links a { display: flex; align-items: center; min-height: 44px; padding: 5px 0; text-decoration: underline; text-underline-offset: 3px; }
+.core-rental-note { margin-top: 12px; padding: 10px 12px; background: var(--teal-soft); border-left: 3px solid var(--teal); }
+.review-context-details { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 12px; }
+.review-property .review-context-details .panel-heading { border: 0; padding: 0; margin-bottom: 4px; flex-wrap: wrap; }
+.review-context-details h3 { margin: 0; font-size: 14px; font-weight: 750; }
+.review-context-details .text-link { min-height: 44px; }
+.review-context-details .field-hint { margin: 0 0 12px; }
+@media (max-width: 640px) {
+  :is(.core-details, .core-review) .stepper ol { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr)); }
+  :is(.core-details, .core-review) .stepper li, :is(.core-details, .core-review) .stepper a { min-width: 0; }
+  :is(.core-details, .core-review) .stepper a > span:last-child { overflow-wrap: anywhere; }
+  .core-details .flow-footer { flex-wrap: wrap; }
+  .core-details .flow-footer-right { min-width: 0; max-width: 100%; }
+  .core-details .draft-link { white-space: normal; }
+  .core-details .radio-option > span { min-width: 0; overflow-wrap: anywhere; }
+  .core-review .property-details { grid-template-columns: minmax(0, 1fr); }
+  .core-review .review-footer .button { white-space: normal; text-align: center; }
+}
 .panel-heading {
   display: flex;
   justify-content: space-between;
