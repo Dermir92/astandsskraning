@@ -1,0 +1,2 @@
+# Keep preserved prototype and evidence bytes unchanged across checkouts.
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol
