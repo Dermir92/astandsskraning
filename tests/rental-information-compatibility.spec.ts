@@ -50,6 +50,32 @@ test("representation requires an explicit source; alternative names and recorder
   expect(rentalInformationIssues(other).map(i => i.field)).toEqual(["rentalRepresentedParty", "rentalRepresentativeName"]);
 });
 
+test("explicit represented parties require a source while cleared declarations and other contexts stay optional", () => {
+  const retained = { name: "Retained alternative", basisDescription: "Self-declared only", future: { keep: true } };
+  for (const role of ["landlord", "tenant"] as const) {
+    for (const representedParty of ["landlord", "tenant"] as const) {
+      const report = rentalReport({ ...rentalInformation, representation: { ...retained, representedParty } });
+      report.details.role = role;
+      const original = structuredClone(report);
+      expect(rentalInformationIssues(report.details).map(({ field, kind }) => ({ field, kind }))).toEqual([{ field: "rentalRepresentativeNameSource", kind: "missing" }]);
+      expect(representativeName(report.details)).toBeUndefined();
+      expect(isReportList([report])).toBe(true);
+      for (const nameSource of ["", "other"] as const) {
+        const details = { ...report.details, rentalInformation: { ...rentalInformation, representation: { ...retained, representedParty, nameSource } } };
+        expect(rentalInformationIssues(details).map(issue => issue.field)).toEqual(nameSource === "other" ? [] : ["rentalRepresentativeNameSource"]);
+        expect(rentalInformationIssues({ ...details, rentalInformation: { ...rentalInformation, representation: { ...retained, representedParty: "", nameSource } } }).map(issue => issue.field)).toEqual(nameSource === "other" ? ["rentalRepresentedParty"] : []);
+      }
+      expect(rentalInformationIssues({ ...report.details, rentalInformation: { ...rentalInformation, representation: { ...retained, representedParty, nameSource: "other", name: "" } } }).map(issue => issue.field)).toEqual(["rentalRepresentativeName"]);
+      for (const inspectionContext of [undefined, "", "standalone"] as const) {
+        const switched = { ...report.details, inspectionContext };
+        expect(rentalInformationIssues(switched)).toEqual([]);
+        expect(rentalInformationIssues({ ...switched, inspectionContext: "residential_rental" }).map(issue => issue.field)).toEqual(["rentalRepresentativeNameSource"]);
+      }
+      expect(report).toEqual(original);
+    }
+  }
+});
+
 test("optional shapes are additive; wrong known types/enums are protected while invalid date strings load", () => {
   for (const report of [legacyCoreReport(), rentalReport(), rentalReport({}), rentalReport({ representation: {} }), rentalReport({ leaseDate: "invalid", propertyNumber: "000-F 001", leaseReference: "arbitrary reference" })]) expect(isReportList([report])).toBe(true);
   const wrongValues = [null, 42, false, [], {}];

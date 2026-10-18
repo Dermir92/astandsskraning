@@ -66,7 +66,7 @@ export function RentalInformationFields({ details: d, updateDetails }: Props) {
       <textarea id="rentalPremisesDescription" rows={2} value={r?.premisesDescription ?? ""} onChange={e => change("premisesDescription", e.target.value)} aria-describedby="rentalPremisesDescription-hint" />
     </Field>
     <div className="rental-disclosures">
-      <Disclosure title={t.lease} status={active && !hasLeaseAssociation(d) ? t.leaseMissing : r?.leaseReference?.trim() ? "Tilvísun skráð" : r?.leaseDate ? "Dagsetning skráð" : t.optional}>
+      <Disclosure title={t.lease} status={dateWarning ? t.missing.leaseDate : active && !hasLeaseAssociation(d) ? t.leaseMissing : r?.leaseReference?.trim() ? "Tilvísun skráð" : r?.leaseDate ? "Dagsetning skráð" : t.optional}>
         <div className="form-grid">
           <Field id="rentalLeaseDate" label={t.leaseDate} optional hint={t.leaseDateHint} error={dateWarning}>
             <input id="rentalLeaseDate" type={r?.leaseDate && !isCalendarDate(r.leaseDate) ? "text" : "date"} value={r?.leaseDate ?? ""} onChange={e => change("leaseDate", e.target.value)} aria-invalid={!!dateWarning} aria-describedby={dateWarning ? "rentalLeaseDate-error" : "rentalLeaseDate-hint"} />

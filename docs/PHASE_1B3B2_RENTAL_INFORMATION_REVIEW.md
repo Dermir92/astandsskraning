@@ -55,7 +55,7 @@ Representation is one explicit declaration for one party. Recorder-source names 
 
 Previously `DemoStore.persist` rebuilt only `{ version: 1, reports }`, dropping unknown top-level envelope fields. Hydration now retains the validated envelope; serialization spreads it and then overrides the known `version` and `reports` members. Reads still perform zero writes. Existing nested spread updates preserve unknown report/detail/rental/representation/room/item/observation fields and unrelated reports. A failed write keeps complete pending edits in memory and the retained envelope available; successful retry saves both. Rejected invalid mutations cannot replace those pending valid edits or unreadable source bytes.
 
-## Final verification — 18 October 2026
+## Initial verification — reviewed commit `9d7b26d`
 
 | Check | Final result |
 | --- | --- |
@@ -87,3 +87,12 @@ Local synchronous storage, quota/eviction, whole-document writes, older-client a
 ## Unchanged boundaries
 
 **Concept C and its approved designs/PDF assets are unchanged.** Routes, dependencies, repository Playwright configuration, observation enums, checklist/evidence implementations and existing progress meanings are unchanged. Fire/heating/meters/keys/inventory, backend/database/authentication, participants/signatures/authority verification, notices/formal execution, durable media, HMS integration, payments and production PDF/Concept C adapter infrastructure remain excluded. No Phase 1B.3b.3 work is included. Publication stops at a Draft PR; no merge or deployment is requested or performed.
+
+## Independent review follow-up — 18 October 2026
+
+Both findings from review of `9d7b26d7df18e5b5ff19ad38c95e8a9f90b33b1b` are addressed with two production-line changes. The information contract, approved layout, locale strings, storage and excluded infrastructure are unchanged.
+
+- An explicitly selected represented party now activates the existing representation checks, including a missing name-source issue. Names and recorder roles are never inferred or changed. Clearing both selections leaves representation optional for ordinary roles, while inactive alternative names, basis text and extensions remain stored. Standalone/unknown contexts still have no rental readiness penalty; returning to rental restores the relevant issue. Drafts remain saveable and no verified-authority claim is introduced.
+- An invalid supplied lease date takes priority in the collapsed Leigusamningur status, using the existing restrained status style and warning copy. A valid reference still satisfies the association minimum; the invalid date remains a separate attention/correction issue, which clears after repair.
+
+The new tests reproduced both defects against the reviewed implementation before the fix. Final focused verification: **12 passed / 0 failed**, across desktop, mobile-360 and mobile-390. Fresh complete production regression: **414 passed / 12 intentionally skipped / 0 failed / 0 flaky**, 426 executions in 5.2 minutes with retries disabled. All previous cases and intentional skips remain; existing assertions were not removed or weakened. TypeScript, production build, scoped lint on the four changed TypeScript/TSX files and Git whitespace checks passed. **1709 / 1709** existing untracked/design/research/planning/evidence/archive files remain SHA-256 identical. The earlier manual accessibility/browser and local-storage/photo limitations still apply. Publication updates PR #5 only and stops for final review; no merge, deployment or subsequent-phase work is included.

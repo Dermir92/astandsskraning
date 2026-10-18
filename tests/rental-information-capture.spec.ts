@@ -81,6 +81,79 @@ test("representative requires explicit source and retains its alternative name t
   await expect(page.getByRole("link", { name: "Hlutverk og fyrirsvar þarfnast yfirferðar", exact: true })).toBeVisible();
 });
 
+for (const role of ["landlord", "tenant"] as const) {
+  test(`partial representation stays visible through completion, clearing and context switches for ${role}`, async ({ page }) => {
+    const retained = { name: "Annar Sýnifulltrúi", basisDescription: "Sjálfskráð heimild", future: { keep: true } };
+    const party = role === "landlord" ? "tenant" : "landlord";
+    const report = rentalReport({ ...rentalInformation, representation: retained });
+    report.details.role = role;
+    await seed(page, report);
+    await disclose(page, "Fyrirsvar");
+    await page.locator("#rentalRepresentedParty").selectOption(party);
+    await expect(page.locator("#rentalRepresentativeNameSource")).toHaveValue("");
+    await expect(page.locator("#rentalRepresentativeName")).toHaveCount(0);
+    await expect(page.getByLabel("Hlutverk stofnanda")).toHaveValue(role);
+    const partial = await raw(page);
+    expect((await savedDetails(page)).rentalInformation.representation).toEqual({ ...retained, representedParty: party });
+    await page.goto(`${base}/yfirferd`);
+    await expect(page.locator(".rental-readiness")).toHaveCount(0);
+    await page.getByRole("link", { name: "Hver kemur fram sem fulltrúi", exact: true }).click();
+    await expect(page.locator("#rentalRepresentativeNameSource")).toBeFocused();
+    expect(await raw(page)).toBe(partial);
+    await page.locator("#rentalRepresentativeNameSource").selectOption("other");
+    await expect(page.locator("#rentalRepresentativeName")).toHaveValue(retained.name);
+    await page.goto(`${base}/yfirferd`);
+    await expect(page.locator(".rental-readiness")).toHaveText("Leiguupplýsingar skráðar");
+    await page.goto(`${base}/upplysingar`); await disclose(page, "Fyrirsvar");
+    await page.locator("#rentalRepresentedParty").selectOption("");
+    await page.goto(`${base}/yfirferd`);
+    await page.getByRole("link", { name: "Aðili sem fulltrúi kemur fram fyrir", exact: true }).click();
+    await expect(page.locator("#rentalRepresentedParty")).toBeFocused();
+    await page.locator("#rentalRepresentedParty").selectOption(party);
+    await page.locator("#rentalRepresentativeNameSource").selectOption("");
+    for (const context of ["standalone", ""] as const) {
+      await page.getByLabel("Tengsl við íbúðarleigu").selectOption(context); await page.reload();
+      await page.goto(`${base}/yfirferd`);
+      await expect(page.getByRole("heading", { name: "Leiguupplýsingar vantar", exact: true })).toHaveCount(0);
+      await page.goto(`${base}/upplysingar`);
+      await page.getByLabel("Tengsl við íbúðarleigu").selectOption("residential_rental");
+      await page.goto(`${base}/yfirferd`);
+      await expect(page.locator(".rental-readiness")).toHaveCount(0);
+      await page.getByRole("link", { name: "Hver kemur fram sem fulltrúi", exact: true }).click();
+    }
+    await page.locator("#rentalRepresentedParty").selectOption("");
+    await page.reload();
+    const details = await savedDetails(page);
+    expect(details.role).toBe(role);
+    expect(details.rentalInformation).toEqual({ ...rentalInformation, representation: { ...retained, representedParty: "", nameSource: "" } });
+    await page.goto(`${base}/yfirferd`);
+    await expect(page.locator(".rental-readiness")).toHaveText("Leiguupplýsingar skráðar");
+    await expect(page.getByRole("heading", { name: "Leiguupplýsingar vantar", exact: true })).toHaveCount(0);
+  });
+}
+
+test("collapsed lease disclosure exposes an invalid date even with a valid reference", async ({ page }) => {
+  const original = await seed(page, rentalReport({ ...rentalInformation, leaseDate: "2026-02-30", leaseReference: "REF 0007" }));
+  const lease = page.locator(".rental-disclosure > summary").filter({ hasText: "Leigusamningur" });
+  await expect(lease).toBeVisible();
+  await expect(page.locator("#rentalLeaseDate")).toBeHidden();
+  await expect(lease).toContainText("Dagsetning leigusamnings þarfnast yfirferðar");
+  await page.goto(`${base}/yfirferd`);
+  await expect(page.getByRole("heading", { name: "Leiguupplýsingar vantar", exact: true })).toHaveCount(0);
+  await page.getByRole("link", { name: "Dagsetning leigusamnings þarfnast yfirferðar", exact: true }).click();
+  await expect(page.locator("#rentalLeaseDate")).toBeFocused();
+  await expect(page.locator("#rentalLeaseDate")).toHaveValue("2026-02-30");
+  expect(await raw(page)).toBe(original);
+  await page.locator("#rentalLeaseDate").fill("2026-02-28");
+  await lease.click();
+  await expect(page.locator("#rentalLeaseDate")).toBeHidden();
+  await expect(lease).toContainText("Tilvísun skráð");
+  expect((await savedDetails(page)).rentalInformation.leaseReference).toBe("REF 0007");
+  await page.goto(`${base}/yfirferd`);
+  await expect(page.getByRole("heading", { name: "Leiguupplýsingar til að yfirfara", exact: true })).toHaveCount(0);
+  await expect(page.locator(".rental-readiness")).toHaveText("Leiguupplýsingar skráðar");
+});
+
 test("context switches preserve all rental, handover, furniture, notes and extension data", async ({ page }) => {
   const document = extendedRentalDocument(); const report = document.reports[0];
   await seed(page, report);

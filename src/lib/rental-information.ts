@@ -22,7 +22,7 @@ export function hasLeaseAssociation(d: ApartmentDetails) {
   return !!rental?.leaseReference?.trim() || !!(rental?.leaseDate && isCalendarDate(rental.leaseDate));
 }
 export function representationClaimed(d: ApartmentDetails) {
-  return d.role === "representative" || !!d.rentalInformation?.representation?.nameSource;
+  return d.role === "representative" || !!d.rentalInformation?.representation?.nameSource || !!d.rentalInformation?.representation?.representedParty;
 }
 export function representativeName(d: ApartmentDetails) {
   const r = d.rentalInformation?.representation;
