@@ -72,11 +72,14 @@ test("all core fields round-trip; explicit clearing and whitespace remain unknow
 
 test("context switches retain rental data with a visible view/edit disclosure and explicit unknown", async ({ page }) => {
   const report = legacyCoreReport(); report.details.inspectionContext = "residential_rental"; await seed(page, report);
+  await expect(page.getByLabel("Dagsetning afhendingar")).toBeHidden();
+  await page.locator(".rental-disclosure > summary").filter({ hasText: "Afhending og húsgögn" }).click();
   await expect(page.getByLabel("Dagsetning afhendingar")).toBeVisible();
   await page.getByLabel("Tengsl við íbúðarleigu").selectOption("standalone");
-  const disclosure = page.locator(".core-extras"); await expect(disclosure.locator("summary")).toContainText("3 upplýsingar varðveittar");
-  await disclosure.locator("summary").click();
+  const disclosure = page.locator(".core-extras"); await expect(disclosure.locator(":scope > summary")).toContainText("Varðveittar leiguupplýsingar");
+  await disclosure.locator(":scope > summary").click();
   await expect(page.getByLabel("Dagsetning afhendingar")).toHaveValue("2026-10-16");
+  await page.locator(".core-notes > summary").click();
   await expect(page.getByLabel("Athugasemdir um íbúð eða afhendingu")).toHaveValue(report.details.notes);
   await page.getByLabel("Dagsetning afhendingar").fill("2026-10-20");
   await page.getByLabel("Tengsl við íbúðarleigu").selectOption(""); await page.reload();
