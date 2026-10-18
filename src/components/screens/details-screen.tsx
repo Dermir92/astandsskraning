@@ -11,26 +11,26 @@ import { useDetailsCorrection } from "../use-details-correction";
 import { is } from "@/lib/locale/is";
 import { inspectionDateWarning, isCalendarDate, rentalRequirements, type ApartmentDetails } from "@/lib/model";
 import Link from "next/link";
+import { RentalInformationFields, type UpdateDetails } from "../rental-information-fields";
 
 export function DetailsScreen() {
   const { report, id, store, state } = useReport();
   const router = useRouter();
-  const fromReview = useDetailsCorrection(state.status !== "loading" && !!report);
+  const { fromReview, reviewSection } = useDetailsCorrection(state.status !== "loading" && !!report);
   if (state.status === "loading" || !report)
     return <MissingReport loading={state.status === "loading"} />;
   if (report.sampleReviewed || report.assetType !== "apartment")
     return <SampleSummary report={report} />;
   const d = report.details;
   const required = rentalRequirements(d);
-  const rental = d.inspectionContext === "residential_rental";
   const change = <K extends keyof ApartmentDetails>(key: K, value: ApartmentDetails[K]) =>
     store.updateReport(id, (r) => ({ ...r, details: { ...r.details, [key]: value } }));
+  const updateDetails: UpdateDetails = update => store.updateReport(id, r => ({ ...r, details: update(r.details) }));
   const postalError = d.postalCode !== "" && !/^\d{3}$/.test(d.postalCode)
     ? "Póstnúmer þarf að vera þrír tölustafir, t.d. 101." : undefined;
   const dateError = inspectionDateWarning(d.inspectionDate);
   const preservedDate = !!d.inspectionDate && !isCalendarDate(d.inspectionDate);
-  const extras = [d.deliveryDate, d.furnished, d.notes.trim()].filter(Boolean).length;
-  const reviewHref = `/skyrslur/${encodeURIComponent(id)}/yfirferd#review-core-details`;
+  const reviewHref = `/skyrslur/${encodeURIComponent(id)}/yfirferd#${reviewSection}`;
   return (
     <div className="form-page core-details">
       <BackLink />
@@ -91,6 +91,7 @@ export function DetailsScreen() {
           </div>
           <p id="recorder-attribution" className="field-hint core-attribution">{is.core.attribution}</p>
         </section>
+        <RentalInformationFields details={d} updateDetails={updateDetails} />
         <section className="panel form-panel">
           <div className="panel-heading"><h2>Umfang og takmarkanir</h2></div>
           <div className="form-grid">
@@ -102,24 +103,9 @@ export function DetailsScreen() {
             </Field>
           </div>
         </section>
-        <details className="panel form-panel core-extras" open={rental}>
-          <summary><span>{rental ? "Afhending og húsgögn" : "Aðrar upplýsingar"}</span><span className="core-extras-count">{extras ? `${extras === 1 ? "1 upplýsing varðveitt" : `${extras} upplýsingar varðveittar`} · skoða og breyta` : "Afhending, húsgögn og athugasemdir"}</span></summary>
+        <details className="panel form-panel core-notes">
+          <summary><span>Aðrar athugasemdir</span>{d.notes.trim() ? <span className="core-extras-count">Athugasemd varðveitt · skoða og breyta</span> : null}</summary>
           <div className="core-extras-body">
-            <div className="form-grid">
-              <Field id="deliveryDate" label="Dagsetning afhendingar" optional={!required.deliveryDate} hint="Aðskilin frá dagsetningu skoðunar.">
-                <input id="deliveryDate" type={d.deliveryDate && !isCalendarDate(d.deliveryDate) ? "text" : "date"} value={d.deliveryDate} onChange={e => change("deliveryDate", e.target.value)} aria-describedby="deliveryDate-hint" />
-              </Field>
-            </div>
-            <fieldset className="choice-field">
-              <legend>Fylgja húsgögn? {required.furnished ? <span className="required-mark">*</span> : <span className="optional-label">Valfrjálst</span>}</legend>
-              <div className="radio-options radio-compact">
-                {([["yes", "Já"], ["no", "Nei"], ["partly", "Að hluta"]] as const).map(([value, label]) => (
-                  <label key={value} className={`radio-option ${d.furnished === value ? "radio-selected" : ""}`}>
-                    <input id={value === "yes" ? "furnished" : undefined} type="radio" name="furnished" checked={d.furnished === value} onChange={() => change("furnished", value)} /><span>{label}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
             <Field id="notes" label="Athugasemdir um íbúð eða afhendingu" optional>
               <textarea id="notes" rows={2} value={d.notes} onChange={e => change("notes", e.target.value)} />
             </Field>

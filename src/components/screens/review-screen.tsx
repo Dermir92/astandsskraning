@@ -26,6 +26,8 @@ import { is } from "@/lib/locale/is";
 import { SampleSummary } from "./sample-summary";
 import { SaveStatus } from "../app-shell";
 import { CoreCaptureSummary } from "../core-capture-summary";
+import { RentalInformationSummary } from "../rental-information-summary";
+import { rentalInformationIssues } from "@/lib/rental-information";
 import { detailsCorrectionHref } from "../use-details-correction";
 import { useReviewNavigation } from "../use-inspection-navigation";
 import { inspectionHref, itemProgress, missingAnswers, navigationTargetId } from "@/lib/inspection-navigation";
@@ -43,6 +45,7 @@ export function ReviewScreen() {
     return <SampleSummary report={report} />;
   const stats = reportStats(report);
   const missing = detailIssues(report.details);
+  const rentalIssues = rentalInformationIssues(report.details);
   const rental = report.details.inspectionContext === "residential_rental";
   const retainedContext = !!(report.details.deliveryDate || report.details.furnished);
   const handoverDetails = <>
@@ -76,6 +79,7 @@ export function ReviewScreen() {
   );
   const hasAttention =
     missing.length ||
+    rentalIssues.length ||
     stats.attention ||
     missingOverviews.length ||
     missingDamagePhotos ||
@@ -193,6 +197,7 @@ export function ReviewScreen() {
             ) : null}
           </section>
           <CoreCaptureSummary report={report} />
+          <RentalInformationSummary report={report} />
           <section
             className="review-rooms"
             aria-labelledby="review-rooms-title"
@@ -347,6 +352,15 @@ export function ReviewScreen() {
               </ul>
             </div>
           ) : null}
+          {(["missing", "attention"] as const).map(group => {
+            const issues = rentalIssues.filter(issue => group === "missing" ? issue.kind === "missing" : issue.kind !== "missing");
+            return issues.length ? <div className="attention-group" key={group}>
+              <h3>{group === "missing" ? is.rental.missingTitle : is.rental.attentionTitle}</h3>
+              <ul className="core-missing-links">
+                {issues.map(issue => <li key={`${issue.kind}:${issue.field}`}><Link href={detailsCorrectionHref(id, issue.field, "rental")}>{issue.label}</Link></li>)}
+              </ul>
+            </div> : null;
+          })}
           {!report.rooms.length || unnamedRooms.length ? (
             <div className="attention-group">
               <h3>

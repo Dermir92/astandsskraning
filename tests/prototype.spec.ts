@@ -117,6 +117,7 @@ test("full creation to review, room edits, damage and session-only photos", asyn
   await page
     .getByRole("combobox", { name: "Hlutverk stofnanda" })
     .selectOption("tenant");
+  await page.locator(".rental-disclosure > summary").filter({ hasText: "Afhending og húsgögn" }).click();
   await page.getByLabel("Dagsetning afhendingar").fill("2026-10-20");
   await page.getByRole("radio", { name: "Nei", exact: true }).check();
   await page.getByRole("button", { name: "Velja rými" }).click();

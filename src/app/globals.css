@@ -694,6 +694,30 @@ select:focus-visible {
 .core-details [id], .core-summary { scroll-margin-top: 110px; }
 .core-details input[type="date"] { min-width: 0; max-width: 100%; }
 .core-extras > summary { cursor: pointer; min-height: 44px; font-weight: 750; }
+.core-notes > summary { cursor: pointer; min-height: 44px; font-weight: 750; }
+.rental-panel .panel-heading { flex-wrap: wrap; }
+.rental-panel .form-field > label { flex-wrap: wrap; }
+.rental-parties { border: 0; padding: 0; margin: 0 0 20px; min-width: 0; }
+.rental-parties > .field-hint { margin-top: 10px; }
+.rental-panel textarea { field-sizing: content; min-height: 44px; resize: vertical; }
+.rental-panel .rental-disclosures { margin-top: 18px; }
+.rental-disclosure { border-top: 1px solid var(--line); }
+.rental-disclosure > summary { min-height: 44px; padding: 12px 0; font-weight: 700; cursor: pointer; overflow-wrap: anywhere; }
+.rental-disclosure-status { display: block; margin: 3px 0 0 16px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.rental-disclosure-body { padding: 6px 0 18px; }
+.rental-disclosure-body > .field-hint { margin-top: 12px; }
+.rental-furniture { margin-top: 20px; }
+.rental-extension { margin-top: 12px; }
+.rental-summary { scroll-margin-top: 110px; }
+.rental-summary > details > summary { min-height: 44px; cursor: pointer; }
+.rental-summary > details > summary > h2 { display: inline; font-size: 15px; }
+.rental-summary .panel-heading { flex-wrap: wrap; }
+.rental-summary .panel-heading > .field-hint { margin: 0; }
+.rental-summary-fields { margin-bottom: 18px; }
+.rental-entry { min-width: 0; }
+.rental-entry dt > a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; max-width: 100%; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.rental-entry dt svg { flex: 0 0 auto; }
+.rental-readiness { color: var(--teal-dark); font-weight: 700; margin-top: 12px; }
 .core-extras-count { display: block; color: var(--muted); font-size: 13px; font-weight: 500; margin-top: 4px; }
 .core-extras-body { margin-top: 20px; }
 .core-extras-body > .choice-field { margin-top: 20px; }

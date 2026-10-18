@@ -36,7 +36,25 @@ export interface Room {
   items: ChecklistItem[];
   observations: Record<string, Observation>;
 }
+export interface RentalRepresentation {
+  nameSource?: "" | "recorder" | "other";
+  name?: string;
+  representedParty?: "" | "landlord" | "tenant";
+  basisDescription?: string;
+}
+export interface ResidentialRentalInformation {
+  landlordNames?: string;
+  tenantNames?: string;
+  leaseDate?: string;
+  leaseReference?: string;
+  propertyNumber?: string;
+  premisesDescription?: string;
+  includedAreasDescription?: string;
+  excludedAreasDescription?: string;
+  representation?: RentalRepresentation;
+}
 export interface ApartmentDetails {
+  rentalInformation?: ResidentialRentalInformation;
   inspectionContext?: "" | "standalone" | "residential_rental";
   inspectionDate?: string;
   recorderName?: string;
@@ -364,6 +382,23 @@ function stringFields(v: Record<string, unknown>, keys: string[]) {
 function optionalChoice(v: unknown, choices: string[]) {
   return v === undefined || (typeof v === "string" && choices.includes(v));
 }
+function plainRecord(v: unknown): v is Record<string, unknown> {
+  return record(v) && (Object.getPrototypeOf(v) === Object.prototype || Object.getPrototypeOf(v) === null);
+}
+function validRentalInformation(value: unknown): boolean {
+  if (value === undefined) return true;
+  if (!plainRecord(value) || ![
+    "landlordNames", "tenantNames", "leaseDate", "leaseReference", "propertyNumber",
+    "premisesDescription", "includedAreasDescription", "excludedAreasDescription",
+  ].every(key => value[key] === undefined || typeof value[key] === "string")) return false;
+  const representative = value.representation;
+  return representative === undefined || (
+    plainRecord(representative) &&
+    optionalChoice(representative.nameSource, ["", "recorder", "other"]) &&
+    optionalChoice(representative.representedParty, ["", "landlord", "tenant"]) &&
+    ["name", "basisDescription"].every(key => representative[key] === undefined || typeof representative[key] === "string")
+  );
+}
 export function isReportList(value: unknown): value is Report[] {
   if (!Array.isArray(value) || value.length > MAX_REPORTS) return false;
   return (
@@ -393,6 +428,7 @@ export function isReportList(value: unknown): value is Report[] {
         !stringFields(d, ["inspectionType", "address", "postalCode", "municipality", "unit", "role", "deliveryDate", "furnished", "notes"]) ||
         !optionalChoice(d.inspectionContext, ["", "standalone", "residential_rental"]) ||
         !["inspectionDate", "recorderName", "scopeDescription", "scopeLimitations"].every(key => d[key] === undefined || typeof d[key] === "string") ||
+        !validRentalInformation(d.rentalInformation) ||
         !["", "initial", "final", "independent"].includes(
           d.inspectionType as string,
         ) ||

@@ -51,6 +51,8 @@ export class DemoStore {
   private snapshot = this.initial;
   private listeners = new Set<() => void>();
   private hydrated = false;
+  // Retain the validated envelope's extension keys without rewriting on read.
+  private envelope: object = {};
   subscribe = (listener: () => void) => {
     this.listeners.add(listener);
     return () => {
@@ -79,6 +81,7 @@ export class DemoStore {
           !isReportList(saved.reports)
         )
           throw new Error("invalid-local-data");
+        this.envelope = saved;
         this.emit({
           ...this.snapshot,
           reports: saved.reports,
@@ -122,7 +125,7 @@ export class DemoStore {
     try {
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ version: 1, reports }),
+        JSON.stringify({ ...this.envelope, version: 1, reports }),
       );
       this.emit({ ...this.snapshot, reports, status: "saved", warning: "" });
     } catch {
