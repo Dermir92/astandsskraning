@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { demoReports } from "@/lib/fixtures";
+import { heatingItem } from "@/lib/heating";
 import {
   EMPTY_DETAILS,
   initialRooms,
@@ -158,7 +159,7 @@ export class DemoStore {
       subtitle: "Ný upphafsdrög",
       updatedAt: new Date().toISOString(),
       details: { ...EMPTY_DETAILS },
-      rooms: initialRooms(),
+      rooms: initialRooms({ includeHeating: true }),
     };
     return this.persist([report, ...this.snapshot.reports]) ? id : null;
   };
@@ -190,6 +191,15 @@ export class DemoStore {
       ...room,
       observations: { ...room.observations, [itemId]: observation },
     }));
+  };
+  addHeating = (reportId: string, roomId: string): string | null => {
+    if (!this.canEdit()) return null;
+    const report = this.snapshot.reports.find(r => r.id === reportId);
+    const room = report?.rooms.find(r => r.id === roomId);
+    if (!room || report?.assetType !== "apartment" || report.sampleReviewed) return null;
+    const item = heatingItem(room);
+    if (!item) return null;
+    return this.updateRoom(reportId, roomId, r => ({ ...r, items: [...r.items, item] })) ? item.id : null;
   };
   addPhoto = (key: string, photo: PreviewPhoto) => {
     const targetExists = this.snapshot.reports.some(report =>

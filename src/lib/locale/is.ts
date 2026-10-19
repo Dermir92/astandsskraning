@@ -9,6 +9,18 @@ import type {
 
 // Screen copy lives separately from the domain model. Add another locale behind this interface later.
 export const is = {
+  heating: {
+    equipment: { radiators: "Ofnar", underfloor: "Gólfhiti", thermostat: "Hitastillir", other: "Annað" },
+    visibility: { visible_parts: "Sýnilegir hlutar", reported_concealed: "Uppgefinn búnaður sem sást ekki", none_visible: "Enginn hitabúnaður sást", not_examined: "Ekki skoðað", unknown: "Óvíst" },
+    condition: { good: "Í lagi", wear: "Notkunarmerki", defect: "Slit / galli", damaged: "Skemmt", uninspected: "Ekki skoðað", unknown: "Óvíst" },
+    operation: { tried: "Já", not_tried: "Nei, ekki prófað", unknown: "Óvíst" },
+    response: { observed: "Viðbragð sást eða fannst", none_observed: "Ekkert viðbragð sást eða fannst meðan athugun stóð", mixed: "Ólík viðbrögð", unknown: "Óvíst" },
+    limit: "Skráðu aðeins það sem sást og það sem var reynt. Hitun getur tekið tíma. Þetta er ekki fagleg úttekt á hitakerfi.",
+    scope: "Hvaða hlutar sáust eða hvað var tilkynnt?",
+    source: "Heimild upplýsinga um ósýnilegan búnað",
+    scopeHelp: "Greindu sýnilega hluta frá uppgefnum, huldum búnaði og tilgreindu heimild þeirra upplýsinga. Ástandsmatið á aðeins við tilgreinda sýnilega hluta.",
+    add: "Bæta við hitaskráningu",
+  },
   appName: "Ástandsskráning",
   reports: "Mínar skýrslur",
   newReport: "Ný skýrsla",

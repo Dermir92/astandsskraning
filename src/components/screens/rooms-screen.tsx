@@ -38,7 +38,7 @@ export function RoomsScreen() {
     while (existingNames.has(candidate)) candidate = `${name} ${++suffix}`;
     store.updateReport(id, (r) => ({
       ...r,
-      rooms: [...r.rooms, makeRoom(type, candidate)],
+      rooms: [...r.rooms, makeRoom(type, candidate, undefined, { includeHeating: true })],
     }));
   };
   const remove = (room: Room) => {
@@ -108,7 +108,7 @@ export function RoomsScreen() {
               }
               store.updateReport(id, (r) => ({
                 ...r,
-                rooms: [...r.rooms, makeRoom("custom", customName.trim())],
+                rooms: [...r.rooms, makeRoom("custom", customName.trim(), undefined, { includeHeating: true })],
               }));
               setCustomName("");
               setCustomError("");

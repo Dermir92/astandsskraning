@@ -142,7 +142,7 @@ test("full creation to review, room edits, damage and session-only photos", asyn
   await page.locator(".checklist-toggle").first().click();
   await page.getByRole("radio", { name: "Í lagi", exact: true }).check();
   await page.getByRole("radio", { name: "Hreint", exact: true }).check();
-  await expect(page.getByText("1 af 59", { exact: true })).toBeVisible();
+  await expect(page.getByText("1 af 66", { exact: true })).toBeVisible();
   await page.getByRole("radio", { name: "Skemmt", exact: true }).check();
   await page
     .getByRole("combobox", { name: "Tegund skemmdar / galla" })
@@ -267,7 +267,7 @@ test("unknown and not applicable answers stay distinct, and clearing works", asy
   await expect(resumedFloor).toHaveAttribute("aria-expanded", "true");
   await page.getByRole("button", { name: "Hreinsa svör", exact: true }).click();
   await expect(page.getByRole("radio", { checked: true })).toHaveCount(0);
-  await expect(page.getByText("0 af 46", { exact: true })).toBeVisible();
+  await expect(page.getByText("0 af 51", { exact: true })).toBeVisible();
 });
 
 test("unreadable image gives a clear error without a false preview", async ({
@@ -451,7 +451,13 @@ test("finishing the last item keeps the selected room open", async ({
   await expect(
     page.getByRole("heading", { name: "Forstofa", exact: true }),
   ).toBeVisible();
-  await expect(page.getByText("7 af 46", { exact: true })).toBeVisible();
+  // The approved new template adds one unanswered heating item per indoor room.
+  const heating = page.locator('[data-kind="space_heating"]');
+  await heating.locator(".checklist-toggle").click();
+  await heating.getByRole("radio", { name: "Ekki skoðað", exact: true }).check();
+  await heating.getByRole("radio", { name: "Nei, ekki prófað", exact: true }).check();
+  await expect(page.getByRole("heading", { name: "Forstofa", exact: true })).toBeVisible();
+  await expect(page.getByText("8 af 51", { exact: true })).toBeVisible();
   await page.getByRole("link", { name: "Næsta rými", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Stofa", exact: true }),

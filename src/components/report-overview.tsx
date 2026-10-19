@@ -52,8 +52,8 @@ export function ReportOverview({ report }: { report: Report }) {
       .filter((item) => {
         const observation = room.observations[item.id];
         return (
-          requiresDamage(observation) ||
-          (observation?.condition !== "na" &&
+          requiresDamage(observation, item) ||
+          (item.kind !== "space_heating" && observation?.condition !== "na" &&
             observation?.cleanliness === "dirty")
         );
       })
@@ -65,7 +65,7 @@ export function ReportOverview({ report }: { report: Report }) {
   const previewedDeviations = deviations.slice(0, 2);
   const missingDamagePhotos = deviations.filter(
     ({ room, item, observation }) =>
-      requiresDamage(observation) &&
+      requiresDamage(observation, item) &&
       !state.photos[`${report.id}:${room.id}:${item.id}`]?.length,
   ).length;
   const actions = (
@@ -244,7 +244,7 @@ export function ReportOverview({ report }: { report: Report }) {
                     <p>
                       {observation.description ||
                         observation.note ||
-                        (requiresDamage(observation)
+                        (requiresDamage(observation, item)
                           ? "Lýsing á fráviki vantar."
                           : "Þarfnast þrifa.")}
                     </p>

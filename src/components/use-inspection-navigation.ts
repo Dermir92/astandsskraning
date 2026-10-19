@@ -34,7 +34,12 @@ function reveal(target: HTMLElement | null, focus: boolean) {
   if (box.top < 110 || box.bottom > window.innerHeight - 48) target.scrollIntoView({ block: "nearest", behavior: "instant" });
 }
 function inspectionFocus(root: HTMLElement | null, key?: string) {
-  return root?.querySelector<HTMLElement>(key ? `[data-question="${key}"]` : "[data-navigation-heading]") ??
+  const group = root?.querySelector<HTMLElement>(key ? `[data-question="${key}"]` : "[data-navigation-heading]");
+  if (root?.dataset.kind === "space_heating" && group && key) {
+    for (let parent = group.parentElement; parent && parent !== root; parent = parent.parentElement) if (parent instanceof HTMLDetailsElement) parent.open = true;
+    return group.querySelector<HTMLElement>('input:checked:not(:disabled)') ?? group.querySelector<HTMLElement>('input:not(:disabled), textarea:not(:disabled)') ?? group;
+  }
+  return group ??
     (key ? root?.querySelector<HTMLElement>(".damage-fields") : null) ?? root;
 }
 

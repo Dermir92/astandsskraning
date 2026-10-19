@@ -1,4 +1,5 @@
 import { validFireSafety } from "./fire-observations";
+import { heatingAnswered, heatingState, validHeating } from "./heating";
 
 export type AssetType = "apartment" | "vehicle" | "storage" | "commercial";
 export type Condition =
@@ -17,6 +18,7 @@ export type RoomType =
   | "custom";
 
 export interface Observation {
+  heating?: HeatingObservation;
   condition?: Condition;
   functionality?: Functionality;
   cleanliness?: Cleanliness;
@@ -26,6 +28,7 @@ export interface Observation {
   note: string;
 }
 export interface ChecklistItem {
+  kind?: "space_heating";
   id: string;
   name: string;
   functionality?: boolean;
@@ -37,6 +40,17 @@ export interface Room {
   type: RoomType;
   items: ChecklistItem[];
   observations: Record<string, Observation>;
+}
+export interface HeatingObservation {
+  equipment?: ("radiators" | "underfloor" | "thermostat" | "other")[];
+  visibility?: "visible_parts" | "reported_concealed" | "none_visible" | "not_examined" | "unknown";
+  scope?: string;
+  informationSource?: string;
+  visibleCondition?: Exclude<Condition, "na"> | "unknown";
+  operation?: "tried" | "not_tried" | "unknown";
+  action?: string;
+  response?: "observed" | "none_observed" | "mixed" | "unknown";
+  responseDescription?: string;
 }
 export interface RentalRepresentation {
   nameSource?: "" | "recorder" | "other";
@@ -285,6 +299,7 @@ export function makeRoom(
   type: RoomType,
   name: string,
   id = crypto.randomUUID(),
+  options: { includeHeating?: boolean } = {},
 ): Room {
   const base =
     type === "balcony"
@@ -294,20 +309,21 @@ export function makeRoom(
     id,
     type,
     name,
-    items: [...base, ...(extra[type] ?? [])].map((i) => ({ ...i })),
+    items: [...base, ...(options.includeHeating && type !== "balcony" ? [{ id: "space-heating", name: "Hiti", kind: "space_heating" as const }] : []), ...(extra[type] ?? [])].map((i) => ({ ...i })),
     observations: {},
   };
 }
-export function initialRooms(): Room[] {
+export function initialRooms(options: { includeHeating?: boolean } = {}): Room[] {
   return [
-    makeRoom("entry", "Forstofa"),
-    makeRoom("living", "Stofa"),
-    makeRoom("kitchen", "Eldhús"),
-    makeRoom("bedroom", "Svefnherbergi"),
-    makeRoom("bathroom", "Baðherbergi"),
+    makeRoom("entry", "Forstofa", undefined, options),
+    makeRoom("living", "Stofa", undefined, options),
+    makeRoom("kitchen", "Eldhús", undefined, options),
+    makeRoom("bedroom", "Svefnherbergi", undefined, options),
+    makeRoom("bathroom", "Baðherbergi", undefined, options),
   ];
 }
-export function requiresDamage(o?: Observation): boolean {
+export function requiresDamage(o?: Observation, item?: ChecklistItem): boolean {
+  if (item?.kind === "space_heating") return heatingState(o).defect;
   return (
     !!o &&
     o.condition !== "na" &&
@@ -320,6 +336,7 @@ export function observationComplete(
   item: ChecklistItem,
   o?: Observation,
 ): boolean {
+  if (item.kind === "space_heating") return heatingState(o).complete;
   if (!o?.condition) return false;
   if (o.condition === "na") return true;
   if (item.functionality && !o.functionality) return false;
@@ -330,6 +347,7 @@ export function observationComplete(
   );
 }
 export function needsAttention(item: ChecklistItem, o?: Observation): boolean {
+  if (item.kind === "space_heating") { const h = heatingState(o); return !h.complete || h.limitations.length > 0 || h.defect; }
   if (!observationComplete(item, o)) return true;
   if (o?.condition === "na") return false;
   return (
@@ -344,7 +362,7 @@ export function roomStats(room: Room) {
     recorded: room.items.filter((i) =>
       observationComplete(i, room.observations[i.id]),
     ).length,
-    unanswered: room.items.filter((i) => !room.observations[i.id]?.condition)
+    unanswered: room.items.filter((i) => i.kind === "space_heating" ? !heatingAnswered(room.observations[i.id]) : !room.observations[i.id]?.condition)
       .length,
     attention: room.items.filter((i) =>
       needsAttention(i, room.observations[i.id]),
@@ -352,8 +370,8 @@ export function roomStats(room: Room) {
     deviations: room.items.filter((i) => {
       const o = room.observations[i.id];
       return (
-        requiresDamage(o) ||
-        (o?.condition !== "na" && o?.cleanliness === "dirty")
+        requiresDamage(o, i) ||
+        (i.kind !== "space_heating" && o?.condition !== "na" && o?.cleanliness === "dirty")
       );
     }).length,
   };
@@ -377,7 +395,7 @@ export type ReportStatus = "draft" | "active" | "reviewed";
 export function reportStatus(report: Report): ReportStatus {
   if (report.sampleReviewed) return "reviewed";
   return report.rooms.some((r) =>
-    Object.values(r.observations).some((o) => o.condition),
+    Object.values(r.observations).some(o => o.condition) || r.items.some(i => i.kind === "space_heating" && heatingAnswered(r.observations[i.id])),
   )
     ? "active"
     : "draft";
@@ -528,6 +546,7 @@ export function isReportList(value: unknown): value is Report[] {
             (i: unknown) =>
               record(i) &&
               stringFields(i, ["id", "name"]) &&
+              optionalChoice(i.kind, ["space_heating"]) &&
               (i.functionality === undefined ||
                 typeof i.functionality === "boolean") &&
               (i.cleanliness === undefined ||
@@ -546,7 +565,8 @@ export function isReportList(value: unknown): value is Report[] {
               optionalChoice(o.functionality, FUNCTIONALITIES) &&
               optionalChoice(o.cleanliness, CLEANLINESS),
           );
-          return itemsValid && observationsValid;
+          const heatingValid = Object.values(room.observations).every(o => record(o) && validHeating(o.heating));
+          return itemsValid && observationsValid && heatingValid;
         })
       );
     }) && new Set(value.map((r) => r.id)).size === value.length
