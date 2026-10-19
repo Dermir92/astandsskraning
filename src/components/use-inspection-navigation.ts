@@ -38,12 +38,12 @@ function inspectionFocus(root: HTMLElement | null, key?: string) {
     (key ? root?.querySelector<HTMLElement>(".damage-fields") : null) ?? root;
 }
 
-export function useInspectionNavigation(report: Report, canRemember: boolean) {
+export function useInspectionNavigation(report: Report, canRemember: boolean, fireCorrection = false) {
   const router = useRouter();
   const query = useSearchParams().toString();
-  const entries = useInspectionPositions([report], canRemember);
+  const entries = useInspectionPositions([report], canRemember && !fireCorrection);
   const entry = Object.hasOwn(entries, report.id) ? entries[report.id] : undefined;
-  const ready = !canRemember || !!entry;
+  const ready = fireCorrection || !canRemember || !!entry;
   const params = new URLSearchParams(query);
   const destination = resolveInspection(report, params, canRemember ? entry?.position : null);
   const origin = reviewOrigin(params);
@@ -59,10 +59,10 @@ export function useInspectionNavigation(report: Report, canRemember: boolean) {
   const mounted = useRef(false);
   const itemId = editor?.query === query ? editor.itemId : destination.item?.id ?? null;
   const canonical = inspectionHref(report.id, destination.position, origin);
-  if (ready && destination.invalid && !notice) setNotice("Staðsetningin fannst ekki lengur. Tiltækt rými er opið.");
+  if (!fireCorrection && ready && destination.invalid && !notice) setNotice("Staðsetningin fannst ekki lengur. Tiltækt rými er opið.");
 
   useEffect(() => {
-    if (!ready || !destination.position) return;
+    if (fireCorrection || !ready || !destination.position) return;
     const signature = `${query}|${destination.position.roomId}|${destination.position.itemId}`;
     if (lastDestination.current === signature) return;
     const first = !mounted.current;
@@ -91,10 +91,10 @@ export function useInspectionNavigation(report: Report, canRemember: boolean) {
       const target = inspectionFocus(root, missing?.key);
       reveal(target ?? null, !wasReload);
     });
-  }, [ready, query, canonical, destination, canRemember, report]);
+  }, [ready, query, canonical, destination, canRemember, report, fireCorrection]);
 
   useEffect(() => {
-    if (!focusRequest || focusRequest.query !== query || focusedRequest.current === focusRequest.token) return;
+    if (fireCorrection || !focusRequest || focusRequest.query !== query || focusedRequest.current === focusRequest.token) return;
     const { position } = focusRequest;
     const root = document.getElementById(navigationTargetId("inspection", position.roomId, position.itemId));
     if (!root) return;
@@ -103,7 +103,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean) {
     const item = room?.items.find(item => item.id === position.itemId);
     const missing = item ? missingAnswers(item, room?.observations[item.id])[0] : null;
     reveal(inspectionFocus(root, missing?.key), true);
-  }, [focusRequest, query, report]);
+  }, [focusRequest, query, report, fireCorrection]);
 
   function activate(position: InspectionPosition, open: boolean, focus = false) {
     setNotice("");

@@ -27,6 +27,12 @@ export function ContextDialog({
     return () => {
       dialog.close();
       document.body.style.overflow = previousOverflow;
+      // Native close restores focus before the queued React onClose cleanup.
+      // Preserve a subsequent keyboard/focus move outside the closed dialog.
+      const current = document.activeElement;
+      if (current instanceof HTMLElement && current.isConnected &&
+        current !== document.body && current !== document.documentElement &&
+        !dialog.contains(current) && current.getClientRects().length) return;
       if (
         trigger instanceof HTMLElement &&
         trigger.isConnected &&
