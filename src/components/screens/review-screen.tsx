@@ -35,6 +35,8 @@ import styles from "../inspection-checklist.module.css";
 import { EvidenceGallery, RetainedDefectDetails } from "../evidence-gallery";
 import { hasRetainedDefect } from "@/lib/inspection-evidence";
 import evidenceStyles from "../evidence.module.css";
+import { FireObservationSummary, FireIssueList } from "../fire-observation-summary";
+import { fireState } from "@/lib/fire-observations";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
@@ -46,6 +48,7 @@ export function ReviewScreen() {
   const stats = reportStats(report);
   const missing = detailIssues(report.details);
   const rentalIssues = rentalInformationIssues(report.details);
+  const fire = fireState(report.details);
   const rental = report.details.inspectionContext === "residential_rental";
   const retainedContext = !!(report.details.deliveryDate || report.details.furnished);
   const handoverDetails = <>
@@ -78,6 +81,7 @@ export function ReviewScreen() {
     0,
   );
   const hasAttention =
+    fire.hasAttention ||
     missing.length ||
     rentalIssues.length ||
     stats.attention ||
@@ -198,6 +202,7 @@ export function ReviewScreen() {
           </section>
           <CoreCaptureSummary report={report} />
           <RentalInformationSummary report={report} />
+          <FireObservationSummary report={report} />
           <section
             className="review-rooms"
             aria-labelledby="review-rooms-title"
@@ -342,6 +347,12 @@ export function ReviewScreen() {
           aria-labelledby="attention-title"
         >
           <h2 id="attention-title">Til að yfirfara</h2>
+          {fire.concerns.length || (rental && fire.missing.length) ? <div className="attention-group" data-fire-actions={fire.actionCount}>
+            <h3>Brunavarnir · til að yfirfara</h3>
+            {fire.concerns.length ? <><h4>{is.fire.concerns}</h4><FireIssueList reportId={id} issues={fire.concerns} links /></> : null}
+            {rental && fire.missing.length ? <><h4>{is.fire.missing}</h4><FireIssueList reportId={id} issues={fire.missing} links /></> : null}
+          </div> : null}
+          {rental && fire.limitations.some(issue => !issue.contextual) ? <div className="attention-group"><h3>Brunavarnir · takmarkanir skoðunar</h3><p>Skráðar takmarkanir eru sýndar í brunavarnayfirlitinu. Svaraðar spurningar staðfesta ekki framkvæmd skoðunar eða prófunar.</p></div> : null}
           {missing.length ? (
             <div className="attention-group">
               <h3>Grunnupplýsingar vantar</h3>

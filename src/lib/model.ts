@@ -1,3 +1,5 @@
+import { validFireSafety } from "./fire-observations";
+
 export type AssetType = "apartment" | "vehicle" | "storage" | "commercial";
 export type Condition =
   "good" | "wear" | "defect" | "damaged" | "uninspected" | "na";
@@ -53,7 +55,77 @@ export interface ResidentialRentalInformation {
   excludedAreasDescription?: string;
   representation?: RentalRepresentation;
 }
+export type FireExamination =
+  | "examined"
+  | "partly_examined"
+  | "not_examined"
+  | "unknown";
+
+export type FirePresence = "observed" | "none_observed" | "unknown";
+
+export type FireVisibleCondition =
+  | "no_visible_issue_observed"
+  | "visible_issue_observed"
+  | "not_examined"
+  | "unknown";
+
+export interface FireScope {
+  examination?: FireExamination;
+  examinedDescription?: string;
+  unexaminedDescription?: string;
+  note?: string;
+}
+
+export interface FireEquipmentEntry {
+  id: string; // Stable local row ID, created only by an explicit user edit/add.
+  location?: string; // Described location/set, independent of room IDs.
+  observedCount?: string; // Raw user input; missing/blank is not zero.
+  visibleCondition?: FireVisibleCondition;
+  visibleIssueDescription?: string;
+  note?: string;
+}
+
+export interface BasicDetectorTest {
+  performance?: "performed" | "not_performed" | "unknown";
+  testedScopeDescription?: string; // Which detector(s) this result concerns.
+  result?: "response_observed" | "no_response_observed" | "unknown";
+}
+
+export interface SmokeDetectorEntry extends FireEquipmentEntry {
+  basicTest?: BasicDetectorTest;
+}
+
+export interface ExtinguisherServiceLabel {
+  status?: "readable" | "none_observed" | "unreadable"
+    | "not_examined" | "unknown";
+  observedText?: string; // Literal legible text/date(s), not a validity date.
+}
+
+export interface ExtinguisherEntry extends FireEquipmentEntry {
+  serviceLabel?: ExtinguisherServiceLabel;
+}
+
+export interface FireEquipmentGroup<T extends FireEquipmentEntry>
+  extends FireScope {
+  presence?: FirePresence;
+  entries?: T[];
+}
+
+export interface VisibleEscapeRoutes extends FireScope {
+  obstruction?: "observed" | "none_observed" | "unknown";
+  affectedLocation?: string;
+  obstructionDescription?: string;
+}
+
+export interface ResidentialFireObservations {
+  smokeDetectors?: FireEquipmentGroup<SmokeDetectorEntry>;
+  extinguishers?: FireEquipmentGroup<ExtinguisherEntry>;
+  escapeRoutes?: VisibleEscapeRoutes;
+}
+
+
 export interface ApartmentDetails {
+  fireSafety?: ResidentialFireObservations;
   rentalInformation?: ResidentialRentalInformation;
   inspectionContext?: "" | "standalone" | "residential_rental";
   inspectionDate?: string;
@@ -429,6 +501,7 @@ export function isReportList(value: unknown): value is Report[] {
         !optionalChoice(d.inspectionContext, ["", "standalone", "residential_rental"]) ||
         !["inspectionDate", "recorderName", "scopeDescription", "scopeLimitations"].every(key => d[key] === undefined || typeof d[key] === "string") ||
         !validRentalInformation(d.rentalInformation) ||
+        !validFireSafety(d.fireSafety) ||
         !["", "initial", "final", "independent"].includes(
           d.inspectionType as string,
         ) ||

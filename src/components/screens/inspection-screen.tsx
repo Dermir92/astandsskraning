@@ -27,6 +27,8 @@ import styles from "../inspection-checklist.module.css";
 import { useInspectionNavigation } from "../use-inspection-navigation";
 import { inspectionItems, itemProgress, missingAnswers, navigationTargetId, nextIncomplete, type InspectionPosition } from "@/lib/inspection-navigation";
 import { observationComplete } from "@/lib/model";
+import { FireObservationFields } from "../fire-observation-fields";
+import { useFireCorrection } from "../use-fire-correction";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
   const openItem = navigation.itemId;
@@ -94,26 +96,13 @@ export function InspectionScreen() {
 function InspectionBody({ report }: { report: Report }) {
   const { id } = report;
   const { state } = useReport();
-  const navigation = useInspectionNavigation(report, state.status !== "read-error");
+  const fireCorrection = useFireCorrection(report, state.status !== "loading");
+  const navigation = useInspectionNavigation(report, state.status !== "read-error", fireCorrection.active);
   const { room } = navigation;
   if (!navigation.ready) return <p role="status">Hleð staðsetningu…</p>;
-  if (!report.rooms.length)
-    return (
-      <>
-        <BackLink />
-        <Stepper reportId={id} step={2} />
-        <PageHeading
-          title="Veldu fyrst rými"
-          description="Skráning þarf að innihalda að minnsta kosti eitt rými."
-        />
-        <Link className="button button-primary" href={`/skyrslur/${id}/rymi`}>
-          Velja rými
-          <ArrowRight size={17} aria-hidden="true" />
-        </Link>
-      </>
-    );
-  if (!room) return null;
-  const currentIndex = report.rooms.indexOf(room);
+  const currentIndex = room ? report.rooms.indexOf(room) : -1;
+  const returnHref = fireCorrection.active ? fireCorrection.reviewHref : navigation.returnHref;
+  const fromReview = fireCorrection.active ? fireCorrection.fromReview : navigation.fromReview;
   const stats = reportStats(report);
   const roomHref = navigation.roomHref;
   const incomplete = inspectionItems(report).filter(row => !observationComplete(row.item, row.observation));
@@ -134,12 +123,12 @@ function InspectionBody({ report }: { report: Report }) {
         action={
           <Link
             className="button button-secondary"
-            href={navigation.returnHref}
-            replace={navigation.fromReview}
-            onNavigate={navigation.returnToReview}
+            href={returnHref}
+            replace={fromReview}
+            onNavigate={fireCorrection.active ? undefined : navigation.returnToReview}
           >
             <ClipboardCheck size={17} aria-hidden="true" />
-            {navigation.fromReview ? "Aftur í yfirferð" : "Yfirferð"}
+            {fromReview ? "Aftur í yfirferð" : "Yfirferð"}
           </Link>
         }
       />
@@ -165,7 +154,8 @@ function InspectionBody({ report }: { report: Report }) {
           }) : <p>Öll skoðunaratriði eru fullskráð. Athugasemdir í yfirferð geta enn átt við.</p>}
         </details>
       </div>
-      <div className="inspection-layout">
+      <FireObservationFields report={report} correction={fireCorrection} />
+      {room ? <div className="inspection-layout">
         <aside className="room-sidebar" aria-label="Rými skráningar">
           <div className="room-sidebar-heading">
             <h2>Rými</h2>
@@ -271,16 +261,16 @@ function InspectionBody({ report }: { report: Report }) {
             ) : (
               <Link
                 className="button button-primary"
-                href={navigation.returnHref}
-                replace={navigation.fromReview} onNavigate={navigation.returnToReview}
+                href={returnHref}
+                replace={fromReview} onNavigate={fireCorrection.active ? undefined : navigation.returnToReview}
               >
-                {navigation.fromReview ? "Aftur í yfirferð" : "Yfirferð"}
+                {fromReview ? "Aftur í yfirferð" : "Yfirferð"}
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
             )}
           </nav>
         </div>
-      </div>
+      </div> : <section className="panel form-panel"><h2>Veldu fyrst rými</h2><p>Skráning rýma þarf að innihalda að minnsta kosti eitt rými. Brunavarnir má skrá hér óháð rýmum.</p><Link className="button button-primary" href={`/skyrslur/${id}/rymi`}>Velja rými<ArrowRight size={17} aria-hidden="true" /></Link></section>}
     </div>
   );
 }

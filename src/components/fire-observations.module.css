@@ -1,0 +1,48 @@
+.section { margin-block: 8px 12px; padding: 0; min-width: 0; overflow-wrap: anywhere; }
+.section summary { min-height: 48px; padding: 12px 16px; cursor: pointer; }
+.section > summary { padding-block: 8px; }
+.section summary:focus-visible, .section button:focus-visible, .section a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.title { font-size: 18px; font-weight: 750; }
+.optionalLabel { font-size: 14px; font-weight: 500; }
+.statuses { display: block; margin-top: 3px; font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--muted); }
+.statuses > span { display: block; }
+.body { padding: 0 16px 16px; }
+.body > p { margin-block: 10px; font-size: 14px; }
+.group { border-top: 1px solid var(--line); }
+.group > summary { padding-inline: 0; }
+.groupTitle { font-size: 16px; font-weight: 750; }
+.groupStatus { display: block; font-size: 14px; margin-top: 4px; font-weight: 500; color: var(--muted); }
+.concern { color: var(--warning-text); font-weight: 650; }
+.choices { border: 0; padding: 0; margin: 16px 0; min-width: 0; scroll-margin-block: 110px; }
+.choices legend { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.options { display: flex; flex-wrap: wrap; gap: 8px; }
+.option { display: flex; align-items: center; gap: 10px; border: 1px solid var(--control-border); border-radius: 4px; min-height: 44px; padding: 10px 12px; font-size: 15px; cursor: pointer; max-width: 100%; }
+.option:has(input:checked) { background: var(--teal-soft); border-color: var(--teal); }
+.option:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+.option input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--teal); }
+.clear, .edit { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 4px; color: var(--teal-dark); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; background: none; border: 0; cursor: pointer; }
+.field { display: block; margin-block: 16px; scroll-margin-block: 110px; }
+.field label { display: block; font-size: 15px; font-weight: 700; margin-bottom: 7px; }
+.field textarea, .field input { width: 100%; max-width: 100%; min-height: 44px; border: 1px solid var(--control-border); border-radius: 4px; padding: 10px; background: white; color: var(--ink); font-size: 16px; }
+.field textarea { resize: vertical; }
+.hint { display: block; color: var(--muted); font-size: 14px; line-height: 1.55; margin-top: 6px; }
+.row { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 12px; }
+.row h4 { font-size: 16px; scroll-margin-block: 110px; }
+.subdetails { border-top: 1px solid var(--line); margin-block: 12px; }
+.subdetails > summary { padding-inline: 0; font-size: 14px; font-weight: 650; }
+.warning { color: var(--warning-text); font-size: 14px; border-left: 3px solid var(--warning-text); padding: 8px 12px; background: var(--warning-bg); margin-block: 10px; }
+.readonly { border: 0; padding: 0; margin: 0; min-width: 0; }
+.summary { padding: 20px; scroll-margin-block: 110px; }
+.summary > :global(.panel-heading) { flex-wrap: wrap; }
+.summary h2 { font-size: 20px; flex-shrink: 0; overflow-wrap: normal; }
+.summary h3 { font-size: 17px; margin-top: 16px; }
+.summary h4 { font-size: 15px; }
+.summary p, .summary li, .summary dt, .summary dd { font-size: 14px; line-height: 1.6; }
+.summary dl { margin-block: 8px 16px; }
+@media (min-width: 600px) { .summary dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; } }
+.summary dl > div { margin-block: 8px; }
+.summary dt { font-weight: 700; }
+.summary dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.issues { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 14px; }
+.issues ul { padding-left: 20px; }
+@media (max-width: 480px) { .options { flex-direction: column; } .option { width: 100%; } .summary { padding: 16px; } }
