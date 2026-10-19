@@ -37,6 +37,8 @@ import { hasRetainedDefect } from "@/lib/inspection-evidence";
 import evidenceStyles from "../evidence.module.css";
 import { FireObservationSummary, FireIssueList } from "../fire-observation-summary";
 import { fireState } from "@/lib/fire-observations";
+import { heatingState } from "@/lib/heating";
+import { HeatingFacts } from "../heating-observation";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
@@ -49,6 +51,8 @@ export function ReviewScreen() {
   const missing = detailIssues(report.details);
   const rentalIssues = rentalInformationIssues(report.details);
   const fire = fireState(report.details);
+  const heating = report.rooms.flatMap(room => room.items.filter(item => item.kind === "space_heating").map(item => ({ room, item, result: heatingState(room.observations[item.id]) })));
+  const ordinaryAttention = report.rooms.reduce((sum, room) => sum + room.items.filter(item => item.kind !== "space_heating" && needsAttention(item, room.observations[item.id])).length, 0);
   const rental = report.details.inspectionContext === "residential_rental";
   const retainedContext = !!(report.details.deliveryDate || report.details.furnished);
   const handoverDetails = <>
@@ -75,7 +79,7 @@ export function ReviewScreen() {
       sum +
       r.items.filter(
         (i) =>
-          requiresDamage(r.observations[i.id]) &&
+          requiresDamage(r.observations[i.id], i) &&
           !state.photos[`${id}:${r.id}:${i.id}`]?.length,
       ).length,
     0,
@@ -217,6 +221,7 @@ export function ReviewScreen() {
             {report.rooms.map((room) => {
               const s = roomStats(room);
               const flagged = room.items.filter((item) => {
+                if (item.kind === "space_heating") return false;
                 const o = room.observations[item.id];
                 return (
                   requiresDamage(o) ||
@@ -252,6 +257,11 @@ export function ReviewScreen() {
                     max={s.total}
                     label={`Framvinda í ${room.name}`}
                   />
+                  {room.items.some(i => i.kind === "space_heating") ? room.items.filter(i => i.kind === "space_heating").map(item => <section key={item.id} data-heating-review={item.id}>
+                    <h4><Link className={styles.reviewItemLink} href={navigation.itemHref({ roomId: room.id, itemId: item.id })} onNavigate={() => navigation.leave({ roomId: room.id, itemId: item.id })}>Hiti · Breyta skráningu</Link></h4>
+                    <HeatingFacts observation={room.observations[item.id]} />
+                    <EvidenceGallery photos={state.photos[`${id}:${room.id}:${item.id}`] ?? []} context={`${room.name || "Ónefnt rými"} · Hiti`} />
+                  </section>) : <p className="field-hint">Sérstök hitaskráning er ekki í gátlista þessa rýmis.</p>}
                   {flagged.length ? (
                     <ul className="review-observations">
                       {flagged.map((item) => {
@@ -315,10 +325,11 @@ export function ReviewScreen() {
                         {room.items.map(item => {
                           const o = room.observations[item.id];
                           const progress = itemProgress(item, o);
+                            const heat = item.kind === "space_heating" ? heatingState(o) : null;
                           const position = { roomId: room.id, itemId: item.id };
                           return <li key={item.id}><Link id={navigationTargetId("review", room.id, item.id)} href={navigation.itemHref(position)} onNavigate={() => navigation.leave(position)}>
                             <strong>{item.name}</strong>
-                            <span>{progress === "unanswered" ? "Ósvarað" : progress === "partial" ? "Ófullskráð" : needsAttention(item, o) ? "Skráð · Þarf athygli" : "Skráð"}{progress !== "recorded" ? ` · ${missingAnswers(item, o).map(reason => reason.label).join(" · ")}` : ""}</span>
+                            <span>{heat ? `${heat.status}${heat.defect ? " · Skráð frávik" : ""}${heat.limitations.length ? " · Skráð takmörkun" : ""}` : progress === "unanswered" ? "Ósvarað" : progress === "partial" ? "Ófullskráð" : needsAttention(item, o) ? "Skráð · Þarf athygli" : "Skráð"}{progress !== "recorded" ? ` · ${missingAnswers(item, o).map(reason => reason.label).join(" · ")}` : ""}</span>
                           </Link></li>;
                         })}
                       </ul>
@@ -347,6 +358,13 @@ export function ReviewScreen() {
           aria-labelledby="attention-title"
         >
           <h2 id="attention-title">Til að yfirfara</h2>
+          {heating.length ? <div className="attention-group" data-heating-counts>
+            <h3>Hiti</h3>
+            <p data-heating-incomplete-count>{heating.filter(row => !row.result.complete).length} ófullskráð atriði</p>
+            <p data-heating-limitation-count>{heating.filter(row => row.result.limitations.length).length} atriði með skráðar takmarkanir</p>
+            <p data-heating-defect-count>{heating.filter(row => row.result.defect).length} atriði með skráð frávik</p>
+            <p className="field-hint">Ekkert eða ólíkt viðbragð við tilraun er ekki sjálfkrafa galli eða viðgerðarverkefni.</p>
+          </div> : null}
           {fire.concerns.length || (rental && fire.missing.length) ? <div className="attention-group" data-fire-actions={fire.actionCount}>
             <h3>Brunavarnir · til að yfirfara</h3>
             {fire.concerns.length ? <><h4>{is.fire.concerns}</h4><FireIssueList reportId={id} issues={fire.concerns} links /></> : null}
@@ -385,22 +403,22 @@ export function ReviewScreen() {
               </Link>
             </div>
           ) : null}
-          {stats.attention ? (
+          {ordinaryAttention ? (
             <div className="attention-group">
-              <h3>{stats.attention} atriði þarfnast athygli</h3>
+              <h3>{ordinaryAttention} atriði þarfnast athygli</h3>
               <p>
                 Ófullgerð svör, óskoðuð atriði eða búnaður sem hefur ekki verið
                 prófaður.
               </p>
               <ul className="attention-room-links">
                 {report.rooms
-                  .filter((r) => roomStats(r).attention)
+                  .filter((r) => r.items.some(item => item.kind !== "space_heating" && needsAttention(item, r.observations[item.id])))
                   .map((r) => (
                     <li key={r.id}>
                       <Link href={roomHref(r.id)} onNavigate={() => navigation.leave({ roomId: r.id, itemId: null })}>
                         {r.name || "Ónefnt rými"}
                         <span>
-                          {roomStats(r).attention}
+                          {r.items.filter(item => item.kind !== "space_heating" && needsAttention(item, r.observations[item.id])).length}
                           <ArrowRight size={13} aria-hidden="true" />
                         </span>
                       </Link>

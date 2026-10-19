@@ -1,4 +1,5 @@
 import { observationComplete, requiresDamage, roomStats, type ChecklistItem, type Observation, type Report, type Room } from "./model";
+import { heatingAnswered, heatingState } from "./heating";
 
 export const POSITION_PREFIX = "astandsskraning-navigation-v1:";
 export type InspectionPosition = { roomId: string; itemId: string | null };
@@ -128,9 +129,11 @@ export const navigationTargetId = (prefix: "inspection" | "review", roomId: stri
 
 export function itemProgress(item: ChecklistItem, observation?: Observation) {
   if (observationComplete(item, observation)) return "recorded";
+  if (item.kind === "space_heating") return heatingAnswered(observation) ? "partial" : "unanswered";
   return observation && Object.values(observation).some(value => typeof value === "string" && !!value.trim()) ? "partial" : "unanswered";
 }
 export function missingAnswers(item: ChecklistItem, o?: Observation): { key: string; label: string }[] {
+  if (item.kind === "space_heating") return heatingState(o).missing;
   if (o?.condition === "na") return [];
   const missing: { key: string; label: string }[] = [];
   if (!o?.condition) missing.push({ key: "condition", label: "Ástand vantar" });

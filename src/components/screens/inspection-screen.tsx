@@ -29,8 +29,10 @@ import { inspectionItems, itemProgress, missingAnswers, navigationTargetId, next
 import { observationComplete } from "@/lib/model";
 import { FireObservationFields } from "../fire-observation-fields";
 import { useFireCorrection } from "../use-fire-correction";
+import { HeatingObservationEditor } from "../heating-observation";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
+  const { store, state } = useReport();
   const openItem = navigation.itemId;
   const stats = roomStats(room);
   const unanswered = room.items.filter(item => itemProgress(item, room.observations[item.id]) === "unanswered").length;
@@ -54,8 +56,9 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
         <span>{unanswered} ósvarað · {stats.total - stats.recorded - unanswered} ófullskráð</span>
       </div>
       <div className="checklist">
-        {room.items.map((item, index) => (
-          <ObservationEditor
+        {room.items.map((item, index) => {
+          const Editor = item.kind === "space_heating" ? HeatingObservationEditor : ObservationEditor;
+          return <Editor
             key={item.id}
             item={item}
             observation={room.observations[item.id]}
@@ -76,8 +79,9 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
               <span>{observationComplete(item, room.observations[item.id]) ? "Öll skoðunaratriði eru fullskráð" : "Þetta er eina ófullskráða atriðið"}</span>
             ) : null}
           />
-        ))}
+        })}
       </div>
+      {!room.items.some(i => i.kind === "space_heating") ? <button type="button" className="text-button" disabled={state.status === "loading" || state.status === "read-error" || room.items.length >= 100} onClick={() => { const itemId = store.addHeating(report.id, room.id); if (itemId) navigation.activate({ roomId: room.id, itemId }, true, true); }}>Bæta við hitaskráningu</button> : null}
       <details className={styles.roomPhotos}>
         <summary><Camera size={18} aria-hidden="true" />Yfirlitsmyndir rýmis</summary>
         <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />

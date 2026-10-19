@@ -1,0 +1,27 @@
+.editor { min-width: 0; }
+.editor > h3 { margin: 0; }
+.editor :global(.checklist-toggle) { min-height: 56px; padding: 10px 12px; width: 100%; }
+.editor :global(.checklist-toggle) > span:nth-child(2) { flex: 1; min-width: 0; }
+.status { display: block; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--muted); overflow-wrap: anywhere; }
+.body { min-width: 0; }
+.editable { border: 0; padding: 0; margin: 0; min-width: 0; }
+.choices { border: 0; margin: 18px 0; padding: 0; min-width: 0; scroll-margin-block: 115px; }
+.choices legend, .field label { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.options { display: flex; flex-wrap: wrap; gap: 8px; }
+.option { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 12px; border: 1px solid var(--control-border); border-radius: 4px; font-size: 15px; max-width: 100%; cursor: pointer; }
+.option input { flex-shrink: 0; width: 18px; height: 18px; accent-color: var(--teal); }
+.option:has(input:checked) { background: var(--teal-soft); border-color: var(--teal); }
+.option:focus-within, .editor button:focus-visible, .choices:focus, .field:focus, .field textarea:focus-visible, .scope summary:focus-visible, .retained summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.field { margin-block: 16px; scroll-margin-block: 115px; min-width: 0; }
+.field label { display: block; }
+.field textarea { display: block; width: 100%; min-height: 64px; max-width: 100%; padding: 10px; font-size: 16px; color: var(--ink); border: 1px solid var(--control-border); border-radius: 4px; resize: vertical; }
+.hint, .retained p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+.clear { min-height: 44px; padding: 8px 4px; border: 0; background: none; color: var(--teal-dark); text-decoration: underline; cursor: pointer; font-size: 14px; }
+.retained, .scope { border-top: 1px solid var(--line); margin-block: 12px; }
+.retained summary, .scope summary { cursor: pointer; min-height: 44px; align-content: center; padding-block: 10px; font-size: 14px; font-weight: 650; }
+.footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 12px; }
+.facts { font-size: 14px; line-height: 1.6; min-width: 0; overflow-wrap: anywhere; }
+.facts dt, .primary { font-weight: 700; }
+.facts dd { margin: 0; white-space: pre-wrap; }
+.facts dl > div { margin-block: 10px; }
+@media (max-width: 480px) { .options { flex-direction: column; } .option { width: 100%; } }
