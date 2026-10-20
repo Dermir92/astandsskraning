@@ -9,6 +9,26 @@ import type {
 
 // Screen copy lives separately from the domain model. Add another locale behind this interface later.
 export const is = {
+  preview: {
+    open: "Forskoða skýrslu", title: "Forskoðun skýrslu", readOnly: "Aðeins lestur · núverandi drög",
+    back: "Aftur í yfirferð", correct: "Leiðrétta í yfirferð", document: "Ástandsskýrsla",
+    draft: "DRÖG", overview: "Yfirlit fyrir lesanda", findings: "Skráð frávik", concerns: "Brunavarnir · athuganir til yfirferðar",
+    noFindings: "Engin frávik skráð í núverandi svörum.", noItems: "Engin skoðunaratriði skráð.",
+    incomplete: "Skráning ófullgerð",
+    gaps: "Gögn og takmarkanir", missing: "Upplýsingar sem vantar eða þarf að yfirfara", limitations: "Skráðar takmarkanir og myndgögn",
+    guide: "Efnisyfirlit", rooms: "Rými og ástand", evidence: "Myndaskrá og tilvísanir",
+    retained: "Varðveitt gögn utan núverandi svars", retainedHelp: "Þessi gögn eru ekki núverandi niðurstaða. Þau eru varðveitt í drögunum; birting þeirra staðfestir ekki fyrra ástand eða atburðarás.",
+    unverified: "Upplýsingarnar eru skráðar af notanda og hafa ekki verið sannreyndar af kerfinu. Forskoðun breytir ekki skráningunni.",
+    execution: "Kerfið skráir ekki viðveru eða samþykki aðila, undirritun eða staðfestan frágang þessara draga. Lestur forskoðunar staðfestir ekkert af þessu. Athugasemdir í drögunum eru ekki staðfestar sendingar til gagnaðila.",
+    temporary: "Myndir eru aðeins tiltækar í þessari setu. Þær hverfa við endurhleðslu eða lokun og eru ekki vistaðar varanlega.",
+    imageUnavailable: "Mynd ekki tiltæk í þessari setu; myndinnihald ekki staðfest.", imagePending: "Birting myndar hefur ekki verið staðfest.",
+    imageAvailable: "Mynd birt í þessari setu · innihald ósannreynt", imageLabel: "Tímabundin mynd", closeImage: "Loka myndaforskoðun",
+    noPhotos: "Engar tengdar myndir eru tiltækar í þessari setu. Ekki liggja fyrir upplýsingar um fyrri myndir.",
+    overlap: "Hvert atriði er talið einu sinni innan flokks. Flokkar geta skarast. Tölurnar eru ekki gæðaeinkunn.",
+    baseline: "Engin fyrri skoðun er tengd í kerfinu. Hér er aðeins sýnd núverandi skráning; enginn samanburður liggur fyrir.",
+    readError: "Ekki er hægt að forskoða staðbundnu skráninguna", readErrorHelp: "Upprunaleg gögn eru varin. Sýnigögn eru ekki birt sem skýrslan þín.",
+    verification: "Drög og staðfestingar", otherResponses: "Aðrar skráðar athuganir um hita", unassigned: "Myndir án ótvíræðrar tengingar",
+  },
   meters: {
     titles: { optional: "Mælastöður · valfrjáls skráning", rental_initial: "Mælastaða við afhendingu", rental_return: "Mælastaða við skil", inactive: "Varðveitt mælaskráning" },
     utilities: { electricity: "Rafmagn", hotWater: "Heitt vatn" },

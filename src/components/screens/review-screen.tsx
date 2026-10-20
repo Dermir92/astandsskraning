@@ -41,6 +41,7 @@ import { heatingState } from "@/lib/heating";
 import { HeatingFacts } from "../heating-observation";
 import { MeterReadingSummary } from "../meter-readings";
 import { meterState } from "@/lib/meter-readings";
+import { ReportPreviewEntry } from "../report-preview-entry";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
@@ -106,6 +107,7 @@ export function ReviewScreen() {
         title="Yfirferð skráningar"
         description="Skoðaðu það sem hefur verið skráð og það sem vantar. Drögin eru áfram breytanleg."
       />
+      <ReportPreviewEntry reportId={id} />
       <div
         className={`review-state ${hasAttention ? "review-state-attention" : "review-state-ready"}`}
       >
