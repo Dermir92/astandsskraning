@@ -39,6 +39,8 @@ import { FireObservationSummary, FireIssueList } from "../fire-observation-summa
 import { fireState } from "@/lib/fire-observations";
 import { heatingState } from "@/lib/heating";
 import { HeatingFacts } from "../heating-observation";
+import { MeterReadingSummary } from "../meter-readings";
+import { meterState } from "@/lib/meter-readings";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
@@ -51,6 +53,7 @@ export function ReviewScreen() {
   const missing = detailIssues(report.details);
   const rentalIssues = rentalInformationIssues(report.details);
   const fire = fireState(report.details);
+  const meters = meterState(report.details);
   const heating = report.rooms.flatMap(room => room.items.filter(item => item.kind === "space_heating").map(item => ({ room, item, result: heatingState(room.observations[item.id]) })));
   const ordinaryAttention = report.rooms.reduce((sum, room) => sum + room.items.filter(item => item.kind !== "space_heating" && needsAttention(item, room.observations[item.id])).length, 0);
   const rental = report.details.inspectionContext === "residential_rental";
@@ -85,6 +88,7 @@ export function ReviewScreen() {
     0,
   );
   const hasAttention =
+    meters.hasAttention ||
     fire.hasAttention ||
     missing.length ||
     rentalIssues.length ||
@@ -207,6 +211,7 @@ export function ReviewScreen() {
           <CoreCaptureSummary report={report} />
           <RentalInformationSummary report={report} />
           <FireObservationSummary report={report} />
+          <MeterReadingSummary report={report} />
           <section
             className="review-rooms"
             aria-labelledby="review-rooms-title"

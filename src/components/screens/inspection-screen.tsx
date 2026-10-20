@@ -30,6 +30,8 @@ import { observationComplete } from "@/lib/model";
 import { FireObservationFields } from "../fire-observation-fields";
 import { useFireCorrection } from "../use-fire-correction";
 import { HeatingObservationEditor } from "../heating-observation";
+import { MeterReadingFields } from "../meter-readings";
+import { useMeterCorrection } from "../use-meter-correction";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
   const { store, state } = useReport();
@@ -101,12 +103,14 @@ function InspectionBody({ report }: { report: Report }) {
   const { id } = report;
   const { state } = useReport();
   const fireCorrection = useFireCorrection(report, state.status !== "loading");
-  const navigation = useInspectionNavigation(report, state.status !== "read-error", fireCorrection.active);
+  const meterCorrection = useMeterCorrection(report.id, state.status !== "loading");
+  const propertyCorrection = fireCorrection.active || meterCorrection.active;
+  const navigation = useInspectionNavigation(report, state.status !== "read-error", propertyCorrection);
   const { room } = navigation;
   if (!navigation.ready) return <p role="status">Hleð staðsetningu…</p>;
   const currentIndex = room ? report.rooms.indexOf(room) : -1;
-  const returnHref = fireCorrection.active ? fireCorrection.reviewHref : navigation.returnHref;
-  const fromReview = fireCorrection.active ? fireCorrection.fromReview : navigation.fromReview;
+  const returnHref = fireCorrection.active ? fireCorrection.reviewHref : meterCorrection.active ? meterCorrection.reviewHref : navigation.returnHref;
+  const fromReview = fireCorrection.active ? fireCorrection.fromReview : meterCorrection.active || navigation.fromReview;
   const stats = reportStats(report);
   const roomHref = navigation.roomHref;
   const incomplete = inspectionItems(report).filter(row => !observationComplete(row.item, row.observation));
@@ -129,7 +133,7 @@ function InspectionBody({ report }: { report: Report }) {
             className="button button-secondary"
             href={returnHref}
             replace={fromReview}
-            onNavigate={fireCorrection.active ? undefined : navigation.returnToReview}
+            onNavigate={propertyCorrection ? undefined : navigation.returnToReview}
           >
             <ClipboardCheck size={17} aria-hidden="true" />
             {fromReview ? "Aftur í yfirferð" : "Yfirferð"}
@@ -159,6 +163,7 @@ function InspectionBody({ report }: { report: Report }) {
         </details>
       </div>
       <FireObservationFields report={report} correction={fireCorrection} />
+      <MeterReadingFields report={report} invalidCorrection={meterCorrection.active && !meterCorrection.valid} />
       {room ? <div className="inspection-layout">
         <aside className="room-sidebar" aria-label="Rými skráningar">
           <div className="room-sidebar-heading">
@@ -266,7 +271,7 @@ function InspectionBody({ report }: { report: Report }) {
               <Link
                 className="button button-primary"
                 href={returnHref}
-                replace={fromReview} onNavigate={fireCorrection.active ? undefined : navigation.returnToReview}
+                replace={fromReview} onNavigate={propertyCorrection ? undefined : navigation.returnToReview}
               >
                 {fromReview ? "Aftur í yfirferð" : "Yfirferð"}
                 <ArrowRight size={17} aria-hidden="true" />

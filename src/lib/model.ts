@@ -1,5 +1,6 @@
 import { validFireSafety } from "./fire-observations";
 import { heatingAnswered, heatingState, validHeating } from "./heating";
+import { validMeterReadings } from "./meter-readings";
 
 export type AssetType = "apartment" | "vehicle" | "storage" | "commercial";
 export type Condition =
@@ -138,7 +139,28 @@ export interface ResidentialFireObservations {
 }
 
 
+export type MeterApplicability = "separate" | "shared" | "no_meter" | "unknown" | "not_examined";
+export type MeterReadingStatus = "recorded" | "not_read" | "unreadable" | "inaccessible" | "unknown";
+export type MeterCapturePurpose = "optional" | "rental_initial" | "rental_return";
+export interface PropertyMeterReading {
+  optionalCapture?: boolean;
+  applicability?: MeterApplicability;
+  factsApplicability?: MeterApplicability;
+  readingStatus?: MeterReadingStatus;
+  readingValue?: string;
+  unit?: string;
+  readingDate?: string;
+  meterIdentifier?: string;
+  note?: string;
+}
+export interface PropertyMeterReadings {
+  mode?: MeterCapturePurpose | "inactive";
+  factsPurpose?: MeterCapturePurpose;
+  electricity?: PropertyMeterReading;
+  hotWater?: PropertyMeterReading;
+}
 export interface ApartmentDetails {
+  meterReadings?: PropertyMeterReadings;
   fireSafety?: ResidentialFireObservations;
   rentalInformation?: ResidentialRentalInformation;
   inspectionContext?: "" | "standalone" | "residential_rental";
@@ -520,6 +542,7 @@ export function isReportList(value: unknown): value is Report[] {
         !["inspectionDate", "recorderName", "scopeDescription", "scopeLimitations"].every(key => d[key] === undefined || typeof d[key] === "string") ||
         !validRentalInformation(d.rentalInformation) ||
         !validFireSafety(d.fireSafety) ||
+        !validMeterReadings(d.meterReadings) ||
         !["", "initial", "final", "independent"].includes(
           d.inspectionType as string,
         ) ||
