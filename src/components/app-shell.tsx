@@ -116,7 +116,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="storage-warning" role="alert">
             <TriangleAlert size={18} aria-hidden="true" />
             <p>{state.warning}</p>
-            {state.status === "error" ? (
+            {state.status === "error" && pathname.endsWith("/forskodun") ? (
+              <Link className="text-link" href={`${pathname.slice(0, -"forskodun".length)}yfirferd#report-preview-entry`}>Aftur í yfirferð til að reyna vistun aftur</Link>
+            ) : state.status === "error" ? (
               <button
                 className="button button-small button-secondary"
                 onClick={store.retrySave}
