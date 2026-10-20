@@ -18,6 +18,7 @@ import {
   type Observation,
   type Report,
   type Room,
+  type ApartmentDetails,
 } from "@/lib/model";
 
 export const STORAGE_KEY = "astandsskraning-demo-v1";
@@ -170,6 +171,15 @@ export class DemoStore {
         r.id === id ? { ...update(r), updatedAt: new Date().toISOString() } : r,
       ),
     );
+  };
+  updateMeters = (id: string, update: (details: ApartmentDetails) => ApartmentDetails) => {
+    if (!this.canEdit()) return false;
+    const report = this.snapshot.reports.find(r => r.id === id);
+    if (!report || report.assetType !== "apartment" || report.sampleReviewed) return false;
+    const details = update(report.details);
+    // Rejected/stale confirmations do not write even normal report metadata.
+    if (details === report.details) return false;
+    return this.updateReport(id, r => ({ ...r, details }));
   };
   updateRoom = (
     reportId: string,

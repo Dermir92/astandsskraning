@@ -31,6 +31,10 @@ function reveal(target: HTMLElement | null, focus: boolean) {
   if (!target) return;
   if (focus) target.focus({ preventScroll: true });
   const box = target.getBoundingClientRect();
+  // Property panels add height before rooms. A room landing must also reveal its
+  // first closed row, without changing the selected room/item or stored position.
+  const firstRow = target.matches(".room-heading h2") ? target.closest(".room-inspection")?.querySelector(".checklist-item") : null;
+  if (firstRow && firstRow.getBoundingClientRect().bottom > window.innerHeight - 48) { target.scrollIntoView({ block: "start", behavior: "instant" }); return; }
   if (box.top < 110 || box.bottom > window.innerHeight - 48) target.scrollIntoView({ block: "nearest", behavior: "instant" });
 }
 function inspectionFocus(root: HTMLElement | null, key?: string) {

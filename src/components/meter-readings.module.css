@@ -1,0 +1,45 @@
+.section { margin-block: 8px 12px; padding: 0; min-width: 0; overflow-wrap: anywhere; scroll-margin-block: 110px; }
+.section summary { min-height: 48px; padding: 12px 16px; cursor: pointer; }
+.empty:not([open]) { margin-block: 0 8px; }
+.empty:not([open]) > summary { line-height: 24px; }
+.title { font-size: 18px; font-weight: 750; }
+.statuses { display: block; margin-top: 4px; font-size: 14px; line-height: 1.6; font-weight: 500; color: var(--muted); }
+.statuses > span { display: block; }
+.body { padding: 0 16px 16px; }
+.controls { border: 0; padding: 0; margin: 0; min-width: 0; }
+.utility { border-top: 1px solid var(--line); margin-block: 8px; }
+.utility > summary { padding-inline: 0; }
+.choices { border: 0; padding: 0; margin: 16px 0; min-width: 0; scroll-margin-block: 110px; }
+.choices legend { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.options, .participation, .buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.participation { margin-block: 16px; }
+.option { display: flex; align-items: center; gap: 10px; border: 1px solid var(--control-border); border-radius: 4px; min-height: 44px; padding: 10px 12px; font-size: 15px; cursor: pointer; max-width: 100%; }
+.option:has(input:checked) { background: var(--teal-soft); border-color: var(--teal); }
+.option input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--teal); }
+.textButton { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 4px; color: var(--teal-dark); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; background: none; border: 0; cursor: pointer; white-space: normal; text-align: left; max-width: 100%; overflow-wrap: anywhere; }
+.section button, .review a { white-space: normal; max-width: 100%; }
+.section :is(input, textarea, button, a, summary):focus-visible, .option:focus-within, .review a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.field { margin-block: 16px; scroll-margin-block: 110px; }
+.field input, .field textarea { font-size: 16px; min-height: 44px; }
+.hint { color: var(--muted); font-size: 14px; line-height: 1.6; margin-block: 8px; }
+.subdetails, .retained { border-top: 1px solid var(--line); margin-block: 12px; }
+.subdetails > summary, .retained > summary { padding-inline: 0; font-size: 14px; font-weight: 650; }
+.warning { border-left: 3px solid var(--warning-text); padding: 12px; background: var(--warning-bg); color: var(--warning-text); margin-block: 12px; }
+.warning :is(p, h3, h4) { margin-block: 8px; }
+.warning h3 { font-size: 17px; }
+.warning :is(button, a) { color: var(--warning-text); }
+.qualification { border-left: 3px solid var(--teal); padding: 8px 12px; background: var(--teal-soft); font-size: 14px; margin-block: 10px; }
+.facts { margin-block: 8px 16px; }
+.facts > div { margin-block: 8px; }
+.facts dt { font-size: 14px; font-weight: 700; }
+.facts dd { margin: 0; font-size: 14px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+.purposeActions { margin-block: 12px; }
+.review { padding: 20px; min-width: 0; overflow-wrap: anywhere; scroll-margin-block: 110px; }
+.review h2 { font-size: 20px; }
+.review h3 { font-size: 17px; margin-top: 14px; }
+.review :global(.panel-heading) { flex-wrap: wrap; }
+.reviewUtility { border-top: 1px solid var(--line); padding-block: 4px; }
+.review summary { min-height: 44px; cursor: pointer; }
+.review li { font-size: 14px; margin-block: 8px; }
+.warning li a { display: inline-block; padding-block: 8px; text-decoration: underline; min-height: 44px; }
+@media (max-width: 480px) { .options, .participation, .buttons { flex-direction: column; } .option { width: 100%; } .review { padding: 16px; } }
