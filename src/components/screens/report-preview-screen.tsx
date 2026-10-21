@@ -9,6 +9,7 @@ import { Stepper } from "../ui";
 import { SampleSummary } from "./sample-summary";
 import { ReportPreviewDocument, PreviewBackLink } from "../report-preview";
 import styles from "../report-preview.module.css";
+import { InspectionComparisonPanel } from "../inspection-comparison";
 
 export function ReportPreviewScreen() {
   const { state, report, id } = useReport();
@@ -19,5 +20,5 @@ export function ReportPreviewScreen() {
   if (state.status === "read-error") return <section><h1>{is.preview.readError}</h1><p>{is.preview.readErrorHelp}</p><Link className="text-link" href="/">Mínar skýrslur</Link></section>;
   if (!report) return <MissingReport />;
   if (!preview) return <SampleSummary report={report} />;
-  return <div className={`core-review ${styles.workspace}`}><Stepper reportId={id} step={3} /><div className={styles.toolbar}><PreviewBackLink reportId={id} /><p>{is.preview.readOnly}</p></div><ReportPreviewDocument preview={preview} /><div className={styles.toolbar}><PreviewBackLink reportId={id} /></div></div>;
+  return <div className={`core-review ${styles.workspace}`}><Stepper reportId={id} step={3} /><div className={styles.toolbar}><PreviewBackLink reportId={id} /><p>{is.preview.readOnly}</p></div><ReportPreviewDocument preview={preview} comparison={report.linkedInitial ? <InspectionComparisonPanel report={report} reading /> : undefined} /><div className={styles.toolbar}><PreviewBackLink reportId={id} /></div></div>;
 }

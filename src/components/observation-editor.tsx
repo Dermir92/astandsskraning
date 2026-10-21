@@ -92,6 +92,7 @@ export function ObservationEditor({
   onClose,
   onActivate,
   nextAction,
+  reference,
 }: {
   item: ChecklistItem;
   observation?: Observation;
@@ -105,6 +106,7 @@ export function ObservationEditor({
   onClose: () => void;
   onActivate: () => void;
   nextAction: ReactNode;
+  reference?: ReactNode;
 }) {
   const { store, state } = useDemo();
   const fieldPrefix = useId();
@@ -286,6 +288,7 @@ export function ObservationEditor({
         }}
       >
       {open ? <>
+          {reference}
           {foldCondition && o.condition ? (
             <details className={styles.foldedCondition}>
               <summary>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useState, type MouseEvent } from "react";
+import { useCallback, useState, type MouseEvent, type ReactNode } from "react";
 import { ArrowLeft, ArrowUpRight, Camera } from "lucide-react";
 import { ContextDialog } from "./context-dialog";
 import { is } from "@/lib/locale/is";
@@ -86,7 +86,7 @@ function IssueIndex({ issues }: { issues: readonly DeepReadonly<PreviewIssue>[] 
   return <ul className={styles.issueIndex}>{[...groups].map(([anchor, group]) => <li key={anchor}><Jump anchor={anchor}><strong>{group.context}</strong><span>{group.issues.length === 1 ? group.issues[0].label : `${group.issues.length} skráð atriði · sjá nánar`}</span></Jump></li>)}</ul>;
 }
 
-export function ReportPreviewDocument({ preview }: { preview: ReportPreview }) {
+export function ReportPreviewDocument({ preview, comparison }: { preview: ReportPreview; comparison?: ReactNode }) {
   const [states, setStates] = useState<PhotoStates>({});
   const [opened, setOpened] = useState<string | null>(null);
   const update = useCallback<UpdatePhoto>((photo, status) => setStates(previous => previous[photo.key]?.url === photo.url && previous[photo.key].status === status ? previous : { ...previous, [photo.key]: { url: photo.url, status } }), []);
@@ -130,8 +130,10 @@ export function ReportPreviewDocument({ preview }: { preview: ReportPreview }) {
       {unavailable ? <p><Jump anchor="preview-evidence">Sjá myndir sem ekki er hægt að birta í myndaskrá.</Jump></p> : null}
     </section>
     <p className={styles.statusNotice}>{t.unverified}</p>
+    {comparison}
     <nav className={styles.guide} aria-label={t.guide}><details><summary>{t.guide}</summary><ol>
       <li><Jump anchor="preview-overview">Yfirlit og frávik</Jump></li><li><Jump anchor="preview-gaps">{t.gaps}</Jump></li>
+      {comparison ? <li><a href="#comparison">Samanburður upphafs og loka</a></li> : null}
       {sections.map(s => <li key={s.anchor}><Jump anchor={s.anchor}>{s.title}</Jump></li>)}
       {preview.rooms.map(r => <li key={r.anchor}><Jump anchor={r.anchor}>{r.ref} · {r.title}</Jump></li>)}
       <li><Jump anchor={preview.meters.anchor}>{preview.meters.title}</Jump></li><li><Jump anchor="preview-evidence">{t.evidence}</Jump></li><li><Jump anchor="preview-verification">{t.verification}</Jump></li>
@@ -151,7 +153,7 @@ export function ReportPreviewDocument({ preview }: { preview: ReportPreview }) {
       </li>)}</ol>}
       {preview.unassignedPhotos.length ? <details className={styles.retained}><summary>{t.unassigned}</summary><p>Ekki er hægt að nota þessar myndatengingar sem myndgögn við núverandi atriði.</p><ul>{preview.unassignedPhotos.map((p, index) => <li key={index}>{p.name} · {p.target}</li>)}</ul></details> : null}
     </section>
-    <section id="preview-verification" tabIndex={-1} className={styles.verification} aria-labelledby="preview-verification-title"><h2 id="preview-verification-title">{t.verification}</h2><p>{t.execution}</p><p>{t.baseline}</p><p>Þessi skráning er ekki fagleg öryggisvottun, staðfesting HMS eða staðfesting á að skyldum samkvæmt leigusamningi hafi verið lokið.</p></section>
+    <section id="preview-verification" tabIndex={-1} className={styles.verification} aria-labelledby="preview-verification-title"><h2 id="preview-verification-title">{t.verification}</h2><p>{t.execution}</p><p>{comparison ? "Tenging við upphafsskráningu er valin af notanda. Gildi viðmiðs og takmarkanir eru sýnd í samanburðarkafla; engin sannreynd útgáfusaga liggur fyrir." : t.baseline}</p><p>Þessi skráning er ekki fagleg öryggisvottun, staðfesting HMS eða staðfesting á að skyldum samkvæmt leigusamningi hafi verið lokið.</p></section>
     <footer className={styles.documentFooter}><span>{preview.id} · {t.draft}</span><Jump anchor="preview-document-title">Efst í skýrslu</Jump></footer>
     {selected ? <ContextDialog title={`${selected.ref} · ${selected.context}`} closeLabel={t.closeImage} onClose={() => setOpened(null)}><div className={styles.fullImage}><p>{selected.name}</p>
       {/* eslint-disable-next-line @next/next/no-img-element */}

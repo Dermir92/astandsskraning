@@ -1,6 +1,7 @@
 import { validFireSafety } from "./fire-observations";
 import { heatingAnswered, heatingState, validHeating } from "./heating";
 import { validMeterReadings } from "./meter-readings";
+import { validLinkedInitial, type LinkedInitial } from "./inspection-comparison";
 
 export type AssetType = "apartment" | "vehicle" | "storage" | "commercial";
 export type Condition =
@@ -179,6 +180,7 @@ export interface ApartmentDetails {
   notes: string;
 }
 export interface Report {
+  linkedInitial?: LinkedInitial;
   id: string;
   assetType: AssetType;
   title: string;
@@ -524,7 +526,7 @@ export function isReportList(value: unknown): value is Report[] {
           "storage",
           "commercial",
         ]) ||
-        !r.assetType ||
+        !r.assetType || !validLinkedInitial(r.linkedInitial) ||
         Number.isNaN(Date.parse(r.updatedAt as string))
       )
         return false;

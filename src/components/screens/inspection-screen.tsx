@@ -32,6 +32,7 @@ import { useFireCorrection } from "../use-fire-correction";
 import { HeatingObservationEditor } from "../heating-observation";
 import { MeterReadingFields } from "../meter-readings";
 import { useMeterCorrection } from "../use-meter-correction";
+import { PreviousInspectionAnswer } from "../inspection-comparison";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
   const { store, state } = useReport();
@@ -69,6 +70,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
             roomName={room.name || "Ónefnt rými"}
             index={index}
             open={openItem === item.id}
+            reference={report.linkedInitial && openItem === item.id ? <PreviousInspectionAnswer report={report} roomId={room.id} itemId={item.id} /> : null}
             onActivate={() => navigation.activate({ roomId: room.id, itemId: item.id }, openItem === item.id)}
             onToggle={() => navigation.activate({ roomId: room.id, itemId: item.id }, openItem !== item.id)}
             onOpen={() => navigation.activate({ roomId: room.id, itemId: item.id }, true)}

@@ -12,6 +12,7 @@ import { is } from "@/lib/locale/is";
 import { inspectionDateWarning, isCalendarDate, rentalRequirements, type ApartmentDetails } from "@/lib/model";
 import Link from "next/link";
 import { RentalInformationFields, type UpdateDetails } from "../rental-information-fields";
+import { InspectionComparisonPanel } from "../inspection-comparison";
 
 export function DetailsScreen() {
   const { report, id, store, state } = useReport();
@@ -36,6 +37,7 @@ export function DetailsScreen() {
       <BackLink />
       <Stepper reportId={id} step={0} />
       <PageHeading title="Upplýsingar um íbúð" description="Grunnur að skýrri skráningu. Þú getur fyllt út það sem vantar síðar." />
+      <InspectionComparisonPanel report={report} compact />
       {fromReview ? <Link className="text-link core-return" href={reviewHref}>Aftur í yfirferð</Link> : null}
       <form noValidate onSubmit={(e) => { e.preventDefault(); router.push(fromReview ? reviewHref : `/skyrslur/${id}/rymi`); }}>
         <section className="panel form-panel">
