@@ -1,0 +1,31 @@
+.panel, .create { color: #172f40; overflow-wrap: anywhere; }
+.panel { margin-block: 1.25rem; padding: 1.25rem; background: #fff; border-block: 2px solid #7a9994; font-size: 1rem; line-height: 1.6; }
+.panel h2 { font-size: 1.35rem; line-height: 1.35; margin: 0 0 .75rem; }
+.panel p, .create p, .reference p { margin-block: .65rem; }
+.panel summary, .reference summary { cursor: pointer; min-height: 44px; padding-block: .7rem; font-weight: 700; }
+.panel details, .reference { border-top: 1px solid #8fa5aa; margin-top: .8rem; }
+.panel :is(a, button), .create :is(a, button) { min-height: 44px; white-space: normal; max-width: 100%; }
+.panel :is(a, button):focus-visible, .panel :focus-visible, .create :focus-visible, .reference :focus-visible { outline: 3px solid #006b7a; outline-offset: 3px; }
+.confirm { padding: 1rem; background: #f3f6f5; border: 1px solid #8fa5aa; }
+.actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+.columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.columns > *, .field > *, .facts { min-width: 0; }
+.item { padding-block: 1.25rem; border-top: 1px solid #8fa5aa; }
+.item h3 { font-size: 1.15rem; margin-block: .4rem; }
+.labels { padding-left: 1.25rem; }
+.field { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem 1.25rem; border-top: 1px solid #8fa5aa; padding-block: .8rem; }
+.field dt { grid-column: 1 / -1; font-weight: 700; }
+.field dd { margin: 0; white-space: pre-wrap; }
+.field dd > span { display: block; color: #355460; font-size: .9em; font-weight: 700; }
+.field .result { grid-column: 1 / -1; color: #355460; }
+.facts dl > div { margin-block: .6rem; }
+.facts dt { font-weight: 700; }
+.facts dd { margin: 0; white-space: pre-wrap; }
+.reference { padding: .75rem; background: #f3f6f5; color: #172f40; }
+.records { margin-top: 1rem; }
+@media (max-width: 640px) {
+  .panel { padding: 1rem .8rem; }
+  .columns, .field { grid-template-columns: minmax(0, 1fr); }
+  .field { gap: .8rem; }
+  .actions { flex-direction: column; align-items: stretch; }
+}

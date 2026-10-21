@@ -10,6 +10,7 @@ import {
 } from "react";
 import { demoReports } from "@/lib/fixtures";
 import { heatingItem } from "@/lib/heating";
+import { buildInspectionComparison, contentFingerprint, copiedFinal, finalContext, initialAssociations, initialEligible, retireMissingAssociations, sourceContent } from "@/lib/inspection-comparison";
 import {
   EMPTY_DETAILS,
   initialRooms,
@@ -55,6 +56,7 @@ export class DemoStore {
   private hydrated = false;
   // Retain the validated envelope's extension keys without rewriting on read.
   private envelope: object = {};
+  private linkedCreations = new Map<string, { sourceId: string; pending: Promise<string | null> }>();
   subscribe = (listener: () => void) => {
     this.listeners.add(listener);
     return () => {
@@ -164,11 +166,41 @@ export class DemoStore {
     };
     return this.persist([report, ...this.snapshot.reports]) ? id : null;
   };
+  createLinkedFinal = (sourceId: string, expectedSource: string, operationId: string): Promise<string | null> => {
+    const prior = this.linkedCreations.get(operationId);
+    if (prior) return prior.sourceId === sourceId ? prior.pending : Promise.resolve(null);
+    const pending = this.createLinkedFinalOnce(sourceId, expectedSource);
+    this.linkedCreations.set(operationId, { sourceId, pending });
+    return pending;
+  };
+  private async createLinkedFinalOnce(sourceId: string, expectedSource: string) {
+    const source = this.snapshot.reports.find(r => r.id === sourceId);
+    if (!this.canEdit() || !source || !initialEligible(source)) return null;
+    const sourceFingerprint = await contentFingerprint(sourceContent(source));
+    if (!this.canEdit() || this.snapshot.reports.find(r => r.id === sourceId) !== source || sourceFingerprint !== expectedSource) return null;
+    if (this.snapshot.reports.length >= MAX_REPORTS) {
+      this.rejectMutation(`Hámarki ${MAX_REPORTS} skýrslna er náð. Engin lokaskoðun var stofnuð.`);
+      return null;
+    }
+    const report = copiedFinal(source, crypto.randomUUID(), new Date().toISOString(), () => crypto.randomUUID());
+    report.linkedInitial = { version: 1, initialReportId: source.id, sourceFingerprint, finalContextFingerprint: await contentFingerprint(finalContext(report)), rooms: initialAssociations(source, report) };
+    if (!this.canEdit() || this.snapshot.reports.find(r => r.id === sourceId) !== source) return null;
+    return this.persist([report, ...this.snapshot.reports]) ? report.id : null;
+  }
+  reconfirmInitial = async (id: string, expectedSource: string, expectedContext: string) => {
+    if (!this.canEdit()) return false;
+    const report = this.snapshot.reports.find(r => r.id === id);
+    if (!report?.linkedInitial) return false;
+    const reports = this.snapshot.reports;
+    const comparison = await buildInspectionComparison(report, reports);
+    if (!this.canEdit() || this.snapshot.reports !== reports || comparison?.status !== "changed" || comparison.sourceFingerprint !== expectedSource || comparison.finalContextFingerprint !== expectedContext) return false;
+    return this.updateReport(id, r => ({ ...r, linkedInitial: { ...r.linkedInitial!, sourceFingerprint: expectedSource, finalContextFingerprint: expectedContext } }));
+  };
   updateReport = (id: string, update: (report: Report) => Report) => {
     if (!this.canEdit()) return false;
     return this.persist(
       this.snapshot.reports.map((r) =>
-        r.id === id ? { ...update(r), updatedAt: new Date().toISOString() } : r,
+        r.id === id ? { ...retireMissingAssociations(r, update(r)), updatedAt: new Date().toISOString() } : r,
       ),
     );
   };
