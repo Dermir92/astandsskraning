@@ -1,9 +1,10 @@
 import "server-only";
 import postgres from "postgres";
 import { isCloudDocument, type SaveOperation } from "./contracts";
+import { developmentMode } from "./development-mode.mjs";
 
 export function c1Enabled() {
-  return process.env.NODE_ENV === "development" && process.env.C1_LOCAL_PROOF === "1";
+  return developmentMode() === "c1-local";
 }
 export function localConfig() {
   if (!c1Enabled()) throw new Error("c1_disabled");

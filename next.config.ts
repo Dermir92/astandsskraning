@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
+import { developmentMode } from "./src/lib/cloud/development-mode.mjs";
+
+const mode = developmentMode();
 
 const nextConfig: NextConfig = {
   poweredByHeader: false, devIndicators: false,
-  ...(process.env.C1_LOCAL_PROOF === "1" && process.env.NODE_ENV !== "production" ? { distDir: ".next-c1" } : {}),
+  ...(mode === "c1-local" ? { distDir: ".next-c1" } : mode === "h1a-hosted" ? { distDir: ".next-h1a" } : {}),
 };
 export default nextConfig;

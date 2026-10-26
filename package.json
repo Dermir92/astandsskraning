@@ -14,7 +14,10 @@
     "c1:reset": "supabase db reset --local",
     "c1:prepare": "node scripts/c1-local.mjs prepare",
     "dev:c1": "node scripts/c1-local.mjs serve",
-    "test:c1": "node scripts/c1-local.mjs test"
+    "test:c1": "node scripts/c1-local.mjs test",
+    "h1a:check": "node scripts/h1a-hosted.mjs check",
+    "dev:h1a": "node scripts/h1a-hosted.mjs serve",
+    "test:h1a": "playwright test --config playwright.h1a.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",
