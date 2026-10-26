@@ -353,10 +353,38 @@ test("read-protected reports neither write navigation metadata nor mutate unread
   const invalid = "{unreadable-report";
   await page.addInitScript(({ reportKey, invalid }) => { localStorage.setItem(reportKey, invalid); }, { reportKey: STORAGE_KEY, invalid });
   await page.goto("/");
+  await expect(page.locator(".topbar .save-status")).toHaveText("Staðbundin gögn læst til verndar");
   await page.getByRole("link", { name: /^Halda áfram:/ }).first().click();
   await expect(page.getByRole("heading", { name: "Ástandsskráning", exact: true })).toBeVisible();
   await row(page, "windows").locator(".checklist-toggle").click();
   await expanded(page, "windows");
+  expect(await raw(page)).toBe(invalid);
+  expect(await page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("astandsskraning-navigation-v1:")))).toEqual([]);
+});
+
+test("an item selected during read-protected URL canonicalization remains open", async ({ page }) => {
+  const invalid = "{unreadable-report";
+  await page.addInitScript(({ reportKey, invalid }) => {
+    localStorage.setItem(reportKey, invalid);
+    const replace = history.replaceState;
+    let selected = false;
+    history.replaceState = function (...args) {
+      const result = replace.apply(this, args);
+      const params = new URLSearchParams(location.search);
+      if (!selected && location.pathname.endsWith("/skraning") && params.has("rymi") && !params.has("atridi")) {
+        const toggle = document.querySelector<HTMLButtonElement>('[data-item="windows"] .checklist-toggle');
+        // Select at the native-history boundary, before the router query snapshot
+        // catches up. This controls the race without delaying or retrying a click.
+        if (toggle) { selected = true; toggle.click(); }
+      }
+      return result;
+    };
+  }, { reportKey: STORAGE_KEY, invalid });
+  await page.goto("/");
+  await expect(page.locator(".topbar .save-status")).toHaveText("Staðbundin gögn læst til verndar");
+  await page.getByRole("link", { name: /^Halda áfram:/ }).first().click();
+  await expanded(page, "windows");
+  await expect(page).toHaveURL(/rymi=demo-kitchen&atridi=windows$/);
   expect(await raw(page)).toBe(invalid);
   expect(await page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("astandsskraning-navigation-v1:")))).toEqual([]);
 });

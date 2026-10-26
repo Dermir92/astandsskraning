@@ -1,0 +1,44 @@
+{
+  "expected": 954,
+  "original_expected": 951,
+  "added": 3,
+  "executed_unique": 954,
+  "missing": [],
+  "duplicated": [],
+  "unexpected": [],
+  "retry_count": 0,
+  "original_skip_identities_unchanged": true,
+  "outcomes": {
+    "passed": 930,
+    "skipped": 24
+  },
+  "passed": true,
+  "inventory_sha256": "b4745da00a20fafaaaddef0b50e6cc98fce56214e02e9c0689be6717758b32d7",
+  "aggregate": "regression-aggregate.json",
+  "aggregate_is_not_single_invocation": true,
+  "method": "Two disjoint primary executions; never substitute isolated rechecks.",
+  "partitions": [
+    {
+      "report": "regression-standard.json",
+      "sha256": "4009ef5323672b54e57b4f08a34e8e68e1c9724bd8f0a0d869b3d2799c65f232",
+      "counts": {
+        "passed": 929,
+        "skipped": 22
+      },
+      "test_count": 951,
+      "start_time": "2026-10-26T12:40:43.664Z",
+      "duration_ms": 2479236.22
+    },
+    {
+      "report": "regression-visual.json",
+      "sha256": "c8da4d7710f5cff913141b413cf831233b83c53f8a7c3b9e350f630198e190f2",
+      "counts": {
+        "passed": 1,
+        "skipped": 2
+      },
+      "test_count": 3,
+      "start_time": "2026-10-26T13:22:36.888Z",
+      "duration_ms": 122486.7
+    }
+  ]
+}

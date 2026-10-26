@@ -42,14 +42,18 @@ async function upload(page: Page, targets: { room: number; item?: string; count:
     if (await select.isVisible()) await select.selectOption(`preview-room-${target.room}`);
     else await page.locator(`.room-sidebar a[href*="rymi=preview-room-${target.room}"]`).click();
     await expect(page).toHaveURL(new RegExp(`rymi=preview-room-${target.room}`));
+    const report = JSON.parse((await raw(page))!).reports[0] as { rooms: { id: string; name: string }[] };
+    const selectedRoom = report.rooms.find(room => room.id === `preview-room-${target.room}`)!;
+    await expect(page.locator(".room-inspection .room-heading h2")).toHaveText(selectedRoom.name);
     if (target.item) {
       const toggle = page.locator(`.checklist-item[data-item="${target.item}"] .checklist-toggle`);
       if (await toggle.getAttribute("aria-expanded") !== "true") await toggle.click();
     }
     const region = target.item ? page.locator(`.checklist-item[data-item="${target.item}"] .photo-preview`) : page.locator(".room-inspection details").filter({ has: page.locator('.photo-preview[aria-label="Yfirlitsmyndir rýmis"]') });
-    if (!target.item) await region.locator(":scope > summary").click();
-    const input = region.locator('input[type="file"]');
-    await input.setInputFiles(Array.from({ length: target.count }, (_, i) => ({ name: `synthetic-${target.room}-${target.item ?? "overview"}-${i}.png`, mimeType: "image/png", buffer: Buffer.from(data, "base64") })));
+    if (!target.item && !(await region.evaluate(node => (node as HTMLDetailsElement).open))) await region.locator(":scope > summary").click();
+    const chooser = page.waitForEvent("filechooser");
+    await region.locator("label.photo-upload").click();
+    await (await chooser).setFiles(Array.from({ length: target.count }, (_, i) => ({ name: `synthetic-${target.room}-${target.item ?? "overview"}-${i}.png`, mimeType: "image/png", buffer: Buffer.from(data, "base64") })));
     await expect(region.locator(".photo-actions > span")).toContainText(`${target.count}/8`);
   }
   await page.getByRole("link", { name: "Yfirferð", exact: true }).click();

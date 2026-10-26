@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-26T13:32:17.578785+00:00",
+  "head": "d44b8e79c76357512c606f79d0111e9d47b0ad1a",
+  "decision": "Ready for final independent approval review; not independently approved here.",
+  "focused": {
+    "report": "focused-final.json",
+    "sha256": "aa74c0b1ff9b7382b92d4e26b7b17d991d8ee4b4890cdc8852d356731e8c3d8a",
+    "executions": 174,
+    "outcomes": {
+      "passed": 172,
+      "skipped": 2
+    },
+    "projects": {
+      "desktop": {
+        "passed": 58
+      },
+      "mobile-360": {
+        "passed": 57,
+        "skipped": 1
+      },
+      "mobile-390": {
+        "passed": 57,
+        "skipped": 1
+      }
+    },
+    "global_errors": 0,
+    "retries": 0,
+    "start_time": "2026-10-26T12:34:11.505Z",
+    "duration_ms": 330002.286
+  },
+  "targeted_final": {
+    "report": "affected-final-fixed.json",
+    "sha256": "f2f71c546f679b758ce9e28b1c6f4d34f1839ecbb6d2368f225b2a2930ec6132",
+    "executions": 9,
+    "outcomes": {
+      "passed": 9
+    },
+    "projects": {
+      "desktop": {
+        "passed": 3
+      },
+      "mobile-360": {
+        "passed": 3
+      },
+      "mobile-390": {
+        "passed": 3
+      }
+    },
+    "global_errors": 0,
+    "retries": 0,
+    "start_time": "2026-10-26T12:33:26.753Z",
+    "duration_ms": 24312.09
+  },
+  "c1": {
+    "report": "c1.json",
+    "sha256": "078b9e68ef46101d1da66f62f662cc03592a94a6bc55993ec13f8bf2faf652ff",
+    "executions": 77,
+    "outcomes": {
+      "passed": 77
+    },
+    "projects": {
+      "database": {
+        "passed": 10
+      },
+      "state": {
+        "passed": 17
+      },
+      "ui-320": {
+        "passed": 10
+      },
+      "ui-360": {
+        "passed": 10
+      },
+      "ui-390": {
+        "passed": 10
+      },
+      "ui-768": {
+        "passed": 10
+      },
+      "ui-1440": {
+        "passed": 10
+      }
+    },
+    "global_errors": 0,
+    "retries": 0,
+    "start_time": "2026-10-26T13:26:33.405Z",
+    "duration_ms": 275919.225
+  },
+  "full_regression": {
+    "expected": 954,
+    "original_expected": 951,
+    "added": 3,
+    "executed_unique": 954,
+    "missing": [],
+    "duplicated": [],
+    "unexpected": [],
+    "retry_count": 0,
+    "original_skip_identities_unchanged": true,
+    "outcomes": {
+      "passed": 930,
+      "skipped": 24
+    },
+    "passed": true,
+    "inventory_sha256": "b4745da00a20fafaaaddef0b50e6cc98fce56214e02e9c0689be6717758b32d7",
+    "aggregate": "regression-aggregate.json",
+    "aggregate_is_not_single_invocation": true,
+    "method": "Two disjoint primary executions; never substitute isolated rechecks.",
+    "partitions": [
+      {
+        "report": "regression-standard.json",
+        "sha256": "4009ef5323672b54e57b4f08a34e8e68e1c9724bd8f0a0d869b3d2799c65f232",
+        "counts": {
+          "passed": 929,
+          "skipped": 22
+        },
+        "test_count": 951,
+        "start_time": "2026-10-26T12:40:43.664Z",
+        "duration_ms": 2479236.22
+      },
+      {
+        "report": "regression-visual.json",
+        "sha256": "c8da4d7710f5cff913141b413cf831233b83c53f8a7c3b9e350f630198e190f2",
+        "counts": {
+          "passed": 1,
+          "skipped": 2
+        },
+        "test_count": 3,
+        "start_time": "2026-10-26T13:22:36.888Z",
+        "duration_ms": 122486.7
+      }
+    ]
+  },
+  "static_checks": {
+    "typecheck": {
+      "exit_code": 0,
+      "log": "artifacts/c1-final-regression/typecheck.log",
+      "sha256": "45ef7e1e796ece3d63bbd22fcb8130127eaad2279ad159f01d401472689b7040"
+    },
+    "lint": {
+      "exit_code": 0,
+      "log": "artifacts/c1-final-regression/lint.log",
+      "sha256": "256d21ce333195d4a5ab68dc43816f0dfd231f43c7122b21b7dd8e315e0f4891"
+    },
+    "build": {
+      "exit_code": 0,
+      "log": "artifacts/c1-final-regression/build.log",
+      "sha256": "e76f7bdba2be667beb269df0a7ff518e2bb037ed1b3e412ec88e4b238f77b9c3"
+    }
+  },
+  "source_integrity": {
+    "frozen_files": 133,
+    "changed_during_verification": [],
+    "pre_existing_dirty_files": 112,
+    "changed_pre_existing_dirty_files": [
+      "src/components/use-inspection-navigation.ts",
+      "tests/inspection-navigation.spec.ts"
+    ],
+    "remaining_pre_existing_dirty_files_preserved": 110,
+    "head_unchanged": true,
+    "index_empty": true,
+    "prior_review_zip_sha256_unchanged": "a0a591ab93e0e4b77a479fc14e9407bf5029f11879704bd1c3e45c6a4403fd93"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "manifest_and_lock_unchanged_this_task": true,
+    "audit_rerun": false,
+    "prior_accepted_audit_findings": 0
+  },
+  "source_and_test_files_changed_this_task": [
+    "src/components/use-inspection-navigation.ts",
+    "tests/inspection-navigation.spec.ts",
+    "tests/meter-readings-capture.spec.ts"
+  ],
+  "new_documentation_files": [
+    "docs/C1_FINAL_REGRESSION_FIX.md",
+    "docs/qa/c1-final-regression/VERIFY_REGRESSION_COVERAGE.py",
+    "docs/qa/c1-final-regression/tested-source-sha256.json",
+    "docs/qa/c1-final-regression/regression-coverage.json",
+    "docs/qa/c1-final-regression/trace-findings.json",
+    "docs/qa/c1-final-regression/validation.json"
+  ],
+  "limitations": [
+    "No Next.js/React version bisect was performed.",
+    "Automated Chromium and simulated journeys; no real human usability or physical-device validation.",
+    "Existing demo single-tab/fictional-data restriction and C1 development-only scope remain."
+  ],
+  "prohibited_actions_performed": []
+}

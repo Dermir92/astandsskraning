@@ -15,7 +15,7 @@ import { RentalInformationFields, type UpdateDetails } from "../rental-informati
 import { InspectionComparisonPanel } from "../inspection-comparison";
 
 export function DetailsScreen() {
-  const { report, id, store, state } = useReport();
+  const { report, id, store, state, mode } = useReport();
   const router = useRouter();
   const { fromReview, reviewSection } = useDetailsCorrection(state.status !== "loading" && !!report);
   if (state.status === "loading" || !report)
@@ -53,12 +53,13 @@ export function DetailsScreen() {
             <div className="radio-options">
               {Object.entries(is.inspectionTypes).map(([value, label]) => (
                 <label className={`radio-option ${d.inspectionType === value ? "radio-selected" : ""}`} key={value}>
-                  <input id={value === "initial" ? "inspectionType" : undefined} type="radio" name="inspectionType" value={value} checked={d.inspectionType === value} onChange={() => change("inspectionType", value as ApartmentDetails["inspectionType"])} />
+                  <input id={value === "initial" ? "inspectionType" : undefined} type="radio" name="inspectionType" value={value} disabled={mode === "cloud" && value !== "independent"} checked={d.inspectionType === value} onChange={() => change("inspectionType", value as ApartmentDetails["inspectionType"])} />
                   <span>{label}</span>
                 </label>
               ))}
             </div>
             {d.inspectionType === "independent" ? <p id="independent-hint" className="field-hint">{is.core.examinerHint}</p> : null}
+            {mode === "cloud" ? <p className="field-hint">C1 prófar aðeins sjálfstæða skráningu. Upphafs- og lokaskoðanir eru ekki virkar í þessum ham.</p> : null}
           </fieldset>
           <div className="form-grid">
             <Field id="address" label="Heimilisfang" className="field-full">
@@ -113,7 +114,7 @@ export function DetailsScreen() {
             </Field>
           </div>
         </details>
-        <div className="info-note"><Info size={18} aria-hidden="true" /><p>Drög vistast í þessum vafra þegar vistun tekst. Fylgstu með vistunarstöðunni.</p></div>
+        <div className="info-note"><Info size={18} aria-hidden="true" /><p>{mode === "cloud" ? "Drög vistast í staðbundnum gagnagrunni þegar vistun er staðfest. Fylgstu með vistunarstöðunni." : "Drög vistast í þessum vafra þegar vistun tekst. Fylgstu með vistunarstöðunni."}</p></div>
         <FlowFooter backHref={fromReview ? reviewHref : "/"} nextText={fromReview ? "Aftur í yfirferð" : "Velja rými"}>
           <Link href="/" className="draft-link">Fara í yfirlit draga</Link>
         </FlowFooter>

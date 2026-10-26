@@ -442,11 +442,11 @@ test("finishing the last item keeps the selected room open", async ({
     "Ljós og rofar",
     "Skápar",
   ]) {
-    await page.locator(".checklist-toggle").filter({ hasText: name }).click();
-    await page
-      .getByRole("radio", { name: "Á ekki við", exact: true })
-      .first()
-      .check();
+    const item = page.locator(".checklist-item").filter({ has: page.locator(".checklist-toggle").filter({ hasText: name }) });
+    await item.locator(".checklist-toggle").click();
+    await expect(item.locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "true");
+    await item.getByRole("group", { name: "Ástand", exact: true }).getByRole("radio", { name: "Á ekki við", exact: true }).check();
+    await expect(item).toHaveAttribute("data-state", "recorded");
   }
   await expect(
     page.getByRole("heading", { name: "Forstofa", exact: true }),

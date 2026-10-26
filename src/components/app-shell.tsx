@@ -14,13 +14,14 @@ import { is } from "@/lib/locale/is";
 import { useDemo } from "./demo-provider";
 import { useState, type ReactNode } from "react";
 import { ContextDialog } from "./context-dialog";
+import { C1Panel } from "./cloud/c1-root";
 
 export function SaveStatus() {
-  const { state } = useDemo();
+  const { state, mode } = useDemo();
   const failed =
     state.status === "error" ||
     state.status === "read-error" ||
-    state.status === "validation-error";
+    state.status === "validation-error" || state.status === "conflict" || state.status === "refresh-required";
   const Icon =
     failed
       ? TriangleAlert
@@ -33,13 +34,13 @@ export function SaveStatus() {
       role="status"
     >
       <Icon size={14} aria-hidden="true" />
-      {is.save[state.status]}
+      {state.status === "refresh-required" ? "Fyrri vistun staðfest · sækja þarf drög" : state.status === "pending" ? "Vistun í bið…" : state.status === "conflict" ? "Árekstur við vistun" : mode === "cloud" && state.status === "error" ? "Vistun óstaðfest" : mode === "cloud" && state.status === "read-error" ? "Gagnasókn mistókst" : state.status === "saved" && mode === "cloud" ? "Vistað í gagnagrunni" : is.save[state.status]}
     </span>
   );
 }
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const { state, store } = useDemo();
+  const { state, store, mode } = useDemo();
   const [showHelp, setShowHelp] = useState(false);
   return (
     <div className={`app-shell ${pathname === "/" ? "reports-shell" : ""}`}>
@@ -76,7 +77,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </nav>
         <button
           className="rail-help"
-          aria-label="Um sýniham"
+          aria-label={mode === "cloud" ? "Um staðbundna C1-prófun" : "Um sýniham"}
           aria-haspopup="dialog"
           onClick={() => setShowHelp(true)}
         >
@@ -92,31 +93,31 @@ export function AppShell({ children }: { children: ReactNode }) {
             </span>
             Ástandsskráning
           </Link>
-          <span className="desktop-context">Sýnivinnusvæði</span>
+          <span className="desktop-context">{mode === "cloud" ? "Staðbundin C1-prófun" : "Sýnivinnusvæði"}</span>
           <div className="topbar-right">
             <SaveStatus />
             <button
               className="demo-pill"
-              aria-label="Um sýniham"
+              aria-label={mode === "cloud" ? "Um staðbundna C1-prófun" : "Um sýniham"}
               aria-haspopup="dialog"
               onClick={() => setShowHelp(true)}
             >
-              Sýnihamur
+              {mode === "cloud" ? "C1-prófun" : "Sýnihamur"}
             </button>
           </div>
         </header>
         <div className="demo-banner">
           <span className="demo-banner-label">SÝNI</span>
           <p>
-            {is.demoNotice}{" "}
-            <span className="demo-banner-extra">Myndir fara ekki á þjón.</span>
+            {mode === "cloud" ? "C1-prófdrög vistast í staðbundnum gagnagrunni þegar vistun er staðfest. Aðeins tilbúin gögn." : is.demoNotice}{" "}
+            <span className="demo-banner-extra">{mode === "cloud" ? "Myndir eru óvirkar." : "Myndir fara ekki á þjón."}</span>
           </p>
         </div>
         {state.warning ? (
           <div className="storage-warning" role="alert">
             <TriangleAlert size={18} aria-hidden="true" />
             <p>{state.warning}</p>
-            {state.status === "error" && pathname.endsWith("/forskodun") ? (
+            {mode === "demo" && state.status === "error" && pathname.endsWith("/forskodun") ? (
               <Link className="text-link" href={`${pathname.slice(0, -"forskodun".length)}yfirferd#report-preview-entry`}>Aftur í yfirferð til að reyna vistun aftur</Link>
             ) : state.status === "error" ? (
               <button
@@ -128,6 +129,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             ) : null}
           </div>
         ) : null}
+        {mode === "cloud" ? <C1Panel /> : null}
         <main id="main" tabIndex={-1} className="main-content">
           {children}
         </main>
@@ -136,7 +138,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <span>Tilbúin gögn · Enginn frágangur eða boð</span>
         </footer>
       </div>
-      {showHelp ? (
+      {showHelp && mode === "cloud" ? <ContextDialog title="Um staðbundna C1-prófun" onClose={() => setShowHelp(false)}><p>Prófaðu aðeins með tilbúnum gögnum. Texti og svör vistast í staðbundnum gagnagrunni þegar vistun er staðfest. Fylgstu með vistunarstöðunni.</p><p>Myndir, tengdar skoðanir og deiling eru óvirk. Þetta er verkfræðiprófun, ekki framleiðsluþjónusta.</p></ContextDialog> : showHelp ? (
         <ContextDialog title="Um sýniham" onClose={() => setShowHelp(false)}>
           <p>
             Prófaðu skráningu með tilbúnum gögnum. Texti, rými og svör vistast í

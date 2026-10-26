@@ -1,0 +1,20 @@
+{
+  "capturedAt": "2026-10-24T16:37:04.752Z",
+  "postgres_version": "17.6",
+  "migration_versions": [
+    "20261024000100"
+  ],
+  "saved_inspections": 73,
+  "executor_direct_update": false,
+  "anonymous_select": false,
+  "public_configuration_key_role": "anon",
+  "private_executor_material_in_loaded_browser_assets": false,
+  "viewport_screenshots": [
+    320,
+    360,
+    390,
+    768,
+    1440
+  ],
+  "hosted_project_used": false
+}

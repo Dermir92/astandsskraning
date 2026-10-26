@@ -1,0 +1,118 @@
+{
+  "original_meter_desktop": {
+    "trace": "artifacts\\c1-review-revisions\\regression-standard-output\\meter-readings-capture-met-f44b5-on-and-work-with-zero-rooms-desktop\\trace.zip",
+    "route_changes_requested": [
+      {
+        "time": 344909.105,
+        "params": {
+          "expression": "url => history.pushState(null, \"\", url)",
+          "isFunction": true,
+          "arg": {
+            "value": {
+              "s": "/skyrslur/meter-case/skraning?rymi=legacy-room&atridi=walls"
+            },
+            "handles": []
+          }
+        }
+      },
+      {
+        "time": 344929.442,
+        "params": {
+          "expression": "url => history.pushState(null, \"\", url)",
+          "isFunction": true,
+          "arg": {
+            "value": {
+              "s": "/skyrslur/meter-case/skraning?maelar=rafmagn&maelaReitur=unit&fra=yfirferd"
+            },
+            "handles": []
+          }
+        }
+      }
+    ],
+    "observed_url_transitions": [
+      {
+        "time": 342529.506,
+        "url": "about:blank"
+      },
+      {
+        "time": 343249.622,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/yfirferd"
+      },
+      {
+        "time": 344728.576,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?maelar=rafmagn&maelaReitur=unit&fra=yfirferd"
+      },
+      {
+        "time": 344796.824,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/yfirferd"
+      },
+      {
+        "time": 344890.367,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?maelar=rafmagn&maelaReitur=unit&fra=yfirferd"
+      },
+      {
+        "time": 344927.575,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?rymi=legacy-room&atridi=walls"
+      }
+    ],
+    "final_url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?rymi=legacy-room&atridi=walls"
+  },
+  "reproduced_meter_desktop": {
+    "trace": "artifacts\\c1-final-regression\\affected-before-output\\meter-readings-capture-met-f44b5-on-and-work-with-zero-rooms-desktop\\trace.zip",
+    "route_changes_requested": [
+      {
+        "time": 13407.577,
+        "params": {
+          "expression": "url => history.pushState(null, \"\", url)",
+          "isFunction": true,
+          "arg": {
+            "value": {
+              "s": "/skyrslur/meter-case/skraning?rymi=legacy-room&atridi=walls"
+            },
+            "handles": []
+          }
+        }
+      },
+      {
+        "time": 13447.187,
+        "params": {
+          "expression": "url => history.pushState(null, \"\", url)",
+          "isFunction": true,
+          "arg": {
+            "value": {
+              "s": "/skyrslur/meter-case/skraning?maelar=rafmagn&maelaReitur=unit&fra=yfirferd"
+            },
+            "handles": []
+          }
+        }
+      }
+    ],
+    "observed_url_transitions": [
+      {
+        "time": 8509.561,
+        "url": "about:blank"
+      },
+      {
+        "time": 11298.313,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/yfirferd"
+      },
+      {
+        "time": 13055.89,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?maelar=rafmagn&maelaReitur=unit&fra=yfirferd"
+      },
+      {
+        "time": 13210.79,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/yfirferd"
+      },
+      {
+        "time": 13385.217,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?maelar=rafmagn&maelaReitur=unit&fra=yfirferd"
+      },
+      {
+        "time": 13443.988,
+        "url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?rymi=legacy-room&atridi=walls"
+      }
+    ],
+    "final_url": "http://127.0.0.1:3000/skyrslur/meter-case/skraning?rymi=legacy-room&atridi=walls"
+  }
+}

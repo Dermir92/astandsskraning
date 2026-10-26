@@ -66,7 +66,7 @@ test("failed heating writes keep pending data, unrelated reports and extensions 
 test("existing item photo associations survive heating edits and client navigation; reload remains session-only",async({page})=>{
   await seed(page,heatingReport(triedHeating()));await row(page).getByRole('button',{name:'Loka atriði',exact:true}).click();await page.locator('[data-item="walls"] .checklist-toggle').click();
   const bytes=await page.evaluate(()=>{const canvas=document.createElement('canvas');canvas.width=100;canvas.height=100;return canvas.toDataURL('image/png').split(',')[1];});
-  await page.getByLabel('Myndir við atriði: velja myndir',{exact:true}).setInputFiles({name:'synthetic-heating-regression.png',mimeType:'image/png',buffer:Buffer.from(bytes,'base64')});await expect(page.locator('.photo-preview[aria-label="Myndir við atriði"] .photo-actions > span')).toContainText('1/8');
+  const chooser=page.waitForEvent('filechooser');await page.getByLabel('Myndir við atriði: velja myndir',{exact:true}).click();await (await chooser).setFiles({name:'synthetic-heating-regression.png',mimeType:'image/png',buffer:Buffer.from(bytes,'base64')});await expect(page.locator('.photo-preview[aria-label="Myndir við atriði"] .photo-actions > span')).toContainText('1/8');
   await row(page).locator('.checklist-toggle').click();await page.getByLabel('Athugasemd um hita',{exact:true}).fill('Sýni');await review(page);await expect(page.getByRole('button',{name:/Forskoða Stofa · Veggir, mynd 1 af 1/})).toBeVisible();await page.reload();await expect(page.getByRole('button',{name:/Forskoða Stofa · Veggir/})).toHaveCount(0);
 });
 test("new report and new rooms use the new template while an existing room stays unchanged",async({page})=>{

@@ -1,25 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { InspectionPositions, inspectionHref, missingAnswers, navigationTargetId, resolveInspection, reviewHref, reviewOrigin, type InspectionPosition, type PositionEntry } from "@/lib/inspection-navigation";
 import type { Report } from "@/lib/model";
+import { useDemo } from "./demo-provider";
 
 const EMPTY: Record<string, PositionEntry> = {};
-let browserPositions: InspectionPositions | undefined;
-function positions() {
+const browserPositions = new Map<string, InspectionPositions>();
+function positions(scope = "") {
   // Never create mutable per-user state on the server.
-  return browserPositions ??= new InspectionPositions(() => window.localStorage);
+  let value = browserPositions.get(scope);
+  if (!value) {
+    value = new InspectionPositions(() => ({
+      getItem: key => window.localStorage.getItem(`${scope}${key}`),
+      setItem: (key, raw) => window.localStorage.setItem(`${scope}${key}`, raw),
+    }));
+    browserPositions.set(scope, value);
+  }
+  return value;
 }
-const subscribe = (listener: () => void) => positions().subscribe(listener);
-const snapshot = () => positions().getSnapshot();
 const serverSnapshot = () => EMPTY;
 
 export function useInspectionPositions(reports: Report[], enabled: boolean) {
+  const { navigationScope: scope } = useDemo();
+  const subscribe = useCallback((listener: () => void) => positions(scope).subscribe(listener), [scope]);
+  const snapshot = useCallback(() => positions(scope).getSnapshot(), [scope]);
   const entries = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
   useEffect(() => {
-    if (enabled) reports.forEach(report => positions().load(report.id));
-  }, [reports, enabled]);
+    if (enabled) reports.forEach(report => positions(scope).load(report.id));
+  }, [reports, enabled, scope]);
   return entries;
 }
 
@@ -48,6 +58,7 @@ function inspectionFocus(root: HTMLElement | null, key?: string) {
 }
 
 export function useInspectionNavigation(report: Report, canRemember: boolean, fireCorrection = false) {
+  const { navigationScope: scope } = useDemo();
   const router = useRouter();
   const query = useSearchParams().toString();
   const entries = useInspectionPositions([report], canRemember && !fireCorrection);
@@ -71,7 +82,13 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
   if (!fireCorrection && ready && destination.invalid && !notice) setNotice("Staðsetningin fannst ekki lengur. Tiltækt rými er opið.");
 
   useEffect(() => {
-    if (fireCorrection || !ready || !destination.position) return;
+    // Native history updates before the router's query snapshot catches up.
+    // A stale render must not replace a newer item selection or remember it away.
+    if (new URLSearchParams(window.location.search).toString() !== query) return;
+    // Property corrections leave room navigation, even when the next room URL
+    // is identical to its previous visit and must receive focus again.
+    if (fireCorrection) { lastDestination.current = ""; return; }
+    if (!ready || !destination.position) return;
     const signature = `${query}|${destination.position.roomId}|${destination.position.itemId}`;
     if (lastDestination.current === signature) return;
     const first = !mounted.current;
@@ -82,7 +99,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
     }
     const nextQuery = canonical.split("?")[1] ?? "";
     lastDestination.current = `${nextQuery}|${destination.position.roomId}|${destination.position.itemId}`;
-    if (canRemember) positions().remember(report, destination.position);
+    if (canRemember) positions(scope).remember(report, destination.position);
     const local = localQuery.current === query;
     localQuery.current = null;
     const pageNavigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
@@ -100,7 +117,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
       const target = inspectionFocus(root, missing?.key);
       reveal(target ?? null, !wasReload);
     });
-  }, [ready, query, canonical, destination, canRemember, report, fireCorrection]);
+  }, [ready, query, canonical, destination, canRemember, report, fireCorrection, scope]);
 
   useEffect(() => {
     if (fireCorrection || !focusRequest || focusRequest.query !== query || focusedRequest.current === focusRequest.token) return;
@@ -120,7 +137,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
     const nextQuery = href.split("?")[1] ?? "";
     localQuery.current = nextQuery;
     setEditor({ query: nextQuery, itemId: open ? position.itemId : null });
-    if (canRemember) positions().remember(report, position);
+    if (canRemember) positions(scope).remember(report, position);
     if (`${window.location.pathname}${window.location.search}` !== href) window.history.replaceState(null, "", href);
     if (focus) setFocusRequest({ query: nextQuery, position, token: ++requestSequence.current });
   }

@@ -13,7 +13,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
   context: string;
   item?: boolean;
 }) {
-  const { state, store } = useDemo();
+  const { state, store, mode } = useDemo();
   const [error, setError] = useState("");
   const [pending, setPending] = useState(0);
   const [announcement, setAnnouncement] = useState("");
@@ -21,7 +21,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
   const titleRef = useRef<HTMLSpanElement>(null);
   const inputId = useId();
   const photos = state.photos[photoKey] ?? [];
-  const locked = state.status === "loading" || state.status === "read-error";
+  const locked = mode === "cloud" || state.status === "loading" || state.status === "read-error";
   const addPhotos = async (files: FileList | null) => {
     if (!files?.length || locked) return;
     const selected = Array.from(files);
@@ -64,6 +64,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
       setPending(count => count - 1);
     }
   };
+  if (mode === "cloud") return <section className={`photo-preview ${styles.capture}`} aria-label={title}><p><strong>Myndir eru óvirkar í C1.</strong> Þessi prófun vistar aðeins texta og svör. Engin myndageymsla eða tímabundin myndaforskoðun er virk hér.</p></section>;
   return <section className={`photo-preview ${styles.capture} ${detail ? "photo-preview-detail" : ""}`} aria-label={title} aria-busy={pending > 0}>
     <div className="photo-heading">
       <span className="photo-title" ref={titleRef} tabIndex={-1}><Camera size={18} aria-hidden="true" />{title}</span>

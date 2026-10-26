@@ -1,0 +1,512 @@
+{
+  "captured": "2026-10-25T21:57:10.697042+00:00",
+  "files": {
+    "eslint.config.mjs": {
+      "sha256": "a70e745f2244fad2e77e4f3daf6161ce87e2db6d6a935bc09d50b5e4dd259a7d",
+      "modified_utc": "2026-10-24T15:51:56.360127+00:00"
+    },
+    "next.config.ts": {
+      "sha256": "f2b5a6d147509c5c6a70138fe4634d4d2ffefe4b353ea49f9d51cc1509f38c79",
+      "modified_utc": "2026-10-24T15:41:12.503382+00:00"
+    },
+    "package-lock.json": {
+      "sha256": "5c1dc8222d2878b8add7cb41691fba377a4c01a4d708386a4d86d40e8ffe6bee",
+      "modified_utc": "2026-10-25T20:07:36.453768+00:00"
+    },
+    "package.json": {
+      "sha256": "bf76bb99db300d0dd8883ffba72ad56e58a050ef2609581758261e4cb4680efc",
+      "modified_utc": "2026-10-25T20:07:36.117392+00:00"
+    },
+    "playwright.c1.config.ts": {
+      "sha256": "37ec20ab7117771f560a32b09c5f3f5c8b7e1b540052e556fcb1540ae4e2273d",
+      "modified_utc": "2026-10-24T16:04:04.342052+00:00"
+    },
+    "playwright.config.ts": {
+      "sha256": "33dff91e0a348c6b71e761d71750d7e787dfb3781db9556c90ce6f1d2b30c077",
+      "modified_utc": "2026-10-24T15:49:52.850825+00:00"
+    },
+    "public/concepts/synthetic-wall-damage.png": {
+      "sha256": "e0e1256e79a572b392a2e09769bb0e6e3b8902c1d1e637fbac605756ed26901e",
+      "modified_utc": "2026-10-19T08:21:29.173125+00:00"
+    },
+    "scripts/c1-local.mjs": {
+      "sha256": "19589aa0dfea1ab930572e55e0e6a9bb0891f3144ccfbf11a630fba30d66c718",
+      "modified_utc": "2026-10-24T16:18:06.114377+00:00"
+    },
+    "src/app/api/c1/config/route.ts": {
+      "sha256": "48a1520e2893fe4173a32a69487836f58e327e6179014dd2ef17fc8c59a1eb9d",
+      "modified_utc": "2026-10-24T15:39:06.864260+00:00"
+    },
+    "src/app/api/c1/inspections/route.ts": {
+      "sha256": "a2e42a7d03c4d6ad62c311ad7077fb74b34b53b7c0f1bbc96a196c4f7fd63309",
+      "modified_utc": "2026-10-24T16:01:29.430018+00:00"
+    },
+    "src/app/globals.css": {
+      "sha256": "335230c77a64309cfed9b7c1590a04337ffe4753aea16528be9f9f4c19834951",
+      "modified_utc": "2026-10-19T08:21:29.178720+00:00"
+    },
+    "src/app/hugmyndir/a/page.tsx": {
+      "sha256": "7e91fc5ae56c39e1e8b4936226b15a48f64d06c0821e3f039261f863c85c189c",
+      "modified_utc": "2026-10-19T08:21:29.179271+00:00"
+    },
+    "src/app/hugmyndir/b/page.tsx": {
+      "sha256": "6b6005f514f0049ab8546938e7e4e99d1fb5c71267a094d72b1a189a3a22720a",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/app/hugmyndir/page.tsx": {
+      "sha256": "248ee6020ecf270501f963fc95917b0116875b6b0bdbd4acd70253cd2cb9dd59",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/app/icon.svg": {
+      "sha256": "1d5647afc86eb3050893a3b307b98c858098bb49bbb05fa178e7f40afd8ebf66",
+      "modified_utc": "2026-10-14T14:47:52.401693+00:00"
+    },
+    "src/app/layout.tsx": {
+      "sha256": "7b2945640881ad387ce10231daee165b4a03d987be727bc87656830707f97613",
+      "modified_utc": "2026-10-24T15:46:33.026320+00:00"
+    },
+    "src/app/not-found.tsx": {
+      "sha256": "8462086fd15e6cb654148a56f38ff5f9055fb5d1974e7ab4e966ed8f0dd499f7",
+      "modified_utc": "2026-10-14T14:31:35.072829+00:00"
+    },
+    "src/app/page.tsx": {
+      "sha256": "64422ae734509203d1e56743873f3833c5c15abc54683d8497629d871dc617ea",
+      "modified_utc": "2026-10-14T14:31:35.078516+00:00"
+    },
+    "src/app/skyrslur/[id]/forskodun/page.tsx": {
+      "sha256": "73b372f13d1cd14e8f2a547507c176e62e11f17842a4302c66a7e826b44e0894",
+      "modified_utc": "2026-10-20T19:35:10.048409+00:00"
+    },
+    "src/app/skyrslur/[id]/rymi/page.tsx": {
+      "sha256": "b1986eb9f90ff2dabe9285856709bba892144f8d01f09558e6c3f220a653ecbc",
+      "modified_utc": "2026-10-14T14:31:35.102881+00:00"
+    },
+    "src/app/skyrslur/[id]/skraning/page.tsx": {
+      "sha256": "bcad761b428a8db4f794a484a711b8755827ac30e62c07f68fa756fed8961db0",
+      "modified_utc": "2026-10-14T14:31:35.116655+00:00"
+    },
+    "src/app/skyrslur/[id]/upplysingar/page.tsx": {
+      "sha256": "3dd92bbbbbd1a42002fefa228fd1c15f75abfbb7af435fc0ea9a8d8096ba869d",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/app/skyrslur/[id]/yfirferd/page.tsx": {
+      "sha256": "b34003a644c1498052cdb1800286d8bb18341d33f10f6279c994a0d88c6980e1",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/app/skyrslur/ny/page.tsx": {
+      "sha256": "bec4f7571a6f6968bf0901f790885a20596fa2246f34798175dc8f32b491e431",
+      "modified_utc": "2026-10-14T14:31:35.155236+00:00"
+    },
+    "src/components/app-shell.tsx": {
+      "sha256": "8803ee3663b55ec1b48b0d5b77cd712cb993faeba6980fcd72a2817683042d28",
+      "modified_utc": "2026-10-25T20:08:31.350478+00:00"
+    },
+    "src/components/cloud/c1-root.tsx": {
+      "sha256": "59f4b4f42778690a8ace416f5829a8a66373fb29bb92092f38fbf074e6d5e0ac",
+      "modified_utc": "2026-10-25T20:08:48.926713+00:00"
+    },
+    "src/components/cloud/c1.module.css": {
+      "sha256": "867db5bb02b9cab2234804f663541f59d30dd1a035d04942b96d09155a97abb0",
+      "modified_utc": "2026-10-24T15:46:33.023139+00:00"
+    },
+    "src/components/context-dialog.tsx": {
+      "sha256": "cf825bb639573045c0db4338c43b232f5325122aa39b81faef4ffdb95805192f",
+      "modified_utc": "2026-10-19T08:51:15.120526+00:00"
+    },
+    "src/components/core-capture-summary.tsx": {
+      "sha256": "3302dde5077f8042047b6b9732f8b34aece5316d01aa150844618b4136415426",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/components/demo-provider.tsx": {
+      "sha256": "5657e748cef5a5e3e9ee38f5dbc4c3b9e6f633496a4f55f448a4d35f6338a88a",
+      "modified_utc": "2026-10-25T20:08:31.346254+00:00"
+    },
+    "src/components/evidence-gallery.tsx": {
+      "sha256": "444920768bc750def3de8969379b270eaf5adba95f92e8d29599ad352a8b4f3b",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/components/evidence.module.css": {
+      "sha256": "ca4445eeef202f5fe358345dd5f6c85e6f1541700a0e924a602ecff2b73d868f",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/components/fire-observation-fields.tsx": {
+      "sha256": "9075af0d053982687d8a4713bbed6d0c4b5e14a096adecd3ee0221f8059e19b0",
+      "modified_utc": "2026-10-19T08:51:15.120526+00:00"
+    },
+    "src/components/fire-observation-summary.tsx": {
+      "sha256": "18f3923cfcbf1fa06a8b231abeb2d1e850c3b85f41209f9cef96f940c512d3a4",
+      "modified_utc": "2026-10-19T08:51:15.122534+00:00"
+    },
+    "src/components/fire-observations.module.css": {
+      "sha256": "1eccd4a6757d655cd8c5fc637edf3aba6e2562eee72284057e05768aed1e833a",
+      "modified_utc": "2026-10-19T08:51:15.122534+00:00"
+    },
+    "src/components/form-field.tsx": {
+      "sha256": "2fa595704914a3e1e8da3078059648435bb60ada7a398dcd39cfcec6e189c17b",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/components/heating-observation.tsx": {
+      "sha256": "e512ba115d6b398943c65cf0d6bd0135048bd61183ee35d93f0068027b8cfe9b",
+      "modified_utc": "2026-10-21T10:49:02.073858+00:00"
+    },
+    "src/components/heating.module.css": {
+      "sha256": "af467096e4f560c9ea5c75bffc8a26e9fd3bf9f1c60f2d568032633486f6137c",
+      "modified_utc": "2026-10-19T13:48:36.125471+00:00"
+    },
+    "src/components/inspection-checklist.module.css": {
+      "sha256": "8a03fe6aab29ea7250475977a699218ea052262655d9fff83867ef42c08bcc2b",
+      "modified_utc": "2026-10-19T08:21:29.181396+00:00"
+    },
+    "src/components/inspection-comparison.module.css": {
+      "sha256": "679cd3daa20b3f0e1161cd9b40a4d38033bf6fcd32c3fba2fbae1e1a5ec083d3",
+      "modified_utc": "2026-10-21T10:49:02.073858+00:00"
+    },
+    "src/components/inspection-comparison.tsx": {
+      "sha256": "c0c5bcd5fbbfc018cb5366b5570a690b913bcf2586a93b1670bbdac1fa63fb3f",
+      "modified_utc": "2026-10-24T15:46:55.381449+00:00"
+    },
+    "src/components/inspection-concepts/concept-model.ts": {
+      "sha256": "97cd00e96621312f887e053bd89a4330d38e900dc195c477f65603143e6041fc",
+      "modified_utc": "2026-10-19T08:21:29.189430+00:00"
+    },
+    "src/components/inspection-concepts/concept-workbench.tsx": {
+      "sha256": "911596c6903f20152a52975c2a9b84480a7518e5a0089e3d4609cca1dcb5818a",
+      "modified_utc": "2026-10-19T08:21:29.189942+00:00"
+    },
+    "src/components/inspection-concepts/concept.module.css": {
+      "sha256": "809f8e77cfe4d497cae94d9964e0293b00a8100c839a353a3e7b32e45fa495cf",
+      "modified_utc": "2026-10-19T08:21:29.189942+00:00"
+    },
+    "src/components/meter-readings.module.css": {
+      "sha256": "6b4e1d63c5610820416d0146001c56d4f1b57cb5da279830781b01f1ed359ce6",
+      "modified_utc": "2026-10-19T16:17:32.605743+00:00"
+    },
+    "src/components/meter-readings.tsx": {
+      "sha256": "12faa8819b5bfa81b4985f0601acc0b4ebaa094a453506d62478c93af0890356",
+      "modified_utc": "2026-10-20T09:26:08.330261+00:00"
+    },
+    "src/components/observation-editor.tsx": {
+      "sha256": "1975b470b6f7655b5309b35eca54cd8a6c4b5959f545cc34becf0fc62e95ab4d",
+      "modified_utc": "2026-10-21T10:49:02.075365+00:00"
+    },
+    "src/components/photo-preview.tsx": {
+      "sha256": "743be46b3ec47d90b26cad8094241996112dc6ec09bc7eea4249e09049988494",
+      "modified_utc": "2026-10-24T15:47:30.740733+00:00"
+    },
+    "src/components/rental-information-fields.tsx": {
+      "sha256": "1ea6bf28c22021c745e9976e44b4606218ba60598ccb116666b740d1a268c73a",
+      "modified_utc": "2026-10-19T08:21:29.193764+00:00"
+    },
+    "src/components/rental-information-summary.tsx": {
+      "sha256": "588e9ce47d1ace545c548253b56edfa426e56374aec8ebefc38e0f0a41320fd5",
+      "modified_utc": "2026-10-19T08:21:29.193764+00:00"
+    },
+    "src/components/report-context.tsx": {
+      "sha256": "f1c9e4473f068aa3964b8f4569f76b7e6edf8ae523dbe8b80a00ebf80910addc",
+      "modified_utc": "2026-10-24T15:47:30.746645+00:00"
+    },
+    "src/components/report-overview.tsx": {
+      "sha256": "99214c7c246cace9d6835712cd0a8f034c20e0635798a89065daea0ec25b8f17",
+      "modified_utc": "2026-10-19T13:48:36.125471+00:00"
+    },
+    "src/components/report-preview-entry.tsx": {
+      "sha256": "e8b0cb0f9b8a820f9f344fcff61e86e4ea8ab952b44f5521491e87c459c0f8ce",
+      "modified_utc": "2026-10-20T19:35:10.048409+00:00"
+    },
+    "src/components/report-preview.module.css": {
+      "sha256": "6d971620c48dadfd2ff646f59c0938d324bd27f7333b45d1157b83458dbf945d",
+      "modified_utc": "2026-10-20T19:35:10.053033+00:00"
+    },
+    "src/components/report-preview.tsx": {
+      "sha256": "9875b3e1e41ffc7709bab708e3a088cd4dc756bbaf4905b142a4f5a272b9a08e",
+      "modified_utc": "2026-10-21T10:49:02.076373+00:00"
+    },
+    "src/components/screens/details-screen.tsx": {
+      "sha256": "3b4016a6b5ed5ee55fe1abf4d064146f4e5e5e5814ba48543b695e36785cb6ba",
+      "modified_utc": "2026-10-24T15:46:55.379437+00:00"
+    },
+    "src/components/screens/inspection-screen.tsx": {
+      "sha256": "ea44a55be677d0305b91c5820b5721fa56f36ff5037aecdaf29bdeaaf07eb187",
+      "modified_utc": "2026-10-21T10:49:02.076882+00:00"
+    },
+    "src/components/screens/new-report-screen.tsx": {
+      "sha256": "d7dfa1656dab1fe6fc96acb54e40c82a96941262a567269f3ec2b7cb7694951d",
+      "modified_utc": "2026-10-16T08:19:30.491650+00:00"
+    },
+    "src/components/screens/report-preview-screen.tsx": {
+      "sha256": "4e85704d68d32d3ee483b765d8d11b28219e7799e9395637d66584c747c34bb3",
+      "modified_utc": "2026-10-21T10:49:02.077884+00:00"
+    },
+    "src/components/screens/reports-screen.tsx": {
+      "sha256": "e4e2f4026faebead7c63dc25c9a98d04b7edfb6b9e2301b477568cd6a35fcd72",
+      "modified_utc": "2026-10-19T08:21:29.196879+00:00"
+    },
+    "src/components/screens/review-screen.tsx": {
+      "sha256": "e14c64fbff767fb5f403daa5b6876e782c3a187f6bbc3b8a8e81cabbfe868d29",
+      "modified_utc": "2026-10-21T10:49:02.077884+00:00"
+    },
+    "src/components/screens/rooms-screen.tsx": {
+      "sha256": "d8d17df600fd0cb05159cc989dfee374ed24385dbebed7df47d2b06a52d72198",
+      "modified_utc": "2026-10-19T13:48:36.127479+00:00"
+    },
+    "src/components/screens/sample-summary.tsx": {
+      "sha256": "3e48bd56b942d8ca1f7491086247d0c2b1be7211622df6571873b2967d438091",
+      "modified_utc": "2026-10-14T14:31:35.803209+00:00"
+    },
+    "src/components/ui.tsx": {
+      "sha256": "9e0dceae11739693df482410928e3ae982b2f938cd8c71a3dafb2efbc1ef4b80",
+      "modified_utc": "2026-10-14T14:31:35.834115+00:00"
+    },
+    "src/components/use-details-correction.ts": {
+      "sha256": "1340abc2da3d7c8bf640d7fc7063caad7bcf3298dd690340fd78340e3fadf3cc",
+      "modified_utc": "2026-10-19T08:21:29.198736+00:00"
+    },
+    "src/components/use-fire-correction.ts": {
+      "sha256": "1a5c5c3fd947c0dc088411a43792e291f866998be78facddad9792a9f46923de",
+      "modified_utc": "2026-10-19T08:51:15.122534+00:00"
+    },
+    "src/components/use-inspection-navigation.ts": {
+      "sha256": "6b97c2175ae81e0b22137f25846dc390bd927c7c218d45007a14f0f7bdf8b34c",
+      "modified_utc": "2026-10-24T15:47:30.745560+00:00"
+    },
+    "src/components/use-meter-correction.ts": {
+      "sha256": "15020dae88cbf1800559dfab6118b0bc2ae793a734b5183823fd45796a4ac6f1",
+      "modified_utc": "2026-10-19T15:51:39.458172+00:00"
+    },
+    "src/lib/cloud/contracts.ts": {
+      "sha256": "fe72c7ea6454a798d432d2c67310c2da7dbc0c463ed458ec108986eb65193a8b",
+      "modified_utc": "2026-10-25T20:08:31.341072+00:00"
+    },
+    "src/lib/cloud/server.ts": {
+      "sha256": "9d3bb3c46a1d2d7bc3f50f39a5e42072fdc69d3ee6e1bd8b8684f06ffe2ac978",
+      "modified_utc": "2026-10-24T16:05:41.258901+00:00"
+    },
+    "src/lib/cloud/store.ts": {
+      "sha256": "49379b4dcf353d6a65a5e154b5932df853ac1b401ebb32410b11c1c6da072fe3",
+      "modified_utc": "2026-10-25T20:08:31.344940+00:00"
+    },
+    "src/lib/fire-navigation.ts": {
+      "sha256": "38646b7103e65dc04cab2df909f046cfd3f8823a65c6442727f66c9c94496fde",
+      "modified_utc": "2026-10-19T08:51:15.122534+00:00"
+    },
+    "src/lib/fire-observations.ts": {
+      "sha256": "f85386904fccf06b5c3916c8b8a70d1a82126900ecfaf3f2f595d1e3f315947d",
+      "modified_utc": "2026-10-19T08:51:15.126929+00:00"
+    },
+    "src/lib/fixtures.ts": {
+      "sha256": "45c0fedd20e711ae331c7cf136ea2419bd41e698a01aac085b8227544b99c3e1",
+      "modified_utc": "2026-10-14T14:31:35.861792+00:00"
+    },
+    "src/lib/heating.ts": {
+      "sha256": "1f3a32472a1c8909dbc04b23194e7870b39332fe5ee8202f314bf61440678994",
+      "modified_utc": "2026-10-19T13:48:36.129486+00:00"
+    },
+    "src/lib/inspection-comparison.ts": {
+      "sha256": "d418c955cf866005deda3dace26fc2da3f89d29b3cf683478a9cc4e31d812d6a",
+      "modified_utc": "2026-10-21T10:49:02.078885+00:00"
+    },
+    "src/lib/inspection-evidence.ts": {
+      "sha256": "7830df5eba5fce5e25d0bda13bc90cf6cca688bbd37556a0b7b8ed1f702c295b",
+      "modified_utc": "2026-10-19T08:21:29.200486+00:00"
+    },
+    "src/lib/inspection-navigation.ts": {
+      "sha256": "7e0442427391f0e46143a0d800490e72b0aa8e2c5ec82a7facf3de5b5eecaa24",
+      "modified_utc": "2026-10-19T13:48:36.129486+00:00"
+    },
+    "src/lib/locale/is.ts": {
+      "sha256": "3f23977fbd547ed9a858583f892694f77c5ec2e79fca8686e4042d56f5e8f91c",
+      "modified_utc": "2026-10-20T19:35:10.056743+00:00"
+    },
+    "src/lib/meter-navigation.ts": {
+      "sha256": "bdccd0a2497ba2bc5aeb3d54dfdce3f7da5e39bb948a3c7d229af09ea0da5b8a",
+      "modified_utc": "2026-10-19T15:28:31.846201+00:00"
+    },
+    "src/lib/meter-readings.ts": {
+      "sha256": "3a174854db36f4e37e6dde34c273909df079e449c458c495a15207650085bb3f",
+      "modified_utc": "2026-10-20T09:20:31.169044+00:00"
+    },
+    "src/lib/model.ts": {
+      "sha256": "8e2f6bd9dba10668f04c575af7197834109670cadf5958ec8470606b2119fe20",
+      "modified_utc": "2026-10-21T10:49:02.078885+00:00"
+    },
+    "src/lib/rental-information.ts": {
+      "sha256": "764b4f22983922478ac2f0edc9ce43ca0b82b9fd7f23e8a329bd3cc1db44c2d5",
+      "modified_utc": "2026-10-19T08:21:29.203320+00:00"
+    },
+    "src/lib/report-preview.ts": {
+      "sha256": "e2039627d5c1438578aa4710f95af84ccd4f6853f1527c105810e4a4fe55a2e2",
+      "modified_utc": "2026-10-20T19:35:10.058754+00:00"
+    },
+    "supabase/config.toml": {
+      "sha256": "f89ccadb84b05b7fe920a2cf63acada8d9f81d225f924283e024aa80bc22845c",
+      "modified_utc": "2026-10-24T15:55:51.662733+00:00"
+    },
+    "supabase/migrations/20261024000100_c1_owner_inspections.sql": {
+      "sha256": "6d372060e7ba6cbd82e3d83890273da7b238394c8c7236c8231fc04b609383c8",
+      "modified_utc": "2026-10-24T16:05:41.258901+00:00"
+    },
+    "tests/c1/database.spec.ts": {
+      "sha256": "bb3b418de216c7872f07a964d53721762c7759089002ea2cfffc745ef8193970",
+      "modified_utc": "2026-10-25T20:09:27.768580+00:00"
+    },
+    "tests/c1/helpers.ts": {
+      "sha256": "7b43db02437316ce225304a39e52163b2dc61be4259ca3bb31aecca668f0cc1e",
+      "modified_utc": "2026-10-24T15:51:56.360127+00:00"
+    },
+    "tests/c1/store.spec.ts": {
+      "sha256": "04bd268e3e8a31f9a2e4d1d090f3e190aad5350b0cc863f6d0e61a1cb66f7fc5",
+      "modified_utc": "2026-10-25T20:07:26.232983+00:00"
+    },
+    "tests/c1/ui.spec.ts": {
+      "sha256": "5b2ee09257b3325e27828e19cb362efdde7789f0e72f5d66154265613ecbf774",
+      "modified_utc": "2026-10-25T20:18:19.141632+00:00"
+    },
+    "tests/c1-demo-isolation.spec.ts": {
+      "sha256": "19b0b81261f5a350ebf59c0096fa0d8bfba0bcd0aa552e4444702f33ae12f0ec",
+      "modified_utc": "2026-10-24T15:56:59.330736+00:00"
+    },
+    "tests/contrast-helpers.ts": {
+      "sha256": "21c3c1b963914819c84e64607a931512a400c2e5b0b545c3b709d59b22e63817",
+      "modified_utc": "2026-10-14T17:49:03.636086+00:00"
+    },
+    "tests/fire-observations-capture.spec.ts": {
+      "sha256": "fb9d6e754778715b5eed60423e33157268644ffea6e902477695cc0e84efd0bc",
+      "modified_utc": "2026-10-25T20:45:30.038296+00:00"
+    },
+    "tests/fire-observations-compatibility.spec.ts": {
+      "sha256": "aad72927fc5a6583954ab67ad7412ee80467cdd41f5a01328114c9da338249a1",
+      "modified_utc": "2026-10-19T08:51:15.128935+00:00"
+    },
+    "tests/fire-observations-fixtures.ts": {
+      "sha256": "1e8475584d4059d7f6df4fe601091249efbdf90edda11682660477732d2959b4",
+      "modified_utc": "2026-10-19T08:51:15.128935+00:00"
+    },
+    "tests/heating-capture.spec.ts": {
+      "sha256": "b3e7dc6f2492ebe323641738e3007b04b8ef74a6eb75ec0d38e08874fd7fbc50",
+      "modified_utc": "2026-10-25T20:29:35.743581+00:00"
+    },
+    "tests/heating-compatibility.spec.ts": {
+      "sha256": "b23a69a4e68444c58a74c548a0e9f2e3795165359f4afc54e515758426340f0d",
+      "modified_utc": "2026-10-19T13:48:36.133500+00:00"
+    },
+    "tests/heating-fixtures.ts": {
+      "sha256": "091c68d0e301d20d3452b7057c82aee22d7f1dfd45d3bf715f92eff1ef234530",
+      "modified_utc": "2026-10-19T13:48:36.133500+00:00"
+    },
+    "tests/inspection-checklist-fixtures.ts": {
+      "sha256": "246d903c035cbbbc0b2a7a028ab173dc4f62ce0e5181233e65c068c953a3e3b5",
+      "modified_utc": "2026-10-16T10:57:55.816826+00:00"
+    },
+    "tests/inspection-checklist.spec.ts": {
+      "sha256": "c0242657bdbd56e5b3c02e51af573ee87caa639137f9e4b501dc4fa08ce4d98e",
+      "modified_utc": "2026-10-19T08:21:29.205357+00:00"
+    },
+    "tests/inspection-comparison-contract.spec.ts": {
+      "sha256": "c3b9d9ad8286c4a405fe270d20579a38312e6b5c64a8f25cb31e7d8fe388ed94",
+      "modified_utc": "2026-10-21T10:49:02.079885+00:00"
+    },
+    "tests/inspection-comparison-fixtures.ts": {
+      "sha256": "3c636a08ec7b88a5420dfa7eefe90e67f1f4cbbe0e1c429a5b8838e2c7957b19",
+      "modified_utc": "2026-10-21T10:49:02.079885+00:00"
+    },
+    "tests/inspection-comparison.spec.ts": {
+      "sha256": "37dac6866c8832c0a8315d8272a71d80859649771547587ed18a9f4cbb58f0b4",
+      "modified_utc": "2026-10-25T20:38:44.394728+00:00"
+    },
+    "tests/inspection-concepts.spec.ts": {
+      "sha256": "59e471e7d1a1146225f22487f001b30b2e3d84e263fb2362558f20c936847c3c",
+      "modified_utc": "2026-10-19T08:21:29.205357+00:00"
+    },
+    "tests/inspection-core-capture.spec.ts": {
+      "sha256": "fcba19ef9b6959d44560f80569cd9b9c2ee2ef4dc5b38abcc7626ab7593e81ec",
+      "modified_utc": "2026-10-19T08:21:29.205357+00:00"
+    },
+    "tests/inspection-core-compatibility.spec.ts": {
+      "sha256": "79bd2e36a11e2fc22b907f97c6b946098b590aa30e953e395a65491e46d48f61",
+      "modified_utc": "2026-10-19T08:21:29.205357+00:00"
+    },
+    "tests/inspection-core-fixtures.ts": {
+      "sha256": "3fbb470934a3f7815b5311d761eb1b739c5cb902666d198dc7c6eb386ab10b3f",
+      "modified_utc": "2026-10-19T08:21:29.207365+00:00"
+    },
+    "tests/inspection-evidence.spec.ts": {
+      "sha256": "5912b851903b4cca7aa0d8df9015121fbc14de694e30b080662639e3d8a3b45c",
+      "modified_utc": "2026-10-19T08:21:29.207365+00:00"
+    },
+    "tests/inspection-navigation.spec.ts": {
+      "sha256": "6dcb5837c9327f84f2a66dc314dce54c3899fd8724c0e9e59c7f0ca0d7134b50",
+      "modified_utc": "2026-10-25T21:53:30.915788+00:00"
+    },
+    "tests/local-data-safety.spec.ts": {
+      "sha256": "67a4a44ad6e7f7ca4c07d49013ee2de4f8bfefe712efdf1361a9d911f67d3413",
+      "modified_utc": "2026-10-16T10:57:55.818834+00:00"
+    },
+    "tests/meter-readings-capture.spec.ts": {
+      "sha256": "fd410668a99073d996c45ca7a6665b013b24663de828e8d305d6cc129485cfef",
+      "modified_utc": "2026-10-20T09:26:08.330261+00:00"
+    },
+    "tests/meter-readings-compatibility.spec.ts": {
+      "sha256": "c680ac2f97cf8a4cc4dc6977db35be20d52d14f48e1fc421df069ff95644c9a1",
+      "modified_utc": "2026-10-20T09:19:14.019780+00:00"
+    },
+    "tests/meter-readings-fixtures.ts": {
+      "sha256": "69b7acac1e61b99dbefaaa142e8df909c202904f0c97a5678cd0663b75e2958c",
+      "modified_utc": "2026-10-19T15:34:33.421505+00:00"
+    },
+    "tests/mobile-refinement.spec.ts": {
+      "sha256": "4353306c1c3cbb5fd174ef1f2668f22a05945a45bffdefd8e543731d4060cd70",
+      "modified_utc": "2026-10-14T18:49:41.648705+00:00"
+    },
+    "tests/prototype.spec.ts": {
+      "sha256": "28ddc55ac3f4e9d3dd06eb55de9047d1aa3198db49e409706212835f021c027a",
+      "modified_utc": "2026-10-25T21:54:55.734841+00:00"
+    },
+    "tests/readability.spec.ts": {
+      "sha256": "8597807dbdc642faab0865bf4b0c1b83caca7f53f4978152d53b79f4f278b284",
+      "modified_utc": "2026-10-16T10:57:55.818834+00:00"
+    },
+    "tests/rental-information-capture.spec.ts": {
+      "sha256": "ab431d2e02f8636cd138d2767967b34a5a446b8c9a36af3773dfdf9756ffc0d6",
+      "modified_utc": "2026-10-19T08:21:29.211566+00:00"
+    },
+    "tests/rental-information-compatibility.spec.ts": {
+      "sha256": "e0fe31f6a20748c31cb3f0f0a2a606891ef3c0f93535c7857f5f7646bd6db43c",
+      "modified_utc": "2026-10-19T08:21:29.212062+00:00"
+    },
+    "tests/rental-information-fixtures.ts": {
+      "sha256": "c4815510fe3c98a6403ed8e19c90e3e790aabd224f9eac22a07e0479c0962c07",
+      "modified_utc": "2026-10-19T08:21:29.212687+00:00"
+    },
+    "tests/report-list-helpers.ts": {
+      "sha256": "9994b7620dc7e1fcfc572f76e3b7e110ea8772bd3788b7533fbe3ca344039c15",
+      "modified_utc": "2026-10-25T21:53:30.915788+00:00"
+    },
+    "tests/report-preview-contract.spec.ts": {
+      "sha256": "bc8dc6776c7a04b8e5f27a8661668b501d386ecbc530240d474fbec67ee0e98c",
+      "modified_utc": "2026-10-20T19:35:10.058754+00:00"
+    },
+    "tests/report-preview-fixtures.ts": {
+      "sha256": "cdd1ae18c0ad14004a0c4e51845e765d2839f10709e450c06a7ffa3a8cd96acc",
+      "modified_utc": "2026-10-20T19:35:10.059979+00:00"
+    },
+    "tests/report-preview.spec.ts": {
+      "sha256": "ae197db436bb7b7ac1ed9f45146214259aadca2d70af7df24573da8097e58908",
+      "modified_utc": "2026-10-25T21:53:30.915788+00:00"
+    },
+    "tests/reports-shell.spec.ts": {
+      "sha256": "b28ade5262960ebc12ea921bcf6d0abb724d9179ff1ae50388f157ad52bdd6ab",
+      "modified_utc": "2026-10-19T08:21:29.213659+00:00"
+    },
+    "tests/ux-refinements.spec.ts": {
+      "sha256": "d0348dbfac458263a5f0da3fd997964bc8bfc65cc39deab8bf45491e024d0fdf",
+      "modified_utc": "2026-10-15T10:49:16.153364+00:00"
+    },
+    "tsconfig.json": {
+      "sha256": "b16423783ac0ef8c7b5f345d287379798c5b04ede22657fd4b486efa3214e97e",
+      "modified_utc": "2026-10-25T20:11:02.603240+00:00"
+    }
+  },
+  "timing": "During final suite execution; recorded file modification times must predate both final suite starts; hashes rechecked after tests and before packaging.",
+  "rechecked_after_tests": "2026-10-25T22:27:35.619024+00:00",
+  "verification": "All recorded hashes match final files; file modification times precede their applicable final suite starts. Documentation-only packaging changes follow testing."
+}

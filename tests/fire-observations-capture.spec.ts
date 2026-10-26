@@ -221,6 +221,9 @@ test("every group and row correction opens its ancestors after reload without wr
   for (const [groupId, field, rowId] of cases) {
     await page.goto(fireCorrectionHref(report.id, groupId, field, rowId));
     const element = page.locator(`[id="${fireFieldId(groupId, field, rowId)}"]`);
+    // The local report is hydrated after navigation. Wait for the target before
+    // deciding whether this field's focus target is a radio or its container.
+    await expect(element).toBeVisible();
     const checked = element.locator('input[type="radio"]:checked:not(:disabled)');
     const input = await checked.count() ? checked : element.locator('input[type="radio"]:not(:disabled)').first();
     if (await input.count()) await expect(input).toBeFocused(); else await expect(element).toBeFocused();
