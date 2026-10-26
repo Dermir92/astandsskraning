@@ -1,0 +1,388 @@
+{
+  "date": "2026-10-25",
+  "baseline": "d44b8e79c76357512c606f79d0111e9d47b0ad1a",
+  "head": "d44b8e79c76357512c606f79d0111e9d47b0ad1a",
+  "changes_uncommitted": true,
+  "results": {
+    "focused": {
+      "passed": 27
+    },
+    "c1": {
+      "passed": 77
+    },
+    "regression": {
+      "passed": 922,
+      "skipped": 24,
+      "failed": 5
+    },
+    "regression-standard": {
+      "passed": 921,
+      "skipped": 22,
+      "failed": 5
+    },
+    "regression-visual": {
+      "passed": 1,
+      "skipped": 2
+    },
+    "recovery-accessibility": {
+      "passed": 5
+    },
+    "demo-targeted": {
+      "passed": 4
+    },
+    "comparison-matrix": {
+      "passed": 1
+    },
+    "fire-targeted": {
+      "passed": 3
+    },
+    "resumed-targeted": {
+      "passed": 18
+    },
+    "regression-recheck": {
+      "passed": 6
+    },
+    "original-defect-probes": {
+      "passed": 2
+    }
+  },
+  "detailed_counts": {
+    "focused": {
+      "test_count": 27,
+      "last_result_statuses": {
+        "passed": 27
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T20:11:11.882Z",
+        "duration": 7039.161,
+        "expected": 27,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "c1": {
+      "test_count": 77,
+      "last_result_statuses": {
+        "passed": 77
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T20:30:40.855Z",
+        "duration": 415140.588,
+        "expected": 77,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "regression": {
+      "test_count": 951,
+      "last_result_statuses": {
+        "passed": 922,
+        "skipped": 24,
+        "failed": 5
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T21:57:21.642000Z",
+        "duration": 1599503.322,
+        "expected": 922,
+        "skipped": 24,
+        "unexpected": 5,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "regression-standard": {
+      "test_count": 948,
+      "last_result_statuses": {
+        "passed": 921,
+        "skipped": 22,
+        "failed": 5
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T21:59:15.894Z",
+        "duration": 1485251.3220000002,
+        "expected": 921,
+        "skipped": 22,
+        "unexpected": 5,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "regression-visual": {
+      "test_count": 3,
+      "last_result_statuses": {
+        "passed": 1,
+        "skipped": 2
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T21:57:21.642Z",
+        "duration": 113106.223,
+        "expected": 1,
+        "skipped": 2,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "recovery-accessibility": {
+      "test_count": 5,
+      "last_result_statuses": {
+        "passed": 5
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T20:18:26.425Z",
+        "duration": 79297.516,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "demo-targeted": {
+      "test_count": 4,
+      "last_result_statuses": {
+        "passed": 4
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T20:29:37.733Z",
+        "duration": 18925.435,
+        "expected": 4,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "comparison-matrix": {
+      "test_count": 1,
+      "last_result_statuses": {
+        "passed": 1
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T20:38:54.794Z",
+        "duration": 45738.851,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "fire-targeted": {
+      "test_count": 3,
+      "last_result_statuses": {
+        "passed": 3
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T20:45:33.498Z",
+        "duration": 36667.434,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "resumed-targeted": {
+      "test_count": 18,
+      "last_result_statuses": {
+        "passed": 18
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T21:54:57.342Z",
+        "duration": 41974.787000000004,
+        "expected": 18,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "regression-recheck": {
+      "test_count": 6,
+      "last_result_statuses": {
+        "passed": 6
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T22:24:59.334Z",
+        "duration": 13447.869,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    },
+    "original-defect-probes": {
+      "test_count": 2,
+      "last_result_statuses": {
+        "passed": 2
+      },
+      "reported_stats": {
+        "startTime": "2026-10-25T21:10:04.794Z",
+        "duration": 4730.68,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "global_errors": 0
+    }
+  },
+  "commands": [
+    {
+      "command": "npm run test:c1 -- --project=state --project=database",
+      "exit": 0
+    },
+    {
+      "command": "npm run test:c1 -- --reporter=list,json --output=artifacts/c1-review-revisions/c1-final-output",
+      "exit": 0
+    },
+    {
+      "command": "npx playwright test --grep-invert \"five-width visual, accessibility and 200 percent text verification\" --reporter=list,json --output=artifacts/c1-review-revisions/regression-standard-output",
+      "exit": 1
+    },
+    {
+      "command": "npx playwright test --grep \"five-width visual, accessibility and 200 percent text verification\" --workers=1 --reporter=list,json --output=artifacts/c1-review-revisions/regression-visual-output",
+      "exit": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "command": "npm run lint",
+      "exit": 0
+    },
+    {
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "command": "npm audit --json",
+      "exit": 0
+    }
+  ],
+  "production_flag_guard": {
+    "checkedAt": "2026-10-25T20:54:27.288Z",
+    "framework": "16.4.3",
+    "process": "next start with C1_LOCAL_PROOF=1 and production NODE_ENV",
+    "endpointChecks": [
+      {
+        "path": "/api/c1/config",
+        "method": "GET",
+        "status": 404
+      },
+      {
+        "path": "/api/c1/inspections",
+        "method": "GET",
+        "status": 404
+      },
+      {
+        "path": "/api/c1/inspections",
+        "method": "POST",
+        "status": 404
+      }
+    ],
+    "defaultDemoRoot": "passed",
+    "clientAssetsChecked": 10,
+    "privilegedCredentialMatches": 0,
+    "limitation": "HTTP/build/served-asset probes; not an exploit test or independent security approval."
+  },
+  "classification": {
+    "real_database_auth_http": 10,
+    "simulated_store": 17,
+    "browser_scenarios": 10,
+    "browser_executions": 50,
+    "viewports": [
+      320,
+      360,
+      390,
+      768,
+      1440
+    ]
+  },
+  "prior_attempts": [
+    {
+      "type": "pre-correction state",
+      "passed": 6,
+      "failed": 11,
+      "purpose": "intentional failing tests for missing contract and integrity/freshness behavior"
+    },
+    {
+      "type": "incomplete demo attempts",
+      "completed_full_suite": false,
+      "count": 4,
+      "findings": "Three were stopped during diagnosis; fourth stopped for 6% battery. Observed hydration, unscoped control, disclosure and upload-driver failures plus a large-matrix timeout. Partial logs retained, never treated as passing complete runs."
+    }
+  ],
+  "regression_execution": "complete suite via two non-overlapping partitions; aggregate is derived, not a single invocation",
+  "regression_coverage": {
+    "full_suite_list_sha256": "c634d9088876cc5ab1c1c739dcc1601052835efeac548da0f960e00a9ca5d7bf",
+    "expected_test_count": 951,
+    "executed_unique_test_count": 951,
+    "missing": [],
+    "overlapping": [],
+    "unexpected": [],
+    "all_original_tests_executed": true,
+    "assertions_timeouts_and_skips_unchanged_by_partitioning": true,
+    "regression_passed": false,
+    "actual_outcomes": {
+      "passed": 922,
+      "skipped": 24,
+      "failed": 5
+    },
+    "partitions": [
+      {
+        "report": "regression-standard.json",
+        "sha256": "bc4f42fd6f1e0c859a9ed0763db57000c2d4ef51301ff53e8ef5964ae2dc58b8",
+        "test_count": 948,
+        "result_counts": {
+          "passed": 921,
+          "skipped": 22,
+          "failed": 5
+        },
+        "unexpected": 5,
+        "expected": 921,
+        "skipped": 22,
+        "start": "2026-10-25T21:59:15.894Z",
+        "duration_ms": 1485251.3220000002
+      },
+      {
+        "report": "regression-visual.json",
+        "sha256": "6357bb165f508350001806bd0126e0610964d4e19fdd2401563ce3882cece69e",
+        "test_count": 3,
+        "result_counts": {
+          "passed": 1,
+          "skipped": 2
+        },
+        "unexpected": 0,
+        "expected": 1,
+        "skipped": 2,
+        "start": "2026-10-25T21:57:21.642Z",
+        "duration_ms": 113106.223
+      }
+    ],
+    "aggregate_report": "regression-aggregate.json",
+    "aggregate_is_not_single_invocation": true,
+    "keys": [
+      "suite path",
+      "test title",
+      "project name"
+    ]
+  },
+  "observed_cross_run_intermittency": true,
+  "approval_status": "blocked_pending_unresolved_regression_findings",
+  "audit_remaining_findings": 0,
+  "implementation_changes_after_final_suite_starts": false,
+  "limits": [
+    "All testing automated; no human/physical-device/full screen-reader validation.",
+    "Browser failures/delays use interception against real local services.",
+    "No production outage, exploit test or hosted parity.",
+    "Recovery is page memory/manual download; default demo single-tab limit remains."
+  ]
+}

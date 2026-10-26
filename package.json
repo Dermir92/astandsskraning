@@ -8,14 +8,27 @@
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "playwright test"
+    "test": "playwright test",
+    "c1:start": "node scripts/c1-local.mjs start",
+    "c1:stop": "supabase stop --project-id astandsskodun-c1",
+    "c1:reset": "supabase db reset --local",
+    "c1:prepare": "node scripts/c1-local.mjs prepare",
+    "dev:c1": "node scripts/c1-local.mjs serve",
+    "test:c1": "node scripts/c1-local.mjs test"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",
+    "@supabase/supabase-js": "2.118.0",
     "lucide-react": "1.57.0",
-    "next": "16.4.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "next": "16.4.3",
+    "postgres": "3.4.9",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "overrides": {
+    "supabase": {
+      "tar": "7.5.22"
+    }
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
@@ -25,7 +38,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "16.4.3",
+    "supabase": "2.76.10",
     "tailwindcss": "4.3.3",
     "typescript": "^5"
   }

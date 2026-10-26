@@ -1,0 +1,176 @@
+{
+  "created": "2026-10-25T22:27:35.648369+00:00",
+  "reports_and_logs": [
+    {
+      "name": "focused",
+      "source_sha256": "cfdb38e589858021578502ee6b14fd04b404ef8190e45c388865b1b43a1ee6ab",
+      "portable_sha256": "8515a4ae996deb5c5ccba82153a9b1001539d7a2e01399224d015d0069f2f15d",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "c1",
+      "source_sha256": "03977da1c1c7d490c1303604b60d83debd3d8d43653cfec288a8e46b1087aa9a",
+      "portable_sha256": "3f3fa074bf0e62b735c07ddb5da385d79cb68d617d4c53af014ed078e3066301",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "regression",
+      "source_sha256": "30c22d8964ab90280e22d51b2b5e18986f329c42064e014f43f4e20746f0c94a",
+      "portable_sha256": "4a8536a50a1c5c69be9b337b6153fe49be853b06d8a3db5d4ee3dcc59a8fd635",
+      "changes": "derived union of two executed partitions; explicitly not a single invocation; portable paths/attachments",
+      "purpose": "current verification"
+    },
+    {
+      "name": "regression-standard",
+      "source_sha256": "bc4f42fd6f1e0c859a9ed0763db57000c2d4ef51301ff53e8ef5964ae2dc58b8",
+      "portable_sha256": "bc4c3eb94c6e3c06b702c72045b54ae2df57d593d6a1682b416aabbf4a4f5b15",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "regression-visual",
+      "source_sha256": "6357bb165f508350001806bd0126e0610964d4e19fdd2401563ce3882cece69e",
+      "portable_sha256": "29d3f6611d79ce80c3feb72970124f72dd9893cf7bc224f474c943ae736f218c",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "recovery-accessibility",
+      "source_sha256": "db4ab5c6bb888bdeb6f6d27cc058de7a9d5c09d10c494db248103583bcd73e4e",
+      "portable_sha256": "8b44b452158c7ad662354697e9b2c6d3057863a428791614f0c61e6b4692fff4",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "demo-targeted",
+      "source_sha256": "3364fe96a56deca4e21072c76e014dc4abd9d08271edd1214de260b22535f5f0",
+      "portable_sha256": "969630198ec95e1b0d82abee62961c43df3a72ad62a0daf4355077d5df4e13a4",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "comparison-matrix",
+      "source_sha256": "d4eadaa1f94da0b2ab02aaeab9f41118ee56b15ef55507d5b15c1578b29a3d74",
+      "portable_sha256": "cfeff444494a8dfe4908e1317c0577ef5a5b9b8085f9f332158e1a749337eb64",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "fire-targeted",
+      "source_sha256": "980e1a76ea73d69742feb8716b9182ba9d7cbd51a19755c6559823e86069d9ca",
+      "portable_sha256": "5d5dbad0cdbfd80c60e952f8ec3d71107ef2de9d6f17327e8c132f12f15795a0",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "resumed-targeted",
+      "source_sha256": "31e8505e432b1bc90153de6ace7a8da194b8c8ade3cfe66e48f87efca6631d22",
+      "portable_sha256": "3858b458d6ebb025623367b884ab6bc62df3608462ea214e88795202b607cbb2",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "regression-recheck",
+      "source_sha256": "6bcebe4679bd8abc2183023a31da0a68732a872185047faf90c8af7340508fd2",
+      "portable_sha256": "030087c7206f5305b84fdb78e296869b842ed354dc14ba16e8ac01de5fc69b5b",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "current verification"
+    },
+    {
+      "name": "original-defect-probes",
+      "source_sha256": "83ec5b464e800983912eb076150ac3e8b2e048b1012ab22f9fe590f7c049b91e",
+      "portable_sha256": "d20c32ac6943c476b0393e74382f80d249133de9d58dcbe39fe3e4b66eea10bb",
+      "changes": "absolute machine paths and raw attachment data/references only; outcomes unchanged",
+      "purpose": "observes expected BAD behavior of original archived source, not corrected-code approval"
+    },
+    {
+      "name": "pre-correction-state-red-run",
+      "source_sha256": "dce35fc24a034b251660bcbf5f877cdadc60246080d9c8231723820746b6db7c",
+      "portable_sha256": "297481342544ba596e7d1993c756d3ac58dd40fc8549bde64f42605f8957d02a",
+      "changes": "portable paths/attachments only; intentional failures retained"
+    },
+    {
+      "name": "regression-all-tests.json",
+      "source_sha256": "c634d9088876cc5ab1c1c739dcc1601052835efeac548da0f960e00a9ca5d7bf",
+      "portable_sha256": "0d3179ced5780bf016b5a574c6954e431716f796ac3822d5b45291f40e05fee4",
+      "changes": "portable paths only"
+    },
+    {
+      "name": "regression-coverage.json",
+      "source_sha256": "ac6c24670835c190b026f23c8c72e030766b922363fd115487b642e80f5fa2f7",
+      "portable_sha256": "ac6c24670835c190b026f23c8c72e030766b922363fd115487b642e80f5fa2f7",
+      "changes": "portable paths only"
+    },
+    {
+      "name": "typecheck.log",
+      "source_sha256": "45ef7e1e796ece3d63bbd22fcb8130127eaad2279ad159f01d401472689b7040",
+      "portable_sha256": "6a9522cf0a613b741b82a3293024e9861eae5761a3a9bb88dd59b1dba48e23ad",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "lint.log",
+      "source_sha256": "256d21ce333195d4a5ab68dc43816f0dfd231f43c7122b21b7dd8e315e0f4891",
+      "portable_sha256": "f82a37ff4596f5ce04484e3a5b414c75b25df483425f2aa04f859cb90ab42ed9",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "build.log",
+      "source_sha256": "562d3f2a679ed956999056366b7d9eeab45a7af43da951445c3d0952e2c89352",
+      "portable_sha256": "30418c97bb25467fa7e3dca55c5e12adb800247892a0e30fb3767af1e64c1bd0",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "c1.log",
+      "source_sha256": "e966c381f41146178d8473ccf2d1bb5e5fa273f6fd4805c73aac58d496d426d9",
+      "portable_sha256": "0b779d0a65a8c3fdcad9706808e304a42d160ddb8ba8a2fef5bf369598211cec",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "regression-standard.log",
+      "source_sha256": "3cb88abb692b279b8fce29f38742b4bc4e169b3b7902383dcf843660534c8b1d",
+      "portable_sha256": "ec98ddfb1fc1f6f8605b6faf0e8c56e84b4cadd83f4e96aa51b58e946300410b",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "regression-visual.log",
+      "source_sha256": "2676d467993ee4c44a28c67ce84e46edfbb9d768c38ecf8ce0c183d649ac6e34",
+      "portable_sha256": "1fa709866f52c275fbc38a1b989cda1f6b88f7a2e0a307700790e34560b7cc97",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "focused.log",
+      "source_sha256": "52e202015658136c482787d8db1572c337cc8dae8b5b833fe6d613f1db13e8c5",
+      "portable_sha256": "6be5912f0fe2740ddb0150a24c57726a94f765bd27b1a80f0f4518ab6396d1be",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "incomplete-attempt-1.log",
+      "source_sha256": "0eafc7eb2c38c45c1cafd008c1651b5d604cbe2abfddf8add47fe181d5953e58",
+      "portable_sha256": "91411c915a9087775092df5c1c74e556d93b7b1aa0b1a3d17054e0b9805e628e",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "incomplete-attempt-2.log",
+      "source_sha256": "8fd3d44955fffa66409b9fe2562a7c2d48498d2d0c2c821d752d0e0ea35c8e4f",
+      "portable_sha256": "40e69503207291bd3eb5803604324b02939a8e2e286b6b73cd7dca87ecea8666",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "incomplete-attempt-3.log",
+      "source_sha256": "08c7cd15d00ebf7d4a8da05cd467134462ee6957faa8af0319c43698bdf26f89",
+      "portable_sha256": "40645cc82a6fd8cdc36a6f0f905b55d5718bdeb913a77cef16dac1467ac68ad9",
+      "changes": "machine paths and ANSI terminal formatting only"
+    },
+    {
+      "name": "incomplete-attempt-4-battery.log",
+      "source_sha256": "61328c0175caec4b7b8859e0d4a5e5c5b2e835ce3c547a114ca2aad182c2f37f",
+      "portable_sha256": "121b57f0fcd7cd86c5f27ddd00737ea5275f0c6451df29c5bc3daf60afc34a1b",
+      "changes": "machine paths and ANSI terminal formatting only"
+    }
+  ],
+  "test_outcomes_unchanged": true,
+  "raw_traces_har_html_and_runtime_credentials_excluded": true,
+  "current_validation_is_not_independent_approval": true
+}

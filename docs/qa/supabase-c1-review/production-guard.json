@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-25T20:54:27.288Z",
+  "framework": "16.4.3",
+  "process": "next start with C1_LOCAL_PROOF=1 and production NODE_ENV",
+  "endpointChecks": [
+    {
+      "path": "/api/c1/config",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path": "/api/c1/inspections",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path": "/api/c1/inspections",
+      "method": "POST",
+      "status": 404
+    }
+  ],
+  "defaultDemoRoot": "passed",
+  "clientAssetsChecked": 10,
+  "privilegedCredentialMatches": 0,
+  "limitation": "HTTP/build/served-asset probes; not an exploit test or independent security approval."
+}

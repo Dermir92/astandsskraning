@@ -25,7 +25,7 @@ function useComparison(report: Report) {
   return { pending: !!report.linkedInitial && !current, value: current ? resolved.value : null, failed: current && resolved.failed };
 }
 export function LinkedFinalCreate({ report }: { report: Report }) {
-  const { store, state } = useDemo();
+  const { store, state, mode } = useDemo();
   const router = useRouter();
   const [confirmation, setConfirmation] = useState<{ fingerprint: string; operation: string } | null>(null);
   const [message, setMessage] = useState("");
@@ -34,7 +34,7 @@ export function LinkedFinalCreate({ report }: { report: Report }) {
   const start = useRef<HTMLButtonElement>(null);
   const cancel = useRef<HTMLButtonElement>(null);
   useEffect(() => { if (confirmation) cancel.current?.focus(); }, [confirmation]);
-  if (!initialEligible(report)) return null;
+  if (mode === "cloud" || !initialEligible(report)) return null;
   const begin = async () => {
     if (working.current) return;
     working.current = true; setBusy(true); setMessage("");

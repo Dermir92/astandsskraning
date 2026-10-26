@@ -7,6 +7,7 @@ export default defineConfig([
   ...nextTs,
   globalIgnores([
     ".next/**",
+    ".next-c1/**",
     "out/**",
     "next-env.d.ts",
     "test-results/**",

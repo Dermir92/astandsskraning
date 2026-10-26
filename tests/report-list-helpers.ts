@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 
 // Mobile names open the quick sheet; the labelled row action keeps the original destination.
 export function reportIdentity(page: Page, title: string) {
@@ -15,6 +15,8 @@ export function reportDestination(page: Page, title: string) {
 }
 
 export async function showFilters(page: Page) {
+  // SSR controls can be visible before their client handlers are attached.
+  await expect(page.locator(".topbar .save-status")).not.toHaveText("Hleð drögum…");
   const toggle = page.getByRole("button", { name: /Sía og raða/ });
   if (
     (await toggle.isVisible()) &&

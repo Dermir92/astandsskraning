@@ -1,0 +1,54 @@
+{
+  "full_suite_list_sha256": "c634d9088876cc5ab1c1c739dcc1601052835efeac548da0f960e00a9ca5d7bf",
+  "expected_test_count": 951,
+  "executed_unique_test_count": 951,
+  "missing": [],
+  "overlapping": [],
+  "unexpected": [],
+  "all_original_tests_executed": true,
+  "assertions_timeouts_and_skips_unchanged_by_partitioning": true,
+  "regression_passed": false,
+  "actual_outcomes": {
+    "passed": 922,
+    "skipped": 24,
+    "failed": 5
+  },
+  "partitions": [
+    {
+      "report": "regression-standard.json",
+      "sha256": "bc4f42fd6f1e0c859a9ed0763db57000c2d4ef51301ff53e8ef5964ae2dc58b8",
+      "test_count": 948,
+      "result_counts": {
+        "passed": 921,
+        "skipped": 22,
+        "failed": 5
+      },
+      "unexpected": 5,
+      "expected": 921,
+      "skipped": 22,
+      "start": "2026-10-25T21:59:15.894Z",
+      "duration_ms": 1485251.3220000002
+    },
+    {
+      "report": "regression-visual.json",
+      "sha256": "6357bb165f508350001806bd0126e0610964d4e19fdd2401563ce3882cece69e",
+      "test_count": 3,
+      "result_counts": {
+        "passed": 1,
+        "skipped": 2
+      },
+      "unexpected": 0,
+      "expected": 1,
+      "skipped": 2,
+      "start": "2026-10-25T21:57:21.642Z",
+      "duration_ms": 113106.223
+    }
+  ],
+  "aggregate_report": "regression-aggregate.json",
+  "aggregate_is_not_single_invocation": true,
+  "keys": [
+    "suite path",
+    "test title",
+    "project name"
+  ]
+}

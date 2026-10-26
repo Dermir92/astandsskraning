@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-25T22:25:12.929719+00:00",
+  "approval_blocked": true,
+  "findings": [
+    {
+      "suite_path": [
+        "inspection-navigation.spec.ts"
+      ],
+      "title": "read-protected reports neither write navigation metadata nor mutate unreadable source data",
+      "project": "desktop",
+      "file": "inspection-navigation.spec.ts",
+      "line": 352,
+      "full_run_status": "failed",
+      "full_run_error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle')\u001b[22m\n\u001b[2m    23 × locator resolved to <button id=\"_r_3_-title\" aria-expanded=\"false\" class=\"checklist-toggle\" aria-controls=\"_r_3_-panel\" data-navigation-heading=\"true\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n",
+      "recheck_status": "passed",
+      "full_run_failure_retained": true,
+      "source_changed_for_recheck": false
+    },
+    {
+      "suite_path": [
+        "inspection-navigation.spec.ts"
+      ],
+      "title": "read-protected reports neither write navigation metadata nor mutate unreadable source data",
+      "project": "mobile-360",
+      "file": "inspection-navigation.spec.ts",
+      "line": 352,
+      "full_run_status": "failed",
+      "full_run_error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle')\u001b[22m\n\u001b[2m    23 × locator resolved to <button id=\"_r_3_-title\" aria-expanded=\"false\" class=\"checklist-toggle\" aria-controls=\"_r_3_-panel\" data-navigation-heading=\"true\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n",
+      "recheck_status": "passed",
+      "full_run_failure_retained": true,
+      "source_changed_for_recheck": false
+    },
+    {
+      "suite_path": [
+        "inspection-navigation.spec.ts"
+      ],
+      "title": "read-protected reports neither write navigation metadata nor mutate unreadable source data",
+      "project": "mobile-390",
+      "file": "inspection-navigation.spec.ts",
+      "line": 352,
+      "full_run_status": "failed",
+      "full_run_error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.checklist-item[data-item=\"windows\"]').locator('.checklist-toggle')\u001b[22m\n\u001b[2m    23 × locator resolved to <button id=\"_r_3_-title\" aria-expanded=\"false\" class=\"checklist-toggle\" aria-controls=\"_r_3_-panel\" data-navigation-heading=\"true\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n",
+      "recheck_status": "passed",
+      "full_run_failure_retained": true,
+      "source_changed_for_recheck": false
+    },
+    {
+      "suite_path": [
+        "meter-readings-capture.spec.ts"
+      ],
+      "title": "meter corrections preserve history and room position, re-enter after ordinary navigation and work with zero rooms",
+      "project": "desktop",
+      "file": "meter-readings-capture.spec.ts",
+      "line": 233,
+      "full_run_status": "failed",
+      "full_run_error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#meter-electricity-unit')\nExpected: focused\nReceived: inactive\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#meter-electricity-unit') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#meter-electricity-unit')\u001b[22m\n\u001b[2m    23 × locator resolved to <input value=\"\" type=\"text\" autocomplete=\"off\" aria-invalid=\"false\" id=\"meter-electricity-unit\" aria-describedby=\"meter-electricity-unit-hint\"/>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+      "recheck_status": "passed",
+      "full_run_failure_retained": true,
+      "source_changed_for_recheck": false
+    },
+    {
+      "suite_path": [
+        "meter-readings-capture.spec.ts"
+      ],
+      "title": "meter corrections preserve history and room position, re-enter after ordinary navigation and work with zero rooms",
+      "project": "mobile-360",
+      "file": "meter-readings-capture.spec.ts",
+      "line": 233,
+      "full_run_status": "failed",
+      "full_run_error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#meter-electricity-unit')\nExpected: focused\nReceived: inactive\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#meter-electricity-unit') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#meter-electricity-unit')\u001b[22m\n\u001b[2m    23 × locator resolved to <input value=\"\" type=\"text\" autocomplete=\"off\" aria-invalid=\"false\" id=\"meter-electricity-unit\" aria-describedby=\"meter-electricity-unit-hint\"/>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+      "recheck_status": "passed",
+      "full_run_failure_retained": true,
+      "source_changed_for_recheck": false
+    }
+  ],
+  "raw_recheck_sha256": "6bcebe4679bd8abc2183023a31da0a68732a872185047faf90c8af7340508fd2",
+  "rechecks_do_not_replace_full_run_failures": true
+}

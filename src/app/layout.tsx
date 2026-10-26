@@ -3,6 +3,7 @@ import "@fontsource-variable/manrope";
 import "./globals.css";
 import { DemoProvider } from "@/components/demo-provider";
 import { AppShell } from "@/components/app-shell";
+import { C1Root } from "@/components/cloud/c1-root";
 
 export const metadata: Metadata = {
   title: {
@@ -16,12 +17,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const Provider = process.env.NODE_ENV === "development" && process.env.C1_LOCAL_PROOF === "1" ? C1Root : DemoProvider;
   return (
     <html lang="is">
       <body>
-        <DemoProvider>
+        <Provider>
           <AppShell>{children}</AppShell>
-        </DemoProvider>
+        </Provider>
       </body>
     </html>
   );

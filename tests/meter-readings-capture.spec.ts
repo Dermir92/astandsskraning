@@ -237,6 +237,15 @@ test("meter corrections preserve history and room position, re-enter after ordin
   await page.goBack(); await expect(page.locator("#review-meter-readings")).toBeVisible(); await page.goForward(); await expect(page.locator("#meter-electricity-unit")).toBeFocused();
   await page.evaluate(url => history.pushState(null, "", url), `${base}/skraning?rymi=legacy-room&atridi=walls`);
   await page.evaluate(url => history.pushState(null, "", url), meterCorrectionHref(report.id, "electricity", "unit")); await expect(page.locator("#meter-electricity-unit")).toBeFocused();
+  await expect(page).toHaveURL(meterCorrectionHref(report.id, "electricity", "unit"));
+  // Retain the rapid round trip above, then also require a completed ordinary
+  // editor/focus transition before checking correction re-entry again.
+  await page.evaluate(url => history.pushState(null, "", url), `${base}/skraning?rymi=legacy-room&atridi=walls`);
+  const ordinaryEditor = page.locator('[data-item="walls"] .checklist-toggle');
+  await expect(ordinaryEditor).toHaveAttribute("aria-expanded", "true");
+  await expect(ordinaryEditor).toBeFocused();
+  await page.evaluate(url => history.pushState(null, "", url), meterCorrectionHref(report.id, "electricity", "unit")); await expect(page.locator("#meter-electricity-unit")).toBeFocused();
+  await expect(page).toHaveURL(meterCorrectionHref(report.id, "electricity", "unit"));
   expect(await raw(page)).toBe(before); expect(await page.evaluate(k => localStorage.getItem(k), positionKey(report.id))).toBe(position);
 });
 test("zero-room, inactive, malformed and mixed correction targets do not activate or write data", async ({ page }) => {

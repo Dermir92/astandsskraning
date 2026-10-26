@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-25T20:36:04.316Z",
+  "postgres": "PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+  "migrations": [
+    "20261024000100"
+  ],
+  "policies": [
+    {
+      "schemaname": "public",
+      "tablename": "c1_inspections",
+      "policyname": "c1_owner_read",
+      "roles": [
+        "authenticated"
+      ],
+      "cmd": "SELECT",
+      "qual": "(owner_id = ( SELECT auth.uid() AS uid))"
+    }
+  ],
+  "grants": {
+    "authenticated_update": false,
+    "anonymous_read": false,
+    "executor_function": true
+  },
+  "localContainerBindings": [
+    "supabase_rest_astandsskodun-c1 3000/tcp",
+    "supabase_auth_astandsskodun-c1 9999/tcp",
+    "supabase_kong_astandsskodun-c1 0.0.0.0:55421->8000/tcp, [::]:55421->8000/tcp",
+    "supabase_db_astandsskodun-c1 0.0.0.0:55422->5432/tcp, [::]:55422->5432/tcp"
+  ],
+  "existingVolumeUsed": true,
+  "resetDuringCorrections": false,
+  "hostedProjectContacted": false,
+  "migrationFileUnchanged": true
+}

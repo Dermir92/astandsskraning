@@ -30,14 +30,17 @@ export interface PreviewPhoto {
   url: string;
   name: string;
 }
-type SaveStatus =
+export type SaveStatus =
   | "loading"
   | "saved"
   | "error"
   | "read-error"
   | "validation-error"
+  | "pending"
+  | "conflict"
+  | "refresh-required"
   | "memory";
-interface Snapshot {
+export interface Snapshot {
   reports: Report[];
   status: SaveStatus;
   warning: string;
@@ -45,13 +48,17 @@ interface Snapshot {
 }
 
 export class DemoStore {
-  private initial: Snapshot = {
+  protected initial: Snapshot = {
     reports: demoReports(),
     status: "loading",
     warning: "",
     photos: {},
   };
-  private snapshot = this.initial;
+  protected snapshot = this.initial;
+  constructor(reports?: Report[]) {
+    if (reports) this.initial = { ...this.initial, reports };
+    this.snapshot = this.initial;
+  }
   private listeners = new Set<() => void>();
   private hydrated = false;
   // Retain the validated envelope's extension keys without rewriting on read.
@@ -65,7 +72,7 @@ export class DemoStore {
   };
   getSnapshot = () => this.snapshot;
   getServerSnapshot = () => this.initial;
-  private emit(snapshot: Snapshot) {
+  protected emit(snapshot: Snapshot) {
     this.snapshot = snapshot;
     this.listeners.forEach((l) => l());
   }
@@ -103,7 +110,7 @@ export class DemoStore {
       });
     }
   };
-  private canEdit() {
+  protected canEdit() {
     return (
       this.snapshot.status !== "loading" &&
       this.snapshot.status !== "read-error"
@@ -117,7 +124,7 @@ export class DemoStore {
       warning: pendingWrite ? `${warning} ${WRITE_FAILURE_WARNING}` : warning,
     });
   }
-  private persist(reports: Report[]) {
+  protected persist(reports: Report[]) {
     // Never turn fallback fixtures into a replacement for unreadable source data.
     if (!this.canEdit()) return false;
     if (!isReportList(reports)) {
@@ -291,11 +298,14 @@ export class DemoStore {
       });
   };
 }
-const DemoContext = createContext<{ state: Snapshot; store: DemoStore } | null>(
+const DemoContext = createContext<{ state: Snapshot; store: DemoStore; mode: "demo" | "cloud"; navigationScope: string } | null>(
   null,
 );
 export function DemoProvider({ children }: { children: ReactNode }) {
   const [store] = useState(() => new DemoStore());
+  return <InspectionStoreProvider store={store}>{children}</InspectionStoreProvider>;
+}
+export function InspectionStoreProvider({ store, children, mode = "demo", navigationScope = "" }: { store: DemoStore; children: ReactNode; mode?: "demo" | "cloud"; navigationScope?: string }) {
   const state = useSyncExternalStore(
     store.subscribe,
     store.getSnapshot,
@@ -305,7 +315,7 @@ export function DemoProvider({ children }: { children: ReactNode }) {
     store.hydrate();
   }, [store]);
   return (
-    <DemoContext.Provider value={{ state, store }}>
+    <DemoContext.Provider value={{ state, store, mode, navigationScope }}>
       {children}
     </DemoContext.Provider>
   );

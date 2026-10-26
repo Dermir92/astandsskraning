@@ -19,13 +19,20 @@ async function create(page: Page) {
   await page.getByRole("button", { name: "Hefja lokaskoðun", exact: true }).click();
   await page.getByRole("button", { name: "Stofna tengda lokaskoðun", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Upplýsingar um íbúð", exact: true })).toBeVisible();
-  return (await reports(page)).find(r => r.linkedInitial)!;
+  const final = (await reports(page)).find(r => r.linkedInitial)!;
+  await expect(page).toHaveURL(`/skyrslur/${final.id}/upplysingar`);
+  await expect(page.getByRole("navigation", { name: "Skref skráningar" }).getByRole("link", { name: /Skráning/ })).toHaveAttribute("href", `/skyrslur/${final.id}/skraning`);
+  return final;
 }
 async function capture(page: Page, name: string) {
   const folder = process.env.LINKED_REVIEW_DIR; if (!folder) return;
   await mkdir(folder, { recursive: true }); await page.screenshot({ path: path.join(folder, `${test.info().project.name}-${name}.png`), fullPage: true });
 }
-async function openRecords(page: Page) { await page.locator("#comparison").getByText(/^Skoða öll samanburðaratriði/).click(); }
+async function openRecords(page: Page) {
+  const summary = page.locator("#comparison").getByText(/^Skoða öll samanburðaratriði/), details = summary.locator("..");
+  if (!(await details.evaluate(node => (node as HTMLDetailsElement).open))) await summary.click();
+  await expect(details).toHaveJSProperty("open", true);
+}
 async function audit(page: Page) {
   expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
   const contrast = await auditRenderedContrast(page); expect(contrast.failures).toEqual([]); expect(contrast.typeFailures).toEqual([]);
@@ -46,13 +53,19 @@ test("create, cancel, fresh capture, reference, preview, correct and resume reta
   await editor.getByText("Upphafssvar · aðeins til viðmiðunar", { exact: true }).click();
   await expect(editor.getByText("Löng lýsing á sýnirispu.", { exact: false })).toBeVisible(); expect(await stored(page)).toBe(beforeReference);
   await editor.getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
-  await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click(); await ready(page); await openRecords(page);
+  await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
+  await expect(page).toHaveURL(`/skyrslur/${final.id}/yfirferd`);
+  await expect(page.getByRole("heading", { name: "Yfirferð skráningar", exact: true })).toBeVisible(); await ready(page); await openRecords(page);
   await expect(page.locator("#comparison").getByText("Skráður munur til yfirferðar").first()).toBeVisible();
   await capture(page, "changed-comparison"); const beforeReading = await stored(page);
-  await page.getByRole("link", { name: "Forskoða skýrslu", exact: true }).click(); await ready(page); await openRecords(page);
+  await page.getByRole("link", { name: "Forskoða skýrslu", exact: true }).click();
+  await expect(page).toHaveURL(`/skyrslur/${final.id}/forskodun`);
+  await expect(page.getByRole("heading", { name: /^Ástandsskýrsla/ })).toBeVisible(); await ready(page); await openRecords(page);
   await expect(page.locator("#comparison").getByText("Lokasvör eru sjálfstæð.", { exact: false })).toBeVisible();
   expect(await stored(page)).toBe(beforeReading); await capture(page, "concept-c-comparison");
-  await page.locator("#comparison").getByRole("link", { name: /Leiðrétta í yfirferð/ }).first().click(); await ready(page);
+  await page.locator("#comparison").getByRole("link", { name: /Leiðrétta í yfirferð/ }).first().click();
+  await expect(page).toHaveURL(`/skyrslur/${final.id}/yfirferd#comparison`);
+  await expect(page.getByRole("heading", { name: "Yfirferð skráningar", exact: true })).toBeVisible(); await ready(page);
   await openRecords(page); await page.locator("#comparison").getByRole("link", { name: /Breyta lokasvari/ }).first().click();
   await expect(page.locator(`.checklist-item[data-item="${itemId}"] .checklist-toggle`)).toHaveAttribute("aria-expanded", "true");
   await page.getByRole("link", { name: "Aftur í yfirferð", exact: true }).first().click(); await page.getByRole("link", { name: "Fara í mínar skýrslur", exact: true }).click();
@@ -149,7 +162,10 @@ test("five-width comparison, missing data, modules and enlarged text remain acce
   for (const width of [320,360,390,768,1440]) {
     const context = await browser.newContext({ viewport: { width, height: 950 } }); const page = await context.newPage();
     await seed(page, [pair.initial, pair.final], `/skyrslur/${pair.final.id}/yfirferd`); await ready(page); await openRecords(page); await audit(page); await capture(page, `${width}-review-incomplete`);
-    await page.getByRole("link", { name: "Forskoða skýrslu", exact: true }).click(); await ready(page); await openRecords(page);
+    await page.getByRole("link", { name: "Forskoða skýrslu", exact: true }).click();
+    await expect(page).toHaveURL(`/skyrslur/${pair.final.id}/forskodun`);
+    await expect(page).toHaveTitle("Forskoðun skýrslu · Ástandsskráning");
+    await expect(page.getByRole("heading", { name: /^Ástandsskýrsla/ })).toBeVisible(); await ready(page); await openRecords(page);
     await page.locator("#comparison").getByText("Brunavarnir og mælar · aðskildar skráningar", { exact: true }).click(); await audit(page); await capture(page, `${width}-preview-modules`);
     await page.evaluate(() => { const sizes = [...document.querySelectorAll<HTMLElement>("body *")].map(el => ({ el, size: getComputedStyle(el).fontSize })); sizes.forEach(({el,size}) => { if (parseFloat(size)) el.style.fontSize = `${parseFloat(size)*2}px`; }); });
     await audit(page); await capture(page, `${width}-preview-text-200`);
