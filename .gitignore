@@ -2,6 +2,7 @@
 node_modules/
 .next/
 .next-c1/
+.next-h1a/
 out/
 coverage/
 .cache/
