@@ -3,6 +3,11 @@
 Base: merged main `682534f56ce90d89cb57704c389960e0f6ebc4e0`.
 Scope: configuration only; synthetic tests; no hosted access or provisioning.
 
+H1b.1 follow-up: [secure connection preflight](SUPABASE_H1B1.md). Validation now
+returns status only (no credential-bearing configuration), and the isolated
+launcher checks the actual loopback listener before preparing Next. The H1a
+verification/inventory below records the original approved PR #12 baseline.
+
 ## Implemented boundary
 
 `NODE_ENV=development` plus `H1A_HOSTED_PREPARATION=1` selects H1a.
@@ -50,12 +55,13 @@ directly. It must never be imported by a client component.
 | H1A_DB_CA_FILE | Absolute local path to one explicitly trusted, currently valid PEM CA certificate; no network share, private key or extra PEM payload |
 | H1A_DB_CA_SHA256 | Certificate SHA-256 fingerprint, 64 hex characters without colons, independently checked against the intended trusted CA |
 
-The validator prepares explicit Postgres.js fields rather than forwarding a URI:
-host, port, database, username, password, small two-connection pool and bounded
-timeouts. TLS pins the supplied CA, requires certificate validation, uses the
+The validator checks the database URI's explicit host, port, database and executor
+identity, then discards all inputs and returns only mode/configuration/access
+status. It exposes no database options or credential-bearing nested objects.
+TLS pins the supplied CA, requires certificate validation, uses the
 exact copied hostname for SNI and Node's built-in hostname verifier, and requires
 TLS 1.2 or newer. No insecure fallback is allowed. Postgres.js `ssl: require`
-would disable verification, so it is not used. These options are prepared only;
+would disable verification, so it is not used. Trust is checked offline only;
 H1a never constructs a Postgres client. The old C1 client/settings are unchanged.
 
 Offline validation cannot establish that a hostname belongs to this project,

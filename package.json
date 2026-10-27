@@ -17,7 +17,10 @@
     "test:c1": "node scripts/c1-local.mjs test",
     "h1a:check": "node scripts/h1a-hosted.mjs check",
     "dev:h1a": "node scripts/h1a-hosted.mjs serve",
-    "test:h1a": "playwright test --config playwright.h1a.config.ts"
+    "test:h1a": "playwright test --config playwright.h1a.config.ts",
+    "h1b:tls:check": "node scripts/h1b-tls-preflight.mjs check",
+    "h1b:tls:probe": "node scripts/h1b-tls-preflight.mjs probe",
+    "test:h1b": "playwright test --config playwright.h1b.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",

@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import { X509Certificate } from "node:crypto";
-import { checkServerIdentity, type PeerCertificate } from "node:tls";
 import { inspect } from "node:util";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
@@ -19,18 +18,11 @@ test("modes are explicit, mutually exclusive and development-only", () => {
   }
 });
 
-test("session configuration pins TLS, hostname and role without a connection", () => {
+test("session configuration validates offline and returns status without credential-bearing objects", () => {
   const env = fixture(), config = hostedConfiguration(env, () => testCA);
   expect(config.access).toBe("disabled");
-  expect(config.postgres).toMatchObject({ host: env.H1A_POOLER_HOST, port: 5432, database: "postgres",
-    username: `c1_executor.${env.H1A_PROJECT_REF}`, max: 2, debug: false });
-  expect(config.postgres.ssl).toMatchObject({ ca: testCA, rejectUnauthorized: true,
-    servername: env.H1A_POOLER_HOST, minVersion: "TLSv1.2" });
-  expect(config.postgres.ssl.checkServerIdentity).toBe(checkServerIdentity);
-  const peer = { subjectaltname: `DNS:${env.H1A_POOLER_HOST}` } as PeerCertificate;
-  expect(config.postgres.ssl.checkServerIdentity(env.H1A_POOLER_HOST, peer)).toBeUndefined();
-  expect(config.postgres.ssl.checkServerIdentity("wrong.example", peer)).toBeInstanceOf(Error);
-  expect(Object.isFrozen(config.postgres.ssl)).toBe(true);
+  expect(config).toEqual({ mode: "h1a-hosted", access: "disabled", configuration: "valid" });
+  expect(Object.isFrozen(config)).toBe(true);
   expect(JSON.stringify(config)).not.toContain("synthetic-unusable-fixture");
   expect(inspect(config)).not.toContain(env.H1A_PUBLISHABLE_KEY);
 });
