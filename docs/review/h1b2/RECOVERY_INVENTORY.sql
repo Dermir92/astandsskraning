@@ -9,6 +9,12 @@ select current_database() as database_name, current_user as effective_role,
        to_regclass('c1_private.operation_receipts') as receipts,
        to_regprocedure('c1_private.save_inspection(uuid,text,bigint,jsonb,uuid,timestamptz)') as save_function,
        to_regrole('c1_executor') as executor;
--- All C1 identities + history schema/table absent: uncommitted bootstrap rolled back.
--- All present: ONLY THEN inspect RECOVERY_HISTORY.sql and run Gate D.
+-- A lost connection before, during or after COMMIT leaves the outcome uncertain.
+-- First resolve the prior execution/backend/transaction, or STOP further execution.
+-- No automatic retry, reconnect-and-replay, or hosted backend cancel/terminate.
+-- All-absent alone is NOT rollback proof: an older transaction may still commit.
+-- Only after the prior transaction has definitively ended, recheck in a fresh
+-- authorized session. All-absent then supports no commit of this first bootstrap;
+-- investigation and separate retry approval are still required.
+-- All present: require exact RECOVERY_HISTORY.sql receipts AND full Gate D.
 -- Mixed state, unexpected project/role/version, or unexpected inventory: STOP.

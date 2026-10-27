@@ -25,17 +25,7 @@
     "matchesCanonical": true
   },
   "releasePrerequisites": {
-    "currentGitRevision": "b3e23ea00ff7e8226f4425cff9ed8a3562cc3a3e",
-    "canonicalAtHead": [
-      {
-        "source": "supabase/migrations/20261024000100_c1_owner_inspections.sql",
-        "presentWithApprovedBytes": true
-      },
-      {
-        "source": "supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql",
-        "presentWithApprovedBytes": true
-      }
-    ],
+    "gitRevisionValidation": "LIVE_EXACT_HEAD_AND_COMMITTED_SOURCE_BYTES_REQUIRED_BY_VERIFY_RELEASE",
     "approvedGitRevision": null,
     "actualCanonicalFilesReviewRequired": true,
     "committedReleaseSourcePaths": [
@@ -45,7 +35,9 @@
       "docs/review/h1b2/GATE_D.template.sql",
       "docs/review/h1b2/HISTORY_ASSERTIONS.template.sql",
       "docs/review/h1b2/HARDENING.sql",
-      "docs/review/h1b2/EXECUTION_METHOD_REVIEW.md"
+      "docs/review/h1b2/EXECUTION_METHOD_REVIEW.md",
+      "docs/review/h1b2/README.md",
+      "docs/review/h1b2/RECOVERY_INVENTORY.sql"
     ],
     "gateCExecutionApproved": false,
     "proposedExecutionMethod": "psql-single-session-explicit-transaction-on-error-stop",
@@ -68,8 +60,8 @@
     },
     {
       "path": "docs/review/h1b2/EXECUTION_METHOD_REVIEW.md",
-      "bytes": 7083,
-      "sha256": "cea57ffc16f31a44b20dafcb9ecdbf47e123c3797c25432d7f4f197b996cd98a"
+      "bytes": 7473,
+      "sha256": "5feb7e3d47e5f0cadbc11aacc4d57bdb2c554c43cbc025d4b4c45c248ed051a2"
     },
     {
       "path": "docs/review/h1b2/GATE_D.sql",
@@ -98,8 +90,8 @@
     },
     {
       "path": "docs/review/h1b2/README.md",
-      "bytes": 18128,
-      "sha256": "bd6594d920e99deb082ccec79441dc72adae2132bc643998c8e5d651809b035c"
+      "bytes": 19826,
+      "sha256": "8d4f0191d331fe57038a57c220c11fe09fb7d9d55a1d3d95ac2613702fc1b4cd"
     },
     {
       "path": "docs/review/h1b2/RECOVERY_HISTORY.sql",
@@ -108,18 +100,18 @@
     },
     {
       "path": "docs/review/h1b2/RECOVERY_INVENTORY.sql",
-      "bytes": 1043,
-      "sha256": "4858e38f1577f5ad70a5d117d652e5037c9ec0614b31587ff4ac9edadbd71476"
+      "bytes": 1519,
+      "sha256": "ae846e195277cde2653ba3af9a8941ef2a3c2dba1820e8708df8e69c83276fe0"
     },
     {
       "path": "docs/review/h1b2/prepare.mjs",
-      "bytes": 20581,
-      "sha256": "6bb010212a0a5e08df039196e625d3fd69f606e633eb56ae6fcf271e3ca0253b"
+      "bytes": 20616,
+      "sha256": "196f28141918baa7d640f4b1b17842c086d9c57f964fa519b4e93eda39846343"
     },
     {
       "path": "docs/review/h1b2/test-local.mjs",
-      "bytes": 33902,
-      "sha256": "61af28ee17c8e67b2698563a56c5cd3ddcecf6d05709d0c59c92c13ae7b4a7ba"
+      "bytes": 40059,
+      "sha256": "d17469b843edc1e52e79615dc2557429124636b5b09bbc2189efb4b043490f05"
     },
     {
       "path": "supabase/migrations/20261024000100_c1_owner_inspections.sql",
