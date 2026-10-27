@@ -17,6 +17,12 @@ Kóðinn fyrir fyrstu gagnagrunnsuppsetningu er yfirfarinn en ókeyrður á host
 | Hvenær stöðvum við? | Við rangt target, breytt source/hash, ósamþykkt inntak, villu, timeout, óvissa niðurstöðu eða fall í eftirathugunum. Engin sjálfvirk ný tilraun. |
 | Hvað ef COMMIT er óvíst? | Frysta frekari tilraunir. Fyrst leysa stöðu fyrri keyrslu eða halda STOP. Síðan þarf nýja heimilaða tengingu, history-receipts og fullar eftirathuganir. |
 
+**Enn ólokin skilyrði fyrir Gate C:** samþykkisröðin þarf yfirferð og samþykki.
+Einnig þarf að skilgreina og samþykkja bæði aðferð og heimild til að staðfesta að
+báðar C1-töflurnar séu tómar eftir uppsetningu. Þessi atriði eru enn óleyst;
+**Gate C helst CLOSED þar til þeim hefur verið lokið.** Gate D PASS eitt og sér
+uppfyllir ekki kröfuna um tómar töflur eða fullnægjandi lokastaðfestingu.
+
 Eftirfarandi samþykki eru aðskilin og liggja ekki fyrir með þessu verkefni:
 
 1. **Release-undirbúningur:** afmörkuð heimild til að útbúa og yfirfara endanlegt
@@ -24,8 +30,9 @@ Eftirfarandi samþykki eru aðskilin og liggja ekki fyrir með þessu verkefni:
 2. **Framkvæmd:** sérstök Gate C heimild bundin við samþykkt Git revision, client,
    target/profile, skipun, tímamörk og endanlegt release-hash. Hún þarf sérstaklega
    að ná til stofnunar og skrifa á migration-history töflunni.
-3. **Staðfesting/recovery:** heimildir fyrir eftirathugunum og rannsókn óvissrar
-   niðurstöðu. Seinni credentials-/profile-uppsetning þarf sitt samþykki.
+3. **Staðfesting/recovery:** fyrirfram skilgreind aðferð og sérstök heimild til að
+   staðfesta tómar C1-töflur, aðrar eftirathuganir og rannsókn óvissrar niðurstöðu.
+   Seinni credentials-/profile-uppsetning þarf sitt samþykki.
 
 **Mikilvægt val:** eldri runbook nefnir development branch, en fyrri Dashboard-
 skjámynd sýndi Supabase `main / PRODUCTION`. Eigandi þarf að samþykkja nákvæman
@@ -41,6 +48,11 @@ og hosted application admission haldast lokuð.
 
 Þetta er lýsing á seinni, sérstaklega heimilaðri framkvæmd. Engin hosted athugun
 eða keyrsla fer fram við gerð skjalsins.
+
+Áður en Gate C má hefjast þarf samþykkisröðin að vera samþykkt og sérstök athugun
+á því að `public.c1_inspections` og `c1_private.operation_receipts` séu tómar að
+vera skilgreind og heimiluð. Aðferðin er ekki skilgreind í þessum pakka og er
+áfram óleyst skilyrði. **Gate C er CLOSED meðan aðferð eða heimild vantar.**
 
 1. **Samþykkja forsendur.** Festa nákvæmt execution-revision og byte-identical
    release-input skrár, target/branch, client, non-secret profile-skilyrði, CA,
@@ -68,13 +80,16 @@ eða keyrsla fer fram við gerð skjalsins.
    Project-ref er operator-staðfesting, ekki sjálfstæð server-sönnun um project.
 6. **Staðfesta niðurstöðu.** Skrá process-exit strax og lokasvar við COMMIT. Eftir
    staðfest COMMIT þarf sérstaklega heimilaða fresh-session athugun í sama target:
-   rétt history-receipts og full [Gate D](h1b2/GATE_D.sql). PASS fyrir COMMIT er
-   bráðabirgðaniðurstaða. Fall eftir commit merkir STOP á aðgangi/frekari vinnu,
-   ekki sjálfvirkt rollback á þegar commit-uðum breytingum.
+   rétt history-receipts, full [Gate D](h1b2/GATE_D.sql) og fyrirfram skilgreinda,
+   sérstaklega samþykkta athugun sem staðfestir að báðar C1-töflur séu tómar.
+   Gate D PASS eitt og sér er ekki fullnægjandi lokastaðfesting. Ef sérathugunin
+   vantar eða staðfestir ekki tómar töflur er niðurstaðan ekki fullstaðfest: STOP.
+   PASS fyrir COMMIT er bráðabirgðaniðurstaða. Fall eftir commit merkir STOP á
+   aðgangi/frekari vinnu, ekki sjálfvirkt rollback á þegar commit-uðum breytingum.
 
 | Niðurstaða | Nauðsynleg gögn | Viðbragð |
 | --- | --- | --- |
-| Staðfest uppsetning | Exit 0 og COMMIT-svar, síðan réttar tvær history-færslur og full Gate D frá nýrri tengingu. | Skrá niðurstöðuna. Engin sjálfvirk opnun Gate E eða application access. |
+| Staðfest uppsetning | Exit 0 og COMMIT-svar, síðan réttar tvær history-færslur, full Gate D og fyrirfram skilgreind/sérstaklega samþykkt athugun sem staðfestir tómar C1-töflur frá nýrri tengingu. | Aðeins þegar allt hefur staðist má skrá lokastaðfestingu. Engin sjálfvirk opnun Gate E eða application access. |
 | Staðfest misheppnuð keyrsla fyrir COMMIT | Staðfest villa fyrir commit, fyrri transaction örugglega lokið og fresh inventory sýnir enga hluta þessarar fyrstu uppsetningar. | Rannsaka orsök; ný tilraun þarf nýtt samþykki. Engin history-repair eða endurkeyrsla frá miðju. |
 | Óviss niðurstaða | Rof, timeout, óútskýrður nonzero exit, vantar COMMIT-svar eða ósamræmi í gögnum. | STOP og recovery. Exit-code eða all-absent eitt og sér sannar ekki rollback. |
 
@@ -90,7 +105,10 @@ og nota [RECOVERY_INVENTORY.sql](h1b2/RECOVERY_INVENTORY.sql) eitt og sér í fr
 heimilaðri session. All-absent styður þá að fyrsta uppsetningin hafi ekki commit-ast,
 en orsök og ný tilraun þurfa yfirferð. All-present krefst
 [RECOVERY_HISTORY.sql](h1b2/RECOVERY_HISTORY.sql), nákvæmra receipts og fulls Gate D.
-Mixed/uncertain state, röng/auka/vantar receipt eða query-villa þýðir STOP.
+Einnig þarf fyrirfram skilgreinda og sérstaklega samþykkta athugun á tómum
+C1-töflum áður en lokastaðfesting telst fullnægjandi; Gate D PASS leysir hana ekki
+af hólmi. Mixed/uncertain state, röng/auka/vantar receipt, ólokin sérathugun eða
+query-villa þýðir STOP.
 
 ## 3. Tæknileg skilgreining, gögn og óleyst atriði
 
