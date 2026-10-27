@@ -1,0 +1,128 @@
+{
+  "status": "REVIEW_ONLY_NOT_EXECUTED_ON_HOSTED",
+  "projectRef": "ozcxjphzzwekpwsbglaf",
+  "expectedPostgresVersion": "17.11",
+  "cliVersion": "2.76.10",
+  "cliExecutableSha256": "a203c2ab7de2072fb4e72bb141a663b95942fe503ec48ef60def21fc639d8902",
+  "strategy": "explicit_single_transaction_with_two_history_rows",
+  "versions": [
+    {
+      "version": "20261024000100",
+      "name": "c1_owner_inspections",
+      "source": "supabase/migrations/20261024000100_c1_owner_inspections.sql",
+      "sha256": "6d372060e7ba6cbd82e3d83890273da7b238394c8c7236c8231fc04b609383c8"
+    },
+    {
+      "version": "20261027000100",
+      "name": "c1_hosted_acl_hardening",
+      "source": "supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql",
+      "sha256": "6947af89fd026db15c6e32e94983d0dd13ace65ba1304e974ae858a502fb6e62"
+    }
+  ],
+  "canonicalReviewCopy": {
+    "source": "docs/review/h1b2/HARDENING.sql",
+    "sha256": "6947af89fd026db15c6e32e94983d0dd13ace65ba1304e974ae858a502fb6e62",
+    "matchesCanonical": true
+  },
+  "releasePrerequisites": {
+    "currentGitRevision": "dd1fd741a85bd125b4c1569f69c239249e6d697e",
+    "canonicalAtHead": [
+      {
+        "source": "supabase/migrations/20261024000100_c1_owner_inspections.sql",
+        "presentWithApprovedBytes": true
+      },
+      {
+        "source": "supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql",
+        "presentWithApprovedBytes": false
+      }
+    ],
+    "approvedGitRevision": null,
+    "actualCanonicalFilesReviewRequired": true,
+    "committedReleaseSourcePaths": [
+      "supabase/migrations/20261024000100_c1_owner_inspections.sql",
+      "supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql",
+      "docs/review/h1b2/prepare.mjs",
+      "docs/review/h1b2/GATE_D.template.sql",
+      "docs/review/h1b2/HISTORY_ASSERTIONS.template.sql",
+      "docs/review/h1b2/HARDENING.sql"
+    ],
+    "gateCExecutionApproved": false,
+    "sqlEditorExecutionMethodApprovedAndVerified": false,
+    "sqlCannotVerifyLocalGitOrHumanApproval": true,
+    "readinessCommand": "node docs/review/h1b2/prepare.mjs --verify-release <approval-json>",
+    "readinessCheckEnablesExecution": false
+  },
+  "originalFunctionBodySha256": "76575b94dead07df3a880975cd9327f903600543408c3a338f12b3e25fc97a05",
+  "releaseInputs": [
+    "execution_authorized=false",
+    "operator_project_ref=UNCONFIRMED",
+    "event_trigger_fingerprint=UNREVIEWED"
+  ],
+  "files": [
+    {
+      "path": "docs/review/h1b2/BOOTSTRAP.NOT_EXECUTED.sql",
+      "bytes": 37842,
+      "sha256": "78f9184bef82d0aad201123d9a5ba15873c2201d0449b0b42f9a55698542afb4"
+    },
+    {
+      "path": "docs/review/h1b2/GATE_D.sql",
+      "bytes": 17748,
+      "sha256": "d336d9f516d4d2785d5460a09d6bc988b1cf249625da12944e2640fa52ba87f4"
+    },
+    {
+      "path": "docs/review/h1b2/GATE_D.template.sql",
+      "bytes": 13379,
+      "sha256": "a98e9f566983adb9f8197f1c7d9e4788a51a848b062026d3c50827fc3eba6678"
+    },
+    {
+      "path": "docs/review/h1b2/HARDENING.sql",
+      "bytes": 551,
+      "sha256": "6947af89fd026db15c6e32e94983d0dd13ace65ba1304e974ae858a502fb6e62"
+    },
+    {
+      "path": "docs/review/h1b2/HISTORY_ASSERTIONS.template.sql",
+      "bytes": 4093,
+      "sha256": "3ffa59d023f6f667ef07976955897e0d3f1f78dc4cd9971b31c3f890ccb31f2e"
+    },
+    {
+      "path": "docs/review/h1b2/PRE_EXECUTION_INVENTORY.sql",
+      "bytes": 2567,
+      "sha256": "f7ea775515eb354cb96eadef791cb4fb3434537d36001988f0c8c74e18e22e06"
+    },
+    {
+      "path": "docs/review/h1b2/README.md",
+      "bytes": 17723,
+      "sha256": "bfdee7735df481dc908928834c24ed2d84d5d9f7caa73a6f09e64bc4ab3118d4"
+    },
+    {
+      "path": "docs/review/h1b2/RECOVERY_HISTORY.sql",
+      "bytes": 1529,
+      "sha256": "a30a51cb84916389be4096457a80ace67d5a6f714ba31b6048c6a37be4351bda"
+    },
+    {
+      "path": "docs/review/h1b2/RECOVERY_INVENTORY.sql",
+      "bytes": 1043,
+      "sha256": "4858e38f1577f5ad70a5d117d652e5037c9ec0614b31587ff4ac9edadbd71476"
+    },
+    {
+      "path": "docs/review/h1b2/prepare.mjs",
+      "bytes": 20476,
+      "sha256": "5f1a6b004edb8a6791a4ab651d897dcc305edf02ab23fd31834e40dd6dd18973"
+    },
+    {
+      "path": "docs/review/h1b2/test-local.mjs",
+      "bytes": 32148,
+      "sha256": "28517c0a645418958c33e5001cf2aadd1503227d7d84faa3d2690de8281fea95"
+    },
+    {
+      "path": "supabase/migrations/20261024000100_c1_owner_inspections.sql",
+      "bytes": 5703,
+      "sha256": "6d372060e7ba6cbd82e3d83890273da7b238394c8c7236c8231fc04b609383c8"
+    },
+    {
+      "path": "supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql",
+      "bytes": 551,
+      "sha256": "6947af89fd026db15c6e32e94983d0dd13ace65ba1304e974ae858a502fb6e62"
+    }
+  ]
+}
