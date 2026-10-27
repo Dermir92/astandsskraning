@@ -81,3 +81,31 @@ NOT EXECUTED ON HOSTED. 23 focused checks passed. Historical Gate B.1 results ab
 Both canonical source hashes and recorded source chunks match the approved values. Generator negative cases use copied fixtures only; the real baseline/canonical sources were not altered. Read-only Git revision checks reject the current uncommitted release inputs. Synthetic JSON attestations in negative tests are not human approval. No command enables SQL.
 
 Atomic rollback and concurrency were rechecked in disposable PostgreSQL 17.11 (sha256:06ddc7962e11ab0f4f0334fd05671e97c30ea202f6e6a7113800bd3d6e416108), using a network-disabled container and no credentials/Auth users. SQL Editor execution method and hosted behavior remain unverified/unapproved. The exact metadata format stays pinned to CLI 2.76.10 and its previously recorded compatibility proof.
+
+<!-- BEGIN H1B2_EXECUTION_METHOD_REVIEW_RESULTS -->
+
+## Execution-method review — 2026-10-27
+
+19 file-only preparation checks passed. No Docker operation, psql invocation, SQL, database/Auth connection, credential access or hosted operation occurred. Canonical source/hash, deterministic generation, release refusal and unchanged transaction-boundary checks only.
+
+- PASS canonical preparation: both approved canonical files generate disabled SQL
+- PASS canonical preparation: missing companion fails without output writes
+- PASS canonical preparation: mismatched companion hash fails without output writes
+- PASS canonical preparation: missing original baseline fails without output writes
+- PASS canonical preparation: modified original baseline fails without output writes
+- PASS canonical preparation: review copy cannot override canonical source fails without output writes
+- PASS canonical preparation: both canonical files map to exact recorded source chunks
+- PASS canonical preparation: regeneration is deterministic and check mode validates it
+- PASS canonical preparation: modified generated SQL is rejected without rewriting it
+- PASS canonical preparation: release check rejects missing explicit canonical review
+- PASS canonical preparation: release check rejects missing Gate C approval
+- PASS canonical preparation: release check rejects unverified execution method
+- PASS canonical preparation: release check rejects legacy SQL Editor method
+- PASS canonical preparation: release check rejects legacy SQL Editor approval field
+- PASS canonical preparation: release check rejects incorrect canonical approval mapping
+- PASS canonical preparation: release check rejects different approved revision
+- PASS canonical preparation: release check rejects uncommitted release-source changes
+- PASS canonical preparation: no option enables or emits executable release SQL
+- PASS canonical preparation: psql file retains one explicit transaction and no reconnect/meta-commands
+
+Legacy SQL Editor method/approval fields are refused; the proposed psql method still requires explicit human authorization, approved Git source and final artifact integrity. Both canonical migrations and Gate D/security assertion sources remain unchanged. Historical Gate B.1 and B.2 database/CLI evidence above was not rerun and is not evidence that the new proposed psql/profile/timeouts have been tested against hosted Supabase.

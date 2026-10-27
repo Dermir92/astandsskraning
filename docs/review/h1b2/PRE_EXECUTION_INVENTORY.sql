@@ -37,4 +37,4 @@ order by n.nspname;
 
 select m.member::regrole as member, m.roleid::regrole as granted_role,
        m.admin_option, m.inherit_option, m.set_option
-from pg_auth_members m order by member::text, granted_role::text;
+from pg_auth_members m order by 1, 2;

@@ -39,7 +39,8 @@ const canonicalMigrations = [
 ];
 const releaseSourcePaths = [...canonicalMigrations.map(m => m.source),
   'docs/review/h1b2/prepare.mjs', 'docs/review/h1b2/GATE_D.template.sql',
-  'docs/review/h1b2/HISTORY_ASSERTIONS.template.sql', 'docs/review/h1b2/HARDENING.sql'];
+  'docs/review/h1b2/HISTORY_ASSERTIONS.template.sql', 'docs/review/h1b2/HARDENING.sql',
+  'docs/review/h1b2/EXECUTION_METHOD_REVIEW.md'];
 function git(...gitArgs) {
   try {
     return execFileSync('git', gitArgs, { cwd: repo, encoding: null,
@@ -60,8 +61,8 @@ if (mode === 'verify-release') {
   catch { throw new Error('STOP: release approval JSON is missing or invalid'); }
   if (releaseApproval?.schemaVersion !== 1 || releaseApproval.canonicalFilesReviewed !== true
       || releaseApproval.gateCExecutionApproved !== true
-      || releaseApproval.sqlEditorExecutionMethodApprovedAndVerified !== true
-      || releaseApproval.executionMethod !== 'supabase-sql-editor-single-batch-one-connection'
+      || releaseApproval.executionMethodApprovedAndVerified !== true
+      || releaseApproval.executionMethod !== 'psql-single-session-explicit-transaction-on-error-stop'
       || typeof releaseApproval.approvalReference !== 'string' || !releaseApproval.approvalReference.trim()) {
     throw new Error('STOP: explicit canonical review, Gate C and verified execution-method attestations required');
   }
@@ -141,13 +142,13 @@ order by n.nspname;
 
 select m.member::regrole as member, m.roleid::regrole as granted_role,
        m.admin_option, m.inherit_option, m.set_option
-from pg_auth_members m order by member::text, granted_role::text;
+from pg_auth_members m order by 1, 2;
 `;
 
 const bootstrap = `-- H1b.2 EXACT PROPOSED BOOTSTRAP. NOT EXECUTED ON HOSTED.
 -- Generated from BOTH hash-verified canonical supabase/migrations source files.
 -- SQL cannot prove local Git presence/approval: mandatory offline release check.
--- Review/approve the exact release copy and SQL Editor method separately.
+-- Review/approve the exact release copy and fail-on-error psql method separately.
 -- THIS FILE FAILS CLOSED by default. Three release inputs require independent review.
 -- A project-ref literal is an OPERATOR ATTESTATION, not server identity evidence.
 -- Submit the complete approved batch on ONE connection. Never run a selection.
@@ -314,7 +315,8 @@ const manifest = {
     actualCanonicalFilesReviewRequired: true,
     committedReleaseSourcePaths: releaseSourcePaths,
     gateCExecutionApproved: false,
-    sqlEditorExecutionMethodApprovedAndVerified: false,
+    proposedExecutionMethod: 'psql-single-session-explicit-transaction-on-error-stop',
+    executionMethodApprovedAndVerified: false,
     sqlCannotVerifyLocalGitOrHumanApproval: true,
     readinessCommand: 'node docs/review/h1b2/prepare.mjs --verify-release <approval-json>',
     readinessCheckEnablesExecution: false,
