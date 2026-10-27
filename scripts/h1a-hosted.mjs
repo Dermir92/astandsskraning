@@ -12,7 +12,7 @@ try {
   if (command === "check") {
     console.log("H1a configuration valid. Hosted access remains disabled; no connection attempted.");
   } else {
-    const child = spawn(process.execPath, ["node_modules/next/dist/bin/next", "dev", "--hostname", "127.0.0.1", "--port", "3101"], {
+    const child = spawn(process.execPath, ["scripts/h1a-loopback-server.mjs"], {
       cwd: fileURLToPath(new URL("../", import.meta.url)),
       env: { ...env, HOSTNAME: "127.0.0.1", PORT: "3101" }, stdio: "inherit", windowsHide: true,
     });

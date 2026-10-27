@@ -1,10 +1,7 @@
 // Node-only implementation shared by the local launcher and server-only facade.
 // No network imports, clients, DNS lookups or connection factories belong here.
-import { readFileSync } from "node:fs";
-import { isAbsolute } from "node:path";
-import { X509Certificate } from "node:crypto";
-import { checkServerIdentity, createSecureContext } from "node:tls";
 import { developmentMode } from "./development-mode.mjs";
+import { assertExplicitTLS, trustedTLS } from "./trusted-ca.mjs";
 
 /** @typedef {import('./development-mode.mjs').Environment} Environment */
 
@@ -17,12 +14,12 @@ export class HostedConfigurationError extends Error {
  * @param {Environment} [env]
  * @param {(file: string) => string} [readCA]
  */
-export function hostedConfiguration(env = process.env, readCA = file => readFileSync(file, "utf8")) {
+export function hostedConfiguration(env = process.env, readCA) {
   try {
     if (developmentMode(env) !== "h1a-hosted") throw new HostedConfigurationError();
     // Do not inherit a process-wide TLS bypass or alternate CA configuration.
-    if (env.NODE_TLS_REJECT_UNAUTHORIZED !== undefined || env.NODE_EXTRA_CA_CERTS !== undefined ||
-        Object.keys(env).some(name => name.startsWith("NEXT_PUBLIC_H1A_") && env[name] !== undefined)) {
+    assertExplicitTLS(env);
+    if (Object.keys(env).some(name => name.startsWith("NEXT_PUBLIC_H1A_") && env[name] !== undefined)) {
       throw new HostedConfigurationError();
     }
     const ref = env.H1A_PROJECT_REF ?? "";
@@ -46,38 +43,12 @@ export function hostedConfiguration(env = process.env, readCA = file => readFile
         rawDatabase !== rawDatabase.trim() || rawDatabase.includes("?") || rawDatabase.includes("#")) {
       throw new HostedConfigurationError();
     }
-    const file = env.H1A_DB_CA_FILE ?? "";
-    const fingerprint = env.H1A_DB_CA_SHA256 ?? "";
-    if (!isAbsolute(file) || file.startsWith("\\\\") || file.startsWith("//") ||
-        !/^[a-fA-F0-9]{64}$/.test(fingerprint)) throw new HostedConfigurationError();
-    const ca = readCA(file);
-    // Exactly one explicitly trusted CA. No private keys or extra PEM payloads.
-    if (!/^\s*-----BEGIN CERTIFICATE-----\r?\n[A-Za-z0-9+/=\r\n]+-----END CERTIFICATE-----\s*$/.test(ca)) {
-      throw new HostedConfigurationError();
-    }
-    const certificate = new X509Certificate(ca);
-    const now = Date.now();
-    if (!certificate.ca || Date.parse(certificate.validFrom) > now || Date.parse(certificate.validTo) <= now ||
-        certificate.fingerprint256.replaceAll(":", "").toLowerCase() !== fingerprint.toLowerCase()) {
-      throw new HostedConfigurationError();
-    }
-    const ssl = Object.freeze({ ca, rejectUnauthorized: true, servername: host,
-      minVersion: /** @type {const} */ ("TLSv1.2"), checkServerIdentity });
-    createSecureContext(ssl); // Parse/validate locally; this opens no socket.
-    const config = {
-      mode: /** @type {const} */ ("h1a-hosted"), access: /** @type {const} */ ("disabled"),
-      url, key,
-      // Explicit fields prevent URL parameters and PG* defaults overriding TLS or identity.
-      postgres: Object.freeze({ host, port: 5432, database: "postgres", username,
-        password: decodeURIComponent(database.password), ssl, max: 2, prepare: true,
-        idle_timeout: 20, connect_timeout: 5, debug: false, onnotice: () => {},
-        connection: Object.freeze({ application_name: "astandsskodun-h1", statement_timeout: 10000 }) }),
-    };
-    // Accidental normal logging/JSON serialization must not print credentials.
-    const redacted = () => ({ mode: config.mode, access: config.access, configuration: "redacted" });
-    Object.defineProperty(config, "toJSON", { value: redacted });
-    Object.defineProperty(config, Symbol.for("nodejs.util.inspect.custom"), { value: redacted });
-    return Object.freeze(config);
+    trustedTLS(env.H1A_DB_CA_FILE ?? "", env.H1A_DB_CA_SHA256 ?? "", host, readCA);
+    // Discard validated inputs. Returning credentials with cosmetic toJSON/inspect
+    // hooks leaks through nested objects, spread, structuredClone and hook bypasses.
+    // No application database options/factory are exposed in preparation mode.
+    return Object.freeze({ mode: /** @type {const} */ ("h1a-hosted"),
+      access: /** @type {const} */ ("disabled"), configuration: /** @type {const} */ ("valid") });
   } catch {
     // Never attach a URL, path, PEM, input value or original error/cause.
     throw new HostedConfigurationError();

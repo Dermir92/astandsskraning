@@ -2,7 +2,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests",
-  testIgnore: ["**/c1/**", "**/h1a/**"], // Explicit isolated configurations only.
+  testIgnore: ["**/c1/**", "**/h1a/**", "**/h1b/**"], // Explicit isolated configurations only.
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
