@@ -1,14 +1,16 @@
-# H1b.2 Gate B.2 — canonical migration and release safety
+# H1b.2 — execution-method review after Gate B.2
 
 **NOT EXECUTED ON HOSTED. NOT AUTHORIZATION TO EXECUTE.** Prepared 2026-10-27.
 No hosted database/Auth connection, Dashboard change, credential, account,
-executor LOGIN, deployment, commit or PR is part of this package.
+executor LOGIN or deployment is authorized by this package. Gate B.2 was merged
+as `b3e23ea00ff7e8226f4425cff9ed8a3562cc3a3e`; the present method/query corrections
+are uncommitted offline proposals.
 
 The original C1 file remains at
 `supabase/migrations/20261024000100_c1_owner_inspections.sql`, unchanged:
 5,703 bytes; SHA-256
 `6d372060e7ba6cbd82e3d83890273da7b238394c8c7236c8231fc04b609383c8`.
-The canonical companion now exists, uncommitted, at
+The canonical companion is committed at
 `supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql`: 551 bytes;
 SHA-256 `6947af89fd026db15c6e32e94983d0dd13ace65ba1304e974ae858a502fb6e62`.
 Its bytes exactly match the unchanged reviewed `HARDENING.sql`.
@@ -17,16 +19,17 @@ Its bytes exactly match the unchanged reviewed `HARDENING.sql`.
 It embeds executable SQL and history text from the verified canonical bytes;
 the review-directory copy is a checked mirror, never the execution/history source.
 
-**Gate C remains unapproved.** The current approved main does not yet contain
-the new canonical file or release-preparation sources. The exact SQL Editor
-execution method also requires separate approval and verification; local psql
-tests do not establish Dashboard batch/connection/error behavior.
+**Gate C remains unapproved.** Both canonical files exist in approved main.
+The proposed method is now one fail-on-error psql session rather than SQL Editor;
+see [execution-method review](EXECUTION_METHOD_REVIEW.md) for source evidence,
+timeout/commit limitations and the command specimen requiring separate approval.
 
 ## Exact inventory
 
 | File | Purpose |
 | --- | --- |
 | `README.md` | Strategy comparison, risks, approval gates and operator runbook |
+| `EXECUTION_METHOD_REVIEW.md` | SQL Editor/psql comparison, recommended command and remaining approval requirements |
 | `HARDENING.sql` | Unchanged reviewed mirror of the canonical companion |
 | `GATE_D.template.sql` | Application ownership/RLS/definition/effective-privilege assertions |
 | `HISTORY_ASSERTIONS.template.sql` | Metadata shape, source receipts, ownership and access assertions |
@@ -40,7 +43,7 @@ tests do not establish Dashboard batch/connection/error behavior.
 | `manifest.json` | Versions, hashes, byte lengths, body hash and release inputs |
 | `OFFLINE_VERIFICATION.md` | Actual local results, environment and limitations |
 
-All thirteen files remain review artifacts. The additional canonical companion
+All fourteen files remain review artifacts. The additional canonical companion
 was added to active migrations under Gate B.2 authorization, but not applied.
 Generated SQL should be regenerated from the reviewed inputs, not hand-maintained.
 
@@ -87,12 +90,12 @@ source rather than replacing it with fetched output. The CLI compares version ID
 not source checksums, so future use still requires the source manifest/Git review.
 
 **Canonical presence is fixed; release approval remains a separate prerequisite.**
-Both canonical files are now hash-verified before generation, and both history
-records are generated from those canonical sources. The companion is still
-uncommitted, so no approved Git revision containing it is available yet. Before
-hosted execution, independently review the actual canonical files and approve
-the exact Git revision containing both files AND the generator/assertion inputs.
-Any future commit/PR needs separate authorization; none is performed by this work.
+Both canonical files are hash-verified before generation, and both history
+records are generated from those sources. Approved main contains the canonical
+files, but the current method/query changes are uncommitted. Before hosted
+execution, independently approve the exact revision containing the canonical
+files AND the updated generator/assertion/method-review inputs. Any future
+commit/PR needs separate authorization; none is performed by this work.
 Prepare an isolated hosted migration workspace with exactly those approved files.
 Do not link or push this repository's existing local-proof workspace/configuration.
 
@@ -123,13 +126,13 @@ The approval JSON must carry these fields (no valid approval is supplied here):
 | `approvedGitRevision` | Exact approved 40-character commit ID, equal to HEAD and containing the verified release sources |
 | `canonicalMigrations` | Exact two `manifest.json` versions mappings, including canonical source paths/names/hashes, in version order |
 | `gateCExecutionApproved` | `true` only after separate explicit Gate C authorization |
-| `executionMethod` | `supabase-sql-editor-single-batch-one-connection` |
-| `sqlEditorExecutionMethodApprovedAndVerified` | `true` only after the exact proposed execution method is approved and verified |
+| `executionMethod` | `psql-single-session-explicit-transaction-on-error-stop` |
+| `executionMethodApprovedAndVerified` | `true` only after the exact psql client/profile/command and session bounds are approved and verified |
 
 These fields are HUMAN ATTESTATIONS, not a self-authenticating authorization
 mechanism. A JSON file cannot grant user permission. The validator does not
 enable SQL, emit an enabled release copy, connect anywhere or execute anything.
-The current checkout deliberately cannot pass its committed-source prerequisite.
+The current method-review checkout cannot pass its committed-source prerequisite.
 After a future source revision is approved, regenerate/check at that revision,
 retain the validator result, and independently review the exact final release
 copy/hash before changing its three disabled release inputs. No command or flag
@@ -189,38 +192,40 @@ There is no automatic repair, drop, retry, LOGIN or account creation.
 
 ## Operator runbook — separate approval gates
 
-1. **Gate B.2 independent offline review.** Review the actual canonical migrations,
+1. **Independent offline method review.** Review the actual canonical migrations,
    source hashes, generator guards and negative tests along with the SQL package,
    local evidence and manual metadata risks. Preparation is the only current
    authorization. Offline regeneration: `node docs/review/h1b2/prepare.mjs`.
    Integrity check: `node docs/review/h1b2/prepare.mjs --check`.
-   Focused B.2 reproduction: `node docs/review/h1b2/test-local.mjs --gate-b2`.
-   The test requires the existing cached image and local Docker Desktop engine;
-   it never pulls images, accesses existing stacks or uses a hosted target.
-2. **Supplemental read-only approval.** The supplied Gate A summary established
-   history-table absence, not metadata-schema absence or an enabled event-trigger
-   fingerprint. With separate authorization, run the SELECT inventory in the
-   confirmed Dashboard project, one SELECT at a time; review each result before
-   continuing, including event trigger handler hashes/behavior,
-   complete creator defaults and memberships. Known facts need not be re-reviewed
-   beyond confirming they remain unchanged. A pre-existing metadata schema needs
-   its own reviewed branch of the plan; this wrapper will refuse it.
+   File-only method/query checks: `node docs/review/h1b2/test-local.mjs --files-only`.
+   Earlier database/CLI results remain recorded; do not rerun them for this change.
+   The file-only checks do not require Docker. Database/CLI checks require the
+   existing cached image and local Docker Desktop engine; they never pull images,
+   access existing stacks or use a hosted target.
+2. **Reported supplemental catalog review.** The operator has now confirmed
+   PostgreSQL 17.11/postgres, C1/executor/history-schema absence, role memberships
+   and schema ACLs, including the seven event triggers and fingerprint recorded
+   in the method review. No hosted queries are repeated here. The generated
+   wrapper still checks live prerequisites at its eventual authorized execution.
+   Query sorting is corrected to ORDER BY 1, 2. Any later state discrepancy means
+   STOP; existing metadata is never silently reused.
 3. **Release preparation approval.** The canonical companion has been created,
    but the actual canonical files and exact Git revision still need independent
    approval. Ensure all manifest-listed release sources exist at that approved
    revision, then regenerate and run the read-only release-prerequisite check
    with real human approval evidence. Approve the isolated workspace, direct
-   metadata writes and the exact SQL Editor execution method separately. Supply
+   metadata writes and the exact psql execution method/session bounds separately. Supply
    the reviewed event-trigger fingerprint. Only after those gates, prepare a
    release COPY with its three explicit input literals changed: authorization
    true, confirmed project ref and approved event-trigger fingerprint. Keep this
    review artifact disabled. Hash and independently review the complete release
    copy; changing inputs does not itself authorize execution.
-4. **Gate C explicit hosted migration approval.** The SQL Editor method is a
-   proposal requiring approval/verification, not an established hosted guarantee.
-   Only after that and explicit execution approval may the operator execute the
-   complete approved batch in SQL Editor on ONE connection as postgres,
-   without selection/splitting or other migration operators. The advisory lock
+4. **Gate C explicit hosted migration approval.** Use the separately approved
+   psql process/session and hash-checked file, startup files disabled, stop-on-error
+   enabled and error continuation off. The file already owns BEGIN/COMMIT: do not
+   add --single-transaction, split sessions or automatically reconnect/retry.
+   Approve TLS/profile/client and proposed transaction/idle session bounds first.
+   SQL Editor remains unapproved for this bootstrap. The advisory lock
    serializes cooperating attempts; object creation and primary keys fail closed
    against duplicate/noncooperating attempts. Permission errors/timeouts abort.
    Do not use normal two-file db push in place of this reviewed transaction.

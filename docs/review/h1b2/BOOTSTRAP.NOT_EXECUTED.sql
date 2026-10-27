@@ -1,7 +1,7 @@
 -- H1b.2 EXACT PROPOSED BOOTSTRAP. NOT EXECUTED ON HOSTED.
 -- Generated from BOTH hash-verified canonical supabase/migrations source files.
 -- SQL cannot prove local Git presence/approval: mandatory offline release check.
--- Review/approve the exact release copy and SQL Editor method separately.
+-- Review/approve the exact release copy and fail-on-error psql method separately.
 -- THIS FILE FAILS CLOSED by default. Three release inputs require independent review.
 -- A project-ref literal is an OPERATOR ATTESTATION, not server identity evidence.
 -- Submit the complete approved batch on ONE connection. Never run a selection.

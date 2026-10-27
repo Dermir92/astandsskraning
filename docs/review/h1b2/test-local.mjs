@@ -136,16 +136,18 @@ async function preparationChecks() {
   const approvedRevision=spawnSync('git',['rev-parse','HEAD'],{cwd:repo,encoding:'utf8',env:{...process.env,GIT_OPTIONAL_LOCKS:'0'}}).stdout.trim();
   // Synthetic negative-test attestations. These are NOT real human approval.
   const attestation={schemaVersion:1,approvalReference:'SYNTHETIC_OFFLINE_NEGATIVE_TEST_ONLY',
-    canonicalFilesReviewed:true,gateCExecutionApproved:true,sqlEditorExecutionMethodApprovedAndVerified:true,
-    executionMethod:'supabase-sql-editor-single-batch-one-connection',approvedGitRevision:approvedRevision,
+    canonicalFilesReviewed:true,gateCExecutionApproved:true,executionMethodApprovedAndVerified:true,
+    executionMethod:'psql-single-session-explicit-transaction-on-error-stop',approvedGitRevision:approvedRevision,
     canonicalMigrations:canonicalMappings};
   for(const [label,modify,message] of [
     ['missing explicit canonical review',a=>{a.canonicalFilesReviewed=false;},'explicit canonical review'],
     ['missing Gate C approval',a=>{a.gateCExecutionApproved=false;},'explicit canonical review'],
-    ['unverified SQL Editor method',a=>{a.sqlEditorExecutionMethodApprovedAndVerified=false;},'explicit canonical review'],
+    ['unverified execution method',a=>{a.executionMethodApprovedAndVerified=false;},'explicit canonical review'],
+    ['legacy SQL Editor method',a=>{a.executionMethod='supabase-sql-editor-single-batch-one-connection';},'explicit canonical review'],
+    ['legacy SQL Editor approval field',a=>{delete a.executionMethodApprovedAndVerified;a.sqlEditorExecutionMethodApprovedAndVerified=true;},'explicit canonical review'],
     ['incorrect canonical approval mapping',a=>{a.canonicalMigrations[1].sha256='0'.repeat(64);},'canonical filename/version/hash mapping differs'],
     ['different approved revision',a=>{a.approvedGitRevision='0'.repeat(40);},'approved Git revision must equal'],
-    ['sources absent from approved current revision',()=>{},'release source absent from approved revision'],
+    ['uncommitted release-source changes',()=>{},'release source absent from approved revision'],
   ]) await test('canonical preparation: release check rejects '+label,()=>{
     const a=structuredClone(attestation);modify(a);
     const approvalPath=path.join(runtime,label.replaceAll(' ','-')+'.json');fs.writeFileSync(approvalPath,JSON.stringify(a));
@@ -154,6 +156,10 @@ async function preparationChecks() {
   await test('canonical preparation: no option enables or emits executable release SQL',()=>{
     rejectedPrep(repo,['--enable'],'use no arguments');
     check(fs.readFileSync(path.join(dir,'BOOTSTRAP.NOT_EXECUTED.sql'),'utf8').includes('v_execution_authorized boolean := false;'),'Real review bundle became enabled');
+  });
+  await test('canonical preparation: psql file retains one explicit transaction and no reconnect/meta-commands',()=>{
+    check((template.match(/^begin;$/gm)||[]).length===1 && (template.match(/^commit;$/gm)||[]).length===1,'Explicit transaction boundary changed');
+    check(!/^\s*\\/m.test(template),'Unexpected psql meta-command/reconnect path');
   });
 }
 function reset(extra = '') {
@@ -228,6 +234,10 @@ function sqlAsync(text) {
 try {
   if (!process.argv.includes('--native-only')) await preparationChecks();
   if (process.argv.includes('--files-only')) {
+    const reportPath=path.join(dir,'OFFLINE_VERIFICATION.md'),marker='<!-- BEGIN H1B2_EXECUTION_METHOD_REVIEW_RESULTS -->';
+    const historical=fs.readFileSync(reportPath,'utf8').split(marker)[0].trimEnd();
+    const current=`${marker}\n\n## Execution-method review — 2026-10-27\n\n${results.length} file-only preparation checks passed. No Docker operation, psql invocation, SQL, database/Auth connection, credential access or hosted operation occurred. Canonical source/hash, deterministic generation, release refusal and unchanged transaction-boundary checks only.\n\n${results.map(x=>'- PASS '+x).join('\n')}\n\nLegacy SQL Editor method/approval fields are refused; the proposed psql method still requires explicit human authorization, approved Git source and final artifact integrity. Both canonical migrations and Gate D/security assertion sources remain unchanged. Historical Gate B.1 and B.2 database/CLI evidence above was not rerun and is not evidence that the new proposed psql/profile/timeouts have been tested against hosted Supabase.\n`;
+    fs.writeFileSync(reportPath,historical+'\n\n'+current);
     console.log('ALL '+results.length+' FILE-ONLY CHECKS PASSED');
     process.exit(0);
   }
