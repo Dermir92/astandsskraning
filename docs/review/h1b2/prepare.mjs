@@ -40,7 +40,8 @@ const canonicalMigrations = [
 const releaseSourcePaths = [...canonicalMigrations.map(m => m.source),
   'docs/review/h1b2/prepare.mjs', 'docs/review/h1b2/GATE_D.template.sql',
   'docs/review/h1b2/HISTORY_ASSERTIONS.template.sql', 'docs/review/h1b2/HARDENING.sql',
-  'docs/review/h1b2/EXECUTION_METHOD_REVIEW.md'];
+  'docs/review/h1b2/EXECUTION_METHOD_REVIEW.md', 'docs/review/h1b2/README.md',
+  'docs/review/h1b2/RECOVERY_INVENTORY.sql'];
 function git(...gitArgs) {
   try {
     return execFileSync('git', gitArgs, { cwd: repo, encoding: null,
@@ -48,15 +49,14 @@ function git(...gitArgs) {
       stdio: ['ignore','pipe','pipe'], maxBuffer: 2 * 1024 * 1024 });
   } catch { return null; }
 }
-const gitRoot = git('rev-parse','--show-toplevel')?.toString().trim();
-const gitRootMatches = gitRoot !== undefined && path.resolve(gitRoot).toLowerCase() === repo.toLowerCase();
-const sourceGitRevision = gitRootMatches ? git('rev-parse','--verify','HEAD')?.toString().trim() ?? null : null;
-const canonicalAtHead = canonicalMigrations.map(m => {
-  const blob = sourceGitRevision ? git('cat-file','blob',sourceGitRevision + ':' + m.source) : null;
-  return { source: m.source, presentWithApprovedBytes: blob !== null && sha(blob) === m.sha256 };
-});
+// Git identity is live release evidence, not deterministic generated content.
+// Ordinary generation/checking depends only on the pinned source bytes.
+let sourceGitRevision = null;
 let releaseApproval = null;
 if (mode === 'verify-release') {
+  const gitRoot = git('rev-parse','--show-toplevel')?.toString().trim();
+  const gitRootMatches = gitRoot !== undefined && path.resolve(gitRoot).toLowerCase() === repo.toLowerCase();
+  sourceGitRevision = gitRootMatches ? git('rev-parse','--verify','HEAD')?.toString().trim() ?? null : null;
   try { releaseApproval = JSON.parse(fs.readFileSync(path.resolve(args[1]),'utf8')); }
   catch { throw new Error('STOP: release approval JSON is missing or invalid'); }
   if (releaseApproval?.schemaVersion !== 1 || releaseApproval.canonicalFilesReviewed !== true
@@ -309,8 +309,7 @@ const manifest = {
   versions: canonicalMigrations,
   canonicalReviewCopy: { source: 'docs/review/h1b2/HARDENING.sql', sha256: sha(reviewCopy), matchesCanonical: true },
   releasePrerequisites: {
-    currentGitRevision: sourceGitRevision,
-    canonicalAtHead,
+    gitRevisionValidation: 'LIVE_EXACT_HEAD_AND_COMMITTED_SOURCE_BYTES_REQUIRED_BY_VERIFY_RELEASE',
     approvedGitRevision: null,
     actualCanonicalFilesReviewRequired: true,
     committedReleaseSourcePaths: releaseSourcePaths,

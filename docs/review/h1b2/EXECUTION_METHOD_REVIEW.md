@@ -73,9 +73,14 @@ Require exit 0 and the final COMMIT acknowledgement, then verify both receipts
 and Gate D from a fresh authorized connection. A PASS printed before COMMIT is
 provisional. Exit 1/2/3 or a missing response means stop, not retry. A SQL error
 before commit aborts the transaction; session termination cleans up uncommitted
-work. A disconnect around commit remains ambiguous even with psql. Use the
-existing recovery inventory/history procedure and investigate an active backend
-if necessary, without automatically cancelling/replaying another session.
+work. A disconnect before, during or after commit remains uncertain even with
+psql. Freeze further execution and first resolve the prior backend/transaction,
+or STOP. An all-absent snapshot alone cannot prove rollback while that transaction
+may still commit. After it has definitively ended, use a fresh authorized session
+for the recovery inventory/history procedure. All-present requires exact receipts
+and full Gate D; mixed/uncertain state means STOP. There is no automatic retry,
+backend cancel or terminate. Hosted investigation/intervention needs its own
+authorization; this offline package does not provide it.
 See [PostgreSQL protocol termination/cancellation](https://www.postgresql.org/docs/17/protocol-flow.html).
 
 ## Guard/runbook changes and supplied catalog evidence

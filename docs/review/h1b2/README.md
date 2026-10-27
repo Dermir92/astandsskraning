@@ -3,8 +3,9 @@
 **NOT EXECUTED ON HOSTED. NOT AUTHORIZATION TO EXECUTE.** Prepared 2026-10-27.
 No hosted database/Auth connection, Dashboard change, credential, account,
 executor LOGIN or deployment is authorized by this package. Gate B.2 was merged
-as `b3e23ea00ff7e8226f4425cff9ed8a3562cc3a3e`; the present method/query corrections
-are uncommitted offline proposals.
+as `b3e23ea00ff7e8226f4425cff9ed8a3562cc3a3e`; the psql method/query corrections
+were merged by PR #15 as `bb7b0abfe4dd9bea7defacadeb670ba06519cd65`.
+The present deterministic-readiness/recovery changes remain offline preparation.
 
 The original C1 file remains at
 `supabase/migrations/20261024000100_c1_owner_inspections.sql`, unchanged:
@@ -39,7 +40,7 @@ timeout/commit limitations and the command specimen requiring separate approval.
 | `RECOVERY_INVENTORY.sql` | SELECT-only first step after an unknown transaction outcome |
 | `RECOVERY_HISTORY.sql` | SELECT-only receipt comparison, conditional on history table presence |
 | `prepare.mjs` | Canonical hash guards, deterministic generation/integrity check, read-only Git release-prerequisite validation; no database/network |
-| `test-local.mjs` | Focused tests using only a fresh disposable local cluster and isolated CLI workspaces |
+| `test-local.mjs` | File-only checks in isolated temporary Git fixtures; separate database/CLI modes use disposable local infrastructure |
 | `manifest.json` | Versions, hashes, byte lengths, body hash and release inputs |
 | `OFFLINE_VERIFICATION.md` | Actual local results, environment and limitations |
 
@@ -92,10 +93,10 @@ not source checksums, so future use still requires the source manifest/Git revie
 **Canonical presence is fixed; release approval remains a separate prerequisite.**
 Both canonical files are hash-verified before generation, and both history
 records are generated from those sources. Approved main contains the canonical
-files, but the current method/query changes are uncommitted. Before hosted
+files and the psql method/query changes. Before hosted
 execution, independently approve the exact revision containing the canonical
 files AND the updated generator/assertion/method-review inputs. Any future
-commit/PR needs separate authorization; none is performed by this work.
+commit/PR and hosted execution require their own explicit authorization.
 Prepare an isolated hosted migration workspace with exactly those approved files.
 Do not link or push this repository's existing local-proof workspace/configuration.
 
@@ -109,10 +110,15 @@ disabled:
   before output writes; the approved hash constants are not learned from disk.
 - `--check`: perform the same source checks and compare all generated SQL and
   manifest bytes with fresh in-memory output; refuse stale/modified artifacts.
+  The manifest contains source hashes and a fixed Git-validation policy, never
+  live HEAD/canonical-at-HEAD observations. Identical source bytes therefore
+  generate identical artifacts before/after commits and merges, or outside Git.
+  Passing this mode establishes artifact integrity only, not release approval.
 - `--verify-release <approval-json>`: additionally validate explicit review and
   execution-method attestations, exact canonical mapping, approved revision equal
   to this repository's HEAD, and Git blob equality for both canonical files plus
-  the generator and assertion inputs listed in the manifest. The repository root
+  the generator, assertion, method/runbook and recovery-inventory inputs listed
+  in the manifest. The repository root
   must match exactly. Missing/uncommitted/modified release sources stop the check.
   It then performs generated-artifact integrity checks and prints a result only.
 
@@ -132,7 +138,7 @@ The approval JSON must carry these fields (no valid approval is supplied here):
 These fields are HUMAN ATTESTATIONS, not a self-authenticating authorization
 mechanism. A JSON file cannot grant user permission. The validator does not
 enable SQL, emit an enabled release copy, connect anywhere or execute anything.
-The current method-review checkout cannot pass its committed-source prerequisite.
+Uncommitted or dirty release inputs cannot pass the committed-source prerequisite.
 After a future source revision is approved, regenerate/check at that revision,
 retain the validator result, and independently review the exact final release
 copy/hash before changing its three disabled release inputs. No command or flag
@@ -202,6 +208,12 @@ There is no automatic repair, drop, retry, LOGIN or account creation.
    The file-only checks do not require Docker. Database/CLI checks require the
    existing cached image and local Docker Desktop engine; they never pull images,
    access existing stacks or use a hosted target.
+   File-only execution writes only into a new `h1b2-files-only-*` OS temporary
+   directory: copied fixtures, local Git repositories, clearly synthetic fixture
+   attestations and a new `FILE_ONLY_RESULTS.json`. It never creates an enabled
+   SQL artifact or real approval JSON and never overwrites source/historical reports.
+   Fixture attestations target fixture commits only; they are not human approval.
+   See [current readiness evidence](../H1B2_OFFLINE_READINESS_REVIEW.md).
 2. **Reported supplemental catalog review.** The operator has now confirmed
    PostgreSQL 17.11/postgres, C1/executor/history-schema absence, role memberships
    and schema ACLs, including the seven event triggers and fingerprint recorded
@@ -248,15 +260,25 @@ Do not continue from the failed line or treat an earlier PASS as a committed res
 No executed SQL text/credentials should be copied into logs; use static errors,
 catalog metadata and approved source hashes.
 
-If the connection fails around COMMIT, delivery is uncertain even though database
-effects remain atomic. **No automatic retry.** With read-only recovery authorization:
+If the connection fails before, during or after COMMIT, treat the outcome as
+uncertain until reconciled, even though database effects remain atomic.
+**No automatic retry and no automatic cancel/terminate of a hosted backend.**
+With separately authorized recovery investigation:
 
-1. Confirm the Dashboard project again; run `RECOVERY_INVENTORY.sql` alone.
-2. All C1 identities and metadata absent means this expected first bootstrap did
-   not commit. Reconcile the failure and obtain approval before retrying.
-3. All present: run `RECOVERY_HISTORY.sql`; require exactly the two matching
-   version/name/source receipts, then run full `GATE_D.sql` independently.
-4. Only matching receipts AND passing Gate D establish completion. Mixed state,
+1. Freeze further bootstrap attempts. Resolve the original execution/session/
+   backend and establish that its transaction has definitively ended, or STOP.
+   Client exit, timeout, missing acknowledgement and an all-absent snapshot alone
+   do not establish this: a still-active old transaction may commit later. Any
+   required hosted inspection/intervention needs separate authorization; this
+   package supplies no automatic backend cancellation/termination procedure.
+2. Confirm the project/identity again and run `RECOVERY_INVENTORY.sql` alone from
+   a fresh authorized session after resolving the old transaction. All C1
+   identities and metadata absent then supports no commit of this first bootstrap.
+   Investigate the cause and obtain separate approval before any new attempt.
+3. All present: require exactly the two matching version/name/source receipts via
+   `RECOVERY_HISTORY.sql`, then full `GATE_D.sql` independently. Presence alone
+   or a printed pre-COMMIT PASS is insufficient.
+4. Only matching receipts AND passing Gate D establish completion. Mixed/uncertain state,
    extra/missing/wrong receipts, unexpected shapes/owners/ACLs, or any query error
    mean STOP for investigation. Never fabricate history or rerun the baseline.
 

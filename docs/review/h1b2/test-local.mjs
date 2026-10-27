@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import os from 'node:os';
 import net from 'node:net';
 import http from 'node:http';
 import { spawn, spawnSync } from 'node:child_process';
@@ -23,7 +24,8 @@ check(sha(baseline) === '6d372060e7ba6cbd82e3d83890273da7b238394c8c7236c8231fc04
 check(sha(hardening) === '6947af89fd026db15c6e32e94983d0dd13ace65ba1304e974ae858a502fb6e62', 'Approved canonical companion hash changed');
 const template = fs.readFileSync(path.join(dir, 'BOOTSTRAP.NOT_EXECUTED.sql'), 'utf8');
 const gateD = fs.readFileSync(path.join(dir, 'GATE_D.sql'), 'utf8');
-const authorized = template.replace('v_execution_authorized boolean := false;', 'v_execution_authorized boolean := true;')
+const filesOnly = process.argv.includes('--files-only');
+const authorized = filesOnly ? null : template.replace('v_execution_authorized boolean := false;', 'v_execution_authorized boolean := true;')
   .replace("v_operator_project_ref text := 'UNCONFIRMED';", "v_operator_project_ref text := 'ozcxjphzzwekpwsbglaf';")
   .replace("v_approved_event_trigger_fingerprint text := 'UNREVIEWED';", `v_approved_event_trigger_fingerprint text := '${expectedEmptyTriggerHash}';`);
 const results = [];
@@ -43,8 +45,23 @@ let denyProxy;
 const tunnels = new Set();
 let blockedHttpAttempts = 0;
 let cliLocalPort;
-const runtime = path.join(repo, 'artifacts/h1b2', name);
-fs.mkdirSync(runtime, { recursive: true });
+const runtime = filesOnly ? fs.mkdtempSync(path.join(os.tmpdir(), 'h1b2-files-only-'))
+  : path.join(repo, 'artifacts/h1b2', name);
+if (!filesOnly) fs.mkdirSync(runtime, { recursive: true });
+const sourceSnapshot = () => new Map([...fs.readdirSync(dir).map(n => path.join(dir,n)),
+  path.join(repo,baselinePath), path.join(repo,companionPath)]
+  .map(p => [p, sha(fs.readFileSync(p))]));
+const originalSources = filesOnly ? sourceSnapshot() : null;
+const fixtureGlobalConfig = path.join(runtime, 'empty-gitconfig');
+fs.writeFileSync(fixtureGlobalConfig, '', {flag:'wx'});
+// No global/system Git settings, hooks, signing or inherited repository routing
+// can redirect fixture commits into the real checkout. No remote is configured.
+const fixtureEnv = { ...process.env, GIT_OPTIONAL_LOCKS:'0', GIT_NO_LAZY_FETCH:'1',
+  GIT_CONFIG_GLOBAL:fixtureGlobalConfig, GIT_CONFIG_NOSYSTEM:'1', GIT_TERMINAL_PROMPT:'0' };
+for (const key of Object.keys(fixtureEnv)) {
+  if (key.startsWith('GIT_') && !['GIT_OPTIONAL_LOCKS','GIT_NO_LAZY_FETCH',
+      'GIT_CONFIG_GLOBAL','GIT_CONFIG_NOSYSTEM','GIT_TERMINAL_PROMPT'].includes(key)) delete fixtureEnv[key];
+}
 
 function check(value, message) { if (!value) throw new Error(message); }
 function docker(args, input, allowFailure = false) {
@@ -71,7 +88,25 @@ function equalOutputs(before, root) {
 }
 function prep(root, args = []) {
   return spawnSync(process.execPath,[path.join(root,'docs/review/h1b2/prepare.mjs'),...args],
-    { cwd:root,encoding:'utf8',timeout:15000,env:{...process.env,GIT_OPTIONAL_LOCKS:'0',GIT_NO_LAZY_FETCH:'1'} });
+    { cwd:root,encoding:'utf8',timeout:15000,windowsHide:true,env:fixtureEnv });
+}
+function fixtureGit(root, ...args) {
+  const relative = path.relative(runtime,root);
+  check(relative && !relative.startsWith('..') && !path.isAbsolute(relative), 'Git writes must stay in the isolated runtime');
+  const r=spawnSync('git',['-c','core.autocrlf=false','-c','core.hooksPath='+path.join(runtime,'disabled-hooks'),
+    '-c','commit.gpgsign=false','-c','user.name=H1b2 Offline Fixture',
+    '-c','user.email=h1b2-fixture@example.invalid',...args],
+    {cwd:root,encoding:'utf8',timeout:15000,windowsHide:true,env:fixtureEnv});
+  check(r.status===0,'Isolated Git operation failed: '+args[0]+' '+r.stderr);
+  return r.stdout.trim();
+}
+function committedFixture(label) {
+  const root=fixture(label);
+  check(prep(root).status===0,'Fixture generation failed');
+  fixtureGit(root,'init','--initial-branch=fixture-main');
+  fixtureGit(root,'add','--','docs/review/h1b2','supabase/migrations');
+  fixtureGit(root,'commit','-m','Synthetic offline fixture sources');
+  return root;
 }
 function fixture(label) {
   const root=path.join(runtime,'canonical-fixtures',label);
@@ -128,13 +163,34 @@ async function preparationChecks() {
     const before=outputBytes(root);check(prep(root).status===0,'Second generation failed');equalOutputs(before,root);
     check(prep(root,['--check']).status===0,'Generated integrity check failed');
   });
+  await test('canonical preparation: check and manifest stay identical after a new Git commit',()=>{
+    const root=committedFixture('commit-stability'),before=outputBytes(root);
+    const initial=fixtureGit(root,'rev-parse','HEAD');
+    fixtureGit(root,'commit','--allow-empty','-m','Advance fixture HEAD without source changes');
+    check(initial!==fixtureGit(root,'rev-parse','HEAD'),'Fixture HEAD did not advance');
+    check(prep(root,['--check']).status===0,'Check changed after commit');
+    check(prep(root).status===0,'Regeneration after commit failed');equalOutputs(before,root);
+  });
+  await test('canonical preparation: check and manifest stay identical after an isolated squash merge',()=>{
+    const root=committedFixture('merge-stability'),before=outputBytes(root);
+    fixtureGit(root,'switch','-c','fixture-feature');
+    fs.writeFileSync(path.join(root,'fixture-note.txt'),'Unrelated fixture content only.\n');
+    fixtureGit(root,'add','--','fixture-note.txt');fixtureGit(root,'commit','-m','Fixture feature');
+    fixtureGit(root,'switch','fixture-main');
+    fixtureGit(root,'commit','--allow-empty','-m','Advance fixture base');
+    fixtureGit(root,'merge','--squash','fixture-feature');fixtureGit(root,'commit','-m','Squash fixture feature');
+    check(prep(root,['--check']).status===0,'Check changed after squash merge');
+    check(prep(root).status===0,'Regeneration after merge failed');equalOutputs(before,root);
+  });
   await test('canonical preparation: modified generated SQL is rejected without rewriting it',()=>{
     const root=fixture('modified-sql');check(prep(root).status===0,'Fixture generation failed');
     fs.appendFileSync(path.join(root,'docs/review/h1b2/BOOTSTRAP.NOT_EXECUTED.sql'),'-- fixture drift\n');
     rejectedPrep(root,['--check'],'generated SQL/manifest is stale or modified');
   });
-  const approvedRevision=spawnSync('git',['rev-parse','HEAD'],{cwd:repo,encoding:'utf8',env:{...process.env,GIT_OPTIONAL_LOCKS:'0'}}).stdout.trim();
-  // Synthetic negative-test attestations. These are NOT real human approval.
+  const releaseRoot=committedFixture('synthetic-release');
+  const approvedRevision=fixtureGit(releaseRoot,'rev-parse','HEAD');
+  // Synthetic attestations target ONLY this disposable Git fixture. No real
+  // approval JSON, real-checkout verification or enabled SQL is produced.
   const attestation={schemaVersion:1,approvalReference:'SYNTHETIC_OFFLINE_NEGATIVE_TEST_ONLY',
     canonicalFilesReviewed:true,gateCExecutionApproved:true,executionMethodApprovedAndVerified:true,
     executionMethod:'psql-single-session-explicit-transaction-on-error-stop',approvedGitRevision:approvedRevision,
@@ -147,19 +203,56 @@ async function preparationChecks() {
     ['legacy SQL Editor approval field',a=>{delete a.executionMethodApprovedAndVerified;a.sqlEditorExecutionMethodApprovedAndVerified=true;},'explicit canonical review'],
     ['incorrect canonical approval mapping',a=>{a.canonicalMigrations[1].sha256='0'.repeat(64);},'canonical filename/version/hash mapping differs'],
     ['different approved revision',a=>{a.approvedGitRevision='0'.repeat(40);},'approved Git revision must equal'],
-    ['uncommitted release-source changes',()=>{},'release source absent from approved revision'],
   ]) await test('canonical preparation: release check rejects '+label,()=>{
     const a=structuredClone(attestation);modify(a);
     const approvalPath=path.join(runtime,label.replaceAll(' ','-')+'.json');fs.writeFileSync(approvalPath,JSON.stringify(a));
-    rejectedPrep(repo,['--verify-release',approvalPath],message);
+    rejectedPrep(releaseRoot,['--verify-release',approvalPath],message);
+  });
+  const syntheticPath=path.join(runtime,'SYNTHETIC_FIXTURE_ATTESTATION_ONLY.json');
+  fs.writeFileSync(syntheticPath,JSON.stringify(attestation));
+  await test('canonical preparation: exact fixture revision verifies without enabling execution',()=>{
+    const before=outputBytes(releaseRoot),r=prep(releaseRoot,['--verify-release',syntheticPath]);
+    check(r.status===0,'Synthetic fixture release verification failed: '+r.stderr);
+    const result=JSON.parse(r.stdout);
+    check(result.approvedGitRevision===approvedRevision && result.executionStillDisabled===true,'Release verification changed its authority');
+    equalOutputs(before,releaseRoot);
+  });
+  await test('canonical preparation: dirty committed release source is rejected in an isolated Git fixture',()=>{
+    const target=path.join(releaseRoot,'docs/review/h1b2/EXECUTION_METHOD_REVIEW.md'),before=fs.readFileSync(target);
+    fs.appendFileSync(target,'\nSynthetic uncommitted fixture alteration.\n');
+    try { rejectedPrep(releaseRoot,['--verify-release',syntheticPath],'release source absent from approved revision'); }
+    finally { fs.writeFileSync(target,before); }
+  });
+  await test('canonical preparation: advancing fixture HEAD invalidates its previous revision attestation',()=>{
+    fixtureGit(releaseRoot,'commit','--allow-empty','-m','Invalidate old synthetic revision');
+    check(prep(releaseRoot,['--check']).status===0,'Artifact integrity incorrectly depends on HEAD');
+    rejectedPrep(releaseRoot,['--verify-release',syntheticPath],'approved Git revision must equal');
+  });
+  await test('canonical preparation: a source-only non-Git fixture cannot pass release verification',()=>{
+    const root=fixture('non-git-release');check(prep(root).status===0,'Non-Git generation failed');
+    check(prep(root,['--check']).status===0,'Non-Git artifact integrity check failed');
+    rejectedPrep(root,['--verify-release',syntheticPath],'approved Git revision must equal');
+  });
+  await test('canonical preparation: an untracked release source is rejected in an isolated Git fixture',()=>{
+    const root=committedFixture('untracked-release-source');
+    fixtureGit(root,'rm','--cached','--','docs/review/h1b2/EXECUTION_METHOD_REVIEW.md');
+    fixtureGit(root,'commit','-m','Leave fixture release source untracked');
+    const a={...attestation,approvedGitRevision:fixtureGit(root,'rev-parse','HEAD')};
+    const p=path.join(runtime,'SYNTHETIC_UNTRACKED_FIXTURE_ONLY.json');fs.writeFileSync(p,JSON.stringify(a));
+    rejectedPrep(root,['--verify-release',p],'release source absent from approved revision');
   });
   await test('canonical preparation: no option enables or emits executable release SQL',()=>{
-    rejectedPrep(repo,['--enable'],'use no arguments');
+    rejectedPrep(releaseRoot,['--enable'],'use no arguments');
     check(fs.readFileSync(path.join(dir,'BOOTSTRAP.NOT_EXECUTED.sql'),'utf8').includes('v_execution_authorized boolean := false;'),'Real review bundle became enabled');
   });
   await test('canonical preparation: psql file retains one explicit transaction and no reconnect/meta-commands',()=>{
     check((template.match(/^begin;$/gm)||[]).length===1 && (template.match(/^commit;$/gm)||[]).length===1,'Explicit transaction boundary changed');
     check(!/^\s*\\/m.test(template),'Unexpected psql meta-command/reconnect path');
+  });
+  await test('canonical preparation: executable bootstrap and Gate D retain approved security bytes',()=>{
+    const begin=template.indexOf('\nbegin;\n');check(begin>=0,'Missing bootstrap BEGIN');
+    check(sha(template.slice(begin))==='88541fbf2ba3b815a5544828202e0203e6f3d26b2debc2c9e325c56b869f816a','Approved executable bootstrap changed');
+    check(sha(gateD)==='d336d9f516d4d2785d5460a09d6bc988b1cf249625da12944e2640fa52ba87f4','Approved Gate D changed');
   });
 }
 function reset(extra = '') {
@@ -233,12 +326,18 @@ function sqlAsync(text) {
 
 try {
   if (!process.argv.includes('--native-only')) await preparationChecks();
-  if (process.argv.includes('--files-only')) {
-    const reportPath=path.join(dir,'OFFLINE_VERIFICATION.md'),marker='<!-- BEGIN H1B2_EXECUTION_METHOD_REVIEW_RESULTS -->';
-    const historical=fs.readFileSync(reportPath,'utf8').split(marker)[0].trimEnd();
-    const current=`${marker}\n\n## Execution-method review — 2026-10-27\n\n${results.length} file-only preparation checks passed. No Docker operation, psql invocation, SQL, database/Auth connection, credential access or hosted operation occurred. Canonical source/hash, deterministic generation, release refusal and unchanged transaction-boundary checks only.\n\n${results.map(x=>'- PASS '+x).join('\n')}\n\nLegacy SQL Editor method/approval fields are refused; the proposed psql method still requires explicit human authorization, approved Git source and final artifact integrity. Both canonical migrations and Gate D/security assertion sources remain unchanged. Historical Gate B.1 and B.2 database/CLI evidence above was not rerun and is not evidence that the new proposed psql/profile/timeouts have been tested against hosted Supabase.\n`;
-    fs.writeFileSync(reportPath,historical+'\n\n'+current);
+  if (filesOnly) {
+    await test('file-only isolation: real review and canonical sources remain byte-identical',()=>{
+      const after=sourceSnapshot();
+      check(after.size===originalSources.size && [...originalSources].every(([p,h])=>after.get(p)===h),'File-only tests changed real sources');
+    });
+    const reportPath=path.join(runtime,'FILE_ONLY_RESULTS.json');
+    fs.writeFileSync(reportPath,JSON.stringify({status:'OFFLINE_TESTS_ONLY_NOT_RELEASE_APPROVAL',
+      checks:results,passed:results.length,executionAuthorized:false,
+      sourceFilesChanged:false,hostedOperations:false,
+      syntheticAttestations:'DISPOSABLE_GIT_FIXTURES_ONLY',runtime},null,2)+'\n',{flag:'wx'});
     console.log('ALL '+results.length+' FILE-ONLY CHECKS PASSED');
+    console.log('NEW ISOLATED REPORT: '+reportPath);
     process.exit(0);
   }
   const endpoint = docker(['context','inspect','--format','{{.Endpoints.docker.Host}}']).stdout.trim();
