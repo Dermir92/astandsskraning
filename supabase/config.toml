@@ -1,15 +1,17 @@
-# C1 local proof only. Never run link, db push or deploy against this workspace.
-project_id = "astandsskodun-c1"
+# D1 local only. Use scripts/d1-local.mjs; never link, push or deploy here.
+project_id = "astandsskodun-docker-c1"
 [api]
 enabled = true
-port = 55421
+port = 56421
 schemas = ["public"]
 extra_search_path = ["public", "extensions"]
 max_rows = 500
 [db]
-port = 55422
-shadow_port = 55420
+port = 56422
+shadow_port = 56420
 major_version = 17
+[db.pooler]
+enabled = false
 [db.migrations]
 enabled = true
 schema_paths = []

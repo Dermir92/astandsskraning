@@ -5,10 +5,16 @@ import { fileURLToPath } from "node:url";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { randomBytes } from "node:crypto";
 import path from "node:path";
-import postgres from "postgres";
-import { createClient } from "@supabase/supabase-js";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
+// Refuse D1 before dependency/CLI resolution, runtime reads or any side effect.
+// Every legacy entry point, including stop/reset, must pass this same guard.
+const config = await readFile(path.join(root, "supabase/config.toml"), "utf8");
+if (!/^project_id = "astandsskodun-c1"\r?$/m.test(config) ||
+    !/^port = 55421\r?$/m.test(config) || !/^port = 55422\r?$/m.test(config)) {
+  throw new Error("Legacy C1 commands are disabled for this configuration. Use d1:check; D1 Auth/app setup is not enabled.");
+}
+if (process.argv.length !== 3 && process.argv[2] !== "test") throw new Error("Unexpected C1 arguments");
 const runtimePath = path.join(root, "artifacts/c1-local/runtime.json");
 const run = promisify(execFile);
 const require = createRequire(import.meta.url);
@@ -20,6 +26,8 @@ if (command === "start") {
   catch { throw new Error("C1 local stack could not start. Check Docker and port availability; no hosted project is used."); }
   console.log("Local C1 stack started. Use c1:prepare next. Privileged CLI status values were not printed.");
 } else if (command === "prepare") {
+  const { default: postgres } = await import("postgres");
+  const { createClient } = await import("@supabase/supabase-js");
   // Read local-only status directly into memory. Never log its privileged keys.
   const { stdout } = await run(cli, ["status", "--output", "json"], { cwd: root });
   const status = JSON.parse(stdout);
@@ -46,6 +54,8 @@ if (command === "start") {
   await mkdir(path.dirname(runtimePath), { recursive: true });
   await writeFile(runtimePath, JSON.stringify({ apiUrl: status.API_URL, anonKey: status.ANON_KEY, databaseUrl: db.toString(), accounts }, null, 2), { mode: 0o600 });
   console.log("C1 local executor and two fictional owners prepared. Local-only credentials are in ignored artifacts/c1-local/runtime.json; no hosted project was contacted.");
+} else if (command === "stop" || command === "reset") {
+  await run(cli, command === "stop" ? ["stop", "--project-id", "astandsskodun-c1"] : ["db", "reset", "--local"], { cwd: root });
 } else if (command === "serve" || command === "test") {
   const runtime = JSON.parse(await readFile(runtimePath, "utf8"));
   if (runtime.apiUrl !== "http://127.0.0.1:55421") throw new Error("Hosted projects are not supported in C1");
@@ -54,4 +64,4 @@ if (command === "start") {
   const child = spawn(process.execPath, args, { cwd: root, env, stdio: "inherit", windowsHide: true });
   for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => child.kill(signal));
   child.on("exit", code => process.exit(code ?? 1));
-} else throw new Error("Use start, prepare, serve or test");
+} else throw new Error("Use start, stop, reset, prepare, serve or test");
