@@ -4,6 +4,7 @@ import { InspectionPositions, decodePosition, inspectionHref, itemProgress, miss
 import { EMPTY_OBSERVATION, reportStats } from "../src/lib/model";
 import { STORAGE_KEY } from "../src/components/demo-provider";
 import { checklistReport } from "./inspection-checklist-fixtures";
+import { chooseAssessment } from "./inspection-ui-helpers";
 
 const base = "/skyrslur/checklist-report";
 const key = positionKey("checklist-report");
@@ -123,7 +124,7 @@ test("a visited unanswered draft offers Continue while an unvisited draft keeps 
 
 test("condition-only quick answers stay collapsed and remember the explicitly answered item", async ({ page }) => {
   await seed(page);
-  await row(page, "walls").getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
+  await row(page, "walls").getByRole("button", { name: "Ástand í lagi: Veggir", exact: true }).click();
   await expect(row(page, "walls").locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "false");
   await expect(page).toHaveURL(/rymi=checklist-entry&atridi=walls$/);
   await expect(page.locator(".checklist-item-open")).toHaveCount(0);
@@ -191,7 +192,7 @@ test("review editing returns to a stable item after its original finding disappe
   await reviewRoom.locator(".review-observations").getByRole("link", { name: "Gluggar", exact: true }).click();
   await expanded(page, "windows");
   const count = await page.evaluate(() => history.length);
-  await row(page, "windows").getByRole("radio", { name: "Í lagi", exact: true }).check();
+  await chooseAssessment(page, row(page, "windows"), "Í lagi");
   await row(page, "windows").getByRole("radio", { name: "Virkar", exact: true }).check();
   await row(page, "windows").getByRole("radio", { name: "Hreint", exact: true }).check();
   expect(await page.evaluate(() => history.length)).toBe(count);
@@ -253,11 +254,11 @@ test("navigation-only storage failure is non-blocking and report save/retry rema
   await row(page, "windows").locator(".checklist-toggle").click();
   await expanded(page, "windows");
   await expect(page.getByRole("status").filter({ hasText: "Ekki tókst að muna" })).toBeVisible();
-  await row(page, "windows").getByRole("button", { name: "Í lagi: Gluggar", exact: true }).click();
+  await row(page, "windows").getByRole("button", { name: "Ástand í lagi: Gluggar", exact: true }).click();
   await expect(page.locator(".topbar .save-status")).toHaveText("Vistað í þessum vafra");
   await page.reload();
   await expanded(page, "windows");
-  await expect(row(page, "windows").getByRole("button", { name: "Í lagi: Gluggar", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(row(page, "windows")).toContainText("Í lagi · Ófullskráð");
 });
 
 test("invalid navigation metadata is preserved and cannot replace valid drafts", async ({ page }) => {
@@ -281,7 +282,7 @@ test("report-only write failure retains pending edits and retry while navigation
   }, STORAGE_KEY);
   const document = await seed(page);
   await page.evaluate(() => sessionStorage.setItem("fail-report-write", "1"));
-  await row(page, "walls").getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
+  await row(page, "walls").getByRole("button", { name: "Ástand í lagi: Veggir", exact: true }).click();
   await expect(page.locator(".topbar .save-status")).toHaveText("Ekki tókst að vista í vafra");
   expect(await raw(page)).toBe(document);
   await page.getByRole("link", { name: "Næsta rými", exact: true }).click();
@@ -305,7 +306,7 @@ test("metadata read exceptions do not block explicit destinations or valid answe
   await seed(page, checklistReport(), undefined, `${base}/skraning?rymi=checklist-entry&atridi=walls`);
   await expanded(page, "walls");
   await expect(page.getByRole("status").filter({ hasText: "Ekki tókst að muna" })).toBeVisible();
-  await row(page, "walls").getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
+  await row(page, "walls").getByRole("button", { name: "Ástand í lagi: Veggir", exact: true }).click();
   await expect(page.locator(".topbar .save-status")).toHaveText("Vistað í þessum vafra");
   await page.reload();
   await expanded(page, "walls");
@@ -355,7 +356,7 @@ test("read-protected reports neither write navigation metadata nor mutate unread
   await page.goto("/");
   await expect(page.locator(".topbar .save-status")).toHaveText("Staðbundin gögn læst til verndar");
   await page.getByRole("link", { name: /^Halda áfram:/ }).first().click();
-  await expect(page.getByRole("heading", { name: "Ástandsskráning", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await row(page, "windows").locator(".checklist-toggle").click();
   await expanded(page, "windows");
   expect(await raw(page)).toBe(invalid);

@@ -33,3 +33,18 @@
 .retained dt { font-weight: 700; margin-top: 8px; }
 .retained dd { margin: 0; }
 .gallery button:focus-visible, .gallery summary:focus-visible, .retained summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.captureControls { min-width: 0; }
+.captureControls > summary { min-height: 44px; align-content: center; font-size: 14px; font-weight: 650; color: var(--teal-dark); cursor: pointer; }
+.captureControls > summary[hidden] { display: none; }
+.featuredCapture:global(.photo-preview) { margin: 0; padding: 0; border: 0; background: transparent; }
+.featuredCapture :global(.photo-heading) { display: none; }
+.featuredCapture .caption { font-size: 14px; }
+.featuredCapture .gallery { margin-top: 0; }
+.featured > .thumbnails { grid-template-columns: minmax(0, 176px); }
+.featured > .thumbnails .thumbnail { padding: 0; overflow: hidden; }
+.featured > .thumbnails .thumbnail img { height: 132px; border-radius: 0; }
+.featured > .thumbnails .thumbnail span { display: flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; margin: 0; background: var(--navy); color: white; font-weight: 650; }
+@media (max-width: 640px) {
+  .featured > .thumbnails { grid-template-columns: minmax(0, 144px); }
+  .featured > .thumbnails .thumbnail img { height: 106px; }
+}

@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronUp,
   Circle,
+  Plus,
   TriangleAlert,
 } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
@@ -26,9 +27,16 @@ import { Field } from "./form-field";
 import { PhotoPreview } from "./photo-preview";
 import { RetainedDefectDetails } from "./evidence-gallery";
 import { hasRetainedDefect } from "@/lib/inspection-evidence";
+import { ContextDialog } from "./context-dialog";
+import { prepareAssessmentChange, type AssessmentChange } from "./assessment-change";
 import styles from "./inspection-checklist.module.css";
 
 type Question = "condition" | "functionality" | "cleanliness";
+const answerLabels: Record<Question, Record<string, string>> = {
+  condition: is.conditions,
+  functionality: is.functionality,
+  cleanliness: is.cleanliness,
+};
 
 function AnswerGroup<T extends string>({
   label,
@@ -114,16 +122,35 @@ export function ObservationEditor({
   const panelRef = useRef<HTMLDivElement>(null);
   const keyboardNavigation = useRef(false);
   const [foldCondition, setFoldCondition] = useState(false);
+  const transactions = useRef<{ pending?: AssessmentChange; undo?: AssessmentChange }>({});
+  const [confirmation, setConfirmation] = useState<{ from: string; to: string; clear?: boolean } | null>(null);
+  const [message, setMessage] = useState("");
+  const [canUndo, setCanUndo] = useState(false);
+  const [editDefect, setEditDefect] = useState(false);
+  const [wasOpen, setWasOpen] = useState(open);
+  if (wasOpen !== open) {
+    setWasOpen(open);
+    setConfirmation(null);
+  }
+  useEffect(() => () => {
+    transactions.current.pending?.dispose();
+    transactions.current.pending = undefined;
+  }, [open]);
+  useEffect(() => () => {
+    transactions.current.pending?.dispose();
+    transactions.current.undo?.dispose();
+  }, []);
   const [focusRequest, setFocusRequest] = useState<{
     question: Question;
   } | null>(null);
   const o = observation ?? EMPTY_OBSERVATION;
   const complete = observationComplete(item, o);
+  const [showAssessment, setShowAssessment] = useState(!complete);
   const damage = requiresDamage(o);
   const attention = needsAttention(item, o);
   const deviation = damage || (o.condition !== "na" && o.cleanliness === "dirty");
   const progress = itemProgress(item, o);
-  const status = progress === "unanswered" ? "Óskráð" : !complete ? "Ófullskráð" : "Skráð";
+  const status = progress === "unanswered" ? "Ósvarað" : !complete ? "Ófullskráð" : "Fullskráð";
   const flags = [
     deviation && "Frávik",
     complete && attention && "Þarf athygli",
@@ -138,8 +165,28 @@ export function ObservationEditor({
           ? "deviation"
           : "recorded";
   const panelId = `${fieldPrefix}-panel`;
-  const change = <K extends keyof Observation>(key: K, value: Observation[K]) =>
-    store.updateObservation(reportId, roomId, item.id, { ...o, [key]: value });
+  const target = { reportId, roomId, itemId: item.id };
+  const labels = (key: Question, value: Observation[Question]) => value ? answerLabels[key][value] : "Ósvarað";
+  const change = <K extends keyof Observation>(key: K, value: Observation[K]) => {
+    const transaction = prepareAssessmentChange(store, target, { [key]: value });
+    if (!transaction) return;
+    const live = store.getSnapshot().reports.find(r => r.id === reportId)?.rooms.find(r => r.id === roomId)?.observations[item.id] ?? EMPTY_OBSERVATION;
+    const changesDefect = (key === "condition" && (live.condition === "damaged" || live.condition === "defect" || (value === "na" && (live.functionality === "broken" || live.cleanliness === "dirty")))) ||
+      (key === "functionality" && live.functionality === "broken") || (key === "cleanliness" && live.cleanliness === "dirty");
+    if (changesDefect) {
+      transactions.current.pending?.dispose();
+      transactions.current.pending = transaction;
+      setConfirmation({ from: labels(key as Question, live[key] as Observation[Question]), to: labels(key as Question, value as Observation[Question]) });
+    } else {
+      const unusedUndo = transaction.apply();
+      unusedUndo?.dispose();
+    }
+  };
+  const cancelChange = () => {
+    transactions.current.pending?.dispose();
+    transactions.current.pending = undefined;
+    setConfirmation(null);
+  };
   const missingDamage =
     damage &&
     !(o.damageType.trim() && o.location.trim() && o.description.trim());
@@ -178,11 +225,6 @@ export function ObservationEditor({
       onClose();
     }
   };
-  const openAlternatives = () => {
-    setFoldCondition(false);
-    setFocusRequest({ question: "condition" });
-    onOpen();
-  };
   const conditions = (
     <AnswerGroup
       label="Ástand"
@@ -197,7 +239,7 @@ export function ObservationEditor({
   );
   return (
     <section
-      className={`checklist-item ${open ? "checklist-item-open" : ""}`}
+      className={`checklist-item ${styles.ordinary} ${open ? "checklist-item-open" : ""}`}
       aria-labelledby={`${fieldPrefix}-title`}
       data-item={item.id}
       id={navigationTargetId("inspection", roomId, item.id)}
@@ -227,7 +269,7 @@ export function ObservationEditor({
             {complete && !attention && !deviation ? (
               <Check size={16} aria-hidden="true" />
             ) : (
-              <span aria-hidden="true">{index + 1}</span>
+              <span aria-hidden="true">{progress === "unanswered" ? null : index + 1}</span>
             )}
           </span>
           <span className={styles.rowText}>
@@ -250,27 +292,18 @@ export function ObservationEditor({
           )}
         </button>
       </h3>
-      <div className={styles.rowActions}>
+      {progress === "unanswered" ? <div className={styles.rowActions}>
         <button
           className={styles.rowAnswer}
-          aria-label={`Í lagi: ${item.name}`}
+          aria-label={`Ástand í lagi: ${item.name}`}
           aria-pressed={o.condition === "good"}
           disabled={state.status === "loading" || state.status === "read-error"}
           onClick={chooseGood}
         >
-          {o.condition === "good" ? <Check size={16} aria-hidden="true" /> : null}
-          Í lagi
+          <Plus size={16} aria-hidden="true" />
+          Ástand í lagi
         </button>
-        <button
-          className={styles.rowAnswer}
-          aria-label={`Annað ástand: ${item.name}`}
-          aria-expanded={open && !foldCondition}
-          aria-controls={panelId}
-          onClick={openAlternatives}
-        >
-          Annað ástand
-        </button>
-      </div>
+      </div> : null}
       </div>
       <div
         className="observation-body"
@@ -288,7 +321,20 @@ export function ObservationEditor({
         }}
       >
       {open ? <>
+          <div className={styles.editorHeading}><span>{roomName} · atriði {index + 1}</span><h4>{item.name}</h4><p>{status}{deviation ? " · Frávik" : attention ? " · Þarf athygli" : ""}</p></div>
           {reference}
+          {message ? <div className={styles.undoMessage} role="status"><p>{message}</p>{canUndo ? <button className="text-button" onClick={() => {
+            const redo = transactions.current.undo?.apply();
+            redo?.dispose();
+            transactions.current.undo = undefined;
+            setCanUndo(false);
+            setMessage(redo ? "Breyting afturkölluð. Önnur gögn eru varðveitt." : "Matið hefur breyst eða er læst. Ekki var hægt að afturkalla; skoðaðu núverandi svör.");
+            headingRef.current?.focus({ preventScroll: true });
+          }}>Afturkalla breytingu</button> : null}</div> : null}
+          <details className={styles.assessment} open={!complete || showAssessment}>
+          <summary hidden={!complete} onClick={event => { event.preventDefault(); setShowAssessment(value => !value); }}>
+            <span>Ástand <strong>{o.condition ? is.conditions[o.condition] : "Ósvarað"}</strong>{o.condition !== "na" && item.functionality ? ` · Virkni: ${o.functionality ? is.functionality[o.functionality] : "Ósvarað"}` : ""}{o.condition !== "na" && item.cleanliness ? ` · Þrif: ${o.cleanliness ? is.cleanliness[o.cleanliness] : "Ósvarað"}` : ""}</span><span>Breyta mati</span>
+          </summary>
           {foldCondition && o.condition ? (
             <details className={styles.foldedCondition}>
               <summary>
@@ -333,7 +379,8 @@ export function ObservationEditor({
               Virkni og þrif eru ekki krafa þegar atriðið á ekki við.
             </div>
           )}
-          {damage ? (
+          </details>
+          {damage && (!complete || editDefect) ? (
             <div className="damage-fields" tabIndex={-1} role="group" aria-labelledby={`${fieldPrefix}-damage-title`}>
               <div className="damage-heading">
                 <TriangleAlert size={17} aria-hidden="true" />
@@ -400,6 +447,15 @@ export function ObservationEditor({
               ) : null}
             </div>
           ) : null}
+          <section className={damage && complete && !editDefect ? styles.defectSummary : undefined} aria-label={damage && complete && !editDefect ? "Skráð frávik" : undefined}>
+            {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
+            <div className={damage && complete && !editDefect ? styles.findingOverview : undefined}>
+              {damage && complete && !editDefect ? <div><span>Staðsetning</span><p>{o.location}</p></div> : null}
+              <PhotoPreview key="item-photos" photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item featured={damage && complete && !editDefect} />
+            </div>
+            {damage && complete && !editDefect ? <p className={styles.findingDescription}>{o.description}</p> : null}
+            {damage && complete && !editDefect && !state.photos[photoKey]?.length ? <p className="missing-photo">Mynd af fráviki vantar. Atriðið má áfram vera í drögum.</p> : null}
+          </section>
           <Field id={`${fieldPrefix}-note`} label="Athugasemd" optional>
             <textarea
               id={`${fieldPrefix}-note`}
@@ -410,7 +466,6 @@ export function ObservationEditor({
             />
           </Field>
           <RetainedDefectDetails observation={o} />
-          <PhotoPreview photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item />
           <div className="observation-footer">
             {nextAction}
             <span role="status">
@@ -426,11 +481,14 @@ export function ObservationEditor({
             {observation ? (
               <button
                 className="text-button"
-                onClick={() =>
-                  store.updateObservation(reportId, roomId, item.id, {
-                    ...EMPTY_OBSERVATION,
-                  })
-                }
+                onClick={() => {
+                  const patch = { condition: undefined, functionality: undefined, cleanliness: undefined, damageType: "", location: "", description: "", note: "" };
+                  const transaction = prepareAssessmentChange(store, target, patch, ["condition", "functionality", "cleanliness", "damageType", "location", "description", "note"]);
+                  if (!transaction) return;
+                  transactions.current.pending?.dispose();
+                  transactions.current.pending = transaction;
+                  setConfirmation({ from: "Núverandi svör og lýsing", to: "Ósvarað atriði", clear: true });
+                }}
               >
                 Hreinsa svör
               </button>
@@ -449,6 +507,25 @@ export function ObservationEditor({
           </div>
       </> : null}
       </div>
+      {confirmation ? <ContextDialog title={confirmation.clear ? "Hreinsa svör atriðis?" : "Breyta virku fráviki?"} closeLabel="Hætta við breytingu" onClose={cancelChange}>
+        <p><strong>{roomName} · {item.name}</strong></p>
+        <p className={styles.changeContext}>{confirmation.from} → <strong>{confirmation.to}</strong></p>
+        <p>{confirmation.clear ? "Svör, frávikslýsing og athugasemd verða hreinsuð. Myndir og viðbótarsvið haldast." : "Þetta breytir virku mati. Lýsing, athugasemd og myndir haldast við atriðið. Ekki er ályktað að viðgerð hafi farið fram."}</p>
+        <p>Hægt er að afturkalla breytinguna í þessari setu.</p>
+        <div className={styles.dialogActions}>
+          <button className="button button-secondary" onClick={cancelChange}>Halda fyrra mati</button>
+          <button className="button button-primary" onClick={() => {
+            const undo = transactions.current.pending?.apply();
+            transactions.current.pending = undefined;
+            transactions.current.undo?.dispose();
+            transactions.current.undo = undo ?? undefined;
+            setCanUndo(!!undo);
+            setMessage(undo ? "Mati breytt. Önnur gögn eru varðveitt." : "Matið hefur breyst eða er læst. Veldu breytinguna aftur eftir að hafa skoðað núverandi svör.");
+            setConfirmation(null);
+            onOpen();
+          }}>Staðfesta breytingu</button>
+        </div>
+      </ContextDialog> : null}
     </section>
   );
 }

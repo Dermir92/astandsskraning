@@ -52,7 +52,7 @@ test("create, cancel, fresh capture, reference, preview, correct and resume reta
   await editor.locator(".checklist-toggle").click(); const beforeReference = await stored(page);
   await editor.getByText("Upphafssvar · aðeins til viðmiðunar", { exact: true }).click();
   await expect(editor.getByText("Löng lýsing á sýnirispu.", { exact: false })).toBeVisible(); expect(await stored(page)).toBe(beforeReference);
-  await editor.getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
+  await editor.getByRole("button", { name: "Ástand í lagi: Veggir", exact: true }).click();
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
   await expect(page).toHaveURL(`/skyrslur/${final.id}/yfirferd`);
   await expect(page.getByRole("heading", { name: "Yfirferð skráningar", exact: true })).toBeVisible(); await ready(page); await openRecords(page);
@@ -103,7 +103,7 @@ test("unanswered final prose does not inflate counts; an explicit good answer ke
   await page.goto(`/skyrslur/${final.id}/skraning`);
   const editor = page.locator(`.checklist-item[data-item="${final.rooms[0].items[0].id}"]`);
   if (await editor.locator(".checklist-toggle").getAttribute("aria-expanded") !== "true") await editor.locator(".checklist-toggle").click();
-  await editor.getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
+  await editor.getByRole("button", { name: "Ástand í lagi: Veggir", exact: true }).click();
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click(); await ready(page); await openRecords(page);
   const comparison = page.locator("#comparison");
   await expect(comparison).toContainText("1 atriði með skráðum mun · 0 atriði með sömu skráðu svörum.");

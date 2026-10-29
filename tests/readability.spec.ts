@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { editDefect } from "./inspection-ui-helpers";
 import { writeFile } from "node:fs/promises";
 import { auditFocusContrast, auditRenderedContrast } from "./contrast-helpers";
 
@@ -38,6 +39,7 @@ test("damage, form errors and disabled actions remain readable", async ({
   const audits = [];
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living");
   await page.locator(".checklist-toggle").filter({ hasText: "Veggir" }).click();
+  await editDefect(page.locator('.checklist-item[data-item="walls"]'));
   await expect(page.getByRole("textbox", { name: /^Lýsing/ })).toBeVisible();
   audits.push({ name: "damage", ...(await auditRenderedContrast(page)) });
   await page.screenshot({

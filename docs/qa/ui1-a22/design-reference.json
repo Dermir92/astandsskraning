@@ -1,0 +1,43 @@
+{
+  "source": "design/mobile-inspection-2026-10-28/a22-final/",
+  "sourceBranch": "codex/ux-mobile-inspection-concepts",
+  "usage": "Visual reference only; prototype state and persistence were not imported",
+  "files": [
+    {
+      "path": "report.md",
+      "sha256": "6a9ee3507ef155b2333c526b1f05e361202cebb21aad1b3b9bb88c002d6861e7"
+    },
+    {
+      "path": "implementation-readiness.md",
+      "sha256": "e228bc4b168a724a4ff1c3b267ac52375fc7fbe9e2a6bbca6169d0b60ec98e25"
+    },
+    {
+      "path": "index.html",
+      "sha256": "d7816d4ef1c259478af811f068eb9016244252b728d7f0a5a8f4d935d28822f6"
+    },
+    {
+      "path": "prototype/app.js",
+      "sha256": "960d772fc5c35ae8f906cda9b7ee689678087d5ae8ba170c1825c3485eddce8c"
+    },
+    {
+      "path": "prototype/app.css",
+      "sha256": "15c1182e125400d34d70b7337acdaf180e4c05960ccdfb6a4c70c1f6b45c1a4e"
+    },
+    {
+      "path": "prototype/polish.css",
+      "sha256": "ac2ab769074a55ea4d306f7938f13a422c9afd5b6724ba1e87e6051b4aa19430"
+    },
+    {
+      "path": "evidence/summary.json",
+      "sha256": "a53736051da40f25f8bbf69edf2ba557d50b2953dd25e73bb90e2b2265d179f9"
+    },
+    {
+      "path": "evidence/interactions.json",
+      "sha256": "0e77c3ae618899baf211266f171436ab43c00cb73b66424105b45ea6642163ad"
+    },
+    {
+      "path": "evidence/data-equivalence.json",
+      "sha256": "58fca76f83aecb74ef9132eb859eb45f17546a4de2f47d906af82466626f3b8f"
+    }
+  ]
+}

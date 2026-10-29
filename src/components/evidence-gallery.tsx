@@ -21,11 +21,12 @@ export function RetainedDefectDetails({ observation }: { observation?: Observati
   </details>;
 }
 
-export function EvidenceGallery({ photos, context, onRemove, onEmpty }: {
+export function EvidenceGallery({ photos, context, onRemove, onEmpty, featured = false }: {
   photos: PreviewPhoto[];
   context: string;
   onRemove?: (id: string) => void;
   onEmpty?: () => void;
+  featured?: boolean;
 }) {
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [removeId, setRemoveId] = useState<string | null>(null);
@@ -47,7 +48,7 @@ export function EvidenceGallery({ photos, context, onRemove, onEmpty }: {
         {/* Blob URLs are local session previews; they must not go through an image service. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={photo.url} alt={`Staðbundin forskoðun: ${photo.name}`} width={96} height={72} />
-        <span>{position}. {photo.name}</span>
+        <span>{featured && position === 1 ? "Stækka mynd" : `${position}. ${photo.name}`}</span>
       </button>
       {onRemove ? <button type="button" className={styles.remove}
         aria-label={`Fjarlægja mynd ${position}: ${photo.name} · ${context}`}
@@ -56,12 +57,12 @@ export function EvidenceGallery({ photos, context, onRemove, onEmpty }: {
       </button> : null}
     </li>;
   };
-  return <div className={styles.gallery} ref={galleryRef} role="group" aria-label={`Myndir: ${context}`}>
+  return <div className={`${styles.gallery} ${featured ? styles.featured : ""}`} ref={galleryRef} role="group" aria-label={`Myndir: ${context}`}>
     <p className={styles.caption}>{photos.length} {photos.length === 1 ? "mynd" : "myndir"} · Aðeins tímabundin forskoðun</p>
-    <ul className={styles.thumbnails}>{photos.slice(0, 2).map(thumbnail)}</ul>
-    {photos.length > 2 ? <details className={styles.more}>
+    <ul className={styles.thumbnails}>{photos.slice(0, featured ? 1 : 2).map(thumbnail)}</ul>
+    {photos.length > (featured ? 1 : 2) ? <details className={styles.more}>
       <summary>Sjá allar myndir ({photos.length})</summary>
-      <ul className={styles.thumbnails}>{photos.slice(2).map(thumbnail)}</ul>
+      <ul className={styles.thumbnails}>{photos.slice(featured ? 1 : 2).map(thumbnail)}</ul>
     </details> : null}
     {removal && onRemove ? <div className={styles.confirmation} role="group" aria-label="Staðfesta fjarlægingu myndar">
       <p>Fjarlægja mynd {photos.indexOf(removal) + 1}: <strong>{removal.name}</strong> úr {context}? Ekki er hægt að afturkalla fjarlæginguna.</p>

@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { expandAssessment } from "./inspection-ui-helpers";
 import AxeBuilder from "@axe-core/playwright";
 import { reportIdentity, showFilters } from "./report-list-helpers";
 
@@ -186,6 +187,7 @@ test("full creation to review, room edits, damage and session-only photos", asyn
     page.getByRole("heading", { name: "Gangur", exact: true }),
   ).toBeVisible();
   await page.locator(".checklist-toggle").filter({ hasText: "Gólfefni" }).click();
+  await expandAssessment(page.locator('.checklist-item[data-item="floor"]'));
   await expect(
     page.getByRole("radio", { name: "Skemmt", exact: true }),
   ).toBeChecked();
@@ -266,6 +268,7 @@ test("unknown and not applicable answers stay distinct, and clearing works", asy
   const resumedFloor = page.locator(".checklist-toggle").filter({ hasText: "Gólfefni" });
   await expect(resumedFloor).toHaveAttribute("aria-expanded", "true");
   await page.getByRole("button", { name: "Hreinsa svör", exact: true }).click();
+  await page.getByRole("button", { name: "Staðfesta breytingu", exact: true }).click();
   await expect(page.getByRole("radio", { checked: true })).toHaveCount(0);
   await expect(page.getByText("0 af 51", { exact: true })).toBeVisible();
 });

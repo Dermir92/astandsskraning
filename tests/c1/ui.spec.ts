@@ -46,7 +46,7 @@ test("fictional independent inspection completes all four screens, reloads and o
   await expect(page).toHaveURL(/\/rymi$/);
   await page.getByRole("button", { name: "Hefja ástandsskráningu", exact: true }).click();
   await expect(page).toHaveURL(/\/skraning/);
-  await page.getByRole("button", { name: "Í lagi: Gólfefni", exact: true }).first().click();
+  await page.getByRole("button", { name: "Ástand í lagi: Gólfefni", exact: true }).first().click();
   await saved(page); await expect(page.locator("input[type=file]")).toHaveCount(0);
   await expect(page.getByText("Myndir eru óvirkar í C1.", { exact: true }).first()).toBeVisible();
   await noOverflow(page); await accessible(page);

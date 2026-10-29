@@ -1,0 +1,610 @@
+{
+  "base": "08a9b39420a86e8c5a4b584bddb4f002df1a742a",
+  "comparison": "Raw file SHA-256 against git cat-file --filters at verified main, respecting Windows checkout line endings",
+  "gateC": "CLOSED",
+  "gateE": "UNRESOLVED",
+  "protectedFiles": [
+    {
+      "path": "next.config.ts",
+      "workingFileSha256": "f4eaf98b7632acbd1ee4c229697f58e0f40aee8609183414fc2c693039bdbb24",
+      "verifiedMainCheckoutSha256": "f4eaf98b7632acbd1ee4c229697f58e0f40aee8609183414fc2c693039bdbb24",
+      "verifiedMainGitBlob": "9202b2919970be1565d364e3d41d8a46fbcebcce",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "package-lock.json",
+      "workingFileSha256": "d37fa0c7dc9ce768594be4f13d02e899bd007fdabd83404e7677afddcff0d271",
+      "verifiedMainCheckoutSha256": "d37fa0c7dc9ce768594be4f13d02e899bd007fdabd83404e7677afddcff0d271",
+      "verifiedMainGitBlob": "42bf0580507566ff6191664e0531209f38457276",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "package.json",
+      "workingFileSha256": "d9fad7c5b9fa993b7eaae75dc300508c2e1010aed1e9408a7a981303a5a411fa",
+      "verifiedMainCheckoutSha256": "d9fad7c5b9fa993b7eaae75dc300508c2e1010aed1e9408a7a981303a5a411fa",
+      "verifiedMainGitBlob": "26058f80082f1e9ed2b49611400570f29e8cda4c",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/api/c1/config/route.ts",
+      "workingFileSha256": "33fd0cc4f4abdc84cf378eca7fa14c320c693e48211d360ebba025e9559bd286",
+      "verifiedMainCheckoutSha256": "33fd0cc4f4abdc84cf378eca7fa14c320c693e48211d360ebba025e9559bd286",
+      "verifiedMainGitBlob": "fd035017493a5eb0dadd37288efe6161734dff39",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/api/c1/inspections/route.ts",
+      "workingFileSha256": "52e6829d6c13de0602f6d9363c38a139de3c2a8054c9017f63929a97805d74ea",
+      "verifiedMainCheckoutSha256": "52e6829d6c13de0602f6d9363c38a139de3c2a8054c9017f63929a97805d74ea",
+      "verifiedMainGitBlob": "8fb7d30f08e97032d8795b2f41ed91db0b18bf8a",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/api/h1a/preparation/route.ts",
+      "workingFileSha256": "573f2ddae842b87c10bbcfc0046d61682bc31b1159ef335debc5f78e11837d45",
+      "verifiedMainCheckoutSha256": "573f2ddae842b87c10bbcfc0046d61682bc31b1159ef335debc5f78e11837d45",
+      "verifiedMainGitBlob": "5994c37f610c2463dd097894698f4e56627e36d5",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/globals.css",
+      "workingFileSha256": "335230c77a64309cfed9b7c1590a04337ffe4753aea16528be9f9f4c19834951",
+      "verifiedMainCheckoutSha256": "335230c77a64309cfed9b7c1590a04337ffe4753aea16528be9f9f4c19834951",
+      "verifiedMainGitBlob": "b1da12bdb271b59a3851c24ef10c5b98d4d05646",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/hugmyndir/a/page.tsx",
+      "workingFileSha256": "7e91fc5ae56c39e1e8b4936226b15a48f64d06c0821e3f039261f863c85c189c",
+      "verifiedMainCheckoutSha256": "7e91fc5ae56c39e1e8b4936226b15a48f64d06c0821e3f039261f863c85c189c",
+      "verifiedMainGitBlob": "e955436de8e7407e2139217d828b65f114655c49",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/hugmyndir/b/page.tsx",
+      "workingFileSha256": "6b6005f514f0049ab8546938e7e4e99d1fb5c71267a094d72b1a189a3a22720a",
+      "verifiedMainCheckoutSha256": "6b6005f514f0049ab8546938e7e4e99d1fb5c71267a094d72b1a189a3a22720a",
+      "verifiedMainGitBlob": "396ac238bac214f03cd80949b42da4b25ea20d6f",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/hugmyndir/page.tsx",
+      "workingFileSha256": "248ee6020ecf270501f963fc95917b0116875b6b0bdbd4acd70253cd2cb9dd59",
+      "verifiedMainCheckoutSha256": "248ee6020ecf270501f963fc95917b0116875b6b0bdbd4acd70253cd2cb9dd59",
+      "verifiedMainGitBlob": "16d0527ba7430bb0c67a6c7e9b311cb655f357ac",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/icon.svg",
+      "workingFileSha256": "7181021b1bb0a3b5eb9612e024a99d05610af3de54c84b6bd5e69118cdf269e2",
+      "verifiedMainCheckoutSha256": "7181021b1bb0a3b5eb9612e024a99d05610af3de54c84b6bd5e69118cdf269e2",
+      "verifiedMainGitBlob": "98bd2e37e5e2ab8b37416c04098ef26edd83c439",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "workingFileSha256": "e5f45634a2ae0c40e1f56be77a2044f05a729beb34a52d6600d3f9405246de94",
+      "verifiedMainCheckoutSha256": "e5f45634a2ae0c40e1f56be77a2044f05a729beb34a52d6600d3f9405246de94",
+      "verifiedMainGitBlob": "fa986678ad26a040814e42fae4c819b8faecced7",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/not-found.tsx",
+      "workingFileSha256": "0fb746cb2aae98375264820374cd98825fb100b60fbc363650d95e54f907b6a2",
+      "verifiedMainCheckoutSha256": "0fb746cb2aae98375264820374cd98825fb100b60fbc363650d95e54f907b6a2",
+      "verifiedMainGitBlob": "dc9b444ee710c2898a69bd962600a6854d5878a9",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/page.tsx",
+      "workingFileSha256": "211004d8c9be29306ef1efbb9ec09a56c14e73806cd352a837b3c4932f96c124",
+      "verifiedMainCheckoutSha256": "211004d8c9be29306ef1efbb9ec09a56c14e73806cd352a837b3c4932f96c124",
+      "verifiedMainGitBlob": "37565a04f66cdc4f0b89be7712eb96be6cae9aa8",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/skyrslur/[id]/forskodun/page.tsx",
+      "workingFileSha256": "a9e5443832b22a21eae927137a98465109bc86d9f05d21b8955859f5087a8799",
+      "verifiedMainCheckoutSha256": "a9e5443832b22a21eae927137a98465109bc86d9f05d21b8955859f5087a8799",
+      "verifiedMainGitBlob": "a2a14e3a19d8c63cdfd6ad55f4559fb6780ccc6e",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/skyrslur/[id]/rymi/page.tsx",
+      "workingFileSha256": "f06eeae53c7b8b6be9ee1ad6c8ff9f2024d508f6839c49f7248ce6edfc7472fa",
+      "verifiedMainCheckoutSha256": "f06eeae53c7b8b6be9ee1ad6c8ff9f2024d508f6839c49f7248ce6edfc7472fa",
+      "verifiedMainGitBlob": "39cbb217eb85d4bed3506a0875b089e7e5326e99",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/skyrslur/[id]/skraning/page.tsx",
+      "workingFileSha256": "548a7dbbd21bdadc35ca06171e5ca73febf5ee4542118b9ced6b9bf373a70890",
+      "verifiedMainCheckoutSha256": "548a7dbbd21bdadc35ca06171e5ca73febf5ee4542118b9ced6b9bf373a70890",
+      "verifiedMainGitBlob": "0bb281d5f6a395989a1922d5747fe80b4575adc7",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/skyrslur/[id]/upplysingar/page.tsx",
+      "workingFileSha256": "3dd92bbbbbd1a42002fefa228fd1c15f75abfbb7af435fc0ea9a8d8096ba869d",
+      "verifiedMainCheckoutSha256": "3dd92bbbbbd1a42002fefa228fd1c15f75abfbb7af435fc0ea9a8d8096ba869d",
+      "verifiedMainGitBlob": "4d5701a39952ce6aba12313d7ec8b661ffd157b1",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/skyrslur/[id]/yfirferd/page.tsx",
+      "workingFileSha256": "b34003a644c1498052cdb1800286d8bb18341d33f10f6279c994a0d88c6980e1",
+      "verifiedMainCheckoutSha256": "b34003a644c1498052cdb1800286d8bb18341d33f10f6279c994a0d88c6980e1",
+      "verifiedMainGitBlob": "b0b2f48b1a4a1483469fee58e08dc98ee2437b55",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/app/skyrslur/ny/page.tsx",
+      "workingFileSha256": "3747c194a0bb6a607f02579a9146ea881922129b46a586c0fa85b37bde033bb6",
+      "verifiedMainCheckoutSha256": "3747c194a0bb6a607f02579a9146ea881922129b46a586c0fa85b37bde033bb6",
+      "verifiedMainGitBlob": "54ec2673ec264ee1ec257f8c71a82c8cea1a1898",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/app-shell.tsx",
+      "workingFileSha256": "a1af3b8836b4032761175a5e20eecb5bb98f36993c02dafed913a0941140e89b",
+      "verifiedMainCheckoutSha256": "a1af3b8836b4032761175a5e20eecb5bb98f36993c02dafed913a0941140e89b",
+      "verifiedMainGitBlob": "ed7cb0b43cc8244956999105377585491c1f43d7",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/cloud/c1-root.tsx",
+      "workingFileSha256": "803860fff8382942718962f2f6a0bd0a00dd9fc99d8c3431128ebd650d053d72",
+      "verifiedMainCheckoutSha256": "803860fff8382942718962f2f6a0bd0a00dd9fc99d8c3431128ebd650d053d72",
+      "verifiedMainGitBlob": "21ae231f5283310ba9cf0d6ee15edc4e740b513d",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/cloud/c1.module.css",
+      "workingFileSha256": "a77acb89f3b97e647a0c9ae4ab27ae807bc31b30ef40f1da518e06af955a8afd",
+      "verifiedMainCheckoutSha256": "a77acb89f3b97e647a0c9ae4ab27ae807bc31b30ef40f1da518e06af955a8afd",
+      "verifiedMainGitBlob": "51530a5e56caebb7d2c6b25c964f741768c2cb69",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/context-dialog.tsx",
+      "workingFileSha256": "cf825bb639573045c0db4338c43b232f5325122aa39b81faef4ffdb95805192f",
+      "verifiedMainCheckoutSha256": "cf825bb639573045c0db4338c43b232f5325122aa39b81faef4ffdb95805192f",
+      "verifiedMainGitBlob": "4b1b59ad4380617e9c2ae7124fd00234ff124311",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/core-capture-summary.tsx",
+      "workingFileSha256": "3302dde5077f8042047b6b9732f8b34aece5316d01aa150844618b4136415426",
+      "verifiedMainCheckoutSha256": "3302dde5077f8042047b6b9732f8b34aece5316d01aa150844618b4136415426",
+      "verifiedMainGitBlob": "13068d63c6d9a78b6f84940343195456c0ceabed",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/demo-provider.tsx",
+      "workingFileSha256": "5657e748cef5a5e3e9ee38f5dbc4c3b9e6f633496a4f55f448a4d35f6338a88a",
+      "verifiedMainCheckoutSha256": "5657e748cef5a5e3e9ee38f5dbc4c3b9e6f633496a4f55f448a4d35f6338a88a",
+      "verifiedMainGitBlob": "0dcf9b77ff3244820b99bd71b58a814494e85fbf",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/fire-observation-fields.tsx",
+      "workingFileSha256": "9075af0d053982687d8a4713bbed6d0c4b5e14a096adecd3ee0221f8059e19b0",
+      "verifiedMainCheckoutSha256": "9075af0d053982687d8a4713bbed6d0c4b5e14a096adecd3ee0221f8059e19b0",
+      "verifiedMainGitBlob": "f771c6a8b2c55ad53393c84e289f4529218dc4be",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/fire-observation-summary.tsx",
+      "workingFileSha256": "18f3923cfcbf1fa06a8b231abeb2d1e850c3b85f41209f9cef96f940c512d3a4",
+      "verifiedMainCheckoutSha256": "18f3923cfcbf1fa06a8b231abeb2d1e850c3b85f41209f9cef96f940c512d3a4",
+      "verifiedMainGitBlob": "60febc619b54b72ab5a37675315309267009c912",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/fire-observations.module.css",
+      "workingFileSha256": "1eccd4a6757d655cd8c5fc637edf3aba6e2562eee72284057e05768aed1e833a",
+      "verifiedMainCheckoutSha256": "1eccd4a6757d655cd8c5fc637edf3aba6e2562eee72284057e05768aed1e833a",
+      "verifiedMainGitBlob": "cbe0f68465691ad5da2a020bf44bdaceb81f29fe",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/form-field.tsx",
+      "workingFileSha256": "2fa595704914a3e1e8da3078059648435bb60ada7a398dcd39cfcec6e189c17b",
+      "verifiedMainCheckoutSha256": "2fa595704914a3e1e8da3078059648435bb60ada7a398dcd39cfcec6e189c17b",
+      "verifiedMainGitBlob": "3c69185be6de71fb1b07ffc16811351068b854a2",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/heating-observation.tsx",
+      "workingFileSha256": "e512ba115d6b398943c65cf0d6bd0135048bd61183ee35d93f0068027b8cfe9b",
+      "verifiedMainCheckoutSha256": "e512ba115d6b398943c65cf0d6bd0135048bd61183ee35d93f0068027b8cfe9b",
+      "verifiedMainGitBlob": "72b7a670051419f2a4e0853d8676f5c025505321",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/heating.module.css",
+      "workingFileSha256": "af467096e4f560c9ea5c75bffc8a26e9fd3bf9f1c60f2d568032633486f6137c",
+      "verifiedMainCheckoutSha256": "af467096e4f560c9ea5c75bffc8a26e9fd3bf9f1c60f2d568032633486f6137c",
+      "verifiedMainGitBlob": "47086be318319dd8b18cfa4e13d5be99147f484b",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/inspection-comparison.module.css",
+      "workingFileSha256": "679cd3daa20b3f0e1161cd9b40a4d38033bf6fcd32c3fba2fbae1e1a5ec083d3",
+      "verifiedMainCheckoutSha256": "679cd3daa20b3f0e1161cd9b40a4d38033bf6fcd32c3fba2fbae1e1a5ec083d3",
+      "verifiedMainGitBlob": "00d28d1f3c35d5299c689076cb1803b9e27740f4",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/inspection-comparison.tsx",
+      "workingFileSha256": "c0c5bcd5fbbfc018cb5366b5570a690b913bcf2586a93b1670bbdac1fa63fb3f",
+      "verifiedMainCheckoutSha256": "c0c5bcd5fbbfc018cb5366b5570a690b913bcf2586a93b1670bbdac1fa63fb3f",
+      "verifiedMainGitBlob": "f34ba952e9e112f385d73ed305f797721e3830b8",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/inspection-concepts/concept-model.ts",
+      "workingFileSha256": "97cd00e96621312f887e053bd89a4330d38e900dc195c477f65603143e6041fc",
+      "verifiedMainCheckoutSha256": "97cd00e96621312f887e053bd89a4330d38e900dc195c477f65603143e6041fc",
+      "verifiedMainGitBlob": "3500eb6b97f96808b8ce9a627314b2f9519e9e21",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/inspection-concepts/concept-workbench.tsx",
+      "workingFileSha256": "911596c6903f20152a52975c2a9b84480a7518e5a0089e3d4609cca1dcb5818a",
+      "verifiedMainCheckoutSha256": "911596c6903f20152a52975c2a9b84480a7518e5a0089e3d4609cca1dcb5818a",
+      "verifiedMainGitBlob": "8273a6ad4c1122ae00eea4e64b1023bae059e07b",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/inspection-concepts/concept.module.css",
+      "workingFileSha256": "809f8e77cfe4d497cae94d9964e0293b00a8100c839a353a3e7b32e45fa495cf",
+      "verifiedMainCheckoutSha256": "809f8e77cfe4d497cae94d9964e0293b00a8100c839a353a3e7b32e45fa495cf",
+      "verifiedMainGitBlob": "a9141ecb9434383aa4ad0f84269e5a83c3e480d6",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/meter-readings.module.css",
+      "workingFileSha256": "2b59108b11b883da95aa4d3a4fe7eb62ff2414846bdb19faa21552397db9b94e",
+      "verifiedMainCheckoutSha256": "2b59108b11b883da95aa4d3a4fe7eb62ff2414846bdb19faa21552397db9b94e",
+      "verifiedMainGitBlob": "a1397352de7a377244ffb383bd45d3e10273b029",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/meter-readings.tsx",
+      "workingFileSha256": "e95c50e9c8b6320cc668b81c36843baf32540d28357c4bb591bd167b3e689e3e",
+      "verifiedMainCheckoutSha256": "e95c50e9c8b6320cc668b81c36843baf32540d28357c4bb591bd167b3e689e3e",
+      "verifiedMainGitBlob": "6a3405c69b6aaf10c546b8f1e1039c3fe314a7a8",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/rental-information-fields.tsx",
+      "workingFileSha256": "1ea6bf28c22021c745e9976e44b4606218ba60598ccb116666b740d1a268c73a",
+      "verifiedMainCheckoutSha256": "1ea6bf28c22021c745e9976e44b4606218ba60598ccb116666b740d1a268c73a",
+      "verifiedMainGitBlob": "d8a72ecf5cc0f96788b1fe80b07c7b589de77f0a",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/rental-information-summary.tsx",
+      "workingFileSha256": "588e9ce47d1ace545c548253b56edfa426e56374aec8ebefc38e0f0a41320fd5",
+      "verifiedMainCheckoutSha256": "588e9ce47d1ace545c548253b56edfa426e56374aec8ebefc38e0f0a41320fd5",
+      "verifiedMainGitBlob": "4e6e1065f0cdabd708167c3caf7aa42af942300f",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/report-context.tsx",
+      "workingFileSha256": "0ccdefd659b92c9cfd02de16551cf65005bff57d5ec4cfe727d47dee4067d0ac",
+      "verifiedMainCheckoutSha256": "0ccdefd659b92c9cfd02de16551cf65005bff57d5ec4cfe727d47dee4067d0ac",
+      "verifiedMainGitBlob": "9f310205fc73a4a6a0689bd9d1e5321aaa2c1d42",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/report-overview.tsx",
+      "workingFileSha256": "99214c7c246cace9d6835712cd0a8f034c20e0635798a89065daea0ec25b8f17",
+      "verifiedMainCheckoutSha256": "99214c7c246cace9d6835712cd0a8f034c20e0635798a89065daea0ec25b8f17",
+      "verifiedMainGitBlob": "9eddcf2892e02541c3d68964fbfe7bb426eeb6f5",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/report-preview-entry.tsx",
+      "workingFileSha256": "9a9d9c2584cc78c387c3f4b1a98be5a9917c44e7ec3c47ed384f224900586bce",
+      "verifiedMainCheckoutSha256": "9a9d9c2584cc78c387c3f4b1a98be5a9917c44e7ec3c47ed384f224900586bce",
+      "verifiedMainGitBlob": "8b4ba0972be99e9c799cf2c080178a0b24108120",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/report-preview.module.css",
+      "workingFileSha256": "5a05c76d24807c0e2796b524b7d8c26ce1e13fccd23ad88a6c5922c270efa85e",
+      "verifiedMainCheckoutSha256": "5a05c76d24807c0e2796b524b7d8c26ce1e13fccd23ad88a6c5922c270efa85e",
+      "verifiedMainGitBlob": "10cf8e7f80e32c4fbe47ed3dfdc5a0a391352327",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/report-preview.tsx",
+      "workingFileSha256": "9875b3e1e41ffc7709bab708e3a088cd4dc756bbaf4905b142a4f5a272b9a08e",
+      "verifiedMainCheckoutSha256": "9875b3e1e41ffc7709bab708e3a088cd4dc756bbaf4905b142a4f5a272b9a08e",
+      "verifiedMainGitBlob": "45a91681ca88c10c5f9dc2371ba47e2b84ff8887",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/details-screen.tsx",
+      "workingFileSha256": "3b4016a6b5ed5ee55fe1abf4d064146f4e5e5e5814ba48543b695e36785cb6ba",
+      "verifiedMainCheckoutSha256": "3b4016a6b5ed5ee55fe1abf4d064146f4e5e5e5814ba48543b695e36785cb6ba",
+      "verifiedMainGitBlob": "b2ea1dcac67ce71f2c80adab78b2c2314eab7fd1",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/new-report-screen.tsx",
+      "workingFileSha256": "d7dfa1656dab1fe6fc96acb54e40c82a96941262a567269f3ec2b7cb7694951d",
+      "verifiedMainCheckoutSha256": "d7dfa1656dab1fe6fc96acb54e40c82a96941262a567269f3ec2b7cb7694951d",
+      "verifiedMainGitBlob": "7c3d612df2724ffe1a14fe81fdb7b445947436d4",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/report-preview-screen.tsx",
+      "workingFileSha256": "4e85704d68d32d3ee483b765d8d11b28219e7799e9395637d66584c747c34bb3",
+      "verifiedMainCheckoutSha256": "4e85704d68d32d3ee483b765d8d11b28219e7799e9395637d66584c747c34bb3",
+      "verifiedMainGitBlob": "7fc9d39df7a291bc6c35e35d64440a627dc401a4",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/reports-screen.tsx",
+      "workingFileSha256": "e4e2f4026faebead7c63dc25c9a98d04b7edfb6b9e2301b477568cd6a35fcd72",
+      "verifiedMainCheckoutSha256": "e4e2f4026faebead7c63dc25c9a98d04b7edfb6b9e2301b477568cd6a35fcd72",
+      "verifiedMainGitBlob": "5d530317e7fb941bf8dd48655dcdb128009927b3",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/review-screen.tsx",
+      "workingFileSha256": "e14c64fbff767fb5f403daa5b6876e782c3a187f6bbc3b8a8e81cabbfe868d29",
+      "verifiedMainCheckoutSha256": "e14c64fbff767fb5f403daa5b6876e782c3a187f6bbc3b8a8e81cabbfe868d29",
+      "verifiedMainGitBlob": "177a76c0b2528422653db68005993975fd56b6c9",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/rooms-screen.tsx",
+      "workingFileSha256": "d8d17df600fd0cb05159cc989dfee374ed24385dbebed7df47d2b06a52d72198",
+      "verifiedMainCheckoutSha256": "d8d17df600fd0cb05159cc989dfee374ed24385dbebed7df47d2b06a52d72198",
+      "verifiedMainGitBlob": "c4e85c485ee456f33cdaea08be26615bcfd17528",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/screens/sample-summary.tsx",
+      "workingFileSha256": "f9889df49c0294da3a6980df35d5abaeba2d939a78b2f735d2c0f7a66543f2f8",
+      "verifiedMainCheckoutSha256": "f9889df49c0294da3a6980df35d5abaeba2d939a78b2f735d2c0f7a66543f2f8",
+      "verifiedMainGitBlob": "d1628680f3dcdc14a66324a4cb0d2741673f7c38",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/ui.tsx",
+      "workingFileSha256": "078ace915ea43ad6b7cdc43bf562bf9a9a3eb386c910de72eee28ac47f275488",
+      "verifiedMainCheckoutSha256": "078ace915ea43ad6b7cdc43bf562bf9a9a3eb386c910de72eee28ac47f275488",
+      "verifiedMainGitBlob": "3f1d9c49f97d21c5fa48d9439570d88d9799e110",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/use-details-correction.ts",
+      "workingFileSha256": "1340abc2da3d7c8bf640d7fc7063caad7bcf3298dd690340fd78340e3fadf3cc",
+      "verifiedMainCheckoutSha256": "1340abc2da3d7c8bf640d7fc7063caad7bcf3298dd690340fd78340e3fadf3cc",
+      "verifiedMainGitBlob": "6e1d87e550208b474035791b26ca40cacaf94f19",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/use-fire-correction.ts",
+      "workingFileSha256": "1a5c5c3fd947c0dc088411a43792e291f866998be78facddad9792a9f46923de",
+      "verifiedMainCheckoutSha256": "1a5c5c3fd947c0dc088411a43792e291f866998be78facddad9792a9f46923de",
+      "verifiedMainGitBlob": "6515fedd87ce561e109fca247f76a1977e4e1c40",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/use-inspection-navigation.ts",
+      "workingFileSha256": "171d28247385988b75dd8905c30b6a400cdfdebdd9b4220c2f67a5c86f28f3e4",
+      "verifiedMainCheckoutSha256": "171d28247385988b75dd8905c30b6a400cdfdebdd9b4220c2f67a5c86f28f3e4",
+      "verifiedMainGitBlob": "bb9709c141e457bbb5f6d92e50f3a57f777064c7",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/components/use-meter-correction.ts",
+      "workingFileSha256": "f210cd7baf7cce61cdbe6b3294b6cfaf591543f93a0fdbc7846122c610fb804c",
+      "verifiedMainCheckoutSha256": "f210cd7baf7cce61cdbe6b3294b6cfaf591543f93a0fdbc7846122c610fb804c",
+      "verifiedMainGitBlob": "049a7f03ae451c2e5e5ad94328bec3078f0e3292",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/contracts.ts",
+      "workingFileSha256": "7b5419c6ff40a3ca28f96b0ec301903fc91f68446c1c4cac7c35d11c742dd40e",
+      "verifiedMainCheckoutSha256": "7b5419c6ff40a3ca28f96b0ec301903fc91f68446c1c4cac7c35d11c742dd40e",
+      "verifiedMainGitBlob": "9d2ecb7c4c48f08efc0dd4905c642d12a27e4a05",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/development-mode.mjs",
+      "workingFileSha256": "842f61516f8eeffb30db3f95cab8c4a28fe7bc0572536086c1bc840f83a5a5c4",
+      "verifiedMainCheckoutSha256": "842f61516f8eeffb30db3f95cab8c4a28fe7bc0572536086c1bc840f83a5a5c4",
+      "verifiedMainGitBlob": "2e9bdab7109cda181c78d1aa9f6fc0b222b800b3",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/hosted-config.mjs",
+      "workingFileSha256": "0c31aa13c3691fc772a0afa53fb51baad02280f15338d51ac53d8bfc918b46c3",
+      "verifiedMainCheckoutSha256": "0c31aa13c3691fc772a0afa53fb51baad02280f15338d51ac53d8bfc918b46c3",
+      "verifiedMainGitBlob": "210d5be2cd30b9475d7b34ced7d78096eeb9e27c",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/hosted-preparation.ts",
+      "workingFileSha256": "4225088e00b344351c44db8f996b48a77bb03100a04af6a3df089fb8527ef1f7",
+      "verifiedMainCheckoutSha256": "4225088e00b344351c44db8f996b48a77bb03100a04af6a3df089fb8527ef1f7",
+      "verifiedMainGitBlob": "9f3a15df037a257204c840e8372bd121b2708919",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/hosted-tls-preflight.mjs",
+      "workingFileSha256": "f04a52e1553ca0d572f07c50efe809088832550c027ce55736fc377c30ea7863",
+      "verifiedMainCheckoutSha256": "f04a52e1553ca0d572f07c50efe809088832550c027ce55736fc377c30ea7863",
+      "verifiedMainGitBlob": "6fe182cf12f3441f595c8df10dba08945f66459c",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/loopback-binding.mjs",
+      "workingFileSha256": "cfb5044c14d4e73ab0401412564ed1a443c5a4590faa4827c1d5cd55d0814e36",
+      "verifiedMainCheckoutSha256": "cfb5044c14d4e73ab0401412564ed1a443c5a4590faa4827c1d5cd55d0814e36",
+      "verifiedMainGitBlob": "0a438651beccf5a640f3c3da064e933d9170a022",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/postgres-tls.mjs",
+      "workingFileSha256": "f6d1064e99b6036487fe161c91691e5e562654047ba7973dbdfc091fbb73c2d6",
+      "verifiedMainCheckoutSha256": "f6d1064e99b6036487fe161c91691e5e562654047ba7973dbdfc091fbb73c2d6",
+      "verifiedMainGitBlob": "281f77228e6abed3d58ad400c6607f0ae1ed47ca",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/server.ts",
+      "workingFileSha256": "bfd7557b2ce94186802c017b4a384875604c180cc46f8cc9db9bbefcc10dde63",
+      "verifiedMainCheckoutSha256": "bfd7557b2ce94186802c017b4a384875604c180cc46f8cc9db9bbefcc10dde63",
+      "verifiedMainGitBlob": "37a7cdcc4c76f8e6c58ea7549813788239d50e35",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/store.ts",
+      "workingFileSha256": "3285bab358169bcb9152bee15461478396588a7eff688d49a954286ce8bf7b54",
+      "verifiedMainCheckoutSha256": "3285bab358169bcb9152bee15461478396588a7eff688d49a954286ce8bf7b54",
+      "verifiedMainGitBlob": "2caa7a7ec3e66cb5ea627ca6161a5ae29b2de814",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/cloud/trusted-ca.mjs",
+      "workingFileSha256": "0cdcbe8a49df052fbd44d74dcc003d5c016f355f97bf21b7d21f6ba464d37c5a",
+      "verifiedMainCheckoutSha256": "0cdcbe8a49df052fbd44d74dcc003d5c016f355f97bf21b7d21f6ba464d37c5a",
+      "verifiedMainGitBlob": "8e54ab50994b2ad48f312eb8f38cc0f9a3ab493d",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/fire-navigation.ts",
+      "workingFileSha256": "38646b7103e65dc04cab2df909f046cfd3f8823a65c6442727f66c9c94496fde",
+      "verifiedMainCheckoutSha256": "38646b7103e65dc04cab2df909f046cfd3f8823a65c6442727f66c9c94496fde",
+      "verifiedMainGitBlob": "72d0b0dbe396849736b7f392cb64c14d4074abaa",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/fire-observations.ts",
+      "workingFileSha256": "f85386904fccf06b5c3916c8b8a70d1a82126900ecfaf3f2f595d1e3f315947d",
+      "verifiedMainCheckoutSha256": "f85386904fccf06b5c3916c8b8a70d1a82126900ecfaf3f2f595d1e3f315947d",
+      "verifiedMainGitBlob": "737136e9e6c2ffc49740d22f9cc3794cb9c6503e",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/fixtures.ts",
+      "workingFileSha256": "a4db49621c31f1c67ce4ac5570c27dc35743120e1e2eb6d7c0717e236ac92913",
+      "verifiedMainCheckoutSha256": "a4db49621c31f1c67ce4ac5570c27dc35743120e1e2eb6d7c0717e236ac92913",
+      "verifiedMainGitBlob": "bc2341c911fe48401f3df546904cfea783d6fe77",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/heating.ts",
+      "workingFileSha256": "1f3a32472a1c8909dbc04b23194e7870b39332fe5ee8202f314bf61440678994",
+      "verifiedMainCheckoutSha256": "1f3a32472a1c8909dbc04b23194e7870b39332fe5ee8202f314bf61440678994",
+      "verifiedMainGitBlob": "1b20f4c21742f9313a3baa4a3416a6f5a353bcfd",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/inspection-comparison.ts",
+      "workingFileSha256": "d418c955cf866005deda3dace26fc2da3f89d29b3cf683478a9cc4e31d812d6a",
+      "verifiedMainCheckoutSha256": "d418c955cf866005deda3dace26fc2da3f89d29b3cf683478a9cc4e31d812d6a",
+      "verifiedMainGitBlob": "37d4c5c1bc6baeccd636a98a14b38892bd524d1a",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/inspection-evidence.ts",
+      "workingFileSha256": "7830df5eba5fce5e25d0bda13bc90cf6cca688bbd37556a0b7b8ed1f702c295b",
+      "verifiedMainCheckoutSha256": "7830df5eba5fce5e25d0bda13bc90cf6cca688bbd37556a0b7b8ed1f702c295b",
+      "verifiedMainGitBlob": "e30b482cf7a00e2467fbc9a39afb3b480bb43706",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/inspection-navigation.ts",
+      "workingFileSha256": "7e0442427391f0e46143a0d800490e72b0aa8e2c5ec82a7facf3de5b5eecaa24",
+      "verifiedMainCheckoutSha256": "7e0442427391f0e46143a0d800490e72b0aa8e2c5ec82a7facf3de5b5eecaa24",
+      "verifiedMainGitBlob": "39bbca34b812cf52e6a98af816670e4ebcfa80d8",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/locale/is.ts",
+      "workingFileSha256": "3f23977fbd547ed9a858583f892694f77c5ec2e79fca8686e4042d56f5e8f91c",
+      "verifiedMainCheckoutSha256": "3f23977fbd547ed9a858583f892694f77c5ec2e79fca8686e4042d56f5e8f91c",
+      "verifiedMainGitBlob": "0fade466b83b6ea5ea409906c05d2e538b214a7e",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/meter-navigation.ts",
+      "workingFileSha256": "70e748c124f0c912ea77b85b2fb75f552f3e114df2e9eb9dc5cc68d51a7663b2",
+      "verifiedMainCheckoutSha256": "70e748c124f0c912ea77b85b2fb75f552f3e114df2e9eb9dc5cc68d51a7663b2",
+      "verifiedMainGitBlob": "9636f07af5741b43c2c1468d95e3041381616ab4",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/meter-readings.ts",
+      "workingFileSha256": "f1e39dc49a832856078e549c91a761b100ba1bc18eda5cc411c2ee054f34b611",
+      "verifiedMainCheckoutSha256": "f1e39dc49a832856078e549c91a761b100ba1bc18eda5cc411c2ee054f34b611",
+      "verifiedMainGitBlob": "31ee712e86494b186a6ed61496ee8e998345356f",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/model.ts",
+      "workingFileSha256": "8e2f6bd9dba10668f04c575af7197834109670cadf5958ec8470606b2119fe20",
+      "verifiedMainCheckoutSha256": "8e2f6bd9dba10668f04c575af7197834109670cadf5958ec8470606b2119fe20",
+      "verifiedMainGitBlob": "545cdefa3d30318f07db7a9f06c6b3b8af225646",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/rental-information.ts",
+      "workingFileSha256": "764b4f22983922478ac2f0edc9ce43ca0b82b9fd7f23e8a329bd3cc1db44c2d5",
+      "verifiedMainCheckoutSha256": "764b4f22983922478ac2f0edc9ce43ca0b82b9fd7f23e8a329bd3cc1db44c2d5",
+      "verifiedMainGitBlob": "d356d3917075c222a80cb127cd70362eb6b1fca6",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "src/lib/report-preview.ts",
+      "workingFileSha256": "f486ec7d18319fc3145dd67cd4cc90cd72045f64147a5b58525a12a514b61407",
+      "verifiedMainCheckoutSha256": "f486ec7d18319fc3145dd67cd4cc90cd72045f64147a5b58525a12a514b61407",
+      "verifiedMainGitBlob": "c5285d87ac179cb99a3161895e65845097a05916",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "supabase/.gitignore",
+      "workingFileSha256": "eccd25cd50cd8cb5447b70754f7dfa8dfc0008ce7b147c96f53fc4cfe6c78783",
+      "verifiedMainCheckoutSha256": "eccd25cd50cd8cb5447b70754f7dfa8dfc0008ce7b147c96f53fc4cfe6c78783",
+      "verifiedMainGitBlob": "ad9264f0b14b294627f8e77383875c994af54865",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "supabase/config.toml",
+      "workingFileSha256": "fea8e788d5abd927f19e0a6b01bf90f6c642298bcbc391bcb641069af5b7c82b",
+      "verifiedMainCheckoutSha256": "fea8e788d5abd927f19e0a6b01bf90f6c642298bcbc391bcb641069af5b7c82b",
+      "verifiedMainGitBlob": "60754ccfe78e71155222be95f6c10338c0b21325",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "supabase/migrations/20261024000100_c1_owner_inspections.sql",
+      "workingFileSha256": "da619928d5a398074fc1ce52dbc9d5ff1c176e41b7347cea330183c144cb9a7f",
+      "verifiedMainCheckoutSha256": "da619928d5a398074fc1ce52dbc9d5ff1c176e41b7347cea330183c144cb9a7f",
+      "verifiedMainGitBlob": "d76704d84fbf2ec3af4933720cdfa3fab2fcf092",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "supabase/migrations/20261027000100_c1_hosted_acl_hardening.sql",
+      "workingFileSha256": "d4c602219b6788306ae993a8c4fdaec14e122fbe09044bcb8564667e9b84b4b2",
+      "verifiedMainCheckoutSha256": "d4c602219b6788306ae993a8c4fdaec14e122fbe09044bcb8564667e9b84b4b2",
+      "verifiedMainGitBlob": "43d78de48ef317fc61d673a3e290f5613b114c72",
+      "matchesVerifiedMain": true
+    },
+    {
+      "path": "tsconfig.json",
+      "workingFileSha256": "fc32b77575ef9a3317e9b06acf86181dffa95d4f82acbd9fcacddac695aecba3",
+      "verifiedMainCheckoutSha256": "fc32b77575ef9a3317e9b06acf86181dffa95d4f82acbd9fcacddac695aecba3",
+      "verifiedMainGitBlob": "b2d64099cde1f7d5dfa8f5fc3fe822020723b4ec",
+      "matchesVerifiedMain": true
+    }
+  ]
+}
