@@ -1,0 +1,169 @@
+{
+  "base": "08a9b39420a86e8c5a4b584bddb4f002df1a742a",
+  "fixture": "tests/inspection-checklist-fixtures.ts: checklistReport(true); same canvas-generated synthetic photo in both phases",
+  "capture": "UI1_CAPTURE_PHASE=before|after npx playwright test tests/ui1-visual.spec.ts",
+  "screenshots": [
+    {
+      "path": "screenshots/before-desktop-checklist.png",
+      "phase": "before",
+      "viewport": "desktop",
+      "scene": "checklist",
+      "width": 1440,
+      "height": 1609,
+      "sha256": "318b80ebeaac005d704d20b0fe03b1dde5e8ee62968ebf2fc6165a7f9f418484"
+    },
+    {
+      "path": "screenshots/before-desktop-defect.png",
+      "phase": "before",
+      "viewport": "desktop",
+      "scene": "defect",
+      "width": 1440,
+      "height": 2851,
+      "sha256": "7fddfda0a9cd8ebf26951ee94c5207ab143ed1f5559a397bca72eaa3b573f51d"
+    },
+    {
+      "path": "screenshots/before-desktop-defect-viewport.png",
+      "phase": "before",
+      "viewport": "desktop",
+      "scene": "defect-viewport",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "7a9d9a648fa53841bbd8afe93f7a2a17ecc28309fcbe0440098dd0b9e141bd20"
+    },
+    {
+      "path": "screenshots/after-desktop-checklist.png",
+      "phase": "after",
+      "viewport": "desktop",
+      "scene": "checklist",
+      "width": 1440,
+      "height": 1614,
+      "sha256": "9965df9ce6250e2f4c40ba350cb2ab020f851f03d1f3f7cdd05087fd89578983"
+    },
+    {
+      "path": "screenshots/after-desktop-defect.png",
+      "phase": "after",
+      "viewport": "desktop",
+      "scene": "defect",
+      "width": 1440,
+      "height": 1985,
+      "sha256": "2c959fed8e051dbbefbe4f705839cd2757bf17cf34ba80e366d17c939ed1692e"
+    },
+    {
+      "path": "screenshots/after-desktop-defect-viewport.png",
+      "phase": "after",
+      "viewport": "desktop",
+      "scene": "defect-viewport",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "7bff31290e5f48d359df5dab723e9cff5ab1da1940a4226d1054597bfe55e8a7"
+    },
+    {
+      "path": "screenshots/before-mobile-360-checklist.png",
+      "phase": "before",
+      "viewport": "mobile-360",
+      "scene": "checklist",
+      "width": 360,
+      "height": 1834,
+      "sha256": "a813a6ff0fccad5b19d107c885183f9bf452ee52196451cf6e3a86f9aa5d4ee3"
+    },
+    {
+      "path": "screenshots/before-mobile-360-defect.png",
+      "phase": "before",
+      "viewport": "mobile-360",
+      "scene": "defect",
+      "width": 360,
+      "height": 3419,
+      "sha256": "c5d53f91013d8f32dfa6879dfa1eff43d9553bbe118e5c8560345ad987cafcc8"
+    },
+    {
+      "path": "screenshots/before-mobile-360-defect-viewport.png",
+      "phase": "before",
+      "viewport": "mobile-360",
+      "scene": "defect-viewport",
+      "width": 360,
+      "height": 800,
+      "sha256": "449e0b9599601be70324299f730a78a527910e44b366ebeea47747e22d7d629c"
+    },
+    {
+      "path": "screenshots/after-mobile-360-checklist.png",
+      "phase": "after",
+      "viewport": "mobile-360",
+      "scene": "checklist",
+      "width": 360,
+      "height": 1622,
+      "sha256": "fecfe86a419c1813b066d758d811afdcfe92277172f98c8f2253847520b0fb4c"
+    },
+    {
+      "path": "screenshots/after-mobile-360-defect.png",
+      "phase": "after",
+      "viewport": "mobile-360",
+      "scene": "defect",
+      "width": 360,
+      "height": 2554,
+      "sha256": "d165337f62a3a54daf8ecc16a8d5e2c4dcef45bf1383992133231d713f6e148b"
+    },
+    {
+      "path": "screenshots/after-mobile-360-defect-viewport.png",
+      "phase": "after",
+      "viewport": "mobile-360",
+      "scene": "defect-viewport",
+      "width": 360,
+      "height": 800,
+      "sha256": "b78bdca01e16ef02bbfc92fb0e53bcc4a0ccab01fe08c6732e5b9e93e9840eab"
+    },
+    {
+      "path": "screenshots/before-mobile-390-checklist.png",
+      "phase": "before",
+      "viewport": "mobile-390",
+      "scene": "checklist",
+      "width": 390,
+      "height": 1809,
+      "sha256": "1d0897e94eea852cf673c656e99aa6d2b4058973f282f94aa106cdde6e113a65"
+    },
+    {
+      "path": "screenshots/before-mobile-390-defect.png",
+      "phase": "before",
+      "viewport": "mobile-390",
+      "scene": "defect",
+      "width": 390,
+      "height": 3327,
+      "sha256": "a30530771de8246fc9b163b1b4ddb0f64bc3613f1116e7ce756d411c548e27ba"
+    },
+    {
+      "path": "screenshots/before-mobile-390-defect-viewport.png",
+      "phase": "before",
+      "viewport": "mobile-390",
+      "scene": "defect-viewport",
+      "width": 390,
+      "height": 844,
+      "sha256": "be1e606a255903fc349e7bf85c644999d99ba4209947917d233885f584a25b75"
+    },
+    {
+      "path": "screenshots/after-mobile-390-checklist.png",
+      "phase": "after",
+      "viewport": "mobile-390",
+      "scene": "checklist",
+      "width": 390,
+      "height": 1622,
+      "sha256": "258461f77ab5f0a00081f19ddaf900864a444d8053dd0ab473c2a5109e712283"
+    },
+    {
+      "path": "screenshots/after-mobile-390-defect.png",
+      "phase": "after",
+      "viewport": "mobile-390",
+      "scene": "defect",
+      "width": 390,
+      "height": 2554,
+      "sha256": "4f5cb5b4ef026a93fe7901e6750b83b1190bc04b391858745806dfe08ba97f0f"
+    },
+    {
+      "path": "screenshots/after-mobile-390-defect-viewport.png",
+      "phase": "after",
+      "viewport": "mobile-390",
+      "scene": "defect-viewport",
+      "width": 390,
+      "height": 844,
+      "sha256": "bd0882e387394c393974a0725330ff306cc7c07c11748a34e0dec133ffcb479a"
+    }
+  ]
+}

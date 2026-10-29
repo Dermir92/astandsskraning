@@ -1,0 +1,1153 @@
+{
+  "command": "npx playwright test --workers=2 --retries=0 --max-failures=0 --output=artifacts/ui1-followup/full-results --reporter=line,json",
+  "uninterrupted": true,
+  "aggregation": false,
+  "retries": 0,
+  "stats": {
+    "startTime": "2026-10-29T10:21:56.841Z",
+    "duration": 968596.756,
+    "expected": 982,
+    "skipped": 32,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "genuineFailures": [],
+  "expectedSkips": [
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "fire-observations-capture.spec.ts > mobile widths, keyboard, axe, enlarged text and representative review screenshots",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Width audit covers all target widths once.",
+          "location": {
+            "line": 306,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 117
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "fire-observations-capture.spec.ts > representative empty, optional, retained and not-examined review states",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Scenario gallery is captured once.",
+          "location": {
+            "line": 352,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 0
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "fire-observations-capture.spec.ts > mobile widths, keyboard, axe, enlarged text and representative review screenshots",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Width audit covers all target widths once.",
+          "location": {
+            "line": 306,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 146
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "fire-observations-capture.spec.ts > representative empty, optional, retained and not-examined review states",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Scenario gallery is captured once.",
+          "location": {
+            "line": 352,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 1
+    },
+    {
+      "file": "heating-capture.spec.ts",
+      "title": "heating-capture.spec.ts > heating mobile and accessibility audit plus representative screenshots",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width, enlarged-text and gallery audits run once.",
+          "location": {
+            "line": 80,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 113
+    },
+    {
+      "file": "heating-capture.spec.ts",
+      "title": "heating-capture.spec.ts > heating mobile and accessibility audit plus representative screenshots",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width, enlarged-text and gallery audits run once.",
+          "location": {
+            "line": 80,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 224
+    },
+    {
+      "file": "inspection-comparison.spec.ts",
+      "title": "inspection-comparison.spec.ts > five-width comparison, missing data, modules and enlarged text remain accessible",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The complete width matrix is executed once.",
+          "location": {
+            "line": 157,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 3
+    },
+    {
+      "file": "inspection-comparison.spec.ts",
+      "title": "inspection-comparison.spec.ts > five-width comparison, missing data, modules and enlarged text remain accessible",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The complete width matrix is executed once.",
+          "location": {
+            "line": 157,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 3
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "inspection-core-capture.spec.ts > optional review context is accessible and reflows at mobile, desktop and enlarged text sizes",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Context/width combinations are audited once.",
+          "location": {
+            "line": 224,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 125
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "inspection-core-capture.spec.ts > core controls and warnings reflow, support keyboard and pass axe at requested widths",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width audit is run once.",
+          "location": {
+            "line": 261,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 152
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "inspection-core-capture.spec.ts > optional review context is accessible and reflows at mobile, desktop and enlarged text sizes",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Context/width combinations are audited once.",
+          "location": {
+            "line": 224,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 158
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "inspection-core-capture.spec.ts > core controls and warnings reflow, support keyboard and pass axe at requested widths",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width audit is run once.",
+          "location": {
+            "line": 261,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 146
+    },
+    {
+      "file": "inspection-evidence.spec.ts",
+      "title": "inspection-evidence.spec.ts > five-width visual, accessibility and 200 percent text verification",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Captured once across all five widths in isolated contexts",
+          "location": {
+            "line": 388,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 2
+    },
+    {
+      "file": "inspection-evidence.spec.ts",
+      "title": "inspection-evidence.spec.ts > five-width visual, accessibility and 200 percent text verification",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Captured once across all five widths in isolated contexts",
+          "location": {
+            "line": 388,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 0
+    },
+    {
+      "file": "meter-readings-capture.spec.ts",
+      "title": "meter-readings-capture.spec.ts > five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width/text/axe audit runs once.",
+          "location": {
+            "line": 314,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 127
+    },
+    {
+      "file": "meter-readings-capture.spec.ts",
+      "title": "meter-readings-capture.spec.ts > five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width/text/axe audit runs once.",
+          "location": {
+            "line": 314,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 176
+    },
+    {
+      "file": "prototype.spec.ts",
+      "title": "prototype.spec.ts > intermediate screen widths do not overflow",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Intermediate widths are covered once.",
+          "location": {
+            "line": 473,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 142
+    },
+    {
+      "file": "prototype.spec.ts",
+      "title": "prototype.spec.ts > intermediate screen widths do not overflow",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Intermediate widths are covered once.",
+          "location": {
+            "line": 473,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 131
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "rental-information-capture.spec.ts > responsive disclosures, keyboard, axe and enlarged long content",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The full width/state audit is run once.",
+          "location": {
+            "line": 298,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 197
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "rental-information-capture.spec.ts > expanded secondary fields and long content reflow at 200 percent text",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The 320px text audit is run once.",
+          "location": {
+            "line": 325,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 194
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "rental-information-capture.spec.ts > responsive disclosures, keyboard, axe and enlarged long content",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The full width/state audit is run once.",
+          "location": {
+            "line": 298,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 110
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "rental-information-capture.spec.ts > expanded secondary fields and long content reflow at 200 percent text",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The 320px text audit is run once.",
+          "location": {
+            "line": 325,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 113
+    },
+    {
+      "file": "report-preview.spec.ts",
+      "title": "report-preview.spec.ts > five widths, enlarged text and principal content states retain semantic order and readable reflow",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The five-width audit runs once; touch projects exercise ordinary interactions separately.",
+          "location": {
+            "line": 217,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 27
+    },
+    {
+      "file": "report-preview.spec.ts",
+      "title": "report-preview.spec.ts > five widths, enlarged text and principal content states retain semantic order and readable reflow",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The five-width audit runs once; touch projects exercise ordinary interactions separately.",
+          "location": {
+            "line": 217,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 15
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "ui1-review-followup.spec.ts > review screenshots retain A2.2 hierarchy on desktop and mobile",
+      "project": "desktop",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit review evidence only",
+          "location": {
+            "line": 159,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 170
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "ui1-review-followup.spec.ts > native accessibility tree preserves the selected item and its assessment grouping",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Native Chromium AX audit includes desktop and mobile in one run",
+          "location": {
+            "line": 32,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 191
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "ui1-review-followup.spec.ts > review screenshots retain A2.2 hierarchy on desktop and mobile",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit review evidence only",
+          "location": {
+            "line": 159,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 184
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "ui1-review-followup.spec.ts > native accessibility tree preserves the selected item and its assessment grouping",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Native Chromium AX audit includes desktop and mobile in one run",
+          "location": {
+            "line": 32,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 129
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "ui1-review-followup.spec.ts > review screenshots retain A2.2 hierarchy on desktop and mobile",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit review evidence only",
+          "location": {
+            "line": 159,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 135
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "title": "ui1-visual.spec.ts > UI1 review screenshots with identical synthetic report and photo",
+      "project": "desktop",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit before/after evidence capture only",
+          "location": {
+            "line": 7,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 177
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "title": "ui1-visual.spec.ts > UI1 review screenshots with identical synthetic report and photo",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit before/after evidence capture only",
+          "location": {
+            "line": 7,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 185
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "title": "ui1-visual.spec.ts > UI1 review screenshots with identical synthetic report and photo",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit before/after evidence capture only",
+          "location": {
+            "line": 7,
+            "column": 8
+          }
+        }
+      ],
+      "duration": 117
+    }
+  ],
+  "files": [
+    {
+      "project": "desktop",
+      "file": "c1-demo-isolation.spec.ts",
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "c1-demo-isolation.spec.ts",
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "c1-demo-isolation.spec.ts",
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "fire-observations-capture.spec.ts",
+      "passed": 16,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "fire-observations-capture.spec.ts",
+      "passed": 14,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "fire-observations-capture.spec.ts",
+      "passed": 14,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "fire-observations-compatibility.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "fire-observations-compatibility.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "fire-observations-compatibility.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "heating-capture.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "heating-capture.spec.ts",
+      "passed": 10,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "heating-capture.spec.ts",
+      "passed": 10,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "heating-compatibility.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "heating-compatibility.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "heating-compatibility.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-checklist.spec.ts",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-checklist.spec.ts",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-checklist.spec.ts",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-comparison-contract.spec.ts",
+      "passed": 22,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-comparison-contract.spec.ts",
+      "passed": 22,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-comparison-contract.spec.ts",
+      "passed": 22,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-comparison.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-comparison.spec.ts",
+      "passed": 6,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-comparison.spec.ts",
+      "passed": 6,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-concepts.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-concepts.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-concepts.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-core-capture.spec.ts",
+      "passed": 15,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-core-capture.spec.ts",
+      "passed": 13,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-core-capture.spec.ts",
+      "passed": 13,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-core-compatibility.spec.ts",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-core-compatibility.spec.ts",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-core-compatibility.spec.ts",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-evidence.spec.ts",
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-evidence.spec.ts",
+      "passed": 13,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-evidence.spec.ts",
+      "passed": 13,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "inspection-navigation.spec.ts",
+      "passed": 20,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "inspection-navigation.spec.ts",
+      "passed": 20,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "inspection-navigation.spec.ts",
+      "passed": 20,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "local-data-safety.spec.ts",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "local-data-safety.spec.ts",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "local-data-safety.spec.ts",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "meter-readings-capture.spec.ts",
+      "passed": 38,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "meter-readings-capture.spec.ts",
+      "passed": 37,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "meter-readings-capture.spec.ts",
+      "passed": 37,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "meter-readings-compatibility.spec.ts",
+      "passed": 35,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "meter-readings-compatibility.spec.ts",
+      "passed": 35,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "meter-readings-compatibility.spec.ts",
+      "passed": 35,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "mobile-refinement.spec.ts",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "mobile-refinement.spec.ts",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "mobile-refinement.spec.ts",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "prototype.spec.ts",
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "prototype.spec.ts",
+      "passed": 12,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "prototype.spec.ts",
+      "passed": 12,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "readability.spec.ts",
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "readability.spec.ts",
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "readability.spec.ts",
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "rental-information-capture.spec.ts",
+      "passed": 16,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "rental-information-capture.spec.ts",
+      "passed": 14,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "rental-information-capture.spec.ts",
+      "passed": 14,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "rental-information-compatibility.spec.ts",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "rental-information-compatibility.spec.ts",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "rental-information-compatibility.spec.ts",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "report-preview-contract.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "report-preview-contract.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "report-preview-contract.spec.ts",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "report-preview.spec.ts",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "report-preview.spec.ts",
+      "passed": 11,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "report-preview.spec.ts",
+      "passed": 11,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "reports-shell.spec.ts",
+      "passed": 8,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "reports-shell.spec.ts",
+      "passed": 8,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "reports-shell.spec.ts",
+      "passed": 8,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "ui1-assessment.spec.ts",
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "ui1-assessment.spec.ts",
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "ui1-assessment.spec.ts",
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "ui1-review-followup.spec.ts",
+      "passed": 4,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "ui1-review-followup.spec.ts",
+      "passed": 3,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "ui1-review-followup.spec.ts",
+      "passed": 3,
+      "skipped": 2,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "ui1-visual.spec.ts",
+      "passed": 0,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "ui1-visual.spec.ts",
+      "passed": 0,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "ui1-visual.spec.ts",
+      "passed": 0,
+      "skipped": 1,
+      "failed": 0
+    },
+    {
+      "project": "desktop",
+      "file": "ux-refinements.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-360",
+      "file": "ux-refinements.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "project": "mobile-390",
+      "file": "ux-refinements.spec.ts",
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "rawJsonSha256": "238dca9c7d632e99204cc5a1b06f957616f79f4c8e7cc3e94087381dec7af1dc",
+  "rawLogSha256": "f7d7e78a696d7dc23527724a2dbf05adb6ece63d669e5e68eafeeeb5f2d2309d"
+}

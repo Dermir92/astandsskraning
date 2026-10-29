@@ -46,6 +46,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
         <div>
           <p className="eyebrow">
             RÝMI {report.rooms.indexOf(room) + 1} AF {report.rooms.length}
+            {openItem ? <span className={styles.activeItem}> · {room.items.find(i => i.id === openItem)?.name}</span> : null}
           </p>
           <h2 id={navigationTargetId("inspection", room.id)} tabIndex={-1}>{room.name}</h2>
         </div>
@@ -128,7 +129,7 @@ function InspectionBody({ report }: { report: Report }) {
       <Stepper reportId={id} step={2} />
       <PageHeading
         eyebrow={reportTitle(report)}
-        title="Ástandsskráning"
+        title={reportTitle(report)}
         description="Skoðaðu eitt rými í einu. Þú getur breytt öllum svörum síðar."
         action={
           <Link

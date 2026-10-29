@@ -17,7 +17,7 @@ async function seed(page: Page, report = fireReport(), destination = `${base}/sk
   await page.addInitScript(({ document, key }) => {
     if (!sessionStorage.getItem("fire-seeded")) { localStorage.setItem(key, document); sessionStorage.setItem("fire-seeded", "yes"); }
   }, { document, key: STORAGE_KEY });
-  await page.goto(destination); await expect(page.getByRole("heading", { name: /Ástandsskráning|Yfirferð skráningar/ }).first()).toBeVisible();
+  await page.goto(destination); await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   return document;
 }
 async function open(page: Page, selector: string) {

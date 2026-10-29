@@ -7,6 +7,7 @@ import { is } from "../src/lib/locale/is";
 import { hasRetainedDefect } from "../src/lib/inspection-evidence";
 import { checklistReport } from "./inspection-checklist-fixtures";
 import { auditRenderedContrast } from "./contrast-helpers";
+import { chooseAssessment, editDefect, expandAssessment } from "./inspection-ui-helpers";
 
 const route = "/skyrslur/checklist-report/skraning?rymi=checklist-entry";
 const row = (page: Page, id = "walls") => page.locator(`.checklist-item[data-item="${id}"]`);
@@ -19,6 +20,8 @@ async function open(page: Page, id = "walls") {
   if (await toggle.getAttribute("aria-expanded") !== "true") await toggle.click();
   await expect(toggle).toHaveAttribute("aria-expanded", "true");
   await expect(row(page, id).locator(".observation-body")).toBeVisible();
+  await expandAssessment(row(page, id));
+  await editDefect(row(page, id));
 }
 async function seed(page: Page, report = checklistReport(true)) {
   await page.addInitScript(({ key, report }) => {
@@ -82,7 +85,7 @@ test("optional photos in unanswered and all six assessment states leave exact st
   await seed(page, checklistReport());
   const file = await image(page);
   for (const condition of ["", ...CONDITIONS] as const) {
-    if (condition) await row(page).getByRole("radio", { name: is.conditions[condition], exact: true }).check();
+    if (condition) await chooseAssessment(page, row(page), is.conditions[condition]);
     const before = await storage(page), stats = reportStats(await stored(page));
     const state = await row(page).getAttribute("data-state");
     await picker(page).setInputFiles(file); await count(page, 1);
@@ -109,7 +112,7 @@ test("inactive defect text stays separate while neutral notes and photos survive
   await picker(page).setInputFiles(await image(page)); await count(page, 1);
   const initial = (await stored(page)).rooms[0].observations.walls;
   for (const condition of ["good", "na", "damaged"] as const) {
-    await row(page).getByRole("radio", { name: is.conditions[condition], exact: true }).check();
+    await chooseAssessment(page, row(page), is.conditions[condition]);
     await count(page, 1);
     expect((await stored(page)).rooms[0].observations.walls).toEqual({ ...initial, condition });
     await expect(row(page).getByRole("textbox", { name: /^Athugasemd/ })).toHaveValue(initial.note);
@@ -121,7 +124,7 @@ test("inactive defect text stays separate while neutral notes and photos survive
       await expect(retained).toContainText("ekki sýndur sem núverandi frávik");
     }
   }
-  await row(page).getByRole("radio", { name: "Í lagi", exact: true }).check();
+  await chooseAssessment(page, row(page), "Í lagi");
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
   const item = page.locator('[data-evidence-item="walls"]');
   await expect(item.locator("details")).not.toHaveAttribute("open", "");
@@ -173,6 +176,7 @@ test("explicit clearing retains photos and room renaming follows existing ID ass
   await seed(page);
   await picker(page).setInputFiles(await image(page)); await count(page, 1);
   await row(page).getByRole("button", { name: "Hreinsa svör", exact: true }).click();
+  await page.getByRole("button", { name: "Staðfesta breytingu", exact: true }).click();
   await count(page, 1);
   await expect(row(page)).toHaveAttribute("data-state", "unanswered");
   expect((await stored(page)).rooms[0].observations.walls).toEqual(EMPTY_OBSERVATION);
@@ -274,6 +278,7 @@ test("reload loses only session previews, retains text and exact navigation, res
   await expect(row(page).locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "true");
   await count(page, 0); await unchanged(page, before, stats);
   await expect(row(page)).toContainText("Mynd af fráviki vantar");
+  await editDefect(row(page));
   await expect(row(page).getByRole("textbox", { name: /^Lýsing/ })).toHaveValue("Tilbúin 8 cm rispa");
 });
 
@@ -403,7 +408,7 @@ test("five-width visual, accessibility and 200 percent text verification", async
     await page.evaluate(() => (window as unknown as { restoreEvidenceText: () => void }).restoreEvidenceText());
     await row(page).getByRole("button", { name: /^Fjarlægja mynd 1:/ }).click(); await snap("remove");
     await page.getByRole("button", { name: "Hætta við", exact: true }).click();
-    await row(page).getByRole("radio", { name: "Í lagi", exact: true }).check();
+    await chooseAssessment(page, row(page), "Í lagi");
     await row(page).locator("details summary").filter({ hasText: "Varðveitt frávikslýsing" }).click(); await snap("retained");
     await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
     await expect(page.getByRole("heading", { name: "Yfirferð skráningar", exact: true })).toBeVisible();

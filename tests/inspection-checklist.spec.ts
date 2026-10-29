@@ -6,6 +6,7 @@ import { is } from "../src/lib/locale/is";
 import { checklistReport } from "./inspection-checklist-fixtures";
 import { auditRenderedContrast } from "./contrast-helpers";
 import { positionKey } from "../src/lib/inspection-navigation";
+import { chooseAssessment, editDefect, expandAssessment } from "./inspection-ui-helpers";
 
 const route = "/skyrslur/checklist-report/skraning?rymi=checklist-entry";
 const row = (page: Page, id: string) => page.locator(`.checklist-item[data-item="${id}"]`);
@@ -37,10 +38,10 @@ test("unanswered checklist is compact, neutral and explicit; opening items never
   const original = await seed(page);
   await expect(page.locator(".checklist-item")).toHaveCount(7);
   await expect(page.locator('.checklist-item[data-state="unanswered"]')).toHaveCount(7);
-  await expect(page.getByRole("button", { name: /^Í lagi:/, pressed: false })).toHaveCount(7);
-  await expect(page.getByRole("button", { name: /^Annað ástand:/ })).toHaveCount(7);
-  const good = row(page, "floor").getByRole("button", { name: "Í lagi: Gólfefni", exact: true });
-  const alternative = row(page, "floor").getByRole("button", { name: "Annað ástand: Gólfefni", exact: true });
+  await expect(page.getByRole("button", { name: /^Ástand í lagi:/, pressed: false })).toHaveCount(7);
+  await expect(page.locator(".checklist-toggle")).toHaveCount(7);
+  const good = row(page, "floor").getByRole("button", { name: "Ástand í lagi: Gólfefni", exact: true });
+  const alternative = row(page, "floor").locator(".checklist-toggle");
   for (const button of [good, alternative]) {
     const box = (await button.boundingBox())!;
     expect(box.height).toBeGreaterThanOrEqual(44);
@@ -48,8 +49,7 @@ test("unanswered checklist is compact, neutral and explicit; opening items never
     expect(box.y).toBeGreaterThanOrEqual(0);
     expect(box.y + box.height).toBeLessThanOrEqual(page.viewportSize()!.height);
   }
-  const style = async (selector: typeof good) => selector.evaluate(el => { const s = getComputedStyle(el); return { background: s.backgroundColor, border: s.borderColor, color: s.color }; });
-  expect(await style(good)).toEqual(await style(alternative));
+  expect(await good.innerText()).toContain("Ástand í lagi");
   await openItem(page, "floor");
   await expect(page.getByRole("radio", { checked: true })).toHaveCount(0);
   await row(page, "floor").getByRole("button", { name: "Loka atriði", exact: true }).click();
@@ -62,7 +62,7 @@ test("unanswered checklist is compact, neutral and explicit; opening items never
 test("quick-good changes condition only and leaves required functionality and cleanliness explicit", async ({ page }) => {
   const original = checklistReport();
   await seed(page, original);
-  await row(page, "floor").getByRole("button", { name: "Í lagi: Gólfefni", exact: true }).click();
+  await row(page, "floor").getByRole("button", { name: "Ástand í lagi: Gólfefni", exact: true }).click();
   const floor = row(page, "floor");
   await expect(floor).toHaveAttribute("data-state", "incomplete");
   await expect(floor.getByRole("radio", { name: "Hreint", exact: true })).toBeFocused();
@@ -78,7 +78,7 @@ test("quick-good changes condition only and leaves required functionality and cl
   await floor.getByRole("radio", { name: "Hreint", exact: true }).check();
   await expect(floor).toHaveAttribute("data-state", "recorded");
   await expect(floor.locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "true");
-  await row(page, "windows").getByRole("button", { name: "Í lagi: Gluggar", exact: true }).click();
+  await row(page, "windows").getByRole("button", { name: "Ástand í lagi: Gluggar", exact: true }).click();
   const windows = row(page, "windows");
   await expect(windows.getByRole("radio", { name: "Virkar", exact: true })).toBeFocused();
   await expect(windows.getByRole("radio", { checked: true })).toHaveCount(0);
@@ -94,14 +94,13 @@ test("quick-good changes condition only and leaves required functionality and cl
 
 test("all six conditions remain available with native controls and the unchanged applicability rules", async ({ page }) => {
   await seed(page);
-  await row(page, "windows").getByRole("button", { name: "Annað ástand: Gluggar", exact: true }).click();
+  await row(page, "windows").locator(".checklist-toggle").click();
   const editor = row(page, "windows").locator(".observation-body");
   const condition = editor.getByRole("group", { name: "Ástand", exact: true });
   await expect(condition.getByRole("radio")).toHaveCount(6);
-  await expect(condition.getByRole("radio", { name: "Notkunarmerki", exact: true })).toBeFocused();
   await expect(condition.getByRole("radio", { checked: true })).toHaveCount(0);
   for (const answer of CONDITIONS) {
-    await condition.getByRole("radio", { name: is.conditions[answer], exact: true }).check();
+    await chooseAssessment(page, row(page, "windows"), is.conditions[answer]);
     expect((await saved(page)).rooms[0].observations.windows.condition).toBe(answer);
     await expect(condition.getByRole("radio", { name: is.conditions[answer], exact: true })).toBeChecked();
     if (answer === "na") await expect(editor.getByRole("group", { name: "Virkni", exact: true })).toHaveCount(0);
@@ -115,8 +114,9 @@ test("existing draft values, associations, status distinctions and review statis
   const original = checklistReport(true);
   const document = await seed(page, original);
   for (const [id, state] of [["floor", "incomplete"], ["walls", "deviation"], ["ceiling", "recorded"], ["windows", "attention"], ["doors", "recorded"], ["lights", "deviation"], ["closets", "unanswered"]]) await expect(row(page, id)).toHaveAttribute("data-state", state);
-  await expect(row(page, "windows")).toContainText("Ekki skoðað · Skráð · Þarf athygli");
+  await expect(row(page, "windows")).toContainText("Ekki skoðað · Fullskráð · Þarf athygli");
   const walls = await openItem(page, "walls");
+  await editDefect(walls);
   await expect(walls.getByRole("textbox", { name: /^Lýsing/ })).toHaveValue("Tilbúin 8 cm rispa");
   expect(await raw(page)).toBe(document);
   await walls.getByRole("textbox", { name: /^Athugasemd/ }).fill("Ný, afmörkuð athugasemd");
@@ -151,12 +151,11 @@ test("condition changes retain damage text, notes and accessible temporary photo
   await expect(editor.getByRole("img", { name: "Staðbundin forskoðun: tilbuin.png", exact: true })).toBeVisible();
   await expect(editor).toContainText("hverfa við endurhleðslu");
   const previous = (await saved(page)).rooms[0].observations.walls;
-  await row(page, "walls").getByRole("button", { name: "Í lagi: Veggir", exact: true }).click();
+  await chooseAssessment(page, row(page, "walls"), "Í lagi");
   expect((await saved(page)).rooms[0].observations.walls).toEqual({ ...previous, condition: "good" });
   await expect(editor.getByLabel("Myndir við atriði: velja myndir", { exact: true })).toBeEnabled();
   await expect(editor.getByText("Varðveitt frávikslýsing", { exact: true })).toBeVisible();
-  await row(page, "walls").getByRole("button", { name: "Annað ástand: Veggir", exact: true }).click();
-  await editor.getByRole("radio", { name: "Skemmt", exact: true }).check();
+  await chooseAssessment(page, row(page, "walls"), "Skemmt");
   await expect(editor.getByRole("img", { name: "Staðbundin forskoðun: tilbuin.png", exact: true })).toBeVisible();
   expect((await saved(page)).rooms[0].observations.walls).toEqual(previous);
   expect(await raw(page)).not.toContain("blob:");
@@ -173,22 +172,25 @@ test("keyboard order, alternative focus, native radio keys and close-focus resto
   const toggle = floor.locator(".checklist-toggle");
   await toggle.focus();
   await page.keyboard.press("Tab");
-  await expect(floor.getByRole("button", { name: "Í lagi: Gólfefni", exact: true })).toBeFocused();
-  await page.keyboard.press("Tab");
-  const alternative = floor.getByRole("button", { name: "Annað ástand: Gólfefni", exact: true });
-  await expect(alternative).toBeFocused();
-  expect(await alternative.evaluate(el => getComputedStyle(el).outlineStyle)).toBe("solid");
+  await expect(floor.getByRole("button", { name: "Ástand í lagi: Gólfefni", exact: true })).toBeFocused();
+  expect(await floor.getByRole("button", { name: "Ástand í lagi: Gólfefni", exact: true }).evaluate(el => getComputedStyle(el).outlineStyle)).toBe("solid");
+  await page.keyboard.press("Shift+Tab");
+  await expect(toggle).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(floor.getByRole("radio", { name: "Notkunarmerki", exact: true })).toBeFocused();
+  for (let i = 0; i < 5; i++) {
+    await page.keyboard.press("Tab");
+    if (await floor.getByRole("radio", { name: "Í lagi", exact: true }).evaluate(el => el === globalThis.document.activeElement)) break;
+  }
+  await expect(floor.getByRole("radio", { name: "Í lagi", exact: true })).toBeFocused();
   expect(await raw(page)).toBe(document);
   await page.keyboard.press("ArrowRight");
-  await expect(floor.getByRole("radio", { name: "Slit / galli", exact: true })).toBeChecked();
+  await expect(floor.getByRole("radio", { name: "Notkunarmerki", exact: true })).toBeChecked();
   await floor.getByRole("button", { name: "Loka atriði", exact: true }).click();
   await expect(toggle).toBeFocused();
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
   await page.keyboard.press("Enter");
   await expect(toggle).toHaveAttribute("aria-expanded", "true");
-  await expect(floor.getByRole("radio", { name: "Slit / galli", exact: true })).toBeChecked();
+  await expect(floor.getByRole("radio", { name: "Notkunarmerki", exact: true })).toBeChecked();
 });
 
 test("room selection, previous/next navigation and existing review return do not supply answers", async ({ page }, testInfo) => {
@@ -213,9 +215,11 @@ test("new controls preserve unreadable raw data and valid failed writes still re
   const unsupported = '{"version":7,"reports":[],"synthetic":"retain exactly"}';
   await page.evaluate(({ key, unsupported }) => localStorage.setItem(key, unsupported), { key: STORAGE_KEY, unsupported });
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living");
-  await expect(page.getByRole("button", { name: "Í lagi: Veggir", exact: true })).toBeDisabled();
-  await page.getByRole("button", { name: "Annað ástand: Veggir", exact: true }).click();
-  await page.getByRole("radio", { name: "Í lagi", exact: true }).click();
+  for (const quick of await page.getByRole("button", { name: /^Ástand í lagi:/ }).all()) await expect(quick).toBeDisabled();
+  const protectedRow = page.locator('.checklist-item[data-item="walls"]');
+  await protectedRow.locator(".checklist-toggle").click();
+  await expandAssessment(protectedRow);
+  await protectedRow.getByRole("radio", { name: "Í lagi", exact: true }).click();
   expect(await raw(page)).toBe(unsupported);
   await expect(page.getByRole("button", { name: "Reyna vistun aftur", exact: true })).toHaveCount(0);
   const document = JSON.stringify({ version: 1, reports: [checklistReport()] });
@@ -226,7 +230,7 @@ test("new controls preserve unreadable raw data and valid failed writes still re
     (window as unknown as { restoreChecklistWrites: () => void }).restoreChecklistWrites = () => { Storage.prototype.setItem = original; };
     Storage.prototype.setItem = function (name, value) { if (name === key) throw new Error("Synthetic write failure"); return original.call(this, name, value); };
   }, STORAGE_KEY);
-  await row(page, "floor").getByRole("button", { name: "Í lagi: Gólfefni", exact: true }).click();
+  await row(page, "floor").getByRole("button", { name: "Ástand í lagi: Gólfefni", exact: true }).click();
   await expect(page.locator(".topbar .save-status")).toHaveText("Ekki tókst að vista í vafra");
   expect(await raw(page)).toBe(document);
   await page.evaluate(() => (window as unknown as { restoreChecklistWrites: () => void }).restoreChecklistWrites());

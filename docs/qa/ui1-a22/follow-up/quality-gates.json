@@ -1,0 +1,26 @@
+{
+  "buildId": "YKWDQm0ktbt7lusjEiuyE",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "logSha256": "45ef7e1e796ece3d63bbd22fcb8130127eaad2279ad159f01d401472689b7040"
+  },
+  "lint": {
+    "command": "npm run lint",
+    "logSha256": "256d21ce333195d4a5ab68dc43816f0dfd231f43c7122b21b7dd8e315e0f4891"
+  },
+  "build": {
+    "command": "npm run build",
+    "logSha256": "8d60b34270b6f1e26c34832a15fad4192ad4f6342bbd235ea55775ae9b89b36a"
+  },
+  "focused": {
+    "stats": {
+      "startTime": "2026-10-29T10:19:45.744Z",
+      "duration": 22001.729,
+      "expected": 13,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "command": "UI1_REVIEW_CAPTURE=1 npx playwright test tests/ui1-review-followup.spec.ts"
+  }
+}

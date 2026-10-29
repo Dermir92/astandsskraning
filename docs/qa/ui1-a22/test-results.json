@@ -1,0 +1,297 @@
+{
+  "command": "npx playwright test --workers=2 --output=artifacts/ui1-regression-results --reporter=line,json --max-failures=12",
+  "server": "next start on 127.0.0.1:3000 after npm run build; isolated demo only",
+  "fullRunStats": {
+    "startTime": "2026-10-29T09:28:00.700Z",
+    "duration": 1102061.649,
+    "expected": 969,
+    "skipped": 27,
+    "unexpected": 3,
+    "flaky": 0
+  },
+  "followUp": {
+    "command": "npx playwright test tests/readability.spec.ts --workers=1 --output=artifacts/ui1-rerun-results --reporter=line,json",
+    "stats": {
+      "startTime": "2026-10-29T09:46:40.313Z",
+      "duration": 29597.815000000002,
+      "expected": 9,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > all six screens have readable text, placeholders and control boundaries",
+        "project": "desktop",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > damage, form errors and disabled actions remain readable",
+        "project": "desktop",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > hover and keyboard focus remain visible with the stronger palette",
+        "project": "desktop",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > all six screens have readable text, placeholders and control boundaries",
+        "project": "mobile-360",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > damage, form errors and disabled actions remain readable",
+        "project": "mobile-360",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > hover and keyboard focus remain visible with the stronger palette",
+        "project": "mobile-360",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > all six screens have readable text, placeholders and control boundaries",
+        "project": "mobile-390",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > damage, form errors and disabled actions remain readable",
+        "project": "mobile-390",
+        "status": "expected"
+      },
+      {
+        "file": "readability.spec.ts",
+        "title": "readability.spec.ts > hover and keyboard focus remain visible with the stronger palette",
+        "project": "mobile-390",
+        "status": "expected"
+      }
+    ]
+  },
+  "resolvedFailures": [
+    {
+      "file": "readability.spec.ts",
+      "title": "readability.spec.ts > damage, form errors and disabled actions remain readable",
+      "project": "desktop",
+      "status": "unexpected"
+    },
+    {
+      "file": "readability.spec.ts",
+      "title": "readability.spec.ts > damage, form errors and disabled actions remain readable",
+      "project": "mobile-360",
+      "status": "unexpected"
+    },
+    {
+      "file": "readability.spec.ts",
+      "title": "readability.spec.ts > damage, form errors and disabled actions remain readable",
+      "project": "mobile-390",
+      "status": "unexpected"
+    }
+  ],
+  "verifiedFinalCounts": {
+    "expected": 972,
+    "unexpected": 0,
+    "skipped": 27,
+    "flaky": 0
+  },
+  "files": [
+    {
+      "file": "c1-demo-isolation.spec.ts",
+      "expected": 3,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "expected": 44,
+      "unexpected": 0,
+      "skipped": 4,
+      "flaky": 0
+    },
+    {
+      "file": "fire-observations-compatibility.spec.ts",
+      "expected": 33,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "heating-capture.spec.ts",
+      "expected": 31,
+      "unexpected": 0,
+      "skipped": 2,
+      "flaky": 0
+    },
+    {
+      "file": "heating-compatibility.spec.ts",
+      "expected": 33,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-checklist.spec.ts",
+      "expected": 27,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-comparison-contract.spec.ts",
+      "expected": 66,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-comparison.spec.ts",
+      "expected": 19,
+      "unexpected": 0,
+      "skipped": 2,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-concepts.spec.ts",
+      "expected": 21,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "expected": 41,
+      "unexpected": 0,
+      "skipped": 4,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-core-compatibility.spec.ts",
+      "expected": 15,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-evidence.spec.ts",
+      "expected": 40,
+      "unexpected": 0,
+      "skipped": 2,
+      "flaky": 0
+    },
+    {
+      "file": "inspection-navigation.spec.ts",
+      "expected": 60,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "local-data-safety.spec.ts",
+      "expected": 36,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "meter-readings-capture.spec.ts",
+      "expected": 112,
+      "unexpected": 0,
+      "skipped": 2,
+      "flaky": 0
+    },
+    {
+      "file": "meter-readings-compatibility.spec.ts",
+      "expected": 105,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "mobile-refinement.spec.ts",
+      "expected": 15,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "prototype.spec.ts",
+      "expected": 37,
+      "unexpected": 0,
+      "skipped": 2,
+      "flaky": 0
+    },
+    {
+      "file": "readability.spec.ts",
+      "expected": 9,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "expected": 44,
+      "unexpected": 0,
+      "skipped": 4,
+      "flaky": 0
+    },
+    {
+      "file": "rental-information-compatibility.spec.ts",
+      "expected": 27,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "report-preview-contract.spec.ts",
+      "expected": 33,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "report-preview.spec.ts",
+      "expected": 34,
+      "unexpected": 0,
+      "skipped": 2,
+      "flaky": 0
+    },
+    {
+      "file": "reports-shell.spec.ts",
+      "expected": 24,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "ui1-assessment.spec.ts",
+      "expected": 42,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "expected": 0,
+      "unexpected": 0,
+      "skipped": 3,
+      "flaky": 0
+    },
+    {
+      "file": "ux-refinements.spec.ts",
+      "expected": 21,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "errors": []
+}

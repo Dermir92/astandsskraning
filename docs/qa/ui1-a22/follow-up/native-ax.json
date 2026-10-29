@@ -1,0 +1,1871 @@
+{
+  "browser": "156.0.8078.4",
+  "desktop": {
+    "item": {
+      "role": "region",
+      "name": "Veggir Skemmt · Ófullskráð · Frávik",
+      "ignored": false
+    },
+    "itemRegions": [
+      "Gólfefni Í lagi · Ófullskráð · Athugasemd",
+      "Veggir Skemmt · Ófullskráð · Frávik",
+      "Loft Á ekki við · Fullskráð",
+      "Gluggar Ekki skoðað · Fullskráð · Þarf athygli",
+      "Hurðir og læsingar Notkunarmerki · Fullskráð",
+      "Ljós og rofar Í lagi · Fullskráð · Frávik",
+      "Skápar Ósvarað"
+    ],
+    "content": [
+      {
+        "role": "region",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa"
+      },
+      {
+        "role": "StaticText",
+        "name": " · atriði "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Athugasemd Valfrjálst"
+      },
+      {
+        "role": "button",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "button",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "StaticText",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · atriði "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "group",
+        "name": "Ástand"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "Tegund skemmdar / galla Má fylla út síðar"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Staðsetning Má fylla út síðar"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Lýsing Má fylla út síðar"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "region",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "StaticText",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Atriðið er enn ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "StaticText",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Sýnileg skemmd sem þarf að lýsa."
+      },
+      {
+        "role": "StaticText",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Tegund skemmdar / galla"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "MenuListPopup",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Lýsing"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Aðeins forskoðun"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Atriðið er enn ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ástand"
+      },
+      {
+        "role": "radio",
+        "name": "Í lagi"
+      },
+      {
+        "role": "StaticText",
+        "name": "Í lagi"
+      },
+      {
+        "role": "radio",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "radio",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "StaticText",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "radio",
+        "name": "Skemmt"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt"
+      },
+      {
+        "role": "radio",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "radio",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "StaticText",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Sýnileg skemmd sem þarf að lýsa."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Tegund skemmdar / galla"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "option",
+        "name": "Veldu tegund"
+      },
+      {
+        "role": "option",
+        "name": "Rispa"
+      },
+      {
+        "role": "option",
+        "name": "Slit"
+      },
+      {
+        "role": "option",
+        "name": "Brot"
+      },
+      {
+        "role": "option",
+        "name": "Dæld"
+      },
+      {
+        "role": "option",
+        "name": "Raki / leki"
+      },
+      {
+        "role": "option",
+        "name": "Óvirkur búnaður"
+      },
+      {
+        "role": "option",
+        "name": "Annað"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "StaticText",
+        "name": "Við karm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lýsing"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta."
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Aðeins forskoðun"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ástand"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Í lagi"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Við karm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "StaticText",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "button",
+        "name": "Myndir við atriði: velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "StaticText",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og stillingum símans; veldu JPG, PNG eða WebP."
+      }
+    ],
+    "box": {
+      "display": "contents",
+      "width": 0,
+      "height": 0
+    },
+    "focusable": false
+  },
+  "mobile": {
+    "item": {
+      "role": "region",
+      "name": "Veggir Skemmt · Ófullskráð · Frávik",
+      "ignored": false
+    },
+    "itemRegions": [
+      "Gólfefni Í lagi · Ófullskráð · Athugasemd",
+      "Veggir Skemmt · Ófullskráð · Frávik",
+      "Loft Á ekki við · Fullskráð",
+      "Gluggar Ekki skoðað · Fullskráð · Þarf athygli",
+      "Hurðir og læsingar Notkunarmerki · Fullskráð",
+      "Ljós og rofar Í lagi · Fullskráð · Frávik",
+      "Skápar Ósvarað"
+    ],
+    "content": [
+      {
+        "role": "region",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa"
+      },
+      {
+        "role": "StaticText",
+        "name": " · atriði "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Athugasemd Valfrjálst"
+      },
+      {
+        "role": "button",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "button",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "StaticText",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · atriði "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "group",
+        "name": "Ástand"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "Tegund skemmdar / galla Má fylla út síðar"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Staðsetning Má fylla út síðar"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Lýsing Má fylla út síðar"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "region",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "StaticText",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Atriðið er enn ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "StaticText",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Sýnileg skemmd sem þarf að lýsa."
+      },
+      {
+        "role": "StaticText",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Tegund skemmdar / galla"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "MenuListPopup",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Lýsing"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "drögum."
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Aðeins forskoðun"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Atriðið er enn ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ástand"
+      },
+      {
+        "role": "radio",
+        "name": "Í lagi"
+      },
+      {
+        "role": "StaticText",
+        "name": "Í lagi"
+      },
+      {
+        "role": "radio",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "radio",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "StaticText",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "radio",
+        "name": "Skemmt"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt"
+      },
+      {
+        "role": "radio",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "radio",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "StaticText",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Sýnileg skemmd sem þarf að lýsa."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Tegund skemmdar / galla"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "option",
+        "name": "Veldu tegund"
+      },
+      {
+        "role": "option",
+        "name": "Rispa"
+      },
+      {
+        "role": "option",
+        "name": "Slit"
+      },
+      {
+        "role": "option",
+        "name": "Brot"
+      },
+      {
+        "role": "option",
+        "name": "Dæld"
+      },
+      {
+        "role": "option",
+        "name": "Raki / leki"
+      },
+      {
+        "role": "option",
+        "name": "Óvirkur búnaður"
+      },
+      {
+        "role": "option",
+        "name": "Annað"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "StaticText",
+        "name": "Við karm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lýsing"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Drög eru leyfð. Tegund, staðsetning og lýsing "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "vantar að hluta."
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Aðeins forskoðun"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ástand"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Í lagi"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Við karm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Taktu nærmynd og mynd sem sýnir "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "StaticText",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "button",
+        "name": "Myndir við atriði: velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "StaticText",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "eða lokun. Þær eru ekki vistaðar varanlega. Texti "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og svör vistast sér í vafranum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "myndavél og myndasafni eftir vafra og "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "stillingum símans; veldu JPG, PNG eða WebP."
+      }
+    ],
+    "box": {
+      "display": "block",
+      "width": 356,
+      "height": 1584.515625
+    },
+    "focusable": true
+  },
+  "boxedControl": {
+    "item": {
+      "role": "region",
+      "name": "Veggir Skemmt · Ófullskráð · Frávik",
+      "ignored": false
+    },
+    "itemRegions": [
+      "Gólfefni Í lagi · Ófullskráð · Athugasemd",
+      "Veggir Skemmt · Ófullskráð · Frávik",
+      "Loft Á ekki við · Fullskráð",
+      "Gluggar Ekki skoðað · Fullskráð · Þarf athygli",
+      "Hurðir og læsingar Notkunarmerki · Fullskráð",
+      "Ljós og rofar Í lagi · Fullskráð · Frávik",
+      "Skápar Ósvarað"
+    ],
+    "content": [
+      {
+        "role": "region",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Veggir Skemmt · Ófullskráð · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa"
+      },
+      {
+        "role": "StaticText",
+        "name": " · atriði "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Athugasemd Valfrjálst"
+      },
+      {
+        "role": "button",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "button",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "StaticText",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · atriði "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "group",
+        "name": "Ástand"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "Tegund skemmdar / galla Má fylla út síðar"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Staðsetning Má fylla út síðar"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Lýsing Má fylla út síðar"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "region",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "StaticText",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Atriðið er enn ófullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "StaticText",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Sýnileg skemmd sem þarf að lýsa."
+      },
+      {
+        "role": "StaticText",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Tegund skemmdar / galla"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "MenuListPopup",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Lýsing"
+      },
+      {
+        "role": "StaticText",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Aðeins forskoðun"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Atriðið er enn ófullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ástand"
+      },
+      {
+        "role": "radio",
+        "name": "Í lagi"
+      },
+      {
+        "role": "StaticText",
+        "name": "Í lagi"
+      },
+      {
+        "role": "radio",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "radio",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "StaticText",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "radio",
+        "name": "Skemmt"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt"
+      },
+      {
+        "role": "radio",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "radio",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "StaticText",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Sýnileg skemmd sem þarf að lýsa."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lýsing á fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Tegund skemmdar / galla"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "option",
+        "name": "Veldu tegund"
+      },
+      {
+        "role": "option",
+        "name": "Rispa"
+      },
+      {
+        "role": "option",
+        "name": "Slit"
+      },
+      {
+        "role": "option",
+        "name": "Brot"
+      },
+      {
+        "role": "option",
+        "name": "Dæld"
+      },
+      {
+        "role": "option",
+        "name": "Raki / leki"
+      },
+      {
+        "role": "option",
+        "name": "Óvirkur búnaður"
+      },
+      {
+        "role": "option",
+        "name": "Annað"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "StaticText",
+        "name": "Við karm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lýsing"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Má fylla út síðar"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta."
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Aðeins forskoðun"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ástand"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Í lagi"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Notkunarmerki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Slit / galli"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ekki skoðað"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Á ekki við"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Við karm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "StaticText",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "button",
+        "name": "Myndir við atriði: velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "StaticText",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og stillingum símans; veldu JPG, PNG eða WebP."
+      }
+    ],
+    "box": {
+      "display": "block",
+      "width": 577.5,
+      "height": 1306.984375
+    },
+    "focusable": true
+  }
+}
