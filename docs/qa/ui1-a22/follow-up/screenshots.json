@@ -1,0 +1,41 @@
+{
+  "reference": "A2.2 Final Polish · copied unchanged from the approved design worktree",
+  "screenshots": [
+    {
+      "path": "reference/final-defect-1440.jpg",
+      "sha256": "a86f22c54e7dab55e3810d8054d3410f8f0b52d07eacba64e5712e531056640e"
+    },
+    {
+      "path": "reference/final-defect-360.jpg",
+      "sha256": "543291a28e82ad02735d2e5c5c8b214c079291ef5b6dae85c912a1514be9dbb3"
+    },
+    {
+      "path": "reference/final-defect-390.jpg",
+      "sha256": "454ea4890799a49e107491a2d55e0840d5f7963d1b2d83c92a2c88cbe39ab3d8"
+    },
+    {
+      "path": "screenshots/desktop-defect-viewport.png",
+      "sha256": "cc3c37abbe120088d7055c82915bdda8f37a0e319e0e49dcbf606a7b6a9c51fd"
+    },
+    {
+      "path": "screenshots/desktop-defect.png",
+      "sha256": "34169c9c6e82ccf10ad44b872e48cac09bba5ca258b977585fbe7e6905ad9468"
+    },
+    {
+      "path": "screenshots/mobile-360-defect-viewport.png",
+      "sha256": "6a82ed02716ea262dfbe2232230736a9280928268ee9f8a77a3b244201436152"
+    },
+    {
+      "path": "screenshots/mobile-360-defect.png",
+      "sha256": "df07dcfb82c2ac045674dbf3f8895230ee8afa114a2928dc66c82c6b6c383769"
+    },
+    {
+      "path": "screenshots/mobile-390-defect-viewport.png",
+      "sha256": "1dd4d97226c7c77496fd95487e3dbc8eaa56a8123dfb5b62d30fa6aecd2b7edf"
+    },
+    {
+      "path": "screenshots/mobile-390-defect.png",
+      "sha256": "2c587d02510fbc8e915c81605973686b3b2bc82f40340f97959f9eb613968d7e"
+    }
+  ]
+}

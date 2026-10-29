@@ -1,0 +1,1368 @@
+{
+  "browser": "156.0.8078.4",
+  "desktop": {
+    "item": {
+      "role": "region",
+      "name": "Veggir Skemmt · Fullskráð · Frávik",
+      "ignored": false
+    },
+    "content": [
+      {
+        "role": "region",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa"
+      },
+      {
+        "role": "StaticText",
+        "name": " · atriði "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Skráð frávik"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Athugasemd Valfrjálst"
+      },
+      {
+        "role": "button",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "button",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "StaticText",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · atriði "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "DisclosureTriangle",
+        "name": "Ástand Skemmt Breyta mati"
+      },
+      {
+        "role": "heading",
+        "name": "Rispa"
+      },
+      {
+        "role": "button",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "StaticText",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "StaticText",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Svör skráð"
+      },
+      {
+        "role": "StaticText",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "StaticText",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ástand "
+      },
+      {
+        "role": "strong",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Breyta mati"
+      },
+      {
+        "role": "StaticText",
+        "name": "Rispa"
+      },
+      {
+        "role": "StaticText",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "StaticText",
+        "name": "Við karm"
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Tilbúin 8 cm rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Svör skráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ástand "
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Breyta mati"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Við karm"
+      },
+      {
+        "role": "DisclosureTriangle",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Tilbúin 8 cm rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "StaticText",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "button",
+        "name": "Myndir við atriði: velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "/8 myndir · JPG, PNG, WebP · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hámark 10 MB"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "StaticText",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Taktu nærmynd og mynd "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "sem sýnir staðsetningu "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "skemmdar í rýminu."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir fara ekki á þjón og "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "hverfa við endurhleðslu eða "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "lokun. Þær eru ekki vistaðar "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "varanlega. Texti og svör "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "vistast sér í vafranum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "HEIC er ekki stutt. Á iPhone "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "fer aðgangur að myndavél "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og myndasafni eftir vafra "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og stillingum símans; "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "veldu JPG, PNG eða WebP."
+      }
+    ],
+    "box": {
+      "display": "contents",
+      "width": 0,
+      "height": 0
+    },
+    "focusable": false
+  },
+  "mobile": {
+    "item": {
+      "role": "region",
+      "name": "Veggir Skemmt · Fullskráð · Frávik",
+      "ignored": false
+    },
+    "content": [
+      {
+        "role": "region",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa"
+      },
+      {
+        "role": "StaticText",
+        "name": " · atriði "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Skráð frávik"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Athugasemd Valfrjálst"
+      },
+      {
+        "role": "button",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "button",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "StaticText",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · atriði "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "DisclosureTriangle",
+        "name": "Ástand Skemmt Breyta mati"
+      },
+      {
+        "role": "heading",
+        "name": "Rispa"
+      },
+      {
+        "role": "button",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "StaticText",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "StaticText",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Svör skráð"
+      },
+      {
+        "role": "StaticText",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "StaticText",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ástand "
+      },
+      {
+        "role": "strong",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Breyta mati"
+      },
+      {
+        "role": "StaticText",
+        "name": "Rispa"
+      },
+      {
+        "role": "StaticText",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "StaticText",
+        "name": "Við karm"
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Tilbúin 8 cm rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "drögum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Svör skráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ástand "
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Breyta mati"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Við karm"
+      },
+      {
+        "role": "DisclosureTriangle",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Tilbúin 8 cm rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "StaticText",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "button",
+        "name": "Myndir við atriði: velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "/8 myndir · JPG, PNG, "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "WebP · Hámark 10 MB"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "StaticText",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Taktu nærmynd og "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "mynd sem sýnir "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "staðsetningu "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "skemmdar í rýminu."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir fara ekki á þjón "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og hverfa við "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "endurhleðslu eða "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "lokun. Þær eru ekki "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "vistaðar varanlega. "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Texti og svör vistast sér "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "í vafranum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "HEIC er ekki stutt. Á "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "iPhone fer aðgangur "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "að myndavél og "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "myndasafni eftir vafra "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og stillingum símans; "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "veldu JPG, PNG eða "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "WebP."
+      }
+    ],
+    "box": {
+      "display": "block",
+      "width": 356,
+      "height": 1273.1875
+    },
+    "focusable": true
+  },
+  "boxedControl": {
+    "item": {
+      "role": "region",
+      "name": "Veggir Skemmt · Fullskráð · Frávik",
+      "ignored": false
+    },
+    "content": [
+      {
+        "role": "region",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Veggir Skemmt · Fullskráð · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa"
+      },
+      {
+        "role": "StaticText",
+        "name": " · atriði "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "heading",
+        "name": "Veggir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Skráð frávik"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Athugasemd Valfrjálst"
+      },
+      {
+        "role": "button",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "button",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "StaticText",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · atriði "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "StaticText",
+        "name": " · Frávik"
+      },
+      {
+        "role": "DisclosureTriangle",
+        "name": "Ástand Skemmt Breyta mati"
+      },
+      {
+        "role": "heading",
+        "name": "Rispa"
+      },
+      {
+        "role": "button",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "StaticText",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Myndir við atriði"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "StaticText",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "StaticText",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "StaticText",
+        "name": "Svör skráð"
+      },
+      {
+        "role": "StaticText",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "StaticText",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Fullskráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " · Frávik"
+      },
+      {
+        "role": "StaticText",
+        "name": "Ástand "
+      },
+      {
+        "role": "strong",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Breyta mati"
+      },
+      {
+        "role": "StaticText",
+        "name": "Rispa"
+      },
+      {
+        "role": "StaticText",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Staðsetning"
+      },
+      {
+        "role": "StaticText",
+        "name": "Við karm"
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Tilbúin 8 cm rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mynd af fráviki vantar. Atriðið má áfram vera í drögum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Athugasemd"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Valfrjálst"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Næsta ófullskráða atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Svör skráð"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hreinsa svör"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Loka atriði"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Ástand "
+      },
+      {
+        "role": "StaticText",
+        "name": "Skemmt"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Breyta mati"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Breyta fráviki"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Við karm"
+      },
+      {
+        "role": "DisclosureTriangle",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "/8 myndir · JPG, PNG, WebP · Hámark 10 MB"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Tilbúin 8 cm rispa"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skemmt"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "StaticText",
+        "name": "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
+      },
+      {
+        "role": "StaticText",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "button",
+        "name": "Myndir við atriði: velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "/8 myndir · JPG, PNG, WebP · "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hámark 10 MB"
+      },
+      {
+        "role": "StaticText",
+        "name": "Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum."
+      },
+      {
+        "role": "StaticText",
+        "name": "HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndaaðgerðir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Forstofa · Veggir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Taktu nærmynd og mynd "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "sem sýnir staðsetningu "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "skemmdar í rýminu."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Velja myndir"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Myndir fara ekki á þjón og "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "hverfa við endurhleðslu eða "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "lokun. Þær eru ekki vistaðar "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "varanlega. Texti og svör "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "vistast sér í vafranum."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "HEIC er ekki stutt. Á iPhone "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "fer aðgangur að myndavél "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og myndasafni eftir vafra "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "og stillingum símans; "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "veldu JPG, PNG eða WebP."
+      }
+    ],
+    "box": {
+      "display": "block",
+      "width": 577.5,
+      "height": 1147.421875
+    },
+    "focusable": true
+  }
+}

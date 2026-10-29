@@ -22,6 +22,8 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
   const titleRef = useRef<HTMLSpanElement>(null);
   const controlsRef = useRef<HTMLDetailsElement>(null);
   const restoreUploadFocus = useRef(false);
+  const previousFeatured = useRef(featured);
+  const pendingFeaturedDisclosure = useRef(false);
   // Use the initial disclosure choice: adding a photo must not close the
   // focused file input or move the next keyboard action.
   const [initialControlsOpen] = useState(() => !featured || !state.photos[photoKey]?.length);
@@ -36,6 +38,23 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
     const target = inputRef.current?.disabled ? controlsRef.current?.querySelector("summary") : inputRef.current;
     target?.focus({ preventScroll: true });
   }, [pending, photos.length]);
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    if (previousFeatured.current !== featured) {
+      previousFeatured.current = featured;
+      pendingFeaturedDisclosure.current = featured;
+      if (!featured) {
+        controls.open = true;
+        return;
+      }
+    }
+    // A newly completed defect uses the same default as reopening it. Defer
+    // during decoding, and preserve an active control or explicit user choice.
+    if (!pendingFeaturedDisclosure.current || pending) return;
+    pendingFeaturedDisclosure.current = false;
+    if (photos.length && !controls.contains(document.activeElement)) controls.open = false;
+  }, [featured, pending, photos.length]);
   const locked = mode === "cloud" || state.status === "loading" || state.status === "read-error";
   const addPhotos = async (files: FileList | null) => {
     if (!files?.length || locked) return;
@@ -92,6 +111,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
     <EvidenceGallery photos={photos} context={context} featured={featured}
       onRemove={locked ? undefined : id => { store.removePhoto(photoKey, id); setAnnouncement("Mynd fjarlægð úr tímabundinni forskoðun."); }}
       onEmpty={() => {
+        pendingFeaturedDisclosure.current = false;
         if (controlsRef.current) controlsRef.current.open = true;
         const target = inputRef.current?.disabled
           ? featured ? controlsRef.current?.querySelector("summary") : titleRef.current
@@ -99,7 +119,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
         target?.focus({ preventScroll: true });
       }} />
     <details ref={controlsRef} className={styles.captureControls} open={!featured || initialControlsOpen || undefined}>
-    <summary hidden={!featured}>Myndaaðgerðir</summary>
+    <summary hidden={!featured} onClick={() => { pendingFeaturedDisclosure.current = false; }}>Myndaaðgerðir</summary>
     {featured ? <><p>{context}</p><p>{detail ? "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
       : item ? "Myndir tengjast atriðinu. Þær breyta ekki svörum eða staðfesta tiltekið ástand."
       : "Taktu yfirlitsmynd úr dyrum og aðra frá gagnstæðu horni. Hafðu góða lýsingu."}</p></> : null}
