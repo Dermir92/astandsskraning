@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="is">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>UI2A · Skráning · hönnunartillaga</title>
+  <link rel="stylesheet" href="assets/ui1-0.css"><link rel="stylesheet" href="assets/ui1-1.css">
+  <link rel="stylesheet" href="prototype.css">
+</head>
+<body class="design-prototype app-shell">
+<a class="skip-link" href="#room-work">Fara beint í rýmisgátlista</a>
+<div id="rail-slot"></div><div class="app-body">
+<header class="p-shell"><a href="../index.html" class="p-brand"><span class="brand-mark" aria-hidden="true"><span></span></span>Ástandsskráning</a><span class="p-save">Sýnigögn tilbúin</span><a href="#prototype-info" class="p-help" aria-label="Um UI2A-hönnunarfrumgerð">ⓘ</a></header>
+<div class="p-demo">UI2A-hönnun · aðeins tilbúin gögn · engin vistun</div>
+<main id="main" class="p-main">
+  <header class="p-property"><div><h1>Sýnigata 14</h1><p>Upphafsskoðun · Íbúð 0201</p></div><a href="#review" data-review class="p-review">Yfirferð <span aria-hidden="true">→</span></a></header>
+  <nav class="p-steps" aria-label="Skref skráningar"><a href="#workflow-information" data-workflow="Upplýsingar">1 Upplýsingar</a><a href="#workflow-rooms" data-workflow="Rými">2 Rými</a><a href="#room-work" data-section="room-work" aria-current="step">3 Skráning</a><a href="#review" data-review>4 Yfirferð</a></nav>
+  <details class="p-progress" id="unfinished"><summary><span><strong>24 af 53</strong> rýmisatriðum skráð</span><span>29 eftir <span aria-hidden="true">⌄</span></span></summary><div class="p-unfinished"><p>Talningin nær aðeins til rýmisatriða. Fullskráð frávik er áfram frávik.</p><div id="unfinished-rooms"></div><div class="p-other-status"><a href="#fire-safety" data-section="fire-safety">Brunavarnir · <span data-fire-copy>Valfrjálst · ósvarað</span></a><a href="#meter-readings" data-section="meter-readings">Mælastöður · <span data-meter-copy>Ekki hafið · tilgangur óvalinn</span></a></div></div></details>
+  <div id="correction-context" class="p-correction" hidden><span>Leiðrétting úr yfirferð</span><a href="#review" data-review>Aftur í yfirferð <span aria-hidden="true">→</span></a></div>
+  <nav class="p-sections" aria-label="Hlutar skráningar"><a href="#room-work" data-section="room-work" aria-current="location"><strong>Rými</strong><span>29 atriði eftir</span></a><a href="#fire-safety" data-section="fire-safety"><strong>Brunavarnir</strong><span data-fire-copy>Valfrjálst · ósvarað</span></a><a href="#meter-readings" data-section="meter-readings"><strong>Mælar</strong><span data-meter-short>Ekki hafið</span></a></nav>
+  <div class="p-work-layout" id="inspection-work">
+    <aside class="p-room-list" aria-label="Rými skráningar"><div class="p-list-title"><h2>Rými</h2><a href="#workflow-rooms" data-workflow="Rými">Breyta</a></div><nav id="desktop-rooms" aria-label="Velja rými"></nav><p>Skráð atriði jafngilda ekki góðu ástandi.</p></aside>
+    <div class="p-work-main">
+      <section id="room-work" tabindex="-1" aria-labelledby="room-current-heading"><h2 id="room-current-heading" class="sr-only">Núverandi rými · Stofa</h2>
+        <div class="p-room-control"><div class="p-room-choice"><label for="room-choice" id="room-count">RÝMI 2 AF 6</label><select id="room-choice" aria-label="Velja rými"></select></div><div class="p-room-arrows"><button type="button" data-prev aria-label="Fyrra rými">←</button><button type="button" data-next aria-label="Næsta rými">→</button></div><p id="room-status">6 af 6 skráð · 1 frávik</p></div>
+        <div id="room-content"></div>
+        <nav class="p-room-footer" aria-label="Fara á milli rýma"><button type="button" data-prev>← Fyrra rými</button><span id="footer-count">2 / 6</span><button type="button" data-next>Næsta rými →</button></nav>
+      </section>
+      <section class="p-property-section" aria-label="Brunavarnir eignar"><div id="fire-content"></div><a class="p-return" href="#room-work" data-return-room>Aftur í <span data-room-name>Stofu</span> ↑</a></section>
+      <section class="p-property-section" aria-label="Mælastöður eignar"><div id="meter-content"></div><a class="p-return" href="#room-work" data-return-room>Aftur í <span data-room-name>Stofu</span> ↑</a></section>
+      <section id="review" class="p-review-panel" tabindex="-1" aria-labelledby="review-title" hidden><h2 id="review-title">Yfirferð · sýnd leiðréttingarleið</h2><p>Rýmisatriði: 24 af 53 skráð. Brunavarnir og mælar hafa sjálfstæða stöðu.</p><a href="#room-work" data-correct="walls">Stofa · Veggir · Breyta skráningu →</a><a href="#fire-safety" data-correct="fire">Brunavarnir · Skoða svör →</a><a href="#meter-readings" data-correct="meter">Mælastöður · Skoða skráningu →</a><a href="#room-work" data-return-room>Halda áfram í <span data-room-name>Stofu</span> →</a><p class="p-caption">Hér er aðeins sýnd leiðréttingarleið. Raunveruleg yfirferð, samanburður og skýrsluforskoðun UI1 eru óbreytt.</p></section>
+    </div>
+  </div>
+  <footer id="prototype-info" tabindex="-1"><strong>UI2A · hönnunarfrumgerð til samþykktar</strong><p>Leiðsögn, rýmisval, hlutatenglar og opnun fráviks eru virk. Mat, myndaaðgerðir og vistun eru óvirk. Myndir í appinu eru tímabundnar forskoðanir. Ekki fyrir raunveruleg viðskiptavinagögn.</p><p><a href="../index.html">Hönnunarrýni og fyrir/eftir</a> · <a href="?scenario=rental">Skoða stöðu leiguskoðunar</a> · <a href="?scenario=meters">Skoða ófullskráða mæla</a> · <a href="?scenario=correction">Skoða leiðréttingu</a></p><p>Hosted Gate C: CLOSED · Gate E / PUBLIC TEMPORARY: UNRESOLVED</p></footer>
+</main></div>
+<dialog id="workflow-dialog"><h2 id="workflow-title">Skref</h2><p>Þetta skref helst óbreytt í appinu. UI2A-frumgerðin sýnir aðeins heildarskjá Skráningar.</p><button type="button" id="close-dialog">Loka</button></dialog>
+<script src="ui1-data.js"></script><script src="prototype.js"></script>
+</body></html>

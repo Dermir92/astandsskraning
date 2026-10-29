@@ -3742,3 +3742,16 @@ input[type="radio"] {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* UI2A: inspection-only shell. SaveStatus and all recovery UI stay mounted. */
+@media (max-width: 800px) {
+  .app-shell.inspection-shell .topbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 8px; padding: 6px 16px; }
+  .inspection-shell .topbar .shell-brand { grid-column: 1; grid-row: 1; }
+  .inspection-shell .topbar .topbar-right { display: contents; }
+  .app-shell.inspection-shell .topbar .save-status { grid-column: 1; grid-row: 2; font-size: 13px; overflow-wrap: anywhere; }
+  .inspection-shell .topbar .demo-pill { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+  .app-shell.inspection-shell .demo-banner { display: flex; padding: 5px 16px; gap: 8px; }
+  .inspection-shell .demo-banner p { font-size: 12px; }
+  .inspection-shell .demo-banner-label { display: inline; }
+  .app-shell.inspection-shell .main-content { padding-top: 0; }
+}

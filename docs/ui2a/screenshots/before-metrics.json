@@ -1,0 +1,281 @@
+[
+  {
+    "height": 800,
+    "pageHeight": 1554,
+    "scrollY": 0,
+    "sections": [
+      {
+        "height": 84,
+        "selector": "topbar",
+        "top": 0
+      },
+      {
+        "height": 0,
+        "selector": "demo-banner",
+        "top": 0
+      },
+      {
+        "height": 44,
+        "selector": "back-link",
+        "top": 90
+      },
+      {
+        "height": 62,
+        "selector": "stepper",
+        "top": 142
+      },
+      {
+        "height": 73,
+        "selector": "page-heading",
+        "top": 216
+      },
+      {
+        "height": 89,
+        "selector": "inspection-overall",
+        "top": 301
+      },
+      {
+        "height": 112,
+        "selector": "fire-safety",
+        "top": 403
+      },
+      {
+        "height": 51,
+        "selector": "meter-readings",
+        "top": 527
+      },
+      {
+        "height": 46,
+        "selector": "mobile-room-select",
+        "top": 586
+      },
+      {
+        "height": 84,
+        "selector": "room-heading",
+        "top": 643
+      },
+      {
+        "height": 42,
+        "selector": "checklist-heading",
+        "top": 727
+      },
+      {
+        "height": 102,
+        "selector": "inspection-%5B%22demo-living%22%2C%22floor%22%5D",
+        "top": 769
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22walls%22%5D",
+        "top": 871
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22ceiling%22%5D",
+        "top": 951
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22windows%22%5D",
+        "top": 1032
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22doors%22%5D",
+        "top": 1113
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22lights%22%5D",
+        "top": 1193
+      }
+    ],
+    "width": 360
+  },
+  {
+    "height": 844,
+    "pageHeight": 1533,
+    "scrollY": 0,
+    "sections": [
+      {
+        "height": 84,
+        "selector": "topbar",
+        "top": 0
+      },
+      {
+        "height": 0,
+        "selector": "demo-banner",
+        "top": 0
+      },
+      {
+        "height": 44,
+        "selector": "back-link",
+        "top": 90
+      },
+      {
+        "height": 62,
+        "selector": "stepper",
+        "top": 142
+      },
+      {
+        "height": 73,
+        "selector": "page-heading",
+        "top": 216
+      },
+      {
+        "height": 89,
+        "selector": "inspection-overall",
+        "top": 301
+      },
+      {
+        "height": 112,
+        "selector": "fire-safety",
+        "top": 403
+      },
+      {
+        "height": 51,
+        "selector": "meter-readings",
+        "top": 527
+      },
+      {
+        "height": 46,
+        "selector": "mobile-room-select",
+        "top": 586
+      },
+      {
+        "height": 84,
+        "selector": "room-heading",
+        "top": 643
+      },
+      {
+        "height": 42,
+        "selector": "checklist-heading",
+        "top": 727
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22floor%22%5D",
+        "top": 769
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22walls%22%5D",
+        "top": 850
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22ceiling%22%5D",
+        "top": 930
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22windows%22%5D",
+        "top": 1011
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22doors%22%5D",
+        "top": 1092
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22lights%22%5D",
+        "top": 1172
+      }
+    ],
+    "width": 390
+  },
+  {
+    "height": 1000,
+    "pageHeight": 1523,
+    "scrollY": 0,
+    "sections": [
+      {
+        "height": 60,
+        "selector": "topbar",
+        "top": 0
+      },
+      {
+        "height": 39,
+        "selector": "demo-banner",
+        "top": 60
+      },
+      {
+        "height": 44,
+        "selector": "back-link",
+        "top": 115
+      },
+      {
+        "height": 44,
+        "selector": "stepper",
+        "top": 174
+      },
+      {
+        "height": 91,
+        "selector": "page-heading",
+        "top": 246
+      },
+      {
+        "height": 96,
+        "selector": "inspection-overall",
+        "top": 349
+      },
+      {
+        "height": 112,
+        "selector": "fire-safety",
+        "top": 459
+      },
+      {
+        "height": 51,
+        "selector": "meter-readings",
+        "top": 583
+      },
+      {
+        "height": 0,
+        "selector": "mobile-room-select",
+        "top": 0
+      },
+      {
+        "height": 88,
+        "selector": "room-heading",
+        "top": 643
+      },
+      {
+        "height": 46,
+        "selector": "checklist-heading",
+        "top": 731
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22floor%22%5D",
+        "top": 777
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22walls%22%5D",
+        "top": 858
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22ceiling%22%5D",
+        "top": 938
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22windows%22%5D",
+        "top": 1019
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22doors%22%5D",
+        "top": 1099
+      },
+      {
+        "height": 81,
+        "selector": "inspection-%5B%22demo-living%22%2C%22lights%22%5D",
+        "top": 1180
+      }
+    ],
+    "width": 1440
+  }
+]

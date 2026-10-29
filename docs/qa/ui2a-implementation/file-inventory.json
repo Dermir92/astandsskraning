@@ -1,0 +1,1315 @@
+{
+  "baseline": "96e5150c2cba36378928caf8219e5aebfbee6d79",
+  "scope": "Exact PR files relative to baseline; inventory lists itself without a self-referential hash",
+  "hashBasis": "Working-tree bytes at delivery. Git may normalize text line endings; frozen approved reference uses -text and image bytes are unchanged.",
+  "files": [
+    {
+      "file": "docs/qa/ui2a-implementation/REPORT.md",
+      "change": "added",
+      "bytes": 14369,
+      "sha256": "657454a4b5e52ca63cb819e1447f5761288cb8057f3911b96bc3bfdbd5274e69"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/accessibility-resampling.json",
+      "change": "added",
+      "bytes": 8267,
+      "sha256": "0b482902ce89bfd17023beb8cedb341030a435b2009070c958dc56b7ce047305"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/build.txt",
+      "change": "added",
+      "bytes": 1063,
+      "sha256": "1413b60cebe70588d6814d092886cd3cc84c9b742078ab3b4626115c42dd9817"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/collect-evidence.mjs",
+      "change": "added",
+      "bytes": 8848,
+      "sha256": "e34427ae79e7f94ca4650fb4c099d54e26735b0f6e7f6232900b5e6a1dffd04e"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/comparison-390.jpg",
+      "change": "added",
+      "bytes": 98814,
+      "sha256": "082b4d8eba617d57eb1ae3db9607e039c098e2ac99a4272f4b466d9afe7104c0"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/evidence.json",
+      "change": "added",
+      "bytes": 38217,
+      "sha256": "039b9d7e5bcfda12d289e432b09174156784bb73605ccd16703e68c87c506dd8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/file-inventory.json",
+      "change": "added",
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/full-suite.txt",
+      "change": "added",
+      "bytes": 177392,
+      "sha256": "03b89716fb90f4d209940ed74b806f6c9833f21bb0aa15bdd6881cef6776b2cb"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/index.html",
+      "change": "added",
+      "bytes": 7842,
+      "sha256": "0761f44c2b6b8f6b1147c59470687751f77909b87e4ec6cf74604467dd968db1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/lint.txt",
+      "change": "added",
+      "bytes": 41,
+      "sha256": "59e6e984494d297ed724dd943382bc84aa969f680cf148f1e20ac57541166297"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/completed-defect-full.png",
+      "change": "added",
+      "bytes": 235280,
+      "sha256": "b0a3fd0f80cedca0bbcc91a4b082f67987f7398db37f0533ff51863199dd35f8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/completed-defect.png",
+      "change": "added",
+      "bytes": 142014,
+      "sha256": "896944da28acb6dd6a2ae279658d59beb2f12aeb8c6ce62650e868daadce26cb"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/first-entry-full.png",
+      "change": "added",
+      "bytes": 194650,
+      "sha256": "5369e8c9195b7944aed3a29b7a883d89b40aee2e252c2caba0c9eb9449d82c3d"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/first-entry.png",
+      "change": "added",
+      "bytes": 112166,
+      "sha256": "f5c14774e5b14d3b7417d70140690a74258cb3a894c122767aac382db194c02a"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/incomplete.png",
+      "change": "added",
+      "bytes": 143183,
+      "sha256": "486f1d603c54fae73e87e72bf3cf5ddd648927daa44e1a551d90499a982a3c42"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/keyboard-320-tab.png",
+      "change": "added",
+      "bytes": 44215,
+      "sha256": "62032bee3c38bfaaf86e368e3dc80767f2cb12ba5d9bbc9bc5dfe77caccaaaf9"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/keyboard-320.png",
+      "change": "added",
+      "bytes": 48709,
+      "sha256": "6bb5ac673b55f8ae251018b94234f6a46fb20094c2a22dcfe21e24989e4278e1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/measurements.json",
+      "change": "added",
+      "bytes": 7539,
+      "sha256": "251c38bd4e3cfdf9969661345b56118109c289f248b79f6cf0ea0769baba4729"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/meters-active-top.png",
+      "change": "added",
+      "bytes": 111712,
+      "sha256": "63b65bd350aaf0132e77d28b847069e7a4342ff20130337d3668aa8d10c31a20"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/meters-active.png",
+      "change": "added",
+      "bytes": 98755,
+      "sha256": "be6a098b2f5e4bc78633b7ee1c416cbad50bfc355305808947b20abf229a74f6"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/meters-inactive.png",
+      "change": "added",
+      "bytes": 102071,
+      "sha256": "e13d05633c51f55b5b6433954ceb6317234bc8ae2293957b513b14cfd8416921"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/meters-optional.png",
+      "change": "added",
+      "bytes": 93022,
+      "sha256": "ec6631d033b0ba53c2322b39ccb27cdb510a3258f14ad64a29b556f1cacc10bb"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/reference-full.png",
+      "change": "added",
+      "bytes": 151241,
+      "sha256": "b228137fe88d7ad54fa85394a867f60d89f5ade30dbad497d49da98e3d7c58b0"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/reference-top.png",
+      "change": "added",
+      "bytes": 113011,
+      "sha256": "7e6a1ba00822c4080ace0ee2dd48d2131b38586c2aa1498ed4cfd9f3230f412e"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/rental-fire.png",
+      "change": "added",
+      "bytes": 84177,
+      "sha256": "a709188d71b5cdaa1ca95fe52e0759876f7a23abbc6f52a7a0e7625cf4fb5d82"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/rental-top.png",
+      "change": "added",
+      "bytes": 111598,
+      "sha256": "a24938a955bd502301078a173fbf3fa2ec392207caf92da4c6c0d6d17bf6f21f"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/resumed-full.png",
+      "change": "added",
+      "bytes": 235280,
+      "sha256": "b0a3fd0f80cedca0bbcc91a4b082f67987f7398db37f0533ff51863199dd35f8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/resumed.png",
+      "change": "added",
+      "bytes": 142014,
+      "sha256": "896944da28acb6dd6a2ae279658d59beb2f12aeb8c6ce62650e868daadce26cb"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/review-correction.png",
+      "change": "added",
+      "bytes": 139601,
+      "sha256": "2de6ca6c312b382f3bc9ca45d361529e037fd9b6e35c4735e3196117e004c3b1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/review-return.png",
+      "change": "added",
+      "bytes": 119295,
+      "sha256": "375a64fb2b16bbf65320eb2e7e963675981d6a415cf1aaefadaf98d31b778d70"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/desktop/unanswered.png",
+      "change": "added",
+      "bytes": 151057,
+      "sha256": "ca6e35aa27de061d8d0a5e85fb7a7afe8fca49265484bf0cd7f016571ede72df"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/completed-defect-full.png",
+      "change": "added",
+      "bytes": 177678,
+      "sha256": "36ca47a3336e73fd235d1405f9f281e06b5dc9a1d6439d2079e89faf7abd2927"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/completed-defect.png",
+      "change": "added",
+      "bytes": 54418,
+      "sha256": "4e05e3d4238d066801df01bbcc2e67911b05edceb353608824b70835143f4a31"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/first-entry-full.png",
+      "change": "added",
+      "bytes": 138935,
+      "sha256": "4a196241547cda78318b42c006cc60b125663815abbaf642f00cfbac2c996bee"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/first-entry.png",
+      "change": "added",
+      "bytes": 51007,
+      "sha256": "144a84ff6f0e43edb6c7ecdbb305c476389d6c3ece1428d26343b628936a1cdb"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/incomplete.png",
+      "change": "added",
+      "bytes": 43868,
+      "sha256": "d7d65b27997e319dc53d7b9edaf6eec6dc2a875812706dd9b2d9cc6445b9670b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/keyboard-320-tab.png",
+      "change": "added",
+      "bytes": 44215,
+      "sha256": "62032bee3c38bfaaf86e368e3dc80767f2cb12ba5d9bbc9bc5dfe77caccaaaf9"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/keyboard-320.png",
+      "change": "added",
+      "bytes": 48709,
+      "sha256": "6bb5ac673b55f8ae251018b94234f6a46fb20094c2a22dcfe21e24989e4278e1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/measurements.json",
+      "change": "added",
+      "bytes": 7525,
+      "sha256": "e776e903009559ae27cb5d3145d995808425554b07257550df37f866ffa4bce7"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/meters-active-top.png",
+      "change": "added",
+      "bytes": 52681,
+      "sha256": "062e74b3c4197449e3669879fe3424e5a71643954744df0971cc5432e272ec38"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/meters-active.png",
+      "change": "added",
+      "bytes": 57908,
+      "sha256": "f3a885a7a42c21c5f118a411b242a0f98ef16c7a641ad9471aa3084aafa58389"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/meters-inactive.png",
+      "change": "added",
+      "bytes": 53909,
+      "sha256": "cf9ff72f41d9d8cb347e5fe5236f6230eb52a48dec9f69bb3b4a99e457393d71"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/meters-optional.png",
+      "change": "added",
+      "bytes": 51289,
+      "sha256": "ef2759055c5977290cf14bc88f98528730d49bf2c33e4020a34c2217908f59b2"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/reference-full.png",
+      "change": "added",
+      "bytes": 99888,
+      "sha256": "ee80d7cf947f1bbf29444bff6db33ff5576833a9beb034b0397aa70966a26e9a"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/reference-top.png",
+      "change": "added",
+      "bytes": 53550,
+      "sha256": "8b0c8b0d3ea491f8a8923007514dc31b8ae759ec4e4036f33a5f545edd66e0d0"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/rental-fire.png",
+      "change": "added",
+      "bytes": 41206,
+      "sha256": "baecd79e6fe9eab4bd7533b433c776e06762d896845a36fc41da13c2e377040d"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/rental-top.png",
+      "change": "added",
+      "bytes": 52255,
+      "sha256": "062306be524c0a4ea7453938ea96ec7c086032990ce21602bf636bdad830217e"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/resumed-full.png",
+      "change": "added",
+      "bytes": 177678,
+      "sha256": "36ca47a3336e73fd235d1405f9f281e06b5dc9a1d6439d2079e89faf7abd2927"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/resumed.png",
+      "change": "added",
+      "bytes": 54418,
+      "sha256": "4e05e3d4238d066801df01bbcc2e67911b05edceb353608824b70835143f4a31"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/review-correction.png",
+      "change": "added",
+      "bytes": 54878,
+      "sha256": "bba338626d961c47f8d542ac522632d7163831f8bdf69aeb205d2808d09501e7"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/review-return.png",
+      "change": "added",
+      "bytes": 41852,
+      "sha256": "3c8d9d015d24216c3cfb05134a1d0f10482713909c450e002a6ca67e5da0ba29"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-360/unanswered.png",
+      "change": "added",
+      "bytes": 53425,
+      "sha256": "4b96656ab714674fbc2e5109acd327f86ffe8c7d0d2e40688c966f2084ce30bb"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/completed-defect-full.png",
+      "change": "added",
+      "bytes": 178427,
+      "sha256": "c4e385b20ca3d58fd31973c7e811b0d1855db96eba7caa1207076f27a65de4ca"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/completed-defect.png",
+      "change": "added",
+      "bytes": 59500,
+      "sha256": "3b988817e7d4bfd0d535ab1150edc2db1a1c1c599bfd43fbc6040366a5cc8be9"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/first-entry-full.png",
+      "change": "added",
+      "bytes": 139834,
+      "sha256": "7513a6f5e9da74c757982f78eab476901bfff30cdef8295d1223548e0df34e3f"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/first-entry.png",
+      "change": "added",
+      "bytes": 56633,
+      "sha256": "329dea7f8878289ef9bca0f63be880374d137312a70b0b9c1ffbe030d03a1c4f"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/incomplete.png",
+      "change": "added",
+      "bytes": 45898,
+      "sha256": "7460b4e09eb6fbf5e6216ef939067f6253ef938a8929384e86ed627abb15782d"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/keyboard-320-tab.png",
+      "change": "added",
+      "bytes": 44215,
+      "sha256": "62032bee3c38bfaaf86e368e3dc80767f2cb12ba5d9bbc9bc5dfe77caccaaaf9"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/keyboard-320.png",
+      "change": "added",
+      "bytes": 48709,
+      "sha256": "6bb5ac673b55f8ae251018b94234f6a46fb20094c2a22dcfe21e24989e4278e1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/measurements.json",
+      "change": "added",
+      "bytes": 7525,
+      "sha256": "317a2e38f92fb139b16b98bedb4c3de01d99ea06cd5f4fc9570b4ab41086d8c8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/meters-active-top.png",
+      "change": "added",
+      "bytes": 56807,
+      "sha256": "fe341c9398d63f1c3f11878cc73f97901af625caf31272ea481c0550cd3e4a82"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/meters-active.png",
+      "change": "added",
+      "bytes": 59210,
+      "sha256": "ba48ceccb70473692119c47856eaa65c6479359eb76f53c8032dbd69111be87c"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/meters-inactive.png",
+      "change": "added",
+      "bytes": 60976,
+      "sha256": "9e0fe8dee5cd627282ec3fb566c4aad26c4a79fded925425c16d7b1c618e2c10"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/meters-optional.png",
+      "change": "added",
+      "bytes": 56301,
+      "sha256": "44646fe2559edc4f3806ae46474aa1dc67fa7e8904b7dc5fb3725df827a3514b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/reference-full.png",
+      "change": "added",
+      "bytes": 100180,
+      "sha256": "38d2e5e4ce7c8c380bdd91b6ab5796d5d6afc99f28adcc15e47cbb24972ea93f"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/reference-top.png",
+      "change": "added",
+      "bytes": 57426,
+      "sha256": "5dc965eadc23560c63e780687b7fc4104c2babd720773108fc060fa407c79768"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/rental-fire.png",
+      "change": "added",
+      "bytes": 46745,
+      "sha256": "5c117eedb5679f9a6ae219984b569594ed7209aa7afb70948d35d7ac7fa2b23d"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/rental-top.png",
+      "change": "added",
+      "bytes": 56388,
+      "sha256": "8e901db098b32800dfffe6d0116da4e92c58a8e442f8b803a48fa77876adb230"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/resumed-full.png",
+      "change": "added",
+      "bytes": 178427,
+      "sha256": "c4e385b20ca3d58fd31973c7e811b0d1855db96eba7caa1207076f27a65de4ca"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/resumed.png",
+      "change": "added",
+      "bytes": 59500,
+      "sha256": "3b988817e7d4bfd0d535ab1150edc2db1a1c1c599bfd43fbc6040366a5cc8be9"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/review-correction.png",
+      "change": "added",
+      "bytes": 58444,
+      "sha256": "f477b161477438a6d0fcc1716bb726fd0231a896910ef2b35fd7899c3bb781e4"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/review-return.png",
+      "change": "added",
+      "bytes": 45057,
+      "sha256": "ce85ba82e3b76eab1f7f37ad263b54f80b52742f29bd73a87ba7ce33a5343ac1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/after/mobile-390/unanswered.png",
+      "change": "added",
+      "bytes": 59393,
+      "sha256": "bb429278ed255697f965c64e451d9da1222c5aa44a452e5b2814ad531891f510"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/completed-defect-full.png",
+      "change": "added",
+      "bytes": 235496,
+      "sha256": "922ca253087fe8a5c461a74e096917930a93a8f336bbfc2fe8a583d20723391a"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/completed-defect.png",
+      "change": "added",
+      "bytes": 114856,
+      "sha256": "b8b0c42247497937b3805db4583fe541077d36f0c367dfe55ae176d89af0d0b4"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/first-entry-full.png",
+      "change": "added",
+      "bytes": 193419,
+      "sha256": "31d5f0de1061d60b8c5a75de64367a6e52ecb128c298d10bad50ba2208ca796b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/first-entry.png",
+      "change": "added",
+      "bytes": 101809,
+      "sha256": "7d672392201ae3a3dbd0b30e9b00a18ebd7755f9a3eb4edca52a7125328f8c30"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/incomplete.png",
+      "change": "added",
+      "bytes": 139938,
+      "sha256": "e4bcaa68a834a0b945aca951ac03c87615d42bd900b8eb28621836aa4ea6495b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/keyboard-320-tab.png",
+      "change": "added",
+      "bytes": 45172,
+      "sha256": "ce70b4860d2e038f1494bd39e8dfe71c32b77cbd87a6b7e6e319dde87c948ec4"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/keyboard-320.png",
+      "change": "added",
+      "bytes": 45731,
+      "sha256": "54239bc8c7abd2f094ec8a1dd1da1da110413f57f8ee6d05d424d9b24852e4b8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/measurements.json",
+      "change": "added",
+      "bytes": 7630,
+      "sha256": "350e7cff070bd846b39ae4b6e4369e7167e82e0f601f5b4caffefd5120d841de"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/meters-active-top.png",
+      "change": "added",
+      "bytes": 105896,
+      "sha256": "3fb8278e9a92df5bb76722c4f30915b49d14a6d2ab0df3e6f9165cd26630e53b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/meters-active.png",
+      "change": "added",
+      "bytes": 105149,
+      "sha256": "8029c1939fbdfda6a895088d20041fa9189d0bd7691d782b52c5d9cab06bf35a"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/meters-inactive.png",
+      "change": "added",
+      "bytes": 91965,
+      "sha256": "d240066f9b211d451142269b2a04a59a5ec3e8b53c12c2653c310f72063b4192"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/meters-optional.png",
+      "change": "added",
+      "bytes": 86104,
+      "sha256": "3b99067065a3bc4c138da05dff1a313e0c58a9e44e8f26a0652ad51d3db0d90e"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/reference-full.png",
+      "change": "added",
+      "bytes": 150131,
+      "sha256": "1de342016ceb09a80780c55e25077567cda30b61b5e036aa5aaceb70d4e35a3b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/reference-top.png",
+      "change": "added",
+      "bytes": 104881,
+      "sha256": "c20b2587e943c915281957bd18b30e963f2ece30e1da11bfae3eed68a8f725b8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/rental-fire.png",
+      "change": "added",
+      "bytes": 88118,
+      "sha256": "dd542710ca49f0ca39cbe071ebb78734fadf5e2e4aef1cd1214a850cfdb24153"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/rental-top.png",
+      "change": "added",
+      "bytes": 103173,
+      "sha256": "93a68da532d5844ef0ff03d1dd2a451831ec7bea5dfe64341a38984f11415dd8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/resumed-full.png",
+      "change": "added",
+      "bytes": 235496,
+      "sha256": "922ca253087fe8a5c461a74e096917930a93a8f336bbfc2fe8a583d20723391a"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/resumed.png",
+      "change": "added",
+      "bytes": 114856,
+      "sha256": "b8b0c42247497937b3805db4583fe541077d36f0c367dfe55ae176d89af0d0b4"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/review-correction.png",
+      "change": "added",
+      "bytes": 114751,
+      "sha256": "823e90d9382e193679d0866374114866adf3dea9dc0b1d28e8d035c3b7f5862f"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/review-return.png",
+      "change": "added",
+      "bytes": 119295,
+      "sha256": "375a64fb2b16bbf65320eb2e7e963675981d6a415cf1aaefadaf98d31b778d70"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/desktop/unanswered.png",
+      "change": "added",
+      "bytes": 132135,
+      "sha256": "a75dab808a0d2d0bc0c73d660002590c3eb3f2659e98b517e62c891477716f1c"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/completed-defect-full.png",
+      "change": "added",
+      "bytes": 171967,
+      "sha256": "a08737e79540f91fbbce1cfc1cc1cd551bf70d20d68064a6e4ca9abfa6361660"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/completed-defect.png",
+      "change": "added",
+      "bytes": 52911,
+      "sha256": "25051b16d12cfc35a7b86cc1eab5ba7c02a7218f569aac35120ef64290ec852b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/first-entry-full.png",
+      "change": "added",
+      "bytes": 127925,
+      "sha256": "10f05bedc1bf514b8e1faae273ef4378d4e41ad1d1c58305de4ad3c4cd9b361a"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/first-entry.png",
+      "change": "added",
+      "bytes": 46773,
+      "sha256": "c607d8e02cef5d9c9ac17ad670ad60c521174047903ed0c4240ee4561f131cc5"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/incomplete.png",
+      "change": "added",
+      "bytes": 46921,
+      "sha256": "1ad154f977564cfbd35a0e138719b1a702d3f413718c48f0eb085039d183e137"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/keyboard-320-tab.png",
+      "change": "added",
+      "bytes": 45172,
+      "sha256": "ce70b4860d2e038f1494bd39e8dfe71c32b77cbd87a6b7e6e319dde87c948ec4"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/keyboard-320.png",
+      "change": "added",
+      "bytes": 45731,
+      "sha256": "54239bc8c7abd2f094ec8a1dd1da1da110413f57f8ee6d05d424d9b24852e4b8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/measurements.json",
+      "change": "added",
+      "bytes": 7620,
+      "sha256": "d3f4723cebc1b982381d42c334cc232d3f3627bcc55e071a9c0772f665c38ffa"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/meters-active-top.png",
+      "change": "added",
+      "bytes": 53961,
+      "sha256": "1f1996703a66209f0f714993ba6f68ea64a21437f788a9996c6dacac7d8c8344"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/meters-active.png",
+      "change": "added",
+      "bytes": 60543,
+      "sha256": "0760c23831929206dc40043dd712f04aa0cf5d3fe2fdbd288fb455d890c1e9e6"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/meters-inactive.png",
+      "change": "added",
+      "bytes": 56942,
+      "sha256": "1506e7a443f9e5a1fc40053413b649d2b89676288b8cf50695538aaf851cd0be"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/meters-optional.png",
+      "change": "added",
+      "bytes": 53515,
+      "sha256": "257421cc33d415290a73f650371b5f1f85cee0b1365a9b882fe0c2505b9de35b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/reference-full.png",
+      "change": "added",
+      "bytes": 93788,
+      "sha256": "ea72ab6a9dc76bf10d7b3ac14af6d4c2692092bd100feab0902b519a9822ab61"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/reference-top.png",
+      "change": "added",
+      "bytes": 51943,
+      "sha256": "56b792751c36714bd431954a18792c27363212cb5db76c788ff428c01bb7f894"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/rental-fire.png",
+      "change": "added",
+      "bytes": 53999,
+      "sha256": "c0bdf622b672df0de091150c277e41e79908a3d14e335789bbd25a0215602f2b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/rental-top.png",
+      "change": "added",
+      "bytes": 50297,
+      "sha256": "97be87bc11424f1ff1a7349aea676aa446506f577def6e07f7f8d6249e5a46c6"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/resumed-full.png",
+      "change": "added",
+      "bytes": 171967,
+      "sha256": "a08737e79540f91fbbce1cfc1cc1cd551bf70d20d68064a6e4ca9abfa6361660"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/resumed.png",
+      "change": "added",
+      "bytes": 52911,
+      "sha256": "25051b16d12cfc35a7b86cc1eab5ba7c02a7218f569aac35120ef64290ec852b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/review-correction.png",
+      "change": "added",
+      "bytes": 52867,
+      "sha256": "f929bfceb61518298b60140b6088fb51d2a0c3b7a364bd61c9122a00fb493370"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/review-return.png",
+      "change": "added",
+      "bytes": 41852,
+      "sha256": "3c8d9d015d24216c3cfb05134a1d0f10482713909c450e002a6ca67e5da0ba29"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-360/unanswered.png",
+      "change": "added",
+      "bytes": 51946,
+      "sha256": "362748bd0d9a64e036f0392d2e7cb99fe48e1d852b732d084346c7edee6f4bfa"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/completed-defect-full.png",
+      "change": "added",
+      "bytes": 172580,
+      "sha256": "b9cbccc7823f15744eb58acb4c1162aaa7330fae32e0c2f5006eedeedeaf8d85"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/completed-defect.png",
+      "change": "added",
+      "bytes": 57240,
+      "sha256": "1cfa2aa258985d6a821a4cfa3aa29858789a3a2ff3ec6440cdfecc8c95a23ca7"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/first-entry-full.png",
+      "change": "added",
+      "bytes": 128434,
+      "sha256": "f263e1da40f1b95f3e685ee918a400b01d4da1b0d6ffb6bc00e611ed8140ea07"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/first-entry.png",
+      "change": "added",
+      "bytes": 47419,
+      "sha256": "f94e06d3732aad9ef4a608868f08c6fd237214bd43cb5c839b295c282dfc8b8b"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/incomplete.png",
+      "change": "added",
+      "bytes": 48131,
+      "sha256": "33070fee5bce01fbcc611b637b0ad31e1686d767a1eedf70deb3f1ee284f9f28"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/keyboard-320-tab.png",
+      "change": "added",
+      "bytes": 45172,
+      "sha256": "ce70b4860d2e038f1494bd39e8dfe71c32b77cbd87a6b7e6e319dde87c948ec4"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/keyboard-320.png",
+      "change": "added",
+      "bytes": 45731,
+      "sha256": "54239bc8c7abd2f094ec8a1dd1da1da110413f57f8ee6d05d424d9b24852e4b8"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/measurements.json",
+      "change": "added",
+      "bytes": 7620,
+      "sha256": "8b2994bd6b056318f95d887194f27c721dc3625441e2c0e7b25cbd8235d41746"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/meters-active-top.png",
+      "change": "added",
+      "bytes": 58553,
+      "sha256": "3c1c4e6535ada7f6d2e5ecb3995fedf4f674c3adcb0b067f822d41548130b29c"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/meters-active.png",
+      "change": "added",
+      "bytes": 66096,
+      "sha256": "4e2d1c6b80081714ddd6ac99b8e5a928c1a0248670cb8e057610b22db4076d20"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/meters-inactive.png",
+      "change": "added",
+      "bytes": 56390,
+      "sha256": "1c14881edd7bda681c37875246c29ea69a01e3cd8b86385276a0d33fb2256cdf"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/meters-optional.png",
+      "change": "added",
+      "bytes": 54207,
+      "sha256": "ae1e85793c35094277d4a0d7605798730afe2b155314a41281f8eb2a700ce716"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/reference-full.png",
+      "change": "added",
+      "bytes": 93993,
+      "sha256": "f5522812919467db7fa42b24616855e795cdf422c2c95822d8775a64cef19bf2"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/reference-top.png",
+      "change": "added",
+      "bytes": 57686,
+      "sha256": "1b906a21abee0e5fa51fd68c30084f68931dcf5784b78c6d812a6b718c1d2386"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/rental-fire.png",
+      "change": "added",
+      "bytes": 57603,
+      "sha256": "db837202c04d3b058f38b11504b999042751f9f8ef0150985ba0ce71c5e92068"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/rental-top.png",
+      "change": "added",
+      "bytes": 55984,
+      "sha256": "f926190b45d30bdd2058c67f3b9efd70159801bd084338e3428ce6fc11069a37"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/resumed-full.png",
+      "change": "added",
+      "bytes": 172580,
+      "sha256": "b9cbccc7823f15744eb58acb4c1162aaa7330fae32e0c2f5006eedeedeaf8d85"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/resumed.png",
+      "change": "added",
+      "bytes": 57240,
+      "sha256": "1cfa2aa258985d6a821a4cfa3aa29858789a3a2ff3ec6440cdfecc8c95a23ca7"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/review-correction.png",
+      "change": "added",
+      "bytes": 57232,
+      "sha256": "7e0e42ed522b9e754cfcc8f49da22c8f9ec115a59eae8aa49dc24728c06af87d"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/review-return.png",
+      "change": "added",
+      "bytes": 45057,
+      "sha256": "ce85ba82e3b76eab1f7f37ad263b54f80b52742f29bd73a87ba7ce33a5343ac1"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/screenshots/before/mobile-390/unanswered.png",
+      "change": "added",
+      "bytes": 57494,
+      "sha256": "5a6e1e55702fa66e847e70fb46040719f19716fdf257641396f667603f10aaa6"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/serve.mjs",
+      "change": "added",
+      "bytes": 1513,
+      "sha256": "256892e9a15724e06bec2bbb9d60818859b8eb65e8eb6c5e5bf81946d9d0a365"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/test-results.json",
+      "change": "added",
+      "bytes": 566481,
+      "sha256": "50a336f9a77714000766783e00af77a099d568b2daa9558166c2926c68ee2877"
+    },
+    {
+      "file": "docs/qa/ui2a-implementation/typecheck.txt",
+      "change": "added",
+      "bytes": 50,
+      "sha256": "7c1f8cbc2b60103901cfff3cd9e10be7dfc59fc8fb9b4526e02f05c49d004eb4"
+    },
+    {
+      "file": "docs/ui2a/.gitattributes",
+      "change": "added",
+      "bytes": 187,
+      "sha256": "a16b0fb1edb6b6e5753ca537eaed3409c4926244585173049660ef79964e92b2"
+    },
+    {
+      "file": "docs/ui2a/REVIEW.md",
+      "change": "added",
+      "bytes": 18586,
+      "sha256": "e56c05042556a220590759a102d2e6cd154b50b9c279c319414fa95ee9136fa2"
+    },
+    {
+      "file": "docs/ui2a/comparison.html",
+      "change": "added",
+      "bytes": 3024,
+      "sha256": "25c494aa09f80f906f78c86ff99736705937b8e7bf32a7c118cf494eaff75f43"
+    },
+    {
+      "file": "docs/ui2a/evidence.json",
+      "change": "added",
+      "bytes": 13637,
+      "sha256": "62371db683ec3badfc39ca956a24f7190cd75d8eabf825e72a97e536f5d689e8"
+    },
+    {
+      "file": "docs/ui2a/index.html",
+      "change": "added",
+      "bytes": 10691,
+      "sha256": "e1c29663b2617e91ba435d306e56f072bed565df8924615343cb46287b848ccd"
+    },
+    {
+      "file": "docs/ui2a/prepare.mjs",
+      "change": "added",
+      "bytes": 2065,
+      "sha256": "373c2bf4bc4984e0feef523f4e6ee99375f43c79abca4f3f8fc093364a8960d4"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/manrope-cyrillic-ext-wght-normal.d1990364.woff2",
+      "change": "added",
+      "bytes": 2552,
+      "sha256": "de37de877dc17e4577341fa68bb5cb526b53d54cb29721e674208546a3c7849d"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/manrope-cyrillic-wght-normal.2ffcac4f.woff2",
+      "change": "added",
+      "bytes": 14500,
+      "sha256": "c268b459a9329e59fecf39a17618efd44c71735532048d60b12aab76a8c14914"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/manrope-greek-wght-normal.6b69666c.woff2",
+      "change": "added",
+      "bytes": 9444,
+      "sha256": "2fb2e8cbfd52ae46179a8b6024eb162f1f9c6de3d22d6e3a30d8f395de7220be"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/manrope-latin-ext-wght-normal.f5cc7610.woff2",
+      "change": "added",
+      "bytes": 15120,
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/manrope-latin-wght-normal.fedf4c92.woff2",
+      "change": "added",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/manrope-vietnamese-wght-normal.383b32a0.woff2",
+      "change": "added",
+      "bytes": 8520,
+      "sha256": "6bbb044ab420e07edb0a3042d2eb314b85e83a0182e945a15ab3b9092668dfd5"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/ui1-0.css",
+      "change": "added",
+      "bytes": 88828,
+      "sha256": "ae288ae2aa2d2283c71e137e7376c6966a15f70aa94778c125ac5537c9baf821"
+    },
+    {
+      "file": "docs/ui2a/prototype/assets/ui1-1.css",
+      "change": "added",
+      "bytes": 43989,
+      "sha256": "508409337575fac2d515d10807526c6015530b753335f3993a1ebc3425513700"
+    },
+    {
+      "file": "docs/ui2a/prototype/index.html",
+      "change": "added",
+      "bytes": 6182,
+      "sha256": "293cf4debc8a9ba6fbfac288796461c937ce1856daf2853d5cded3ec1862f5ca"
+    },
+    {
+      "file": "docs/ui2a/prototype/prototype.css",
+      "change": "added",
+      "bytes": 8781,
+      "sha256": "f96faab2d374e7f310c91819f07b8478c7ef1cd412855000e7d7f78f339d5b9c"
+    },
+    {
+      "file": "docs/ui2a/prototype/prototype.js",
+      "change": "added",
+      "bytes": 11171,
+      "sha256": "4e92f6675950ecb7e0b93ce14c3b256137b6a7473456392960d035b63231e6b9"
+    },
+    {
+      "file": "docs/ui2a/prototype/ui1-data.js",
+      "change": "added",
+      "bytes": 167906,
+      "sha256": "e387be075fdfe5bbb6093b736d0c3cb7968d25cd6f942b8971f89efd090127a1"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-1440-defect.jpg",
+      "change": "added",
+      "bytes": 98092,
+      "sha256": "2b81f4a9c6a9a15ad940f1dd6afef4f275d3067da558780c49f863ddc313534d"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-1440-full.jpg",
+      "change": "added",
+      "bytes": 130155,
+      "sha256": "2f4ca67d4dabf45d519c6567beb0869016aabf1f3bc75d5da99ec853af13a6a8"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-1440-top.jpg",
+      "change": "added",
+      "bytes": 81441,
+      "sha256": "596777e993fe0c35908ca5901517092be28cbee3756bd7ddc364d58437dbc64e"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-320-reflow.jpg",
+      "change": "added",
+      "bytes": 34347,
+      "sha256": "8607cc0ebc28333f6c51264e6aa7b7e2da299cdce3442bd1291284251d599ec5"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-360-full.jpg",
+      "change": "added",
+      "bytes": 86775,
+      "sha256": "5be1ca8cbac850d02cb6bfb761266913fea3538b1b0a53725cca5ded593464f1"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-360-top.jpg",
+      "change": "added",
+      "bytes": 35797,
+      "sha256": "82a1f93cfc9abd6514e73120180a2ab5b7474996c9dbb262270e8e7ceedc1c83"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-active-meters-top.jpg",
+      "change": "added",
+      "bytes": 39574,
+      "sha256": "f751751c76ca79c1549a9e31f9891c011e2bb946e20aa40d2684749c59d1ef24"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-active-meters.jpg",
+      "change": "added",
+      "bytes": 48391,
+      "sha256": "55211e10f93a81fe6d783ee83bf69de15382be05fa318abce5d27f3d911dcc0f"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-correction.jpg",
+      "change": "added",
+      "bytes": 36868,
+      "sha256": "1b6601bb29bd908e3014c0706ad02b7dc79aac918418be965a8156904c1b4a67"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-defect.jpg",
+      "change": "added",
+      "bytes": 36895,
+      "sha256": "75ac0485fa3ce36c5b857dba384fcca7f8281963b3f9f1fb2061ded7755570c8"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-fire.jpg",
+      "change": "added",
+      "bytes": 45110,
+      "sha256": "a637e2cc989d7b5e43ec7d24305e3a91e13f9fe26e89ae4bb912ecb934169d3e"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-full.jpg",
+      "change": "added",
+      "bytes": 87926,
+      "sha256": "a92c92e82a698e243d75ab7f81d8debbaf8e9d57cb6dbe5a28c7eb4beac3e9bd"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-incomplete-target.jpg",
+      "change": "added",
+      "bytes": 39541,
+      "sha256": "bb2d1a17cc4f1c5c9ccc5dcdaeaa71728a55da0bde96f496c02c355716b71c11"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-rental-fire.jpg",
+      "change": "added",
+      "bytes": 44243,
+      "sha256": "9aa06e0f110b2d138513672767a8e736abcaa9e64dcc8b83b7e515e43e0df694"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-rental-top.jpg",
+      "change": "added",
+      "bytes": 39494,
+      "sha256": "c12e5727863304313680242755c5113610e4616849d433c6eb07d87fbb24be09"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-return-review.jpg",
+      "change": "added",
+      "bytes": 46347,
+      "sha256": "ecb3220933dac68f000ed30b92e036d8f29a370d3202e0ba8418c68cfbb30ccf"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-top.jpg",
+      "change": "added",
+      "bytes": 39268,
+      "sha256": "a385d542888b4714b29f06b663fa87ab468cd0f7b1f03f26f8d1e5316dacdc9a"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-390-unfinished.jpg",
+      "change": "added",
+      "bytes": 39680,
+      "sha256": "9eeb6af0edbd9f7af4ddd3bcabbf7d6ceec8a77ff7840249bf86d964f3f33986"
+    },
+    {
+      "file": "docs/ui2a/screenshots/after-metrics.json",
+      "change": "added",
+      "bytes": 4671,
+      "sha256": "8c3c27363178d76edd6c518ebe0e8f70716452cff890303c86088783b8b943ed"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-1440-full.jpg",
+      "change": "added",
+      "bytes": 119559,
+      "sha256": "992d2fdee422daa2bfa3e897378f1f2fb453f42bb165e2f38801c6a6c3dfae6f"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-1440-landing.jpg",
+      "change": "added",
+      "bytes": 85075,
+      "sha256": "25d5f1ff553899d0aca5fb6a8353cf2a8fb15d2bff2c723646d9d7db98c94f4a"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-1440-top.jpg",
+      "change": "added",
+      "bytes": 85075,
+      "sha256": "25d5f1ff553899d0aca5fb6a8353cf2a8fb15d2bff2c723646d9d7db98c94f4a"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-360-full.jpg",
+      "change": "added",
+      "bytes": 67389,
+      "sha256": "475fb3b5e9402fa97dd487d6bbd10779d1f34fe7ca2496351ee6837d8b95c748"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-360-landing.jpg",
+      "change": "added",
+      "bytes": 30045,
+      "sha256": "33470eaad5ca903afda1df0a026a516f8a07258317346aee571f0daafd4b8177"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-360-top.jpg",
+      "change": "added",
+      "bytes": 34720,
+      "sha256": "8afa5abf8a5b6c4c19a9f3a84c22d2bf005155f05dab532cedf7e31fe15d4d1b"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-390-active-meters.jpg",
+      "change": "added",
+      "bytes": 47422,
+      "sha256": "1db4f532a649d7927079d092ca945e2fdffa4545cf62c817bd4efe675493c055"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-390-defect.jpg",
+      "change": "added",
+      "bytes": 35760,
+      "sha256": "e78cc66ab83db3bd54ca0c792cc9926e23175a4698989c04e311483fac05e7ce"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-390-full.jpg",
+      "change": "added",
+      "bytes": 68035,
+      "sha256": "9f09320ee92f766baa9638df60589503f42dcbe7611fc7f07fefdd6e48ad6712"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-390-landing.jpg",
+      "change": "added",
+      "bytes": 33460,
+      "sha256": "eac33f1087de014ad71d9e6f99f72857ed07f682f1ca8ed7ee494e39809d12ec"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-390-top.jpg",
+      "change": "added",
+      "bytes": 39427,
+      "sha256": "1b68541e97da17d964ebb432ba35113c3d486193a300932d47994bdcdb3974cf"
+    },
+    {
+      "file": "docs/ui2a/screenshots/before-metrics.json",
+      "change": "added",
+      "bytes": 5798,
+      "sha256": "65e967ad49cb0d90f2f0cf03219b7ba4119a86879ededab226669779506a4ad7"
+    },
+    {
+      "file": "docs/ui2a/screenshots/comparison-390.jpg",
+      "change": "added",
+      "bytes": 103604,
+      "sha256": "5395d2e5d663fdc3acf58e3167974f58aff7fbbce51b3527d40eecbc9028dc2c"
+    },
+    {
+      "file": "docs/ui2a/screenshots/prototype-checks.json",
+      "change": "added",
+      "bytes": 1726,
+      "sha256": "df5a22e3fddedda39377ea8c742ecff13c355c35d0fab88b3b602f340b04fe13"
+    },
+    {
+      "file": "docs/ui2a/serve.mjs",
+      "change": "added",
+      "bytes": 1402,
+      "sha256": "3a3b0803f1755e5795f046d545477bbbf6b37e737d2fd321ee66dd9487faf652"
+    },
+    {
+      "file": "docs/ui2a/ui1-active-meters.html",
+      "change": "added",
+      "bytes": 6040,
+      "sha256": "6ab84bf65ff9697746dc0d1f0111dff600c171360b68379db400471ed933f151"
+    },
+    {
+      "file": "docs/ui2a/ui1-defect-dom.html",
+      "change": "added",
+      "bytes": 16630,
+      "sha256": "0e9f25c84a2d73f53f2d84afcdb8a60daaab730b2648ed95ac15964320ec3c67"
+    },
+    {
+      "file": "docs/ui2a/ui1-dom.json",
+      "change": "added",
+      "bytes": 27649,
+      "sha256": "5ac28f14aa1bbc4a565231d70b045d503970a2607de1b457905b8b8e3a8337dc"
+    },
+    {
+      "file": "docs/ui2a/ui1-rail.html",
+      "change": "added",
+      "bytes": 1749,
+      "sha256": "964024a83dd6ccaa490144c4fde75d1e2a2df72160b9ed2b9f83356cba14ec9b"
+    },
+    {
+      "file": "docs/ui2a/ui1-rental-fire.html",
+      "change": "added",
+      "bytes": 8045,
+      "sha256": "bcdb329becad6bb2c06ce1c4cae2ee2060d2171676a8ba6c99985fdcf65d7a02"
+    },
+    {
+      "file": "docs/ui2a/ui1-rooms.json",
+      "change": "added",
+      "bytes": 100431,
+      "sha256": "4228d1b4dc6517bf9c94a4c21afa75ead70ac7624d7b91ecec2f67c8fdb91a7b"
+    },
+    {
+      "file": "docs/ui2a/validate.mjs",
+      "change": "added",
+      "bytes": 5783,
+      "sha256": "80dafaa809d408b597e7010c5e94a4d1b31465579df69dd744ef1385a95671f7"
+    },
+    {
+      "file": "eslint.config.mjs",
+      "change": "modified",
+      "bytes": 524,
+      "sha256": "9ee861eba800d0b1b418af5307c1b033cf3780e3a4e791baac920e54f242a3e4"
+    },
+    {
+      "file": "playwright.ui2a.config.ts",
+      "change": "added",
+      "bytes": 629,
+      "sha256": "816a900bc85ed0d54311be3d5b4c2b3f6d342fbd5a78631415cbc52cddb02b68"
+    },
+    {
+      "file": "src/app/globals.css",
+      "change": "modified",
+      "bytes": 75882,
+      "sha256": "48b08c07599e9c20732737d50d9fb52188465728caa432253f5abcc74e4ff444"
+    },
+    {
+      "file": "src/components/app-shell.tsx",
+      "change": "modified",
+      "bytes": 6905,
+      "sha256": "1077b317bd965354f511cbbe5af8b4ab282f9103afecf94c2aeeb727d0cfcaab"
+    },
+    {
+      "file": "src/components/inspection-focus.ts",
+      "change": "added",
+      "bytes": 813,
+      "sha256": "73a7b1aaaac5433d31bb952b444c414277e6057cd4ea25b8afad967b6522e595"
+    },
+    {
+      "file": "src/components/inspection-screen.module.css",
+      "change": "added",
+      "bytes": 6019,
+      "sha256": "e8639b35196c9453ce03609e18b0476a6c26317313bf32713d3465d9b899e174"
+    },
+    {
+      "file": "src/components/inspection-section-status.ts",
+      "change": "added",
+      "bytes": 2480,
+      "sha256": "0bcedbbf809da9c28dd6859eceb05b978fbe0f062a272881ee5d4c8e0856f05c"
+    },
+    {
+      "file": "src/components/screens/inspection-screen.tsx",
+      "change": "modified",
+      "bytes": 16447,
+      "sha256": "2132826c5ad45180ff1cd605fdc3771a3f210e03e0257694ca0e23f88973c54b"
+    },
+    {
+      "file": "src/components/use-fire-correction.ts",
+      "change": "modified",
+      "bytes": 1750,
+      "sha256": "3ca35857f200191c7ce4c6b1394d91569579fcce70dfb6ac650a18c794a47f86"
+    },
+    {
+      "file": "src/components/use-inspection-navigation.ts",
+      "change": "modified",
+      "bytes": 11184,
+      "sha256": "af144afcc82391672a7d98d14cf6eace5172afd2668131049ed7b48cea165a7d"
+    },
+    {
+      "file": "src/components/use-inspection-sections.ts",
+      "change": "added",
+      "bytes": 4702,
+      "sha256": "4d3231ab7fe3d2f19cca6e686e8dfcf0b5e375e59be3336398da7fe41d0cc56e"
+    },
+    {
+      "file": "src/components/use-meter-correction.ts",
+      "change": "modified",
+      "bytes": 2157,
+      "sha256": "19ade7f5aa2b1267259fae5cffbedf50144948f6e3cfd8abef08ca1a0c56ef04"
+    },
+    {
+      "file": "tests/fire-observations-capture.spec.ts",
+      "change": "modified",
+      "bytes": 29205,
+      "sha256": "3fadd2732371cb37b2bb14368f45b1db7da5f3fd563cac801ff5bc7f9dc901c5"
+    },
+    {
+      "file": "tests/inspection-accessibility.ts",
+      "change": "added",
+      "bytes": 2444,
+      "sha256": "c7844302ac99241a3293e695c633f145eb02143271214931efc0db1511797c8d"
+    },
+    {
+      "file": "tests/inspection-checklist.spec.ts",
+      "change": "modified",
+      "bytes": 17386,
+      "sha256": "908fb67f69557f8491417511b3cb2bb33900ad7aeb62d12f5f089564bdbbd5f3"
+    },
+    {
+      "file": "tests/inspection-evidence.spec.ts",
+      "change": "modified",
+      "bytes": 28820,
+      "sha256": "7fe05bc431eaaba159ff4562e5aa9bf463c9e9923335aa58664322776629aed0"
+    },
+    {
+      "file": "tests/meter-readings-capture.spec.ts",
+      "change": "modified",
+      "bytes": 35775,
+      "sha256": "33229a4dd77150454e4e6a6f15145af7a00a0f89ae8cc1c7ac2830af22d49d4e"
+    },
+    {
+      "file": "tests/rental-information-capture.spec.ts",
+      "change": "modified",
+      "bytes": 25787,
+      "sha256": "9917d9ea24bfd281b77d7ea673d6512b375a443e8b1250a4cd032a4d5e76a501"
+    },
+    {
+      "file": "tests/ui2a-capture.spec.ts",
+      "change": "added",
+      "bytes": 6348,
+      "sha256": "ce9d47f47b277fee49e8f4ef0812fc6d32c5ab1c441792eac554f9b7868968ab"
+    },
+    {
+      "file": "tests/ui2a-inspection.spec.ts",
+      "change": "added",
+      "bytes": 11775,
+      "sha256": "b8bf6de2009f1360551389f5529009b5ba4ce6d14ebe25168102dbe177c0d8b6"
+    }
+  ]
+}

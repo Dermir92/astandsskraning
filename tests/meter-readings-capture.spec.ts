@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
+import { auditInspectionA11y } from "./inspection-accessibility";
 import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import type { MeterCapturePurpose, Report } from "../src/lib/model";
@@ -316,7 +316,7 @@ test("five-width mobile, keyboard, axe and 200% text verification with review sc
   const report = extendedMeterReport(); await seed(page, report, meterCorrectionHref(report.id, "electricity", "readingValue"));
   const audit = async () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
+    expect((await auditInspectionA11y(page)).violations).toEqual([]);
   };
   for (const width of [320, 360, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 }); await page.goto(meterCorrectionHref(report.id, "electricity", "readingValue")); await expect(page.locator("#meter-electricity-readingValue")).toBeFocused();

@@ -1,0 +1,422 @@
+{
+  "title": "UI2A · hönnunarrýni, ekki framleiðsluinnleiðing",
+  "date": "2026-10-29",
+  "baseline": {
+    "commit": "96e5150c2cba36378928caf8219e5aebfbee6d79",
+    "tree": "b18a0c2d895913f3415953a08a1f1a02eff01055",
+    "sourceTrackedDiff": "",
+    "workingTreeStatus": "?? docs/ui2a/"
+  },
+  "capture": {
+    "browser": "Codex in-app browser, desktop viewport emulation; not real-device testing",
+    "dimensions": "Viewport sizes are read from innerWidth/innerHeight. Browser JPEG export omits native frame/scrollbar; raw bitmap dimensions are preserved per file below. Full-page images retain complete document height. No images were resized or edited after capture.",
+    "before": "Unmodified approved UI1 Next.js app, loopback 3212, demo only",
+    "after": "Isolated static design prototype, loopback 3213, copied UI1 DOM/CSS; assessments and persistence disabled",
+    "fixture": "Built-in synthetic Sýnigata 14, Stofa, 24/53 room items, 29 incomplete, no photos",
+    "mainComparison": "Identical room/data; both top and full-page. Separate before landing captures disclose existing mobile auto-scroll.",
+    "supplemental": "rental/active meter states captured from actual UI1 after UI-only edits to synthetic demo context; no customer data",
+    "baselineDefectSupplement": "before-390-defect.jpg reflects the synthetic rental/active-meter context; not the primary default comparison"
+  },
+  "comparisons": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "beforeFirstItemY": 769,
+      "afterFirstItemY": 471,
+      "difference": 298,
+      "percent": 39,
+      "noPrototypeHorizontalOverflow": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "beforeFirstItemY": 769,
+      "afterFirstItemY": 471,
+      "difference": 298,
+      "percent": 39,
+      "noPrototypeHorizontalOverflow": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "beforeFirstItemY": 777,
+      "afterFirstItemY": 465,
+      "difference": 312,
+      "percent": 40,
+      "noPrototypeHorizontalOverflow": true
+    }
+  ],
+  "checks": {
+    "browserPassed": 13,
+    "browserTotal": 13,
+    "syntax": "passed",
+    "staticLocalLinks": "passed",
+    "sourceCodeDiff": "none"
+  },
+  "limitations": [
+    "No production UI2 implementation",
+    "Prototype navigation simulation is not a replacement for the production correction URL validators",
+    "No backend/production regression suite run for this docs-only change",
+    "Real device, screen reader, actual browser zoom, mobile keyboard, camera, and long custom room names outstanding",
+    "No WCAG conformance certification",
+    "No measured inspection-time savings"
+  ],
+  "gates": {
+    "hostedC": "CLOSED",
+    "publicTemporaryE": "UNRESOLVED",
+    "crossTabConcurrency": "UNRESOLVED"
+  },
+  "files": [
+    {
+      "path": "comparison.html",
+      "bytes": 3024,
+      "sha256": "25c494aa09f80f906f78c86ff99736705937b8e7bf32a7c118cf494eaff75f43"
+    },
+    {
+      "path": "index.html",
+      "bytes": 10691,
+      "sha256": "e1c29663b2617e91ba435d306e56f072bed565df8924615343cb46287b848ccd"
+    },
+    {
+      "path": "prepare.mjs",
+      "bytes": 2065,
+      "sha256": "373c2bf4bc4984e0feef523f4e6ee99375f43c79abca4f3f8fc093364a8960d4"
+    },
+    {
+      "path": "prototype/assets/manrope-cyrillic-ext-wght-normal.d1990364.woff2",
+      "bytes": 2552,
+      "sha256": "de37de877dc17e4577341fa68bb5cb526b53d54cb29721e674208546a3c7849d"
+    },
+    {
+      "path": "prototype/assets/manrope-cyrillic-wght-normal.2ffcac4f.woff2",
+      "bytes": 14500,
+      "sha256": "c268b459a9329e59fecf39a17618efd44c71735532048d60b12aab76a8c14914"
+    },
+    {
+      "path": "prototype/assets/manrope-greek-wght-normal.6b69666c.woff2",
+      "bytes": 9444,
+      "sha256": "2fb2e8cbfd52ae46179a8b6024eb162f1f9c6de3d22d6e3a30d8f395de7220be"
+    },
+    {
+      "path": "prototype/assets/manrope-latin-ext-wght-normal.f5cc7610.woff2",
+      "bytes": 15120,
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb"
+    },
+    {
+      "path": "prototype/assets/manrope-latin-wght-normal.fedf4c92.woff2",
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    {
+      "path": "prototype/assets/manrope-vietnamese-wght-normal.383b32a0.woff2",
+      "bytes": 8520,
+      "sha256": "6bbb044ab420e07edb0a3042d2eb314b85e83a0182e945a15ab3b9092668dfd5"
+    },
+    {
+      "path": "prototype/assets/ui1-0.css",
+      "bytes": 88828,
+      "sha256": "ae288ae2aa2d2283c71e137e7376c6966a15f70aa94778c125ac5537c9baf821"
+    },
+    {
+      "path": "prototype/assets/ui1-1.css",
+      "bytes": 43989,
+      "sha256": "508409337575fac2d515d10807526c6015530b753335f3993a1ebc3425513700"
+    },
+    {
+      "path": "prototype/index.html",
+      "bytes": 6182,
+      "sha256": "293cf4debc8a9ba6fbfac288796461c937ce1856daf2853d5cded3ec1862f5ca"
+    },
+    {
+      "path": "prototype/prototype.css",
+      "bytes": 8781,
+      "sha256": "f96faab2d374e7f310c91819f07b8478c7ef1cd412855000e7d7f78f339d5b9c"
+    },
+    {
+      "path": "prototype/prototype.js",
+      "bytes": 11171,
+      "sha256": "4e92f6675950ecb7e0b93ce14c3b256137b6a7473456392960d035b63231e6b9"
+    },
+    {
+      "path": "prototype/ui1-data.js",
+      "bytes": 167906,
+      "sha256": "e387be075fdfe5bbb6093b736d0c3cb7968d25cd6f942b8971f89efd090127a1"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 18586,
+      "sha256": "e56c05042556a220590759a102d2e6cd154b50b9c279c319414fa95ee9136fa2"
+    },
+    {
+      "path": "screenshots/after-1440-defect.jpg",
+      "bytes": 98092,
+      "sha256": "2b81f4a9c6a9a15ad940f1dd6afef4f275d3067da558780c49f863ddc313534d",
+      "width": 1425,
+      "height": 968
+    },
+    {
+      "path": "screenshots/after-1440-full.jpg",
+      "bytes": 130155,
+      "sha256": "2f4ca67d4dabf45d519c6567beb0869016aabf1f3bc75d5da99ec853af13a6a8",
+      "width": 1424,
+      "height": 1625
+    },
+    {
+      "path": "screenshots/after-1440-top.jpg",
+      "bytes": 81441,
+      "sha256": "596777e993fe0c35908ca5901517092be28cbee3756bd7ddc364d58437dbc64e",
+      "width": 1425,
+      "height": 968
+    },
+    {
+      "path": "screenshots/after-320-reflow.jpg",
+      "bytes": 34347,
+      "sha256": "8607cc0ebc28333f6c51264e6aa7b7e2da299cdce3442bd1291284251d599ec5",
+      "width": 305,
+      "height": 763
+    },
+    {
+      "path": "screenshots/after-360-full.jpg",
+      "bytes": 86775,
+      "sha256": "5be1ca8cbac850d02cb6bfb761266913fea3538b1b0a53725cca5ded593464f1",
+      "width": 344,
+      "height": 1826
+    },
+    {
+      "path": "screenshots/after-360-top.jpg",
+      "bytes": 35797,
+      "sha256": "82a1f93cfc9abd6514e73120180a2ab5b7474996c9dbb262270e8e7ceedc1c83",
+      "width": 345,
+      "height": 767
+    },
+    {
+      "path": "screenshots/after-390-active-meters-top.jpg",
+      "bytes": 39574,
+      "sha256": "f751751c76ca79c1549a9e31f9891c011e2bb946e20aa40d2684749c59d1ef24",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-active-meters.jpg",
+      "bytes": 48391,
+      "sha256": "55211e10f93a81fe6d783ee83bf69de15382be05fa318abce5d27f3d911dcc0f",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-correction.jpg",
+      "bytes": 36868,
+      "sha256": "1b6601bb29bd908e3014c0706ad02b7dc79aac918418be965a8156904c1b4a67",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-defect.jpg",
+      "bytes": 36895,
+      "sha256": "75ac0485fa3ce36c5b857dba384fcca7f8281963b3f9f1fb2061ded7755570c8",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-fire.jpg",
+      "bytes": 45110,
+      "sha256": "a637e2cc989d7b5e43ec7d24305e3a91e13f9fe26e89ae4bb912ecb934169d3e",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-full.jpg",
+      "bytes": 87926,
+      "sha256": "a92c92e82a698e243d75ab7f81d8debbaf8e9d57cb6dbe5a28c7eb4beac3e9bd",
+      "width": 374,
+      "height": 1766
+    },
+    {
+      "path": "screenshots/after-390-incomplete-target.jpg",
+      "bytes": 39541,
+      "sha256": "bb2d1a17cc4f1c5c9ccc5dcdaeaa71728a55da0bde96f496c02c355716b71c11",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-rental-fire.jpg",
+      "bytes": 44243,
+      "sha256": "9aa06e0f110b2d138513672767a8e736abcaa9e64dcc8b83b7e515e43e0df694",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-rental-top.jpg",
+      "bytes": 39494,
+      "sha256": "c12e5727863304313680242755c5113610e4616849d433c6eb07d87fbb24be09",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-return-review.jpg",
+      "bytes": 46347,
+      "sha256": "ecb3220933dac68f000ed30b92e036d8f29a370d3202e0ba8418c68cfbb30ccf",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-top.jpg",
+      "bytes": 39268,
+      "sha256": "a385d542888b4714b29f06b663fa87ab468cd0f7b1f03f26f8d1e5316dacdc9a",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-390-unfinished.jpg",
+      "bytes": 39680,
+      "sha256": "9eeb6af0edbd9f7af4ddd3bcabbf7d6ceec8a77ff7840249bf86d964f3f33986",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/after-metrics.json",
+      "bytes": 4671,
+      "sha256": "8c3c27363178d76edd6c518ebe0e8f70716452cff890303c86088783b8b943ed"
+    },
+    {
+      "path": "screenshots/before-1440-full.jpg",
+      "bytes": 119559,
+      "sha256": "992d2fdee422daa2bfa3e897378f1f2fb453f42bb165e2f38801c6a6c3dfae6f",
+      "width": 1424,
+      "height": 1523
+    },
+    {
+      "path": "screenshots/before-1440-landing.jpg",
+      "bytes": 85075,
+      "sha256": "25d5f1ff553899d0aca5fb6a8353cf2a8fb15d2bff2c723646d9d7db98c94f4a",
+      "width": 1425,
+      "height": 968
+    },
+    {
+      "path": "screenshots/before-1440-top.jpg",
+      "bytes": 85075,
+      "sha256": "25d5f1ff553899d0aca5fb6a8353cf2a8fb15d2bff2c723646d9d7db98c94f4a",
+      "width": 1425,
+      "height": 968
+    },
+    {
+      "path": "screenshots/before-360-full.jpg",
+      "bytes": 67389,
+      "sha256": "475fb3b5e9402fa97dd487d6bbd10779d1f34fe7ca2496351ee6837d8b95c748",
+      "width": 344,
+      "height": 1554
+    },
+    {
+      "path": "screenshots/before-360-landing.jpg",
+      "bytes": 30045,
+      "sha256": "33470eaad5ca903afda1df0a026a516f8a07258317346aee571f0daafd4b8177",
+      "width": 345,
+      "height": 767
+    },
+    {
+      "path": "screenshots/before-360-top.jpg",
+      "bytes": 34720,
+      "sha256": "8afa5abf8a5b6c4c19a9f3a84c22d2bf005155f05dab532cedf7e31fe15d4d1b",
+      "width": 345,
+      "height": 767
+    },
+    {
+      "path": "screenshots/before-390-active-meters.jpg",
+      "bytes": 47422,
+      "sha256": "1db4f532a649d7927079d092ca945e2fdffa4545cf62c817bd4efe675493c055",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/before-390-defect.jpg",
+      "bytes": 35760,
+      "sha256": "e78cc66ab83db3bd54ca0c792cc9926e23175a4698989c04e311483fac05e7ce",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/before-390-full.jpg",
+      "bytes": 68035,
+      "sha256": "9f09320ee92f766baa9638df60589503f42dcbe7611fc7f07fefdd6e48ad6712",
+      "width": 374,
+      "height": 1533
+    },
+    {
+      "path": "screenshots/before-390-landing.jpg",
+      "bytes": 33460,
+      "sha256": "eac33f1087de014ad71d9e6f99f72857ed07f682f1ca8ed7ee494e39809d12ec",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/before-390-top.jpg",
+      "bytes": 39427,
+      "sha256": "1b68541e97da17d964ebb432ba35113c3d486193a300932d47994bdcdb3974cf",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "path": "screenshots/before-metrics.json",
+      "bytes": 5798,
+      "sha256": "65e967ad49cb0d90f2f0cf03219b7ba4119a86879ededab226669779506a4ad7"
+    },
+    {
+      "path": "screenshots/comparison-390.jpg",
+      "bytes": 103604,
+      "sha256": "5395d2e5d663fdc3acf58e3167974f58aff7fbbce51b3527d40eecbc9028dc2c",
+      "width": 852,
+      "height": 1120
+    },
+    {
+      "path": "screenshots/prototype-checks.json",
+      "bytes": 1726,
+      "sha256": "df5a22e3fddedda39377ea8c742ecff13c355c35d0fab88b3b602f340b04fe13"
+    },
+    {
+      "path": "serve.mjs",
+      "bytes": 1402,
+      "sha256": "3a3b0803f1755e5795f046d545477bbbf6b37e737d2fd321ee66dd9487faf652"
+    },
+    {
+      "path": "ui1-active-meters.html",
+      "bytes": 6040,
+      "sha256": "6ab84bf65ff9697746dc0d1f0111dff600c171360b68379db400471ed933f151"
+    },
+    {
+      "path": "ui1-defect-dom.html",
+      "bytes": 16630,
+      "sha256": "0e9f25c84a2d73f53f2d84afcdb8a60daaab730b2648ed95ac15964320ec3c67"
+    },
+    {
+      "path": "ui1-dom.json",
+      "bytes": 27649,
+      "sha256": "5ac28f14aa1bbc4a565231d70b045d503970a2607de1b457905b8b8e3a8337dc"
+    },
+    {
+      "path": "ui1-rail.html",
+      "bytes": 1749,
+      "sha256": "964024a83dd6ccaa490144c4fde75d1e2a2df72160b9ed2b9f83356cba14ec9b"
+    },
+    {
+      "path": "ui1-rental-fire.html",
+      "bytes": 8045,
+      "sha256": "bcdb329becad6bb2c06ce1c4cae2ee2060d2171676a8ba6c99985fdcf65d7a02"
+    },
+    {
+      "path": "ui1-rooms.json",
+      "bytes": 100431,
+      "sha256": "4228d1b4dc6517bf9c94a4c21afa75ead70ac7624d7b91ecec2f67c8fdb91a7b"
+    },
+    {
+      "path": "validate.mjs",
+      "bytes": 5783,
+      "sha256": "80dafaa809d408b597e7010c5e94a4d1b31465579df69dd744ef1385a95671f7"
+    }
+  ]
+}

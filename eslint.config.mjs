@@ -14,5 +14,6 @@ export default defineConfig([
     "test-results/**",
     "playwright-report/**",
     "artifacts/**",
+    "docs/ui2a/**", // Frozen, generated design reference; not application code.
   ]),
 ]);

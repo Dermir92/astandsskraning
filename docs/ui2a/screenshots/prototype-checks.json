@@ -1,0 +1,70 @@
+[
+  {
+    "check": "Rýmisval og Enter á Næsta rými",
+    "value": null,
+    "selected": "demo-bedroom-1",
+    "passed": true
+  },
+  {
+    "check": "Næsta rými óvirkt í síðasta rými",
+    "passed": true
+  },
+  {
+    "check": "Fyrra rými óvirkt í fyrsta rými",
+    "passed": true
+  },
+  {
+    "check": "Brunavarnir → sama rými og opið atriði",
+    "passed": true,
+    "focus": {
+      "name": "2VeggirSkemmt · Fullskráð · Frávik",
+      "navBottom": 84,
+      "top": 214
+    }
+  },
+  {
+    "check": "Yfirferð → leiðrétting → skýrt endurkomusamhengi",
+    "passed": true
+  },
+  {
+    "check": "Aftur í yfirferð við upprunatengil",
+    "focus": "Stofa · Veggir · Breyta skráningu →",
+    "passed": true
+  },
+  {
+    "check": "Ólokið → rétt rými, atriði og fókus",
+    "passed": true,
+    "focus": "Vaskur og kraniÓsvarað"
+  },
+  {
+    "check": "Virkir mælar hafa sömu ósvöruðu stöðu og UI1",
+    "summary": "Mælastaða við afhendingu\nRafmagn · Svar um mælafyrirkomulag vantar\nHeitt vatn · Svar um mælafyrirkomulag vantar",
+    "passed": true
+  },
+  {
+    "check": "Enter á sleppitengli færir fókus að rýmisgátlista",
+    "passed": true
+  },
+  {
+    "check": "Tab frá rýmisvali fer á fyrra rými",
+    "passed": true
+  },
+  {
+    "check": "Enter á fyrra rými virkar",
+    "passed": true
+  },
+  {
+    "check": "320 CSS px: engin lárétt síðuskrollun; fullt rýmisval á eigin línu",
+    "passed": true,
+    "evidence": {
+      "scrollWidth": 305,
+      "selectWidth": 248.6666717529297,
+      "selectedText": "Svefnherbergi 1",
+      "width": 320
+    }
+  },
+  {
+    "check": "Síðasta rými heldur leið áfram í Yfirferð",
+    "passed": true
+  }
+]

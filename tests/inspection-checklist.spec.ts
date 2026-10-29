@@ -87,7 +87,7 @@ test("quick-good changes condition only and leaves required functionality and cl
   expect(observationComplete((await saved(page)).rooms[0].items[3], (await saved(page)).rooms[0].observations.windows)).toBe(false);
   await windows.getByRole("radio", { name: "Hreint", exact: true }).check();
   await expect(windows).toHaveAttribute("data-state", "recorded");
-  await expect(page.locator(".inspection-overall > div strong")).toHaveText("2 af 20");
+  await expect(page.locator(".inspection-overall summary strong")).toHaveText("2 af 20");
   await page.reload();
   expect((await saved(page)).rooms[0].observations.windows).toEqual({ ...EMPTY_OBSERVATION, condition: "good", functionality: "works", cleanliness: "clean" });
 });
@@ -126,7 +126,7 @@ test("existing draft values, associations, status distinctions and review statis
   expect({ ...updated, updatedAt: original.updatedAt }).toEqual(expected);
   expect(isReportList([updated])).toBe(true);
   const stats = reportStats(updated);
-  await expect(page.locator(".inspection-overall > div strong")).toHaveText(`${stats.recorded} af ${stats.total}`);
+  await expect(page.locator(".inspection-overall summary strong")).toHaveText(`${stats.recorded} af ${stats.total}`);
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
   const numbers = page.locator(".review-summary > div > strong");
   await expect(numbers.nth(1)).toHaveText(`${stats.recorded} / ${stats.total}`);

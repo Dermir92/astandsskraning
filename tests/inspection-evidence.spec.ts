@@ -1,5 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
+import { auditInspectionA11y } from "./inspection-accessibility";
 import { mkdir } from "node:fs/promises";
 import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
 import { CONDITIONS, EMPTY_OBSERVATION, reportStats, type Report } from "../src/lib/model";
@@ -55,7 +55,7 @@ async function unchanged(page: Page, before: Awaited<ReturnType<typeof storage>>
   await expect(page.locator(".topbar .save-status")).toHaveText("Vistað í þessum vafra");
 }
 async function a11y(page: Page) {
-  expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
+  expect((await auditInspectionA11y(page)).violations).toEqual([]);
   const contrast = await auditRenderedContrast(page);
   expect(contrast.failures).toEqual([]);
   expect(contrast.typeFailures).toEqual([]);

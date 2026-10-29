@@ -1,0 +1,325 @@
+[
+  {
+    "name": "first-entry",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-kitchen",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 685,
+    "documentHeight": 2191,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "inspection-%5B%22demo-kitchen%22%2Cnull%5D",
+      "tag": "H2"
+    }
+  },
+  {
+    "name": "first-entry-full",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-kitchen",
+    "fullPage": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 714,
+    "documentHeight": 2191,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "inspection-%5B%22demo-kitchen%22%2Cnull%5D",
+      "tag": "H2"
+    }
+  },
+  {
+    "name": "resumed",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 183,
+    "documentHeight": 2760,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "_r_1_-title",
+      "tag": "BUTTON"
+    }
+  },
+  {
+    "name": "resumed-full",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls",
+    "fullPage": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 240,
+    "documentHeight": 2760,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "_r_1_-title",
+      "tag": "BUTTON"
+    }
+  },
+  {
+    "name": "reference-top",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 0,
+    "documentHeight": 1541,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "inspection-%5B%22demo-living%22%2Cnull%5D",
+      "tag": "H2"
+    }
+  },
+  {
+    "name": "reference-full",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living",
+    "fullPage": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 0,
+    "documentHeight": 1541,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "inspection-%5B%22demo-living%22%2Cnull%5D",
+      "tag": "H2"
+    }
+  },
+  {
+    "name": "completed-defect",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 183,
+    "documentHeight": 2760,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "_r_1_-title",
+      "tag": "BUTTON"
+    }
+  },
+  {
+    "name": "completed-defect-full",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls",
+    "fullPage": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 240,
+    "documentHeight": 2760,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "_r_1_-title",
+      "tag": "BUTTON"
+    }
+  },
+  {
+    "name": "unanswered",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-bedroom-1&atridi=floor",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 427,
+    "documentHeight": 2803,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "",
+      "tag": "FIELDSET"
+    }
+  },
+  {
+    "name": "incomplete",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=floor",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 617,
+    "documentHeight": 2699,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "",
+      "tag": "FIELDSET"
+    }
+  },
+  {
+    "name": "rental-top",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 0,
+    "documentHeight": 1541,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "inspection-%5B%22demo-living%22%2Cnull%5D",
+      "tag": "H2"
+    }
+  },
+  {
+    "name": "rental-fire",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?hluti=brunavarnir&flokkur=reykskynjarar&reitur=examination&fra=yfirferd",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 439,
+    "documentHeight": 2968,
+    "noHorizontalOverflow": true,
+    "firstItemY": 1550,
+    "focus": {
+      "id": "",
+      "tag": "INPUT"
+    }
+  },
+  {
+    "name": "meters-inactive",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 372,
+    "documentHeight": 2070,
+    "noHorizontalOverflow": true,
+    "firstItemY": 1301,
+    "focus": {
+      "id": "",
+      "tag": "SUMMARY"
+    }
+  },
+  {
+    "name": "meters-optional",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 400,
+    "documentHeight": 2098,
+    "noHorizontalOverflow": true,
+    "firstItemY": 1330,
+    "focus": {
+      "id": "",
+      "tag": "SUMMARY"
+    }
+  },
+  {
+    "name": "meters-active-top",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 0,
+    "documentHeight": 1597,
+    "noHorizontalOverflow": true,
+    "firstItemY": 828,
+    "focus": {
+      "id": "inspection-%5B%22demo-living%22%2Cnull%5D",
+      "tag": "H2"
+    }
+  },
+  {
+    "name": "meters-active",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?maelar=rafmagn&maelaReitur=applicability&fra=yfirferd",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 452,
+    "documentHeight": 3109,
+    "noHorizontalOverflow": true,
+    "firstItemY": 1691,
+    "focus": {
+      "id": "",
+      "tag": "INPUT"
+    }
+  },
+  {
+    "name": "review-correction",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls&fra=yfirferd&yfirferdRymi=demo-living&yfirferdAtridi=walls",
+    "fullPage": false,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollY": 183,
+    "documentHeight": 2760,
+    "noHorizontalOverflow": true,
+    "firstItemY": 773,
+    "focus": {
+      "id": "_r_1_-title",
+      "tag": "BUTTON"
+    }
+  },
+  {
+    "name": "keyboard-320",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-bedroom-1&atridi=windows",
+    "fullPage": false,
+    "viewport": {
+      "width": 320,
+      "height": 800
+    },
+    "scrollY": 785,
+    "documentHeight": 3241,
+    "noHorizontalOverflow": true,
+    "firstItemY": 823,
+    "focus": {
+      "id": "",
+      "tag": "FIELDSET"
+    }
+  },
+  {
+    "name": "keyboard-320-tab",
+    "url": "http://127.0.0.1:3224/skyrslur/syni-ibud/skraning?rymi=demo-bedroom-1&atridi=windows",
+    "fullPage": false,
+    "viewport": {
+      "width": 320,
+      "height": 800
+    },
+    "scrollY": 1217,
+    "documentHeight": 3241,
+    "noHorizontalOverflow": true,
+    "firstItemY": 823,
+    "focus": {
+      "id": "",
+      "tag": "INPUT"
+    }
+  }
+]

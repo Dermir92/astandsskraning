@@ -79,6 +79,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
   const mounted = useRef(false);
   const itemId = editor?.query === query ? editor.itemId : destination.item?.id ?? null;
   const canonical = inspectionHref(report.id, destination.position, origin);
+  const freshVisit = !params.has("rymi") && !params.has("atridi") && !entry?.position && !destination.invalid && !origin;
   if (!fireCorrection && ready && destination.invalid && !notice) setNotice("Staðsetningin fannst ekki lengur. Tiltækt rými er opið.");
 
   useEffect(() => {
@@ -92,6 +93,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
     const signature = `${query}|${destination.position.roomId}|${destination.position.itemId}`;
     if (lastDestination.current === signature) return;
     const first = !mounted.current;
+    const fresh = first && freshVisit;
     mounted.current = true;
     if (first && reviewTrip?.inspection === `${window.location.pathname}${window.location.search}`) {
       directReview.current = reviewTrip.review;
@@ -109,7 +111,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
     if (first) initialInspectionResolved = true;
     // Next copies its internal fields itself; passing __NA would bypass URL-hook updates.
     if (`${window.location.pathname}${window.location.search}` !== canonical) window.history.replaceState(null, "", canonical);
-    if (local) return;
+    if (local || fresh) return;
     requestAnimationFrame(() => {
       if (`${window.location.pathname}${window.location.search}` !== canonical) return;
       const root = document.getElementById(navigationTargetId("inspection", destination.position!.roomId, destination.position!.itemId));
@@ -117,7 +119,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
       const target = inspectionFocus(root, missing?.key);
       reveal(target ?? null, !wasReload);
     });
-  }, [ready, query, canonical, destination, canRemember, report, fireCorrection, scope]);
+  }, [ready, query, canonical, destination, canRemember, report, fireCorrection, scope, freshVisit]);
 
   useEffect(() => {
     if (fireCorrection || !focusRequest || focusRequest.query !== query || focusedRequest.current === focusRequest.token) return;
