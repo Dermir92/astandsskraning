@@ -1,0 +1,151 @@
+[
+  {
+    "file": "fire-observations-capture.spec.ts",
+    "title": "mobile widths, keyboard, axe, enlarged text and representative review screenshots",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "#fire-smokeDetectors-row-failed-testedScopeDescription",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 690px by 4.3px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 4.4px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "fire-observations-capture.spec.ts",
+    "title": "representative empty, optional, retained and not-examined review states",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "details[data-fire-group=\"extinguishers\"] > summary",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 324px by 17.9px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18.8px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "inspection-evidence.spec.ts",
+    "title": "five-width visual, accessibility and 200 percent text verification",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": ".DCQMBa_more > summary",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 306px by 21.9px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 21.8px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "inspection-evidence.spec.ts",
+    "title": "five-width visual, accessibility and 200 percent text verification",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "#_r_1_-damage-type",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 442px by 8.1px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 8.2px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "inspection-evidence.spec.ts",
+    "title": "five-width visual, accessibility and 200 percent text verification",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": ".DCQMBa_gallery > .DCQMBa_thumbnails > li:nth-child(1) > .DCQMBa_remove[type=\"button\"]",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 136px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px.",
+        "exposedViolations": []
+      },
+      {
+        "selector": ".DCQMBa_gallery > .DCQMBa_thumbnails > li:nth-child(2) > .DCQMBa_remove[type=\"button\"]",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 136px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "inspection-evidence.spec.ts",
+    "title": "five-width visual, accessibility and 200 percent text verification",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "#_r_5_-title",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 456.1px by 18.7px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19.6px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "meter-readings-capture.spec.ts",
+    "title": "five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "#meter-electricity-applicability > .jytnSW_textButton[type=\"button\"]",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 88.3px by 6.6px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 6.6px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "meter-readings-capture.spec.ts",
+    "title": "five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "#meter-electricity-applicability > .jytnSW_textButton[type=\"button\"]",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 88.3px by 6.8px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 6.8px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "meter-readings-capture.spec.ts",
+    "title": "five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "details[data-meter-utility=\"electricity\"] > summary",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 1046px by 17.3px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18.2px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "ui2a-inspection.spec.ts",
+    "title": "320px reflow, long room name, keyboard focus and one-action section access remain usable",
+    "project": "desktop",
+    "samples": [
+      {
+        "selector": "#inspection-\\%5B\\%22demo-bedroom-1\\%22\\%2C\\%22doors\\%22\\%5D > .zjx1zW_row > .zjx1zW_rowActions > .zjx1zW_rowAnswer",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 113.7px by 14.7px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 14.6px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "ui2a-inspection.spec.ts",
+    "title": "320px reflow, long room name, keyboard focus and one-action section access remain usable",
+    "project": "mobile-360",
+    "samples": [
+      {
+        "selector": "#inspection-\\%5B\\%22demo-bedroom-1\\%22\\%2C\\%22doors\\%22\\%5D > .zjx1zW_row > .zjx1zW_rowActions > .zjx1zW_rowAnswer",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 113.7px by 14.7px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 14.6px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  },
+  {
+    "file": "ui2a-inspection.spec.ts",
+    "title": "320px reflow, long room name, keyboard focus and one-action section access remain usable",
+    "project": "mobile-390",
+    "samples": [
+      {
+        "selector": "#inspection-\\%5B\\%22demo-bedroom-1\\%22\\%2C\\%22doors\\%22\\%5D > .zjx1zW_row > .zjx1zW_rowActions > .zjx1zW_rowAnswer",
+        "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 113.7px by 14.7px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 14.6px instead of at least 24px.",
+        "exposedViolations": []
+      }
+    ]
+  }
+]

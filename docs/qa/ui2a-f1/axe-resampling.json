@@ -1,0 +1,130 @@
+{
+  "rawSummary": [
+    {
+      "phase": "before",
+      "cases": 36,
+      "violationNodes": [],
+      "incompleteRules": 46
+    },
+    {
+      "phase": "after",
+      "cases": 36,
+      "violationNodes": [
+        {
+          "rule": "target-size",
+          "target": [
+            ".zjx1zW_assessment > summary"
+          ]
+        },
+        {
+          "rule": "target-size",
+          "target": [
+            ".zjx1zW_assessment > summary"
+          ]
+        },
+        {
+          "rule": "target-size",
+          "target": [
+            ".zjx1zW_assessment > summary"
+          ]
+        },
+        {
+          "rule": "target-size",
+          "target": [
+            ".zjx1zW_assessment > summary"
+          ]
+        },
+        {
+          "rule": "target-size",
+          "target": [
+            ".zjx1zW_assessment > summary"
+          ]
+        },
+        {
+          "rule": "target-size",
+          "target": [
+            ".zjx1zW_assessment > summary"
+          ]
+        }
+      ],
+      "incompleteRules": 40
+    }
+  ],
+  "resampling": [
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "desktop",
+      "samples": [
+        {
+          "selector": ".zjx1zW_assessment > summary",
+          "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 262px by 3.3px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 4.4px instead of at least 24px.",
+          "exposedViolations": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "desktop",
+      "samples": [
+        {
+          "selector": ".zjx1zW_assessment > summary",
+          "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 262px by 3.3px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 4.4px instead of at least 24px.",
+          "exposedViolations": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "mobile-360",
+      "samples": [
+        {
+          "selector": ".zjx1zW_assessment > summary",
+          "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 302px by 3.7px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 4.8px instead of at least 24px.",
+          "exposedViolations": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "mobile-360",
+      "samples": [
+        {
+          "selector": ".zjx1zW_assessment > summary",
+          "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 302px by 3.7px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 4.8px instead of at least 24px.",
+          "exposedViolations": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "mobile-390",
+      "samples": [
+        {
+          "selector": ".zjx1zW_assessment > summary",
+          "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 332px by 3.9px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 5px instead of at least 24px.",
+          "exposedViolations": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "mobile-390",
+      "samples": [
+        {
+          "selector": ".zjx1zW_assessment > summary",
+          "original": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 332px by 3.9px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 5px instead of at least 24px.",
+          "exposedViolations": []
+        }
+      ]
+    }
+  ],
+  "helperUnchanged": true,
+  "rulesUnchanged": true,
+  "focusGeometryAssertedBeforeResampling": true
+}

@@ -1,0 +1,30 @@
+{
+  "fetchedAt": "2026-10-30T10:57:42.368Z",
+  "mainCommit": "96e5150c2cba36378928caf8219e5aebfbee6d79",
+  "mainTree": "b18a0c2d895913f3415953a08a1f1a02eff01055",
+  "pr21Head": "f2d85affca579ebc0791984ffdc73ab922695ea7",
+  "pr19Head": "88ac8e785c449aa3579b525f6a0b3b75ca7c627a",
+  "branch": "codex/ui2a-mobile-inspection",
+  "localHead": "f2d85affca579ebc0791984ffdc73ab922695ea7",
+  "pr21": {
+    "number": 21,
+    "url": "https://github.com/Dermir92/astandsskraning/pull/21",
+    "head": "f2d85affca579ebc0791984ffdc73ab922695ea7",
+    "base": "96e5150c2cba36378928caf8219e5aebfbee6d79",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "updated_at": "2026-10-29T19:11:10Z"
+  },
+  "pr19": {
+    "number": 19,
+    "url": "https://github.com/Dermir92/astandsskraning/pull/19",
+    "head": "88ac8e785c449aa3579b525f6a0b3b75ca7c627a",
+    "base": "08a9b39420a86e8c5a4b584bddb4f002df1a742a",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "updated_at": "2026-10-28T09:47:39Z"
+  },
+  "scope": "Read-only remote verification before any F1 commit/push. PR #19 has not been modified."
+}

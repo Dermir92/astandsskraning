@@ -250,7 +250,7 @@ test("rental flow keeps existing room navigation and temporary photo association
     buffer: Buffer.from(syntheticImage, "base64"),
   });
   await expect(page.locator('.photo-preview[aria-label="Myndir við atriði"] .photo-actions > span')).toContainText("1/8");
-  await page.locator('.stepper a[href$="/yfirferd"]').click();
+  await page.getByRole("navigation", { name: "Skref skráningar", exact: true }).getByRole("link", { name: "4 Yfirferð", exact: true }).click();
   await expect(page.locator(".review-summary")).toContainText("1myndaforskoðanir");
   const before = await savedDetails(page);
   await page.getByRole("link", { name: "Breyta: Leigusali", exact: true }).click();

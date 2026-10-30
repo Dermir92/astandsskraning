@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Report } from "@/lib/model";
 import { fireFieldId, resolveFireCorrection } from "@/lib/fire-navigation";
+import { scrollInspectionField } from "./inspection-focus";
 
 export function useFireCorrection(report: Report, ready: boolean) {
   const query = useSearchParams().toString();
@@ -28,7 +29,7 @@ export function useFireCorrection(report: Report, ready: boolean) {
           ?? element
         : element;
       target.focus({ preventScroll: true });
-      target.scrollIntoView({ block: "center", behavior: "instant" });
+      scrollInspectionField(element, target);
     });
     return () => cancelAnimationFrame(frame);
   }, [active, ready, query, focusId, group]);

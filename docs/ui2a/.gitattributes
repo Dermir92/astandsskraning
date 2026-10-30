@@ -1,0 +1,4 @@
+# Preserve the approved design artifact bytes and its recorded SHA-256 hashes.
+* -text
+# Exported runtime assets are frozen comparison data, not editable source.
+prototype/assets/* -diff

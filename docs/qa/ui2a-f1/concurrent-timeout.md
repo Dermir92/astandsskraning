@@ -1,0 +1,320 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: inspection-evidence.spec.ts >> five-width visual, accessibility and 200 percent text verification
+- Location: tests\inspection-evidence.spec.ts:387:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - link "Fara beint í efni" [ref=e3] [cursor=pointer]:
+      - /url: "#main"
+    - complementary "Leiðsögn" [ref=e4]:
+      - link "Ástandsskráning — forsíða" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Aðalvalmynd" [ref=e8]:
+        - link "Mínar skýrslur (1)" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e13]: Skýrslur
+        - link "Ný skýrsla" [ref=e14] [cursor=pointer]:
+          - /url: /skyrslur/ny
+          - generic [ref=e16]: Ný
+      - button "Um sýniham" [ref=e17] [cursor=pointer]:
+        - generic [ref=e21]: Hjálp
+    - generic [ref=e22]:
+      - banner [ref=e23]:
+        - link "Ástandsskráning" [ref=e24] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e25]: Sýnivinnusvæði
+        - generic [ref=e26]:
+          - status [ref=e27]: Vistað í þessum vafra
+          - button "Um sýniham" [ref=e30] [cursor=pointer]: Sýnihamur
+      - generic [ref=e31]:
+        - generic [ref=e32]: SÝNI
+        - paragraph [ref=e33]: Aðeins til prófunar. Drög vistast í þessum vafra. Notaðu eingöngu tilbúin gögn. Myndir fara ekki á þjón.
+      - main [ref=e34]:
+        - generic [ref=e35]:
+          - link "Mínar skýrslur" [ref=e36] [cursor=pointer]:
+            - /url: /
+          - navigation "Skref skráningar" [ref=e39]:
+            - list [ref=e40]:
+              - listitem [ref=e41]:
+                - link "Upplýsingar" [ref=e42] [cursor=pointer]:
+                  - /url: /skyrslur/checklist-report/upplysingar
+              - listitem [ref=e47]:
+                - link "Rými" [ref=e48] [cursor=pointer]:
+                  - /url: /skyrslur/checklist-report/rymi
+              - listitem [ref=e53]:
+                - link "Skráning" [ref=e54] [cursor=pointer]:
+                  - /url: /skyrslur/checklist-report/skraning
+              - listitem [ref=e59]:
+                - link "4 Yfirferð" [ref=e60] [cursor=pointer]:
+                  - /url: /skyrslur/checklist-report/yfirferd
+                  - generic [ref=e61]: "4"
+                  - generic [ref=e62]: Yfirferð
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: Prófunargata B
+            - heading "Yfirferð skráningar" [level=1] [ref=e66]
+            - paragraph [ref=e67]: Skoðaðu það sem hefur verið skráð og það sem vantar. Drögin eru áfram breytanleg.
+          - generic [ref=e68]:
+            - link "Forskoða skýrslu" [ref=e69] [cursor=pointer]:
+              - /url: /skyrslur/checklist-report/forskodun
+            - paragraph [ref=e73]: Aðeins lestur · núverandi drög
+          - region "Hefja tengda lokaskoðun" [ref=e74]:
+            - button "Hefja lokaskoðun" [ref=e75] [cursor=pointer]
+            - status
+          - generic [ref=e76]:
+            - generic [ref=e79]:
+              - heading "Nokkur atriði þarfnast yfirferðar" [level=2] [ref=e80]
+              - paragraph [ref=e81]: Þú getur haldið áfram með drög og bætt við upplýsingum þegar þær liggja fyrir.
+            - generic [ref=e82]: DRÖG
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - strong [ref=e85]: "3"
+              - generic [ref=e86]: rými
+            - generic [ref=e87]:
+              - strong [ref=e88]:
+                - text: "5"
+                - generic [ref=e89]: / 20
+              - generic [ref=e90]: atriði skráð
+            - generic [ref=e91]:
+              - strong [ref=e92]: "14"
+              - generic [ref=e93]: ástand vantar
+            - generic [ref=e94]:
+              - strong [ref=e95]: "1"
+              - generic [ref=e96]: frávik
+            - generic [ref=e97]:
+              - strong [ref=e98]: "8"
+              - generic [ref=e99]: myndaforskoðanir
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - generic [ref=e103]:
+                  - heading "Upplýsingar um íbúð" [level=2] [ref=e104]
+                  - link "Breyta" [ref=e105] [cursor=pointer]:
+                    - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=address
+                - generic [ref=e109]:
+                  - generic [ref=e110]:
+                    - term [ref=e111]: Heimilisfang
+                    - definition [ref=e112]:
+                      - text: Prófunargata B
+                      - generic [ref=e113]: 101 Reykjavík
+                  - generic [ref=e114]:
+                    - term [ref=e115]: Tegund skráningar
+                    - definition [ref=e116]: Upphafsskráning
+                  - generic [ref=e117]:
+                    - term [ref=e118]: Íbúð / hæð
+                    - definition [ref=e119]: Ekki tilgreint
+                - region [ref=e120]:
+                  - generic [ref=e121]:
+                    - heading "Aðrar upplýsingar" [level=3] [ref=e122]
+                    - link "Breyta afhendingu og húsgögnum" [ref=e123] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=deliveryDate
+                      - text: Breyta
+                  - paragraph [ref=e127]: Valfrjálsar samhengisupplýsingar; ekki krafa um útfyllingu.
+                  - generic [ref=e128]:
+                    - generic [ref=e129]:
+                      - term [ref=e130]: Afhending
+                      - definition [ref=e131]: 2026-10-16
+                    - generic [ref=e132]:
+                      - term [ref=e133]: Húsgögn
+                      - definition [ref=e134]: Fylgja ekki
+              - region [ref=e135]:
+                - generic [ref=e136]:
+                  - heading "Skoðun og umfang" [level=2] [ref=e137]
+                  - link "Breyta skoðun og umfangi" [ref=e138] [cursor=pointer]:
+                    - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=inspectionContext
+                - generic [ref=e142]:
+                  - generic [ref=e143]:
+                    - term [ref=e144]: Tengsl við íbúðarleigu
+                    - definition [ref=e145]: Óskráð
+                  - generic [ref=e146]:
+                    - term [ref=e147]: Dagsetning skoðunar
+                    - definition [ref=e148]: Óskráð
+                  - generic [ref=e149]:
+                    - term [ref=e150]: Skráningaraðili
+                    - definition [ref=e151]:
+                      - text: Óskráð
+                      - generic [ref=e152]: Leigjandi
+                  - generic [ref=e153]:
+                    - term [ref=e154]: Umfang skoðunar
+                    - definition [ref=e155]: Óskráð
+                  - generic [ref=e156]:
+                    - term [ref=e157]: Takmarkanir skoðunar
+                    - definition [ref=e158]: Takmarkanir óskráðar
+                - paragraph [ref=e159]: Nafn og hlutverk eru sjálfskráð; auðkenni er ekki staðfest.
+              - region [ref=e160]:
+                - generic [ref=e161]:
+                  - heading "Brunavarnir" [level=2] [ref=e162]
+                  - link "Breyta brunavörnum" [ref=e163] [cursor=pointer]:
+                    - /url: /skyrslur/checklist-report/skraning?hluti=brunavarnir&flokkur=reykskynjarar&reitur=examination&fra=yfirferd
+                - paragraph [ref=e164]: Valfrjáls skráning í þessu samhengi. Skráðar athuganir og takmarkanir eru varðveittar.
+                - paragraph [ref=e165]: Engar athuganir skráðar
+                - paragraph [ref=e166]: Skráning athugana staðfestir ekki að eignin uppfylli brunavarnakröfur eða að fagleg brunaúttekt hafi farið fram.
+              - region [ref=e167]:
+                - generic [ref=e168]:
+                  - heading "Mælastöður" [level=2] [ref=e169]
+                  - link "Breyta mælaskráningu" [ref=e170] [cursor=pointer]:
+                    - /url: /skyrslur/checklist-report/skraning?maelar=rafmagn&maelaReitur=applicability&fra=yfirferd
+                - paragraph [ref=e171]: Mælastöður hafa ekki verið skráðar í þessum drögum.
+                - paragraph [ref=e172]: Má fylla út síðar. Drögin skrá aðeins þær upplýsingar sem þú hefur fært inn.
+              - region [ref=e173]:
+                - generic [ref=e174]:
+                  - heading "Rými og niðurstöður" [level=2] [ref=e175]
+                  - link "Breyta rýmum" [ref=e176] [cursor=pointer]:
+                    - /url: /skyrslur/checklist-report/rymi
+                - generic [ref=e179]:
+                  - generic [ref=e180]:
+                    - generic [ref=e181]:
+                      - heading "Forstofa" [level=3] [ref=e182]
+                      - paragraph [ref=e183]: 5 af 7 atriðum skráð · 3 þarfnast athygli
+                    - 'link "Breyta skráningu: Forstofa" [ref=e184] [cursor=pointer]':
+                      - /url: /skyrslur/checklist-report/skraning?rymi=checklist-entry&fra=yfirferd&yfirferdRymi=checklist-entry
+                      - text: Breyta
+                  - progressbar "Framvinda í Forstofa" [ref=e188]
+                  - paragraph [ref=e190]: Sérstök hitaskráning er ekki í gátlista þessa rýmis.
+                  - list [ref=e191]:
+                    - listitem [ref=e192]:
+                      - generic [ref=e193]:
+                        - link [ref=e194] [cursor=pointer]:
+                          - /url: /skyrslur/checklist-report/skraning?rymi=checklist-entry&atridi=floor&fra=yfirferd&yfirferdRymi=checklist-entry&yfirferdAtridi=floor
+                          - strong [ref=e195]: Gólfefni
+                        - generic [ref=e196]: Í lagi
+                      - generic [ref=e197]:
+                        - strong [ref=e198]: Athugasemd við atriði
+                        - paragraph [ref=e199]: Fyrirliggjandi athugasemd
+                    - listitem [ref=e200]:
+                      - generic [ref=e201]:
+                        - link [ref=e202] [cursor=pointer]:
+                          - /url: /skyrslur/checklist-report/skraning?rymi=checklist-entry&atridi=walls&fra=yfirferd&yfirferdRymi=checklist-entry&yfirferdAtridi=walls
+                          - strong [ref=e203]: Veggir
+                        - generic [ref=e204]: Í lagi
+                      - group [ref=e205]:
+                        - generic "Varðveitt frávikslýsing" [ref=e206] [cursor=pointer]
+                      - 'group "Myndir: Forstofa · Veggir" [ref=e207]':
+                        - paragraph [ref=e208]: 8 myndir · Aðeins tímabundin forskoðun
+                        - list [ref=e209]:
+                          - listitem [ref=e210]:
+                            - 'button "Forskoða Forstofa · Veggir, mynd 1 af 8: synthetic-1.png" [active] [ref=e211] [cursor=pointer]':
+                              - 'img "Staðbundin forskoðun: synthetic-1.png" [ref=e212]'
+                              - generic [ref=e213]: 1. synthetic-1.png
+                          - listitem [ref=e214]:
+                            - 'button "Forskoða Forstofa · Veggir, mynd 2 af 8: synthetic-2.png" [ref=e215] [cursor=pointer]':
+                              - 'img "Staðbundin forskoðun: synthetic-2.png" [ref=e216]'
+                              - generic [ref=e217]: 2. synthetic-2.png
+                        - group [ref=e218]:
+                          - generic "Sjá allar myndir (8)" [ref=e219] [cursor=pointer]
+                    - listitem [ref=e220]:
+                      - generic [ref=e221]:
+                        - link [ref=e222] [cursor=pointer]:
+                          - /url: /skyrslur/checklist-report/skraning?rymi=checklist-entry&atridi=windows&fra=yfirferd&yfirferdRymi=checklist-entry&yfirferdAtridi=windows
+                          - strong [ref=e223]: Gluggar
+                        - generic [ref=e224]: Ekki skoðað
+                      - paragraph [ref=e225]: "Virkni: Ekki prófað"
+                      - paragraph [ref=e226]: "Þrif: Ekki skoðað"
+                    - listitem [ref=e227]:
+                      - generic [ref=e228]:
+                        - link [ref=e229] [cursor=pointer]:
+                          - /url: /skyrslur/checklist-report/skraning?rymi=checklist-entry&atridi=lights&fra=yfirferd&yfirferdRymi=checklist-entry&yfirferdAtridi=lights
+                          - strong [ref=e230]: Ljós og rofar
+                        - generic [ref=e231]: Í lagi
+                      - paragraph [ref=e232]: "Virkni: Virkar ekki"
+                      - paragraph [ref=e233]: Óvirkur búnaður · Við dyr
+                      - paragraph [ref=e234]: Tilbúinn rofi virkar ekki
+                      - generic [ref=e235]: Mynd af fráviki vantar
+                  - group [ref=e239]:
+                    - generic "Skoðunaratriði (7) · 2 ófullskráð" [ref=e240] [cursor=pointer]
+                  - paragraph [ref=e241]: Yfirlitsmynd rýmis vantar
+                - generic [ref=e245]:
+                  - generic [ref=e246]:
+                    - generic [ref=e247]:
+                      - heading "Stofa" [level=3] [ref=e248]
+                      - paragraph [ref=e249]: 0 af 6 atriðum skráð · 6 þarfnast athygli
+                    - 'link "Breyta skráningu: Stofa" [ref=e250] [cursor=pointer]':
+                      - /url: /skyrslur/checklist-report/skraning?rymi=checklist-living&fra=yfirferd&yfirferdRymi=checklist-living
+                      - text: Breyta
+                  - progressbar "Framvinda í Stofa" [ref=e254]
+                  - paragraph [ref=e255]: Sérstök hitaskráning er ekki í gátlista þessa rýmis.
+                  - group [ref=e256]:
+                    - generic "Skoðunaratriði (6) · 6 ófullskráð" [ref=e257] [cursor=pointer]
+                  - paragraph [ref=e258]: Yfirlitsmynd rýmis vantar
+                - generic [ref=e262]:
+                  - generic [ref=e263]:
+                    - generic [ref=e264]:
+                      - heading "Svefnherbergi" [level=3] [ref=e265]
+                      - paragraph [ref=e266]: 0 af 7 atriðum skráð · 7 þarfnast athygli
+                    - 'link "Breyta skráningu: Svefnherbergi" [ref=e267] [cursor=pointer]':
+                      - /url: /skyrslur/checklist-report/skraning?rymi=checklist-bedroom&fra=yfirferd&yfirferdRymi=checklist-bedroom
+                      - text: Breyta
+                  - progressbar "Framvinda í Svefnherbergi" [ref=e271]
+                  - paragraph [ref=e272]: Sérstök hitaskráning er ekki í gátlista þessa rýmis.
+                  - group [ref=e273]:
+                    - generic "Skoðunaratriði (7) · 7 ófullskráð" [ref=e274] [cursor=pointer]
+                  - paragraph [ref=e275]: Yfirlitsmynd rýmis vantar
+            - complementary [ref=e279]:
+              - heading "Til að yfirfara" [level=2] [ref=e280]
+              - generic [ref=e281]:
+                - heading "Grunnupplýsingar vantar" [level=3] [ref=e282]
+                - list [ref=e283]:
+                  - listitem [ref=e284]:
+                    - link "Tengsl við íbúðarleigu" [ref=e285] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=inspectionContext
+                  - listitem [ref=e286]:
+                    - link "Dagsetning skoðunar" [ref=e287] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=inspectionDate
+                  - listitem [ref=e288]:
+                    - link "Nafn skráningaraðila" [ref=e289] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=recorderName
+                  - listitem [ref=e290]:
+                    - link "Umfang skoðunar" [ref=e291] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/upplysingar?fra=yfirferd&reitur=scopeDescription
+              - generic [ref=e292]:
+                - heading "16 atriði þarfnast athygli" [level=3] [ref=e293]
+                - paragraph [ref=e294]: Ófullgerð svör, óskoðuð atriði eða búnaður sem hefur ekki verið prófaður.
+                - list [ref=e295]:
+                  - listitem [ref=e296]:
+                    - link [ref=e297] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/skraning?rymi=checklist-entry&fra=yfirferd&yfirferdRymi=checklist-entry
+                      - text: Forstofa
+                      - generic [ref=e298]: "3"
+                  - listitem [ref=e301]:
+                    - link [ref=e302] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/skraning?rymi=checklist-living&fra=yfirferd&yfirferdRymi=checklist-living
+                      - text: Stofa
+                      - generic [ref=e303]: "6"
+                  - listitem [ref=e306]:
+                    - link [ref=e307] [cursor=pointer]:
+                      - /url: /skyrslur/checklist-report/skraning?rymi=checklist-bedroom&fra=yfirferd&yfirferdRymi=checklist-bedroom
+                      - text: Svefnherbergi
+                      - generic [ref=e308]: "7"
+              - generic [ref=e311]:
+                - heading "Myndir vantar" [level=3] [ref=e312]
+                - paragraph [ref=e313]: 3 rými án yfirlitsmyndar · 1 frávik án myndar.
+                - paragraph [ref=e314]: Myndir eru aðeins forskoðaðar í þessari setu og hverfa við endurhleðslu.
+              - generic [ref=e315]:
+                - heading "Drög í sýniham" [level=3] [ref=e316]
+                - paragraph [ref=e317]: Enginn óafturkræfur frágangur eða boð eru virk. Þú getur áfram breytt skráningunni.
+          - generic [ref=e318]:
+            - link "Aftur í skráningu" [ref=e319] [cursor=pointer]:
+              - /url: /skyrslur/checklist-report/skraning
+            - link "Fara í mínar skýrslur" [ref=e322] [cursor=pointer]:
+              - /url: /
+          - status [ref=e326]: Vistað í þessum vafra
+      - contentinfo [ref=e329]:
+        - generic [ref=e330]: Ástandsskráning · Framendafrumgerð
+        - generic [ref=e331]: Tilbúin gögn · Enginn frágangur eða boð
+  - alert [ref=e332]: Yfirferð skráningar · Ástandsskráning
+```

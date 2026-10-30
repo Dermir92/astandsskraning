@@ -1,0 +1,649 @@
+{
+  "baseline": "f2d85affca579ebc0791984ffdc73ab922695ea7",
+  "scope": "F1 changes only, relative to the reviewed head. Stage new delivery files and rerun to complete this list.",
+  "hashBasis": "Working-tree bytes. Git may normalize text line endings. Inventory excludes its own hash/length.",
+  "files": [
+    {
+      "file": "docs/qa/ui2a-f1/REVIEW.md",
+      "change": "added",
+      "bytes": 13419,
+      "sha256": "3ec97fbc4be4f095bb42d7f813da10afadc46816a343b904b67c4b3e4ab622ef"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/after-results.json.gz",
+      "change": "added",
+      "bytes": 7911,
+      "sha256": "91ab8d378ba75d69be0ef5ff328630f87bb80343d0fb478aceb057899d8a2f13"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/axe-raw.json.gz",
+      "change": "added",
+      "bytes": 2097101,
+      "sha256": "d045c72ee67d376829616155840a13f4d864460976572dae97c519867c4b6650"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/axe-resampling.json",
+      "change": "added",
+      "bytes": 4783,
+      "sha256": "416959cfbf92ad722d7ae2b33d63acf8ee5b20aeeeed54440aed6c8bc42f2961"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/before-results.json.gz",
+      "change": "added",
+      "bytes": 10764,
+      "sha256": "1937a576395f2eadc849a97c3d4ecf29cea421fcf9945d6bc3be24597d3d368b"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/build.txt",
+      "change": "added",
+      "bytes": 1062,
+      "sha256": "75f757746bca63b1979fd76fe9269a332cdbcd27de367edbeeadb385783be8c1"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/collect.mjs",
+      "change": "added",
+      "bytes": 14557,
+      "sha256": "bb63b1a0e774b632eed92430fecebb1cb8798e6c586da101949ce88896a0a0a8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/comparison-320-200.jpg",
+      "change": "added",
+      "bytes": 76424,
+      "sha256": "83fc3b04eaf8fe39d3139b424f9d3f40e72f839ae754ded52b8ea702ae922ba6"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/comparison-320.jpg",
+      "change": "added",
+      "bytes": 76235,
+      "sha256": "33f015ad2c6af1af4b687a436e6b044d30242e5873d1d4d78bf9776a64e7ca35"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/concurrent-attempt.txt",
+      "change": "added",
+      "bytes": 86541,
+      "sha256": "cad9aab9ad1fd25b7c7bc08a7f87ba685216c9abf07826d64139fb0c6c40b16c"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/concurrent-timeout.md",
+      "change": "added",
+      "bytes": 18666,
+      "sha256": "eb84dd8554a2407c3053de78ecea5619b97ca448c40204a606627c1da91d7ed8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/evidence-isolated-results.json.gz",
+      "change": "added",
+      "bytes": 2652,
+      "sha256": "77d457417d5e59a5310e89d01ace227492dc3fb30efff59bd022870a3b5aff56"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/evidence-isolated.txt",
+      "change": "added",
+      "bytes": 354,
+      "sha256": "ab4be9400669b6821eb8e6e7576394a7e2db3d4192922ce5197a90d17eff861e"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/evidence.json",
+      "change": "added",
+      "bytes": 21895,
+      "sha256": "3efbf6f3cd36964b8f9fb6d8312b166d9dbb0d7a38c14e707b10eb7d20c663d4"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/fail-before.txt",
+      "change": "added",
+      "bytes": 116445,
+      "sha256": "4ac6f50ca9da09e0c846b7785b09c93781b77a8e39209fb55f1aed785097a822"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/fast-attempt.txt",
+      "change": "added",
+      "bytes": 57288,
+      "sha256": "ca38e2b9cebcd2c878ac628259246790b1463327723f79b8462c096483d53ae3"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/file-inventory.json",
+      "change": "added",
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "file": "docs/qa/ui2a-f1/full-results.json.gz",
+      "change": "added",
+      "bytes": 76709,
+      "sha256": "1e2f526623d5d707c969e5e2758f55adc25ffbe1494353db272e97cd72547f5a"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/full-suite.txt",
+      "change": "added",
+      "bytes": 182466,
+      "sha256": "0258ee3977121fe376115c4474ea39e8689720ddc280a637a64853270217d85c"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/index.html",
+      "change": "added",
+      "bytes": 3888,
+      "sha256": "3046b1fcb0f725dd2ccd5dcd6dc2fd9af7b5fe15fa1c64c218956bfea1b67533"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/lint.txt",
+      "change": "added",
+      "bytes": 41,
+      "sha256": "59e6e984494d297ed724dd943382bc84aa969f680cf148f1e20ac57541166297"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/measurements.json",
+      "change": "added",
+      "bytes": 73101,
+      "sha256": "1bc9850f79cb2bb2ae784a7535464c61c0e912c895cba715e54ab8c2ff38eeca"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/mobile-race-repeat-results.json.gz",
+      "change": "added",
+      "bytes": 2087,
+      "sha256": "77cf19320a5affbf0f37050387857c20af5f05476be53df98579c3364e8f452c"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/pass-after.txt",
+      "change": "added",
+      "bytes": 5280,
+      "sha256": "7daa06f1772c8e2a0e7984b6a4d82522d0490bd6acbb2bd0c61147f1d9b0f7e3"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/report-list-race.md",
+      "change": "added",
+      "bytes": 15028,
+      "sha256": "32fc4180c0552bf3e5654b37cba762a870165fbe8ff92341946a2c3c91b78dce"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/report-list-race.png",
+      "change": "added",
+      "bytes": 72151,
+      "sha256": "d3867985022fa88f5718d2688c0f66b36f36bc722200e27945c0d2e4c7dd9c9b"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/report-list-repeat.txt",
+      "change": "added",
+      "bytes": 4474,
+      "sha256": "a65d4b57d55aea8eaf0773b0d49e35cae82bbc95407afa3a83490d8c574d2084"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/repository-state.json",
+      "change": "added",
+      "bytes": 1114,
+      "sha256": "ada5e1548c60851952fb5f240bfb5d54b9c4e4608deb0e2c74633b6a8a5c2b86"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/results.json",
+      "change": "added",
+      "bytes": 95306,
+      "sha256": "f583c0d81dcef51d1c3d3241f28aea9f0371fc61c277414b600dcf0addd540b7"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-radio-300-fire.png",
+      "change": "added",
+      "bytes": 14219,
+      "sha256": "fce6cf31e305e64bcf8dfb68d2e644fd14d3c4e2117de7df022a5a3e5f728a34"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-radio-300-meters.png",
+      "change": "added",
+      "bytes": 14219,
+      "sha256": "fce6cf31e305e64bcf8dfb68d2e644fd14d3c4e2117de7df022a5a3e5f728a34"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-radio-400-fire.png",
+      "change": "added",
+      "bytes": 17353,
+      "sha256": "87b38a48988c4c0b9a327876c48f90991bb36f7308063b07fe0d480b7b6ecda7"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-radio-400-meters.png",
+      "change": "added",
+      "bytes": 17353,
+      "sha256": "87b38a48988c4c0b9a327876c48f90991bb36f7308063b07fe0d480b7b6ecda7"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-radio-fire.png",
+      "change": "added",
+      "bytes": 40179,
+      "sha256": "f81f720aa9269b62e0a27d63d8c833de3d9fce599803cfaa8d8a9a87157d7747"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-radio-meters.png",
+      "change": "added",
+      "bytes": 40179,
+      "sha256": "f81f720aa9269b62e0a27d63d8c833de3d9fce599803cfaa8d8a9a87157d7747"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-textarea-fire.png",
+      "change": "added",
+      "bytes": 48850,
+      "sha256": "51650b03d52c11e67ec85470bc05633cd0fd17482d943b0f34aab4cc94a8b64a"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-200-textarea-meters.png",
+      "change": "added",
+      "bytes": 48850,
+      "sha256": "51650b03d52c11e67ec85470bc05633cd0fd17482d943b0f34aab4cc94a8b64a"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-normal-radio-fire.png",
+      "change": "added",
+      "bytes": 51308,
+      "sha256": "54d27e57301b2ef6673bfd608e3ff3e40f20a06e27cc05e637f3ab0cd486104b"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-normal-radio-meters.png",
+      "change": "added",
+      "bytes": 51308,
+      "sha256": "54d27e57301b2ef6673bfd608e3ff3e40f20a06e27cc05e637f3ab0cd486104b"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-normal-textarea-fire.png",
+      "change": "added",
+      "bytes": 44705,
+      "sha256": "4def784b2031cac5be32c93835a9accf25525338f4567061058d5c9f3dfd54f0"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/320-normal-textarea-meters.png",
+      "change": "added",
+      "bytes": 44705,
+      "sha256": "ddf0e44a3dd92e9bcf0686be1fd426949981a876528595ad9ce2ca27863b241d"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-radio-300-fire.png",
+      "change": "added",
+      "bytes": 20401,
+      "sha256": "b6b7817975c9ce8faa5d265feadf750eba7ca12438c2409ada1d1ac61312dc93"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-radio-300-meters.png",
+      "change": "added",
+      "bytes": 20401,
+      "sha256": "b6b7817975c9ce8faa5d265feadf750eba7ca12438c2409ada1d1ac61312dc93"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-radio-400-fire.png",
+      "change": "added",
+      "bytes": 20884,
+      "sha256": "4c5fd0d26e3dce5fbba258094f1fb7a5c913f7fd78b99b20083131671fa948ab"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-radio-400-meters.png",
+      "change": "added",
+      "bytes": 20884,
+      "sha256": "4c5fd0d26e3dce5fbba258094f1fb7a5c913f7fd78b99b20083131671fa948ab"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-radio-fire.png",
+      "change": "added",
+      "bytes": 52596,
+      "sha256": "a570a1f66f528cf14dd8a32f60dda1ab641b3a431b79f92215b56121f882ac89"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-radio-meters.png",
+      "change": "added",
+      "bytes": 52596,
+      "sha256": "a570a1f66f528cf14dd8a32f60dda1ab641b3a431b79f92215b56121f882ac89"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-textarea-fire.png",
+      "change": "added",
+      "bytes": 53082,
+      "sha256": "68af613d8584d18a2c75031f8fea621f83675a89aef50ca3b086610554212fd4"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-200-textarea-meters.png",
+      "change": "added",
+      "bytes": 53082,
+      "sha256": "68af613d8584d18a2c75031f8fea621f83675a89aef50ca3b086610554212fd4"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-normal-radio-fire.png",
+      "change": "added",
+      "bytes": 52143,
+      "sha256": "c7fa33225d467f4dedbae2b12dcfc7d0fef0aead002f7ac0eeea431819ea9eb8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-normal-radio-meters.png",
+      "change": "added",
+      "bytes": 52143,
+      "sha256": "c7fa33225d467f4dedbae2b12dcfc7d0fef0aead002f7ac0eeea431819ea9eb8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-normal-textarea-fire.png",
+      "change": "added",
+      "bytes": 45083,
+      "sha256": "37daf8dda3a911e02ab9db942d2f4bcd648c3255551410475f23ed002e70b1f4"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/360-normal-textarea-meters.png",
+      "change": "added",
+      "bytes": 45083,
+      "sha256": "37daf8dda3a911e02ab9db942d2f4bcd648c3255551410475f23ed002e70b1f4"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-radio-300-fire.png",
+      "change": "added",
+      "bytes": 21801,
+      "sha256": "742c5253025991a60373ab1281441445322929036336a4e9f4463c7de49cd3f9"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-radio-300-meters.png",
+      "change": "added",
+      "bytes": 21801,
+      "sha256": "742c5253025991a60373ab1281441445322929036336a4e9f4463c7de49cd3f9"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-radio-400-fire.png",
+      "change": "added",
+      "bytes": 21963,
+      "sha256": "8659041bc0f80bd43f57efe0449ee63f4ca9085ee885f50e88e8fcfb3b0dd5e1"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-radio-400-meters.png",
+      "change": "added",
+      "bytes": 21963,
+      "sha256": "8659041bc0f80bd43f57efe0449ee63f4ca9085ee885f50e88e8fcfb3b0dd5e1"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-radio-fire.png",
+      "change": "added",
+      "bytes": 55247,
+      "sha256": "db649a20dd9759063e3b7b9e7e5d5509bfdf0612995997c2d0fadeadffa4f47d"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-radio-meters.png",
+      "change": "added",
+      "bytes": 55247,
+      "sha256": "db649a20dd9759063e3b7b9e7e5d5509bfdf0612995997c2d0fadeadffa4f47d"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-textarea-fire.png",
+      "change": "added",
+      "bytes": 55955,
+      "sha256": "b77b0e85eedb9987f4fbf97303385851d4f0570759b5bbcf8db752cf14b56571"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-200-textarea-meters.png",
+      "change": "added",
+      "bytes": 55955,
+      "sha256": "b77b0e85eedb9987f4fbf97303385851d4f0570759b5bbcf8db752cf14b56571"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-normal-radio-fire.png",
+      "change": "added",
+      "bytes": 52550,
+      "sha256": "a889c9be8c71a0698c09201e1e3b35c516b9aacc742e427609db191d5775f476"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-normal-radio-meters.png",
+      "change": "added",
+      "bytes": 52550,
+      "sha256": "a889c9be8c71a0698c09201e1e3b35c516b9aacc742e427609db191d5775f476"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-normal-textarea-fire.png",
+      "change": "added",
+      "bytes": 45553,
+      "sha256": "ea5e551f0a2ba9822b92a129b56e53419a0f8001bab3b37a3407d3fd39e71f62"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/after/390-normal-textarea-meters.png",
+      "change": "added",
+      "bytes": 45554,
+      "sha256": "04a4d8e35de285842ab52a5c7366aedada95fe08f6d884f5445b0ba61e0f1f90"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-radio-300-fire.png",
+      "change": "added",
+      "bytes": 14245,
+      "sha256": "c223f0b00e266c57f79bb7a68a354c292289f8ff64c8de19793c3e54da825995"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-radio-300-meters.png",
+      "change": "added",
+      "bytes": 14245,
+      "sha256": "c223f0b00e266c57f79bb7a68a354c292289f8ff64c8de19793c3e54da825995"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-radio-400-fire.png",
+      "change": "added",
+      "bytes": 24020,
+      "sha256": "27537a253fe4fed26ef5d3b3d16bc0199ce9ef6bf6c9691e979713b4368245d8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-radio-400-meters.png",
+      "change": "added",
+      "bytes": 24020,
+      "sha256": "27537a253fe4fed26ef5d3b3d16bc0199ce9ef6bf6c9691e979713b4368245d8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-radio-fire.png",
+      "change": "added",
+      "bytes": 45715,
+      "sha256": "e489a4d513df11636de1b2008eb69330c5b6539693fe10699c17783c8812d10d"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-radio-meters.png",
+      "change": "added",
+      "bytes": 45715,
+      "sha256": "e489a4d513df11636de1b2008eb69330c5b6539693fe10699c17783c8812d10d"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-textarea-fire.png",
+      "change": "added",
+      "bytes": 50590,
+      "sha256": "33db5c85016dbde7b5efe8e14bec5fb57da50075bbba1480b9ddcebe4f4ef621"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-200-textarea-meters.png",
+      "change": "added",
+      "bytes": 50590,
+      "sha256": "33db5c85016dbde7b5efe8e14bec5fb57da50075bbba1480b9ddcebe4f4ef621"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-normal-radio-fire.png",
+      "change": "added",
+      "bytes": 58452,
+      "sha256": "e020e175172f804075e83e30b327c29926830155cd677af231edcd298fd0b669"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-normal-radio-meters.png",
+      "change": "added",
+      "bytes": 58452,
+      "sha256": "e020e175172f804075e83e30b327c29926830155cd677af231edcd298fd0b669"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-normal-textarea-fire.png",
+      "change": "added",
+      "bytes": 44505,
+      "sha256": "9c8d1f1da1bd4fe04132a26e821e64e003b99c23d670c5dc2325ed9f0f37ce73"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/320-normal-textarea-meters.png",
+      "change": "added",
+      "bytes": 44505,
+      "sha256": "37a6f8805a79a4f618d3c7d5b381469bb1587612990cf8904e73f44a07100705"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-radio-300-fire.png",
+      "change": "added",
+      "bytes": 20474,
+      "sha256": "fb3e1233941f012993a7b4154b383649cfbfc0333782807ce7744ef3c96011c7"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-radio-300-meters.png",
+      "change": "added",
+      "bytes": 20474,
+      "sha256": "fb3e1233941f012993a7b4154b383649cfbfc0333782807ce7744ef3c96011c7"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-radio-400-fire.png",
+      "change": "added",
+      "bytes": 24689,
+      "sha256": "8883428f69987bdb7293635f81a69a2d05dbe7a50f435d04f49d34e2ddcaa952"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-radio-400-meters.png",
+      "change": "added",
+      "bytes": 24689,
+      "sha256": "8883428f69987bdb7293635f81a69a2d05dbe7a50f435d04f49d34e2ddcaa952"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-radio-fire.png",
+      "change": "added",
+      "bytes": 54106,
+      "sha256": "7e86c6351609eae4c927c5e7913a01958a36c790da6021031ec3a69cd35a50cb"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-radio-meters.png",
+      "change": "added",
+      "bytes": 54106,
+      "sha256": "7e86c6351609eae4c927c5e7913a01958a36c790da6021031ec3a69cd35a50cb"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-textarea-fire.png",
+      "change": "added",
+      "bytes": 52019,
+      "sha256": "033776727b68b85f15edfb171041c221922eed0c2af26dc5f9b298faae3a6e07"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-200-textarea-meters.png",
+      "change": "added",
+      "bytes": 52019,
+      "sha256": "033776727b68b85f15edfb171041c221922eed0c2af26dc5f9b298faae3a6e07"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-normal-radio-fire.png",
+      "change": "added",
+      "bytes": 53955,
+      "sha256": "1aff66d258542a7b3db69fc12b6baf1b9ebc2bc0d730e2f086465d091dee5fdb"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-normal-radio-meters.png",
+      "change": "added",
+      "bytes": 53955,
+      "sha256": "1aff66d258542a7b3db69fc12b6baf1b9ebc2bc0d730e2f086465d091dee5fdb"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-normal-textarea-fire.png",
+      "change": "added",
+      "bytes": 47326,
+      "sha256": "d55dcd3b7317c6f35643f659a9106d76895e50beecbdc7a6a93e4fa745907571"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/360-normal-textarea-meters.png",
+      "change": "added",
+      "bytes": 47326,
+      "sha256": "d55dcd3b7317c6f35643f659a9106d76895e50beecbdc7a6a93e4fa745907571"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-radio-300-fire.png",
+      "change": "added",
+      "bytes": 21882,
+      "sha256": "11c00f07a599cdbfea01e92efe9855b97c5e5ad71bf35ba235db8cc854f03520"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-radio-300-meters.png",
+      "change": "added",
+      "bytes": 21882,
+      "sha256": "11c00f07a599cdbfea01e92efe9855b97c5e5ad71bf35ba235db8cc854f03520"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-radio-400-fire.png",
+      "change": "added",
+      "bytes": 25457,
+      "sha256": "df5e1c709cc776ed40b3ea748f21d80a005d71da28d2caf72854893da3bde623"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-radio-400-meters.png",
+      "change": "added",
+      "bytes": 25457,
+      "sha256": "df5e1c709cc776ed40b3ea748f21d80a005d71da28d2caf72854893da3bde623"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-radio-fire.png",
+      "change": "added",
+      "bytes": 55107,
+      "sha256": "7106373d3338ea34e756f56cd93e2250b19fd1bd34a5661cdfa854e637a7f20c"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-radio-meters.png",
+      "change": "added",
+      "bytes": 55107,
+      "sha256": "7106373d3338ea34e756f56cd93e2250b19fd1bd34a5661cdfa854e637a7f20c"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-textarea-fire.png",
+      "change": "added",
+      "bytes": 52303,
+      "sha256": "452fb1652236883f82ee4c116c97683c772735ae65ed0cbcb5bb65a612cf086e"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-200-textarea-meters.png",
+      "change": "added",
+      "bytes": 52303,
+      "sha256": "452fb1652236883f82ee4c116c97683c772735ae65ed0cbcb5bb65a612cf086e"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-normal-radio-fire.png",
+      "change": "added",
+      "bytes": 54369,
+      "sha256": "480ce8833bd52667c86ecbe7a3f59be8dda32aee0c50b3f6338272002f080124"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-normal-radio-meters.png",
+      "change": "added",
+      "bytes": 54369,
+      "sha256": "480ce8833bd52667c86ecbe7a3f59be8dda32aee0c50b3f6338272002f080124"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-normal-textarea-fire.png",
+      "change": "added",
+      "bytes": 47558,
+      "sha256": "f2ce2a86c7d3eef5e06633a621679ade56f274b62bfd7e3fb3226ae0b2c9e642"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/screenshots/before/390-normal-textarea-meters.png",
+      "change": "added",
+      "bytes": 47558,
+      "sha256": "88fa21d645af473b730cc3c4cd3b32376a84800b14c42810fd63eb7df648ab32"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/serial-attempt.txt",
+      "change": "added",
+      "bytes": 46047,
+      "sha256": "0cf6864326e43f1702062ca337f733b99bfd151212cdd97640ab809ee74ab61c"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/serial-timeout.md",
+      "change": "added",
+      "bytes": 18666,
+      "sha256": "eb84dd8554a2407c3053de78ecea5619b97ca448c40204a606627c1da91d7ed8"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/serve.mjs",
+      "change": "added",
+      "bytes": 1266,
+      "sha256": "166f565ee41d15e981996b9d94e3b59995a69bd49ccec33e3f5494fd2f208ef4"
+    },
+    {
+      "file": "docs/qa/ui2a-f1/typecheck.txt",
+      "change": "added",
+      "bytes": 50,
+      "sha256": "7c1f8cbc2b60103901cfff3cd9e10be7dfc59fc8fb9b4526e02f05c49d004eb4"
+    },
+    {
+      "file": "src/components/use-inspection-sections.ts",
+      "change": "modified",
+      "bytes": 5956,
+      "sha256": "efe68110c6f855e7fad9ad39d90a6513fd06ffe422ba4691a0efe50ca1c5db64"
+    },
+    {
+      "file": "tests/ui2a-context-visibility.spec.ts",
+      "change": "added",
+      "bytes": 9249,
+      "sha256": "11f47a96067531416a0fb87ab10162de8c02ed6c45132a501c1ffacad46d1dd0"
+    }
+  ]
+}

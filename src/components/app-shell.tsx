@@ -40,10 +40,11 @@ export function SaveStatus() {
 }
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const inspection = /^\/skyrslur\/[^/]+\/skraning$/.test(pathname);
   const { state, store, mode } = useDemo();
   const [showHelp, setShowHelp] = useState(false);
   return (
-    <div className={`app-shell ${pathname === "/" ? "reports-shell" : ""}`}>
+    <div className={`app-shell ${pathname === "/" ? "reports-shell" : ""} ${inspection ? "inspection-shell" : ""}`}>
       <a className="skip-link" href="#main">
         Fara beint í efni
       </a>
@@ -109,7 +110,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="demo-banner">
           <span className="demo-banner-label">SÝNI</span>
           <p>
-            {mode === "cloud" ? "C1-prófdrög vistast í staðbundnum gagnagrunni þegar vistun er staðfest. Aðeins tilbúin gögn." : is.demoNotice}{" "}
+            {mode === "cloud" ? "C1-prófdrög vistast í staðbundnum gagnagrunni þegar vistun er staðfest. Aðeins tilbúin gögn." : inspection ? "Notaðu aðeins tilbúin gögn." : is.demoNotice}{" "}
             <span className="demo-banner-extra">{mode === "cloud" ? "Myndir eru óvirkar." : "Myndir fara ekki á þjón."}</span>
           </p>
         </div>

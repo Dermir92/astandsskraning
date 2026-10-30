@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { resolveMeterCorrection } from "@/lib/meter-navigation";
+import { scrollInspectionField } from "./inspection-focus";
 
 export function useMeterCorrection(id: string, ready: boolean) {
   const query = useSearchParams().toString();
@@ -22,7 +23,7 @@ export function useMeterCorrection(id: string, ready: boolean) {
       if (element instanceof HTMLDetailsElement) element.open = true;
       for (let p = element.parentElement; p; p = p.parentElement) if (p instanceof HTMLDetailsElement) p.open = true;
       const target = element.matches("fieldset") ? element.querySelector<HTMLElement>('input:checked:not(:disabled)') ?? element.querySelector<HTMLElement>('input:not(:disabled)') ?? element : element;
-      target.focus({ preventScroll: true }); target.scrollIntoView({ block: "center", behavior: "instant" });
+      target.focus({ preventScroll: true }); scrollInspectionField(element, target);
     });
     return () => cancelAnimationFrame(frame);
   }, [ready, query, correction.active, correction.valid, correction.focusId, correction.utility, correction.field]);

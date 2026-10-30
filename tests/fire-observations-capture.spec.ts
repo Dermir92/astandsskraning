@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
+import { auditInspectionA11y } from "./inspection-accessibility";
 import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import { STORAGE_KEY } from "../src/components/demo-provider";
@@ -311,7 +311,7 @@ test("mobile widths, keyboard, axe, enlarged text and representative review scre
     await page.goto(fireCorrectionHref("fire-case", "smokeDetectors", "testResult", "failed"));
     await expect(page.locator("#fire-safety")).toHaveAttribute("open", "");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
+    expect((await auditInspectionA11y(page)).violations).toEqual([]);
     for (const control of await page.locator('#fire-safety summary, #fire-safety button, #fire-safety label:has(input[type="radio"])').all()) {
       if (!await control.isVisible()) continue;
       const box = (await control.boundingBox())!; expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
@@ -320,7 +320,7 @@ test("mobile widths, keyboard, axe, enlarged text and representative review scre
     await page.goto(`${base}/yfirferd`);
     await expect(page.locator("#review-fire-safety")).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
+    expect((await auditInspectionA11y(page)).violations).toEqual([]);
     await page.screenshot({ path: resolve(output, `${width}-review-mixed.png`), fullPage: true });
   }
   for (const width of [320, 360, 390]) {
@@ -338,7 +338,7 @@ test("mobile widths, keyboard, axe, enlarged text and representative review scre
     const editBox = (await edit.boundingBox())!;
     expect(editBox.y).toBeGreaterThanOrEqual(headingBox.y + headingBox.height);
     expect(await heading.evaluate(element => { const range = document.createRange(); range.selectNodeContents(element); return range.getClientRects().length; })).toBe(1);
-    expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
+    expect((await auditInspectionA11y(page)).violations).toEqual([]);
     await page.screenshot({ path: resolve(output, `${width}-review-text-200.png`), fullPage: true });
   }
   expect(await raw(page)).toBe(original);
@@ -368,7 +368,7 @@ test("representative empty, optional, retained and not-examined review states", 
     const original = await seed(page, scenario.report, scenario.route);
     if (scenario.open) await open(page, "#fire-safety");
     if (scenario.retained) await open(page, '[data-fire-review-group="smokeDetectors"] details');
-    expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze()).violations).toEqual([]);
+    expect((await auditInspectionA11y(page)).violations).toEqual([]);
     await page.screenshot({ path: resolve(output, `390-${scenario.name}.png`), fullPage: true });
     expect(await raw(page)).toBe(original); await context.close();
   }
