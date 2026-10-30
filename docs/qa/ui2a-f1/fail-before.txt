@@ -1,0 +1,1219 @@
+
+Running 36 tests using 1 worker
+
+(node:21564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text (1.7s)
+(node:13984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text (1.7s)
+(node:15700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   3 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text (1.7s)
+(node:26436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   4 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text (1.9s)
+(node:13656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   5 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text (1.9s)
+(node:18124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   6 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text (2.0s)
+(node:2088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   7 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text (2.1s)
+(node:12712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   8 [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text (2.1s)
+(node:5000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   9 [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group (1.9s)
+(node:18236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  10 [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group (2.0s)
+(node:6200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 300: Brunavarnir, oversized 200% group (1.9s)
+  ok 12 [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 300: Mælar, oversized 200% group (2.1s)
+(node:14080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  13 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text (2.1s)
+(node:19144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  14 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text (1.9s)
+(node:26556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  15 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text (2.2s)
+(node:940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  16 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text (2.2s)
+(node:8504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  17 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text (2.6s)
+(node:11600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  18 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text (2.5s)
+(node:18784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  19 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text (2.6s)
+(node:31212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  20 [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text (2.6s)
+(node:12672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  21 [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group (2.9s)
+(node:17716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  22 [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group (2.4s)
+(node:31724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 23 [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 300: Brunavarnir, oversized 200% group (1.7s)
+  ok 24 [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 300: Mælar, oversized 200% group (1.9s)
+(node:24612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  25 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text (1.7s)
+(node:1600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  26 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text (1.9s)
+(node:11156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  27 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text (1.9s)
+(node:17260) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  28 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text (2.0s)
+(node:23856) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  29 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text (2.3s)
+(node:3008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  30 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text (2.2s)
+(node:20980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  31 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text (2.4s)
+(node:2824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  32 [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text (3.0s)
+(node:11072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  33 [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group (2.4s)
+(node:26072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  34 [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group (2.5s)
+(node:31500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 300: Brunavarnir, oversized 200% group (2.5s)
+  ok 36 [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 300: Mælar, oversized 200% group (2.5s)
+
+
+  1) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-desktop\attachments\axe-raw-1afd0ab00f26a9a3f082752e507e83a62d823d75.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-desktop\attachments\axe-raw-0ae1a8ff106b1a8702ce8b8c8df5df885b204dd3.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-desktop\attachments\axe-raw-56084dfa66297181da320b09af794d59ebf4d0c4.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-desktop\attachments\axe-raw-443d1176781a40e1f30ec8849afdbec6bcfb9a1b.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-desktop\attachments\axe-raw-fea69cb1af13ad52d13463fe5f2fe43159e5b75d.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-desktop\attachments\axe-raw-461a4d87935b0ac563b61e560d8cb258fcfa76e3.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-desktop\attachments\axe-raw-2307628973d52ddf11df4c26b080500800996251.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-desktop\attachments\axe-raw-fe7bd90333ea4d2039961814cf1b21b58352c238.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group
+
+    Error: Question and selected answer fit even though the entire group does not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);
+      147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);
+    > 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), "Question and selected answer fit even though the entire group does not").toBe(true);
+          |                                                                                                                                                      ^
+      149 |     else {
+      150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);
+      151 |       await expect(target.locator("..")).toContainText("Skemmt");
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:148:150
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-desktop\attachments\axe-raw-85b30ac06bab8953e8a4461ce8864b8541799621.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group
+
+    Error: Question and selected answer fit even though the entire group does not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);
+      147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);
+    > 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), "Question and selected answer fit even though the entire group does not").toBe(true);
+          |                                                                                                                                                      ^
+      149 |     else {
+      150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);
+      151 |       await expect(target.locator("..")).toContainText("Skemmt");
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:148:150
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-desktop\attachments\axe-raw-3e3e264f9de8e4fbe0745c5b74ec94356fa64557.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-desktop\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-360\attachments\axe-raw-cf3a10f36373312822569cce7e2662765f1b8b15.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-360\attachments\axe-raw-4660df9b049efd8f49df7f1baa24c882dd7df904.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-360\attachments\axe-raw-5c9c42339c8ee38876b1299b6481a03e1af55853.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-360\attachments\axe-raw-d9524d3a48ffffc8faac0d0fb526b5a30d4fc0d6.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-360\attachments\axe-raw-c33cd690815c4b6bb923e865123d7e310badd035.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-360\attachments\axe-raw-e90ea7f0b48cba8318149fb5976d4bf1439b6341.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-360\attachments\axe-raw-214583ef3bf308b2b3774ea4feb3eaba04b997f6.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-360\attachments\axe-raw-3627077c60aa449d097b227d6ae3b812fa7b38d9.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group
+
+    Error: Question and selected answer fit even though the entire group does not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);
+      147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);
+    > 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), "Question and selected answer fit even though the entire group does not").toBe(true);
+          |                                                                                                                                                      ^
+      149 |     else {
+      150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);
+      151 |       await expect(target.locator("..")).toContainText("Skemmt");
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:148:150
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-360\attachments\axe-raw-7e172b83137cf6ca0cceb6dc54b4e206193062b7.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group
+
+    Error: Question and selected answer fit even though the entire group does not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);
+      147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);
+    > 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), "Question and selected answer fit even though the entire group does not").toBe(true);
+          |                                                                                                                                                      ^
+      149 |     else {
+      150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);
+      151 |       await expect(target.locator("..")).toContainText("Skemmt");
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:148:150
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-360\attachments\axe-raw-bf93f284a41ab3e8a78d2a058c692f5481590d87.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-360\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-360\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-390\attachments\axe-raw-0b8b7f2412ea4cd2bf8f273a7585e0bbd79d9a5a.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-a8bc5-unavarnir-radio-normal-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-390\attachments\axe-raw-ab8001fb90d6b6ae9d4b81813fcc2e1ca59910ae.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-d16e6-urn-Mælar-radio-normal-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-390\attachments\axe-raw-8a9c5a243bb3a21b00dd37d18b9435bf12418193.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-36153-varnir-textarea-normal-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-390\attachments\axe-raw-2985c056a3531f88ceef40028fda092c207d22da.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-7b4f3--Mælar-textarea-normal-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-390\attachments\axe-raw-3adb44f365de9ee96cc9636d33727abe094acd77.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-604a0-ir-radio-200-simulated-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-390\attachments\axe-raw-26cce1ece68594c7e7c6ef49d11fec65a870685f.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-c087a-ar-radio-200-simulated-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-390\attachments\axe-raw-67f1320771f867047e21ac2e844e219d769820e1.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-2c2f1-textarea-200-simulated-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text
+
+    Error: Associated label/legend clears the sticky bar and viewport edges
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);
+       96 |     expect(visible(metrics.control, metrics.viewport), "Focused live control clears the sticky bar and viewport edges").toBe(true);
+    >  97 |     expect(visible(metrics.heading, metrics.viewport), "Associated label/legend clears the sticky bar and viewport edges").toBe(true);
+          |                                                                                                                            ^
+       98 |     // Moving away and back must retain both the native focus and question context.
+       99 |     await page.keyboard.press("Tab");
+      100 |     await settle(page);
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:97:124
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-390\attachments\axe-raw-168acb72bfdf1d75dc8b78e6e5ca2be76adaf8e4.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-ac173-textarea-200-simulated-text-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group
+
+    Error: Question and selected answer fit even though the entire group does not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);
+      147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);
+    > 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), "Question and selected answer fit even though the entire group does not").toBe(true);
+          |                                                                                                                                                      ^
+      149 |     else {
+      150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);
+      151 |       await expect(target.locator("..")).toContainText("Skemmt");
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:148:150
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-390\attachments\axe-raw-d2f9c6d449e105223b310ab813ebe4a4b0556699.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-b71f5-avarnir-oversized-200-group-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group
+
+    Error: Question and selected answer fit even though the entire group does not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);
+      147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);
+    > 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), "Question and selected answer fit even though the entire group does not").toBe(true);
+          |                                                                                                                                                      ^
+      149 |     else {
+      150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);
+      151 |       await expect(target.locator("..")).toContainText("Skemmt");
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\ui2a-context-visibility.spec.ts:148:150
+
+    attachment #2: axe-raw (application/json) ──────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-390\attachments\axe-raw-b4e80a7be83b6941d9c28188d9fdd09605656fd2.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-390\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-390\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-390\trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts\ui2a-f1\before-final-output\ui2a-context-visibility-UI-25cce-0-Mælar-oversized-200-group-mobile-390\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30 failed
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text
+    [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group
+    [desktop] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group
+    [mobile-360] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, normal text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, normal text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, normal text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, normal text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: radio, 200% simulated text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: radio, 200% simulated text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Brunavarnir: textarea, 200% simulated text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:70:7 › UI2A-F1 return Mælar: textarea, 200% simulated text
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group
+    [mobile-390] › tests\ui2a-context-visibility.spec.ts:128:7 › UI2A-F1 short viewport 400: Mælar, oversized 200% group
+  6 passed (1.8m)

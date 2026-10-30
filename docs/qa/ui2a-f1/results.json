@@ -1,0 +1,2152 @@
+{
+  "recommendation": "READY FOR INDEPENDENT RE-REVIEW",
+  "before": {
+    "startTime": "2026-10-30T09:57:40.176Z",
+    "duration": 110954.843,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 30,
+    "flaky": 0
+  },
+  "after": {
+    "startTime": "2026-10-30T10:01:55.163Z",
+    "duration": 124904.938,
+    "expected": 36,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "full": {
+    "startTime": "2026-10-30T10:44:03.960Z",
+    "duration": 1007896.9489999999,
+    "expected": 1036,
+    "skipped": 35,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "fullWorkers": 2,
+  "fullTrace": "off (CLI instrumentation only; no test/rule/timeout edits)",
+  "focusedTrace": "retain-on-failure (unchanged)",
+  "byProject": {
+    "desktop": {
+      "passed": 354,
+      "skipped": 3
+    },
+    "mobile-360": {
+      "passed": 341,
+      "skipped": 16
+    },
+    "mobile-390": {
+      "passed": 341,
+      "skipped": 16
+    }
+  },
+  "skipped": [
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "mobile widths, keyboard, axe, enlarged text and representative review screenshots",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Width audit covers all target widths once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\fire-observations-capture.spec.ts",
+            "line": 306,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 185,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "representative empty, optional, retained and not-examined review states",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Scenario gallery is captured once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\fire-observations-capture.spec.ts",
+            "line": 352,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 3,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "mobile widths, keyboard, axe, enlarged text and representative review screenshots",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Width audit covers all target widths once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\fire-observations-capture.spec.ts",
+            "line": 306,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 192,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "fire-observations-capture.spec.ts",
+      "title": "representative empty, optional, retained and not-examined review states",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Scenario gallery is captured once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\fire-observations-capture.spec.ts",
+            "line": 352,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 7,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "heating-capture.spec.ts",
+      "title": "heating mobile and accessibility audit plus representative screenshots",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width, enlarged-text and gallery audits run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\heating-capture.spec.ts",
+            "line": 80,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 187,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "heating-capture.spec.ts",
+      "title": "heating mobile and accessibility audit plus representative screenshots",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width, enlarged-text and gallery audits run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\heating-capture.spec.ts",
+            "line": 80,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 190,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-comparison.spec.ts",
+      "title": "five-width comparison, missing data, modules and enlarged text remain accessible",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The complete width matrix is executed once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-comparison.spec.ts",
+            "line": 157,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 2,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-comparison.spec.ts",
+      "title": "five-width comparison, missing data, modules and enlarged text remain accessible",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The complete width matrix is executed once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-comparison.spec.ts",
+            "line": 157,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 5,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "optional review context is accessible and reflows at mobile, desktop and enlarged text sizes",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Context/width combinations are audited once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-core-capture.spec.ts",
+            "line": 224,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 244,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "core controls and warnings reflow, support keyboard and pass axe at requested widths",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width audit is run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-core-capture.spec.ts",
+            "line": 261,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 237,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "optional review context is accessible and reflows at mobile, desktop and enlarged text sizes",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Context/width combinations are audited once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-core-capture.spec.ts",
+            "line": 224,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 214,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-core-capture.spec.ts",
+      "title": "core controls and warnings reflow, support keyboard and pass axe at requested widths",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width audit is run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-core-capture.spec.ts",
+            "line": 261,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 189,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-evidence.spec.ts",
+      "title": "five-width visual, accessibility and 200 percent text verification",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Captured once across all five widths in isolated contexts",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-evidence.spec.ts",
+            "line": 388,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 4,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "inspection-evidence.spec.ts",
+      "title": "five-width visual, accessibility and 200 percent text verification",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Captured once across all five widths in isolated contexts",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\inspection-evidence.spec.ts",
+            "line": 388,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 3,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "meter-readings-capture.spec.ts",
+      "title": "five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width/text/axe audit runs once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\meter-readings-capture.spec.ts",
+            "line": 314,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 142,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "meter-readings-capture.spec.ts",
+      "title": "five-width mobile, keyboard, axe and 200% text verification with review screenshots",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Five-width/text/axe audit runs once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\meter-readings-capture.spec.ts",
+            "line": 314,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 273,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "prototype.spec.ts",
+      "title": "intermediate screen widths do not overflow",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Intermediate widths are covered once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\prototype.spec.ts",
+            "line": 473,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 186,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "prototype.spec.ts",
+      "title": "intermediate screen widths do not overflow",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Intermediate widths are covered once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\prototype.spec.ts",
+            "line": 473,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 182,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "responsive disclosures, keyboard, axe and enlarged long content",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The full width/state audit is run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\rental-information-capture.spec.ts",
+            "line": 298,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 158,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "expanded secondary fields and long content reflow at 200 percent text",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The 320px text audit is run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\rental-information-capture.spec.ts",
+            "line": 325,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 218,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "responsive disclosures, keyboard, axe and enlarged long content",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The full width/state audit is run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\rental-information-capture.spec.ts",
+            "line": 298,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 184,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "rental-information-capture.spec.ts",
+      "title": "expanded secondary fields and long content reflow at 200 percent text",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The 320px text audit is run once.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\rental-information-capture.spec.ts",
+            "line": 325,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 236,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "report-preview.spec.ts",
+      "title": "five widths, enlarged text and principal content states retain semantic order and readable reflow",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The five-width audit runs once; touch projects exercise ordinary interactions separately.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\report-preview.spec.ts",
+            "line": 217,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 24,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "report-preview.spec.ts",
+      "title": "five widths, enlarged text and principal content states retain semantic order and readable reflow",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The five-width audit runs once; touch projects exercise ordinary interactions separately.",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\report-preview.spec.ts",
+            "line": 217,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 18,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "review screenshots retain A2.2 hierarchy on desktop and mobile",
+      "project": "desktop",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit review evidence only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-review-followup.spec.ts",
+            "line": 159,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 241,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "native accessibility tree preserves the selected item and its assessment grouping",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Native Chromium AX audit includes desktop and mobile in one run",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-review-followup.spec.ts",
+            "line": 32,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 239,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "review screenshots retain A2.2 hierarchy on desktop and mobile",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit review evidence only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-review-followup.spec.ts",
+            "line": 159,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 186,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "native accessibility tree preserves the selected item and its assessment grouping",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Native Chromium AX audit includes desktop and mobile in one run",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-review-followup.spec.ts",
+            "line": 32,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 175,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-review-followup.spec.ts",
+      "title": "review screenshots retain A2.2 hierarchy on desktop and mobile",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit review evidence only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-review-followup.spec.ts",
+            "line": 159,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 174,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "title": "UI1 review screenshots with identical synthetic report and photo",
+      "project": "desktop",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit before/after evidence capture only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-visual.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 215,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "title": "UI1 review screenshots with identical synthetic report and photo",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit before/after evidence capture only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-visual.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 157,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui1-visual.spec.ts",
+      "title": "UI1 review screenshots with identical synthetic report and photo",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit before/after evidence capture only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui1-visual.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 176,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-capture.spec.ts",
+      "title": "UI2A actual application evidence matrix",
+      "project": "desktop",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit application evidence capture only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-capture.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 322,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-capture.spec.ts",
+      "title": "UI2A actual application evidence matrix",
+      "project": "mobile-360",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit application evidence capture only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-capture.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 200,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-capture.spec.ts",
+      "title": "UI2A actual application evidence matrix",
+      "project": "mobile-390",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Explicit application evidence capture only",
+          "location": {
+            "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-capture.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 154,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "newRegression": [
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4483,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4358,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, normal text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3378,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, normal text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3929,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, 200% simulated text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4457,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, 200% simulated text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4011,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, 200% simulated text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3996,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, 200% simulated text",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4909,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2203,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Mælar, oversized 200% group",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2257,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 300: Brunavarnir, oversized 200% group",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2301,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 300: Mælar, oversized 200% group",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2269,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4354,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4353,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, normal text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3356,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, normal text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3463,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, 200% simulated text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5009,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, 200% simulated text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5001,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, 200% simulated text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5249,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, 200% simulated text",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5173,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2554,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Mælar, oversized 200% group",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2416,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 300: Brunavarnir, oversized 200% group",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2311,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 300: Mælar, oversized 200% group",
+      "project": "mobile-360",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2406,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4733,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4735,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, normal text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3855,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, normal text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3872,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, 200% simulated text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4358,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, 200% simulated text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4339,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, 200% simulated text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5200,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, 200% simulated text",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5224,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2323,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Mælar, oversized 200% group",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2297,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 300: Brunavarnir, oversized 200% group",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2440,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 300: Mælar, oversized 200% group",
+      "project": "mobile-390",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2438,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "beforeFailures": [
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1675,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1657,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, normal text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1683,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, normal text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1931,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, 200% simulated text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1870,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, 200% simulated text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2037,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, 200% simulated text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2063,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, 200% simulated text",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2053,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1899,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 150,
+                "line": 148
+              },
+              "message": "Error: Question and selected answer fit even though the entire group does not\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);\n  147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);\n> 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), \"Question and selected answer fit even though the entire group does not\").toBe(true);\n      |                                                                                                                                                      ^\n  149 |     else {\n  150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);\n  151 |       await expect(target.locator(\"..\")).toContainText(\"Skemmt\");\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:148:150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Mælar, oversized 200% group",
+      "project": "desktop",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2038,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 150,
+                "line": 148
+              },
+              "message": "Error: Question and selected answer fit even though the entire group does not\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);\n  147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);\n> 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), \"Question and selected answer fit even though the entire group does not\").toBe(true);\n      |                                                                                                                                                      ^\n  149 |     else {\n  150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);\n  151 |       await expect(target.locator(\"..\")).toContainText(\"Skemmt\");\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:148:150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2109,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1851,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, normal text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2155,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, normal text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2227,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, 200% simulated text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2586,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, 200% simulated text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2522,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, 200% simulated text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2555,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, 200% simulated text",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2554,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2864,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 150,
+                "line": 148
+              },
+              "message": "Error: Question and selected answer fit even though the entire group does not\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);\n  147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);\n> 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), \"Question and selected answer fit even though the entire group does not\").toBe(true);\n      |                                                                                                                                                      ^\n  149 |     else {\n  150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);\n  151 |       await expect(target.locator(\"..\")).toContainText(\"Skemmt\");\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:148:150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Mælar, oversized 200% group",
+      "project": "mobile-360",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2375,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 150,
+                "line": 148
+              },
+              "message": "Error: Question and selected answer fit even though the entire group does not\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);\n  147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);\n> 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), \"Question and selected answer fit even though the entire group does not\").toBe(true);\n      |                                                                                                                                                      ^\n  149 |     else {\n  150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);\n  151 |       await expect(target.locator(\"..\")).toContainText(\"Skemmt\");\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:148:150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, normal text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1749,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, normal text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1870,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, normal text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 1882,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, normal text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2040,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: radio, 200% simulated text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2276,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: radio, 200% simulated text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2173,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Brunavarnir: textarea, 200% simulated text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2429,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 return Mælar: textarea, 200% simulated text",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2954,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 124,
+                "line": 97
+              },
+              "message": "Error: Associated label/legend clears the sticky bar and viewport edges\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   95 |     expect(await page.evaluate(key => localStorage.getItem(key), STORAGE_KEY)).toBe(raw);\n   96 |     expect(visible(metrics.control, metrics.viewport), \"Focused live control clears the sticky bar and viewport edges\").toBe(true);\n>  97 |     expect(visible(metrics.heading, metrics.viewport), \"Associated label/legend clears the sticky bar and viewport edges\").toBe(true);\n      |                                                                                                                            ^\n   98 |     // Moving away and back must retain both the native focus and question context.\n   99 |     await page.keyboard.press(\"Tab\");\n  100 |     await settle(page);\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:97:124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Brunavarnir, oversized 200% group",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2359,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 150,
+                "line": 148
+              },
+              "message": "Error: Question and selected answer fit even though the entire group does not\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);\n  147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);\n> 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), \"Question and selected answer fit even though the entire group does not\").toBe(true);\n      |                                                                                                                                                      ^\n  149 |     else {\n  150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);\n  151 |       await expect(target.locator(\"..\")).toContainText(\"Skemmt\");\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:148:150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ui2a-context-visibility.spec.ts",
+      "title": "UI2A-F1 short viewport 400: Mælar, oversized 200% group",
+      "project": "mobile-390",
+      "status": "unexpected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "failed",
+          "duration": 2507,
+          "errors": [
+            {
+              "location": {
+                "file": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts",
+                "column": 150,
+                "line": 148
+              },
+              "message": "Error: Question and selected answer fit even though the entire group does not\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  146 |     expect(await original!.evaluate(element => element === document.activeElement)).toBe(true);\n  147 |     expect(visible(metrics.control, metrics.viewport)).toBe(true);\n> 148 |     if (height === 400) expect(visible(metrics.heading, metrics.viewport), \"Question and selected answer fit even though the entire group does not\").toBe(true);\n      |                                                                                                                                                      ^\n  149 |     else {\n  150 |       expect(metrics.control.bottom - metrics.heading.top).toBeGreaterThan(metrics.viewport.bottom - metrics.viewport.top - 32);\n  151 |       await expect(target.locator(\"..\")).toContainText(\"Skemmt\");\n    at C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun\\tests\\ui2a-context-visibility.spec.ts:148:150"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "earlierVerificationIssue": {
+    "file": "tests/inspection-evidence.spec.ts",
+    "title": "five-width visual, accessibility and 200 percent text verification",
+    "initialOutcome": "180000 ms timeout in interrupted --workers=2 and --workers=1 attempts with trace recording",
+    "testOrTimeoutChanged": false,
+    "diagnosticIsolated": {
+      "startTime": "2026-10-30T10:31:21.190Z",
+      "duration": 135487.609,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "finalOutcome": "expected",
+    "evidence": [
+      "concurrent-timeout.md",
+      "serial-timeout.md",
+      "evidence-isolated.txt"
+    ]
+  },
+  "reportListRepeat": {
+    "startTime": "2026-10-30T10:42:55.177Z",
+    "duration": 5920.179999999999,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "rawPlaywrightReports": [
+    {
+      "file": "before-results.json.gz",
+      "originalSha256": "47d5fd8b05e11bc305d8ea89c59344acc7c2e75f3dfc2c3d7d4d6d32d831d60a",
+      "gzipSha256": "1937a576395f2eadc849a97c3d4ecf29cea421fcf9945d6bc3be24597d3d368b",
+      "originalBytes": 256735
+    },
+    {
+      "file": "after-results.json.gz",
+      "originalSha256": "34e4018c2af8aa05df4e643211dedbb262e0912f6e50b8e1abba2cac4bff4e12",
+      "gzipSha256": "91ab8d378ba75d69be0ef5ff328630f87bb80343d0fb478aceb057899d8a2f13",
+      "originalBytes": 114133
+    },
+    {
+      "file": "full-results.json.gz",
+      "originalSha256": "346608b3ac5d7f8c0a774c76934e9bb16aac1793658049a4b89d216a73834af3",
+      "gzipSha256": "1e2f526623d5d707c969e5e2758f55adc25ffbe1494353db272e97cd72547f5a",
+      "originalBytes": 1372975
+    },
+    {
+      "file": "evidence-isolated-results.json.gz",
+      "originalSha256": "a07126ad12f5ed7e79ae541fb0daf4f5a5e5881938e82fae95c697e7ccc84136",
+      "gzipSha256": "77d457417d5e59a5310e89d01ace227492dc3fb30efff59bd022870a3b5aff56",
+      "originalBytes": 9687
+    },
+    {
+      "file": "mobile-race-repeat-results.json.gz",
+      "originalSha256": "ad3d111efd9d2d332a1d25e636abb06a42e6cb51b4b8b90e1f80d967d0debbd7",
+      "gzipSha256": "77cf19320a5affbf0f37050387857c20af5f05476be53df98579c3364e8f452c",
+      "originalBytes": 15567
+    }
+  ],
+  "rawAxeBundle": "axe-raw.json.gz",
+  "rawAxeCases": 72,
+  "excludedAsInBase": [
+    "tests/c1/**",
+    "tests/h1a/**",
+    "tests/h1b/**"
+  ]
+}

@@ -68,7 +68,22 @@ export function useInspectionSections(root: RefObject<HTMLDivElement | null>, re
     if (!target) return;
     for (let parent = target.parentElement; parent; parent = parent.parentElement) if (parent instanceof HTMLDetailsElement) parent.open = true;
     target.focus({ preventScroll: true });
-    target.scrollIntoView({ block: "start", behavior: "instant" });
+    const visual = window.visualViewport;
+    const viewportTop = visual?.offsetTop ?? 0;
+    const margin = root.current ? parseFloat(getComputedStyle(root.current).getPropertyValue("--inspection-section-offset")) || 16 : 16;
+    const top = Math.max(viewportTop + 16, margin);
+    const available = Math.max(0, viewportTop + (visual?.height ?? innerHeight) - 16 - top);
+    const control = (target.closest<HTMLElement>(".answer-option") ?? target).getBoundingClientRect();
+    const group = target.closest<HTMLElement>(".form-field, fieldset.answer-group");
+    const bounds = group?.getBoundingClientRect();
+    const heading = group?.querySelector<HTMLElement>(":scope > label, :scope > legend")?.getBoundingClientRect();
+    const start = Math.min(bounds?.top ?? control.top, heading?.top ?? control.top);
+    // Keep the same live control focused, but reveal its question as well. A
+    // tall group can still expose its heading and selected answer together.
+    // If that span cannot fit, keep the control's own answer label visible.
+    const groupFits = !!bounds && bounds.bottom - start <= available;
+    const questionFits = !!heading && Math.max(control.bottom, heading.bottom) - start <= available;
+    window.scrollBy({ top: (groupFits || questionFits ? start : control.top) - top, behavior: "instant" });
   }
   function returnToRoom() {
     setActive("inspection-room");

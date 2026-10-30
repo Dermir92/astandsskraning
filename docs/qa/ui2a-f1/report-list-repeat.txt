@@ -1,0 +1,60 @@
+
+Running 3 tests using 1 worker
+
+(node:27184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations (2.1s)
+(node:31260) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations (617ms)
+(node:14080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations (623ms)
+
+
+  1) [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "hidden"
+
+      194 |   await page.keyboard.press("Escape");
+      195 |   await expect(title).toBeFocused();
+    > 196 |   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe(
+          |                                                                       ^
+      197 |     "hidden",
+      198 |   );
+      199 |   for (const [name, suffix] of [
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\mobile-refinement.spec.ts:196:71
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\mobile-race-repeat-output\mobile-refinement-mobile-r-c86a9--open-existing-destinations-desktop-repeat1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\mobile-race-repeat-output\mobile-refinement-mobile-r-c86a9--open-existing-destinations-desktop-repeat1\error-context.md
+
+  2) [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "hidden"
+
+      194 |   await page.keyboard.press("Escape");
+      195 |   await expect(title).toBeFocused();
+    > 196 |   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe(
+          |                                                                       ^
+      197 |     "hidden",
+      198 |   );
+      199 |   for (const [name, suffix] of [
+        at C:\Users\Danni\.codex\worktrees\ui2a-mobile-implementation\Ástandskoðun\tests\mobile-refinement.spec.ts:196:71
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts\ui2a-f1\mobile-race-repeat-output\mobile-refinement-mobile-r-c86a9--open-existing-destinations-desktop-repeat2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts\ui2a-f1\mobile-race-repeat-output\mobile-refinement-mobile-r-c86a9--open-existing-destinations-desktop-repeat2\error-context.md
+
+  2 failed
+    [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations
+    [desktop] › tests\mobile-refinement.spec.ts:168:5 › mobile report names open quick context and labelled actions directly open existing destinations
+  1 passed (5.9s)
