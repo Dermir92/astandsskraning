@@ -15,13 +15,14 @@ import { useDemo } from "./demo-provider";
 import { useState, type ReactNode } from "react";
 import { ContextDialog } from "./context-dialog";
 import { C1Panel } from "./cloud/c1-root";
+import { DemoSaveActions } from "./demo-save-actions";
 
 export function SaveStatus() {
   const { state, mode } = useDemo();
   const failed =
     state.status === "error" ||
     state.status === "read-error" ||
-    state.status === "validation-error" || state.status === "conflict" || state.status === "refresh-required";
+    state.status === "validation-error" || state.status === "conflict" || state.status === "refresh-required" || state.status === "recovery" || state.status === "unsupported";
   const Icon =
     failed
       ? TriangleAlert
@@ -32,9 +33,10 @@ export function SaveStatus() {
     <span
       className={`save-status ${failed ? "save-error" : ""}`}
       role="status"
+      tabIndex={-1}
     >
       <Icon size={14} aria-hidden="true" />
-      {state.status === "refresh-required" ? "Fyrri vistun staðfest · sækja þarf drög" : state.status === "pending" ? "Vistun í bið…" : state.status === "conflict" ? "Árekstur við vistun" : mode === "cloud" && state.status === "error" ? "Vistun óstaðfest" : mode === "cloud" && state.status === "read-error" ? "Gagnasókn mistókst" : state.status === "saved" && mode === "cloud" ? "Vistað í gagnagrunni" : is.save[state.status]}
+      {mode === "demo" && state.local?.access === "initializing" ? "Undirbý staðbundin drög…" : state.status === "refresh-required" ? mode === "demo" ? "Geymd gögn hafa breyst" : "Fyrri vistun staðfest · sækja þarf drög" : state.status === "pending" ? "Vistun í bið…" : state.status === "conflict" ? "Árekstur við vistun" : mode === "cloud" && state.status === "error" ? "Vistun óstaðfest" : mode === "cloud" && state.status === "read-error" ? "Gagnasókn mistókst" : state.status === "saved" && mode === "cloud" ? "Vistað í gagnagrunni" : is.save[state.status]}
     </span>
   );
 }
@@ -120,7 +122,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <p>{state.warning}</p>
             {mode === "demo" && state.status === "error" && pathname.endsWith("/forskodun") ? (
               <Link className="text-link" href={`${pathname.slice(0, -"forskodun".length)}yfirferd#report-preview-entry`}>Aftur í yfirferð til að reyna vistun aftur</Link>
-            ) : state.status === "error" ? (
+            ) : state.status === "error" && (mode === "cloud" || state.local?.access === "writer") ? (
               <button
                 className="button button-small button-secondary"
                 onClick={store.retrySave}
@@ -128,6 +130,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 Reyna vistun aftur
               </button>
             ) : null}
+            {mode === "demo" ? <DemoSaveActions /> : null}
           </div>
         ) : null}
         {mode === "cloud" ? <C1Panel /> : null}

@@ -1,7 +1,8 @@
 import { test, expect, type Page } from "@playwright/test";
 import { auditInspectionA11y } from "./inspection-accessibility";
 import { mkdir } from "node:fs/promises";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { CONDITIONS, EMPTY_OBSERVATION, reportStats, type Report } from "../src/lib/model";
 import { is } from "../src/lib/locale/is";
 import { hasRetainedDefect } from "../src/lib/inspection-evidence";

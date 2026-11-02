@@ -39,7 +39,7 @@ import { useMeterCorrection } from "../use-meter-correction";
 import { PreviousInspectionAnswer } from "../inspection-comparison";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
-  const { store, state } = useReport();
+  const { store, state, demoReadOnly } = useReport();
   const openItem = navigation.itemId;
   const stats = roomStats(room);
   const unanswered = room.items.filter(item => itemProgress(item, room.observations[item.id]) === "unanswered").length;
@@ -89,7 +89,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
           />
         })}
       </div>
-      {!room.items.some(i => i.kind === "space_heating") ? <button type="button" className="text-button" disabled={state.status === "loading" || state.status === "read-error" || room.items.length >= 100} onClick={() => { const itemId = store.addHeating(report.id, room.id); if (itemId) navigation.activate({ roomId: room.id, itemId }, true, true); }}>Bæta við hitaskráningu</button> : null}
+      {!room.items.some(i => i.kind === "space_heating") ? <button type="button" className="text-button" disabled={demoReadOnly || state.status === "loading" || state.status === "read-error" || room.items.length >= 100} onClick={() => { const itemId = store.addHeating(report.id, room.id); if (itemId) navigation.activate({ roomId: room.id, itemId }, true, true); }}>Bæta við hitaskráningu</button> : null}
       <details className={styles.roomPhotos}>
         <summary><Camera size={18} aria-hidden="true" />Yfirlitsmyndir rýmis</summary>
         <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />

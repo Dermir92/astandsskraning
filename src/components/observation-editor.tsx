@@ -47,6 +47,7 @@ function AnswerGroup<T extends string>({
   name,
   conditions = false,
   question,
+  disabled = false,
 }: {
   label: string;
   values: T[];
@@ -56,9 +57,10 @@ function AnswerGroup<T extends string>({
   name: string;
   conditions?: boolean;
   question: Question;
+  disabled?: boolean;
 }) {
   return (
-    <fieldset className="answer-group" data-question={question} tabIndex={-1}>
+    <fieldset className="answer-group" data-question={question} tabIndex={-1} aria-disabled={disabled || undefined}>
       <legend>{label}</legend>
       <div className={conditions ? "condition-options" : "answer-options"}>
         {values.map((option) => (
@@ -68,6 +70,7 @@ function AnswerGroup<T extends string>({
           >
             <input
               type="radio"
+              disabled={disabled}
               name={name}
               checked={value === option}
               onChange={() => onChange(option)}
@@ -116,14 +119,15 @@ export function ObservationEditor({
   nextAction: ReactNode;
   reference?: ReactNode;
 }) {
-  const { store, state } = useDemo();
+  const { store, state, demoReadOnly } = useDemo();
+  const coordinationLocked = demoReadOnly;
   const fieldPrefix = useId();
   const headingRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const keyboardNavigation = useRef(false);
   const [foldCondition, setFoldCondition] = useState(false);
   const transactions = useRef<{ pending?: AssessmentChange; undo?: AssessmentChange }>({});
-  const [confirmation, setConfirmation] = useState<{ from: string; to: string; clear?: boolean } | null>(null);
+  const [confirmation, setConfirmation] = useState<{ from: string; to: string; clear?: boolean; epoch: number } | null>(null);
   const [message, setMessage] = useState("");
   const [canUndo, setCanUndo] = useState(false);
   const [editDefect, setEditDefect] = useState(false);
@@ -176,7 +180,7 @@ export function ObservationEditor({
     if (changesDefect) {
       transactions.current.pending?.dispose();
       transactions.current.pending = transaction;
-      setConfirmation({ from: labels(key as Question, live[key] as Observation[Question]), to: labels(key as Question, value as Observation[Question]) });
+      setConfirmation({ from: labels(key as Question, live[key] as Observation[Question]), to: labels(key as Question, value as Observation[Question]), epoch: store.mutationEpoch });
     } else {
       const unusedUndo = transaction.apply();
       unusedUndo?.dispose();
@@ -229,6 +233,7 @@ export function ObservationEditor({
     <AnswerGroup
       label="Ástand"
       question="condition"
+      disabled={coordinationLocked}
       values={CONDITIONS}
       labels={is.conditions}
       value={o.condition}
@@ -297,7 +302,7 @@ export function ObservationEditor({
           className={styles.rowAnswer}
           aria-label={`Ástand í lagi: ${item.name}`}
           aria-pressed={o.condition === "good"}
-          disabled={state.status === "loading" || state.status === "read-error"}
+          disabled={demoReadOnly || state.status === "loading" || state.status === "read-error"}
           onClick={chooseGood}
         >
           <Plus size={16} aria-hidden="true" />
@@ -323,7 +328,7 @@ export function ObservationEditor({
       {open ? <>
           <div className={styles.editorHeading}><span>{roomName} · atriði {index + 1}</span><h4>{item.name}</h4><p>{status}{deviation ? " · Frávik" : attention ? " · Þarf athygli" : ""}</p></div>
           {reference}
-          {message ? <div className={styles.undoMessage} role="status"><p>{message}</p>{canUndo ? <button className="text-button" onClick={() => {
+          {message ? <div className={styles.undoMessage} role="status"><p>{message}</p>{canUndo ? <button className="text-button" disabled={coordinationLocked} onClick={() => {
             const redo = transactions.current.undo?.apply();
             redo?.dispose();
             transactions.current.undo = undefined;
@@ -354,6 +359,7 @@ export function ObservationEditor({
                 <AnswerGroup
                   label="Virkni"
                   question="functionality"
+                  disabled={coordinationLocked}
                   values={FUNCTIONALITIES}
                   labels={is.functionality}
                   value={o.functionality}
@@ -365,6 +371,7 @@ export function ObservationEditor({
                 <AnswerGroup
                   label="Þrif"
                   question="cleanliness"
+                  disabled={coordinationLocked}
                   values={CLEANLINESS}
                   labels={is.cleanliness}
                   value={o.cleanliness}
@@ -393,6 +400,7 @@ export function ObservationEditor({
                 >
                   <select
                     id={`${fieldPrefix}-damage-type`}
+                    disabled={coordinationLocked}
                     value={o.damageType}
                     onChange={(e) => change("damageType", e.target.value)}
                   >
@@ -415,6 +423,7 @@ export function ObservationEditor({
                 <Field id={`${fieldPrefix}-location`} label="Staðsetning">
                   <input
                     id={`${fieldPrefix}-location`}
+                    disabled={coordinationLocked}
                     value={o.location}
                     onChange={(e) => change("location", e.target.value)}
                     placeholder="T.d. við dyrakarm"
@@ -427,6 +436,7 @@ export function ObservationEditor({
                 >
                   <textarea
                     id={`${fieldPrefix}-description`}
+                    disabled={coordinationLocked}
                     rows={3}
                     value={o.description}
                     onChange={(e) => change("description", e.target.value)}
@@ -448,7 +458,7 @@ export function ObservationEditor({
             </div>
           ) : null}
           <section className={damage && complete && !editDefect ? styles.defectSummary : undefined} aria-label={damage && complete && !editDefect ? "Skráð frávik" : undefined}>
-            {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
+            {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" disabled={coordinationLocked} onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
             <div className={damage && complete && !editDefect ? styles.findingOverview : undefined}>
               {damage && complete && !editDefect ? <div><span>Staðsetning</span><p>{o.location}</p></div> : null}
               <PhotoPreview key="item-photos" photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item featured={damage && complete && !editDefect} />
@@ -459,6 +469,7 @@ export function ObservationEditor({
           <Field id={`${fieldPrefix}-note`} label="Athugasemd" optional>
             <textarea
               id={`${fieldPrefix}-note`}
+              disabled={coordinationLocked}
               rows={2}
               value={o.note}
               onChange={(e) => change("note", e.target.value)}
@@ -481,13 +492,14 @@ export function ObservationEditor({
             {observation ? (
               <button
                 className="text-button"
+                disabled={coordinationLocked}
                 onClick={() => {
                   const patch = { condition: undefined, functionality: undefined, cleanliness: undefined, damageType: "", location: "", description: "", note: "" };
                   const transaction = prepareAssessmentChange(store, target, patch, ["condition", "functionality", "cleanliness", "damageType", "location", "description", "note"]);
                   if (!transaction) return;
                   transactions.current.pending?.dispose();
                   transactions.current.pending = transaction;
-                  setConfirmation({ from: "Núverandi svör og lýsing", to: "Ósvarað atriði", clear: true });
+                  setConfirmation({ from: "Núverandi svör og lýsing", to: "Ósvarað atriði", clear: true, epoch: store.mutationEpoch });
                 }}
               >
                 Hreinsa svör
@@ -512,9 +524,11 @@ export function ObservationEditor({
         <p className={styles.changeContext}>{confirmation.from} → <strong>{confirmation.to}</strong></p>
         <p>{confirmation.clear ? "Svör, frávikslýsing og athugasemd verða hreinsuð. Myndir og viðbótarsvið haldast." : "Þetta breytir virku mati. Lýsing, athugasemd og myndir haldast við atriðið. Ekki er ályktað að viðgerð hafi farið fram."}</p>
         <p>Hægt er að afturkalla breytinguna í þessari setu.</p>
+        {confirmation.epoch !== store.mutationEpoch ? <p role="status">Breytingaréttur hefur breyst. Haltu fyrra mati og yfirfarðu breytinguna aftur.</p> : null}
         <div className={styles.dialogActions}>
           <button className="button button-secondary" onClick={cancelChange}>Halda fyrra mati</button>
-          <button className="button button-primary" onClick={() => {
+          <button className="button button-primary" disabled={coordinationLocked || confirmation.epoch !== store.mutationEpoch} onClick={() => {
+            if (confirmation.epoch !== store.mutationEpoch) return;
             const undo = transactions.current.pending?.apply();
             transactions.current.pending = undefined;
             transactions.current.undo?.dispose();

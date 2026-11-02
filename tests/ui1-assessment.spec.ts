@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { DemoStore, STORAGE_KEY, type SaveStatus } from "../src/components/demo-provider";
+import { STORAGE_KEY, type SaveStatus } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { prepareAssessmentChange } from "../src/components/assessment-change";
 import { EMPTY_OBSERVATION, reportStats } from "../src/lib/model";
 import { checklistReport } from "./inspection-checklist-fixtures";

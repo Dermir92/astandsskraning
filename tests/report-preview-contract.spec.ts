@@ -5,7 +5,8 @@ import { itemProgress, missingAnswers } from "../src/lib/inspection-navigation";
 import { heatingState } from "../src/lib/heating";
 import { fireState } from "../src/lib/fire-observations";
 import { meterState, meterContextCurrent } from "../src/lib/meter-readings";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { legacyCoreReport } from "./inspection-core-fixtures";
 import { previewReport, previewDate, freezePreviewInput, longPreviewText } from "./report-preview-fixtures";
 

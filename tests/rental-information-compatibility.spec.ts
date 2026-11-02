@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { detailIssues, isReportList, reportStats, reportStatus } from "../src/lib/model";
 import { hasRentalInformation, hasRetainedRentalInformation, leaseDateWarning, rentalInformationIssues, representativeName } from "../src/lib/rental-information";
 import { legacyCoreReport } from "./inspection-core-fixtures";

@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { isReportList, reportStats, reportStatus, type ApartmentDetails, type MeterApplicability, type MeterCapturePurpose, type MeterReadingStatus, type PropertyMeterReadings } from "../src/lib/model";
 import { confirmMeterArrangement, confirmMeterPurpose, hasMeterExtensions, hasMeterFacts, meterContextCurrent, meterDateWarning, meterSnapshot, meterState, needsPurposeCorrection, patchMeter, plausibleMeterValue, selectMeterPurpose } from "../src/lib/meter-readings";
 import { METER_FIELDS } from "../src/lib/meter-readings";

@@ -13,7 +13,7 @@ import styles from "./meter-readings.module.css";
 const t = is.meters;
 const textKeys = ["readingValue", "unit", "readingDate", "meterIdentifier", "note"] as const;
 type TextKey = typeof textKeys[number];
-type PendingPurpose = { target: MeterCapturePurpose; selected: MeterUtility[]; snapshot: string };
+type PendingPurpose = { target: MeterCapturePurpose; selected: MeterUtility[]; snapshot: string; epoch: number };
 
 function focusMeterField(utility: MeterUtility, field: MeterField) {
   requestAnimationFrame(() => {
@@ -90,18 +90,18 @@ function RetainedEntry({ details: d, utility: k, edit }: { details: ApartmentDet
 }
 
 export function MeterReadingFields({ report, invalidCorrection = false }: { report: Report; invalidCorrection?: boolean }) {
-  const { store, state } = useReport();
+  const { store, state, demoReadOnly } = useReport();
   const d = report.details;
   const set = d.meterReadings;
   const result = meterState(d);
   const [pending, setPending] = useState<PendingPurpose | null>(null);
   const [notice, setNotice] = useState("");
-  const locked = state.status === "loading" || state.status === "read-error";
+  const locked = demoReadOnly || state.status === "loading" || state.status === "read-error";
   const update = (fn: (details: ApartmentDetails) => ApartmentDetails) => store.updateMeters(report.id, fn);
   const choose = (target: MeterCapturePurpose, selected: MeterUtility[]) => {
     setNotice("");
     if (needsPurposeCorrection(d, target)) {
-      setPending({ target, selected, snapshot: meterSnapshot(d) });
+      setPending({ target, selected, snapshot: meterSnapshot(d), epoch: store.mutationEpoch });
       requestAnimationFrame(() => document.getElementById("meter-purpose-preview")?.focus());
     }
     else {
@@ -113,7 +113,7 @@ export function MeterReadingFields({ report, invalidCorrection = false }: { repo
   const purposeIssue = result.issues.find(i => i.field === "purpose");
   const active = activeMeterPurpose(d);
   const titleMode = set?.mode ?? (d.inspectionContext === "residential_rental" && d.inspectionType === "initial" ? "rental_initial" : d.inspectionContext === "residential_rental" && d.inspectionType === "final" ? "rental_return" : "optional");
-  const stale = !!pending && pending.snapshot !== meterSnapshot(d);
+  const stale = !!pending && (pending.snapshot !== meterSnapshot(d) || pending.epoch !== store.mutationEpoch);
   return <details className={`panel ${styles.section} ${!set ? styles.empty : ""}`} id="meter-readings" tabIndex={-1}>
     <summary><span className={styles.title}>{set ? t.titles[titleMode] : "Mælastöður"}</span>{set ? <span className={styles.statuses}>
       {METER_UTILITIES.map(k => <span key={k}>{t.utilities[k]} · {meterUtilityStatus(d, k)}</span>)}
@@ -128,8 +128,9 @@ export function MeterReadingFields({ report, invalidCorrection = false }: { repo
           <h3 id="meter-purpose-preview" tabIndex={-1}>{t.changePurpose}</h3><p>{t.previous}: {set?.factsPurpose ? t.titles[set.factsPurpose] : t.unconfirmed}</p><p>{t.proposed}: {t.titles[pending.target]}</p>
           <p>{t.purposeHelp}</p><p>{t.confirmSet}</p>
           {METER_UTILITIES.map(k => <div key={k}><h4>{t.utilities[k]}</h4><MeterFacts details={d} utility={k} retained /></div>)}
-          {stale ? <><p role="status">{t.stale}</p><button type="button" className={styles.textButton} onClick={() => setPending({ ...pending, snapshot: meterSnapshot(d) })}>{t.refresh}</button></> : null}
+          {stale ? <><p role="status">{t.stale}</p><button type="button" className={styles.textButton} onClick={() => setPending({ ...pending, snapshot: meterSnapshot(d), epoch: store.mutationEpoch })}>{t.refresh}</button></> : null}
           <div className={styles.buttons}><button type="button" className="button button-secondary" disabled={stale} onClick={() => {
+            if (pending.epoch !== store.mutationEpoch) return;
             const accepted = update(latest => confirmMeterPurpose(latest, pending.target, pending.selected, pending.snapshot));
             if (accepted) { setPending(null); focusMeterField(pending.selected[0] ?? "electricity", "applicability"); } else setNotice(t.stale);
           }}>{t.correctPurpose}</button><button type="button" className={styles.textButton} onClick={() => { setPending(null); document.getElementById("meter-readings")?.focus(); }}>{t.cancel}</button></div>

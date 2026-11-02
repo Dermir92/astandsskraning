@@ -15,7 +15,7 @@ import { RentalInformationFields, type UpdateDetails } from "../rental-informati
 import { InspectionComparisonPanel } from "../inspection-comparison";
 
 export function DetailsScreen() {
-  const { report, id, store, state, mode } = useReport();
+  const { report, id, store, state, mode, demoReadOnly } = useReport();
   const router = useRouter();
   const { fromReview, reviewSection } = useDetailsCorrection(state.status !== "loading" && !!report);
   if (state.status === "loading" || !report)
@@ -40,6 +40,7 @@ export function DetailsScreen() {
       <InspectionComparisonPanel report={report} compact />
       {fromReview ? <Link className="text-link core-return" href={reviewHref}>Aftur í yfirferð</Link> : null}
       <form noValidate onSubmit={(e) => { e.preventDefault(); router.push(fromReview ? reviewHref : `/skyrslur/${id}/rymi`); }}>
+        <fieldset disabled={demoReadOnly} className="demo-edit-boundary" aria-label="Upplýsingar um íbúð">
         <section className="panel form-panel">
           <div className="panel-heading"><h2>Skráning og eign</h2><p>* Má fylla út síðar</p></div>
           <Field id="inspectionContext" label="Tengsl við íbúðarleigu" className="core-context">
@@ -114,6 +115,7 @@ export function DetailsScreen() {
             </Field>
           </div>
         </details>
+        </fieldset>
         <div className="info-note"><Info size={18} aria-hidden="true" /><p>{mode === "cloud" ? "Drög vistast í staðbundnum gagnagrunni þegar vistun er staðfest. Fylgstu með vistunarstöðunni." : "Drög vistast í þessum vafra þegar vistun tekst. Fylgstu með vistunarstöðunni."}</p></div>
         <FlowFooter backHref={fromReview ? reviewHref : "/"} nextText={fromReview ? "Aftur í yfirferð" : "Velja rými"}>
           <Link href="/" className="draft-link">Fara í yfirlit draga</Link>

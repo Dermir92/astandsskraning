@@ -84,7 +84,7 @@ function EquipmentRow({ group, row, index, change, forceField, rowRef }: { group
 }
 
 export function FireObservationFields({ report, correction }: { report: Report; correction: ReturnType<typeof resolveFireCorrection> }) {
-  const { store, state } = useDemo();
+  const { store, state, demoReadOnly } = useDemo();
   const [announcement, setAnnouncement] = useState("");
   const added = useRef<string | null>(null);
   const fire = report.details.fireSafety;
@@ -106,7 +106,7 @@ export function FireObservationFields({ report, correction }: { report: Report; 
       <p>{t.intro}</p><p>{t.limit}</p><p className={styles.hint}>{t.draft}</p>
       {!rental ? <p className={styles.hint}>{t.optional}{!report.details.inspectionContext ? ` ${t.contextUnknown}` : ""}</p> : null}
       {correction.active && (!correction.valid || correction.stale) ? <p className={styles.warning} role="status">{correction.stale ? t.unknownTarget : t.invalidTarget}</p> : null}
-      <fieldset className={styles.readonly} disabled={state.status === "read-error" || state.status === "loading"}><legend className="sr-only">{t.title}</legend>
+      <fieldset className={styles.readonly} disabled={demoReadOnly || state.status === "read-error" || state.status === "loading"}><legend className="sr-only">{t.title}</legend>
         {FIRE_GROUPS.map(group => {
           const g: GroupValue = fire?.[group] ?? {};
           const examined = fireExamined(g);

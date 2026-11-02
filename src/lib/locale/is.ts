@@ -276,5 +276,8 @@ export const is = {
     "read-error": "Staðbundin gögn læst til verndar",
     "validation-error": "Breytingu hafnað · gögn óbreytt",
     memory: "Sýnigögn tilbúin",
+    "read-only": "Leshamur · annar flipi hefur breytingarétt",
+    unsupported: "Leshamur · örugg vistun óstudd",
+    recovery: "Óvistað endurheimtardrag",
   },
 };
