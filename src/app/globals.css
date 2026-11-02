@@ -977,6 +977,7 @@ input[type="radio"] {
 }
 .custom-room-form .button {
   padding: 10px;
+  flex-shrink: 0;
 }
 .count-pill {
   font-size: 12px;
@@ -1058,11 +1059,21 @@ input[type="radio"] {
 .remove-confirmation p {
   display: flex;
   gap: 7px;
+  overflow-wrap: anywhere;
 }
 .remove-confirmation > div {
   margin-top: 9px;
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
+}
+.remove-confirmation,
+.remove-confirmation .button {
+  scroll-margin-block: 6rem;
+}
+.remove-confirmation .button:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
 }
 .small-note {
   margin-top: 13px;
@@ -2003,9 +2014,6 @@ input[type="radio"] {
   .selected-rooms {
     padding: 17px;
   }
-  .custom-room-form .button > span {
-    display: none;
-  }
   .inspection-layout {
     grid-template-columns: 170px minmax(0, 1fr);
     gap: 15px;
@@ -2275,9 +2283,6 @@ input[type="radio"] {
   }
   .quantity-row > span {
     font-size: 12px;
-  }
-  .custom-room-form .button > span {
-    display: inline;
   }
   .rooms-layout + form .flow-footer .button-primary {
     white-space: normal;
