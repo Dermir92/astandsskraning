@@ -9,6 +9,54 @@ import { meterReport, meterSet } from "./meter-readings-fixtures";
 import { is } from "../src/lib/locale/is";
 import { expandAssessment } from "./inspection-ui-helpers";
 
+for (const readFailure of [false, true]) {
+  test(`F1 ${readFailure ? "unreadable" : "malformed"} canonical data gives no editing controls or canonical writes`, async ({ page, context }) => {
+    const initial = readFailure ? JSON.stringify({ version: 1, reports: [legacyCoreReport()] }) : "{synthetic-unreadable-document";
+    await context.addInitScript(({ key, initial, readFailure }) => {
+      if (!sessionStorage.getItem("ux3-f1-seeded")) {
+        localStorage.setItem(key, initial); localStorage.setItem("ux3-f1-unrelated", "preserve"); sessionStorage.setItem("ux3-f1-seeded", "1");
+      }
+      const get = Storage.prototype.getItem, set = Storage.prototype.setItem;
+      const control = window as unknown as { f1Writes: number; f1Raw: () => string | null };
+      control.f1Writes = 0; control.f1Raw = () => get.call(localStorage, key);
+      Storage.prototype.getItem = function (name) {
+        if (this === localStorage && name === key && readFailure) throw new DOMException("Synthetic read denial", "SecurityError");
+        return get.call(this, name);
+      };
+      Storage.prototype.setItem = function (name, value) { if (this === localStorage && name === key) control.f1Writes++; set.call(this, name, value); };
+    }, { key: STORAGE_KEY, initial, readFailure });
+    await page.goto("/skyrslur/syni-ibud/upplysingar");
+    await expect(status(page)).toHaveText("Staðbundin gögn læst til verndar");
+    await expect(page.locator("#address")).toHaveValue("Sýnigata 14"); await expect(page.locator("#address")).toBeDisabled();
+    await expect(page.locator("#inspectionContext")).toBeDisabled(); await expect(page.getByRole("radio").first()).toBeDisabled();
+    expect(await page.evaluate(() => (window as unknown as { f1Writes: number }).f1Writes)).toBe(0);
+    expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
+    await page.getByRole("button", { name: "Velja rými", exact: true }).click();
+    await expect(page.getByRole("textbox", { name: "Heiti rýmis 1", exact: true })).toBeDisabled();
+    await expect(page.locator("#custom-room")).toHaveAttribute("readonly", "");
+    await expect(page.getByRole("button", { name: "Fjarlægja Stofa", exact: true })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Bæta við", exact: true })).toBeDisabled();
+    expect(await page.evaluate(() => (window as unknown as { f1Writes: number }).f1Writes)).toBe(0);
+    expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
+    await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls");
+    const item = page.locator('.checklist-item[data-item="walls"]');
+    await expect(item.getByRole("textbox", { name: /^Athugasemd/ })).toBeDisabled(); await expandAssessment(item);
+    for (const answer of await item.getByRole("radio").all()) await expect(answer).toBeDisabled();
+    await expect(item.getByRole("button", { name: "Breyta fráviki", exact: true })).toBeDisabled();
+    await expect(item.getByRole("button", { name: "Hreinsa svör", exact: true })).toBeDisabled();
+    await expect(item.locator('input[type="file"]')).toBeDisabled(); await expect(item.locator(".checklist-toggle")).toBeEnabled();
+    expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
+    expect(await page.evaluate(() => (window as unknown as { f1Writes: number }).f1Writes)).toBe(0);
+    await page.goto("/skyrslur/ny"); await expect(page.getByRole("button", { name: "Velja íbúð", exact: true })).toBeDisabled();
+    expect(await page.evaluate(() => (window as unknown as { f1Writes: number }).f1Writes)).toBe(0);
+    expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
+    await page.reload(); await expect(status(page)).toHaveText("Staðbundin gögn læst til verndar");
+    expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
+    expect(await page.evaluate(() => (window as unknown as { f1Writes: number }).f1Writes)).toBe(0);
+    expect(await page.evaluate(() => localStorage.getItem("ux3-f1-unrelated"))).toBe("preserve");
+  });
+}
+
 const report = () => legacyCoreReport();
 const details = (id = "core-legacy") => `/skyrslur/${id}/upplysingar`;
 const status = (page: Page) => page.locator(".topbar .save-status");
@@ -112,6 +160,56 @@ test("T07/T10 reload recovers failed input without replay; deliberate resume sav
   await confirm(page); await page.getByRole("button", { name: "Halda áfram með endurheimtardrag" }).click();
   await expect(status(page)).toHaveText("Vistað í þessum vafra"); await expect(page.locator("#address")).toBeEnabled();
   expect(JSON.parse((await raw(page))!).reports[0].details.address).toBe("Óvistað til endurheimtar"); expect(await checkpoint(page)).toBeNull();
+});
+
+test("F2 stale checkpoint A after successful B remains recoverable without replacing B on reload", async ({ page, context }, testInfo) => {
+  await seed(context); await openWriter(page); const s0 = await raw(page);
+  await page.evaluate(({ key, recoveryKey }) => {
+    const set = Storage.prototype.setItem, remove = Storage.prototype.removeItem;
+    let failNextCanonical = true;
+    const control = window as unknown as { f2CanonicalWrites: number }; control.f2CanonicalWrites = 0;
+    Storage.prototype.setItem = function (name, value) {
+      if (this === localStorage && name === key) {
+        if (failNextCanonical) { failNextCanonical = false; throw new DOMException("Synthetic first write failure", "QuotaExceededError"); }
+        set.call(this, name, value); control.f2CanonicalWrites++; return;
+      }
+      set.call(this, name, value);
+    };
+    Storage.prototype.removeItem = function (name) {
+      if (this === sessionStorage && name === recoveryKey) throw new DOMException("Synthetic cleanup failure", "SecurityError");
+      remove.call(this, name);
+    };
+  }, { key: STORAGE_KEY, recoveryKey: DEMO_RECOVERY_KEY });
+  await page.locator("#address").fill("Candidate A óvistað"); await expect(status(page)).toHaveText("Ekki tókst að vista í vafra");
+  expect(await raw(page)).toBe(s0); const checkpointA = await checkpoint(page);
+  expect(JSON.parse(checkpointA!).baseRaw).toBe(s0);
+  await page.locator("#address").fill("Candidate B vistað"); await expect(status(page)).toHaveText("Vistað í þessum vafra");
+  const canonicalB = await raw(page); expect(JSON.parse(canonicalB!).reports[0].details.address).toBe("Candidate B vistað");
+  expect(await checkpoint(page)).toBe(checkpointA);
+  expect(await page.evaluate(() => (window as unknown as { f2CanonicalWrites: number }).f2CanonicalWrites)).toBe(1);
+
+  await page.reload(); await expect(status(page)).toHaveText("Óvistað endurheimtardrag");
+  await expect(page.locator("#address")).toHaveValue("Candidate A óvistað"); await expect(page.locator("#address")).toBeDisabled();
+  await expect(page.locator(".storage-warning")).toContainText("Endurheimtarafrit getur verið eldra en nýjasta heppnaða vistun");
+  expect(await raw(page)).toBe(canonicalB); expect(await checkpoint(page)).toBe(checkpointA);
+  await page.evaluate(key => {
+    const set = Storage.prototype.setItem, control = window as unknown as { f2CanonicalWrites: number }; control.f2CanonicalWrites = 0;
+    Storage.prototype.setItem = function (name, value) { if (this === localStorage && name === key) control.f2CanonicalWrites++; set.call(this, name, value); };
+  }, STORAGE_KEY);
+  const downloadEvent = page.waitForEvent("download"); await page.getByRole("button", { name: "Sækja endurheimtarafrit", exact: true }).click();
+  const exportedPath = testInfo.outputPath("stale-checkpoint-a.json"); await (await downloadEvent).saveAs(exportedPath);
+  const exported = JSON.parse(await readFile(exportedPath, "utf8"));
+  expect(exported.candidateRaw).toBe(JSON.parse(checkpointA!).candidateRaw); expect(exported.baseRaw).toBe(s0);
+  await confirm(page); await page.getByRole("button", { name: "Halda áfram með endurheimtardrag", exact: true }).click();
+  await expect(page.getByText("Ekki var hægt að halda áfram með dragið.", { exact: false })).toBeVisible();
+  expect(await raw(page)).toBe(canonicalB); expect(await checkpoint(page)).toBe(checkpointA);
+  await confirm(page); await page.getByRole("button", { name: "Sækja nýjustu vistuðu gögn", exact: true }).click();
+  await expect(page.locator("#address")).toHaveValue("Candidate B vistað"); await expect(page.locator("#address")).toBeDisabled();
+  expect(await checkpoint(page)).toBe(checkpointA);
+  await confirm(page); await page.getByRole("button", { name: "Vinna með nýjustu drög", exact: true }).click();
+  await expect(page.locator("#address")).toBeEnabled(); await expect(status(page)).toHaveText("Vistað í þessum vafra");
+  expect(await checkpoint(page)).toBeNull(); expect(await raw(page)).toBe(canonicalB);
+  expect(await page.evaluate(() => (window as unknown as { f2CanonicalWrites: number }).f2CanonicalWrites)).toBe(0);
 });
 
 test("T08/T24/T25 legacy change is detected; viewing latest never disposes the unresolved candidate", async ({ page, context }) => {

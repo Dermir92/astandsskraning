@@ -262,7 +262,7 @@ export class DemoStore {
   }
   private recoveryWarning() {
     if (this.recoveryUnreadable) return "Ekki tókst að lesa endurheimtarafrit eða snið þess er óstutt. Afritinu er ekki breytt; frekari breytingar eru læstar.";
-    return `Óvistað endurheimtardrag er varðveitt hér. Það er ekki sjálfkrafa vistað eða sameinað nýrri gögnum. ${this.checkpointFailed ? "Afrit er aðeins í minni. Sæktu það áður en þú endurhleður eða lokar flipanum." : "Sæktu endurheimtarafrit áður en þú lokar flipanum. Setuafrit er ekki varanleg gagnageymsla."}${this.access === "unsupported" ? " Örugg vistun er ekki í boði í þessum vafra; breytingar eru læstar." : this.access === "reader" ? " Þessi flipi hefur ekki breytingarétt; reyndu hann aftur þegar fyrri breytingarflipa hefur verið lokað." : ""}`;
+    return `Óvistað endurheimtardrag er varðveitt hér. Það er ekki sjálfkrafa vistað eða sameinað nýrri gögnum. Endurheimtarafrit getur verið eldra en nýjasta heppnaða vistun. Skoðaðu nýjustu vistuðu gögnin áður en þú velur framhald. ${this.checkpointFailed ? "Afrit er aðeins í minni. Sæktu það áður en þú endurhleður eða lokar flipanum." : "Sæktu endurheimtarafrit áður en þú lokar flipanum. Setuafrit er ekki varanleg gagnageymsla."}${this.access === "unsupported" ? " Örugg vistun er ekki í boði í þessum vafra; breytingar eru læstar." : this.access === "reader" ? " Þessi flipi hefur ekki breytingarétt; reyndu hann aftur þegar fyrri breytingarflipa hefur verið lokað." : ""}`;
   }
   private storageChanged(event: StorageEvent) {
     if (event.key !== STORAGE_KEY && event.key !== null) return;

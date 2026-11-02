@@ -40,9 +40,7 @@ export function DetailsScreen() {
       <InspectionComparisonPanel report={report} compact />
       {fromReview ? <Link className="text-link core-return" href={reviewHref}>Aftur í yfirferð</Link> : null}
       <form noValidate onSubmit={(e) => { e.preventDefault(); router.push(fromReview ? reviewHref : `/skyrslur/${id}/rymi`); }}>
-        {/* Preserve the existing read-error fixture probes: the store rejects
-            them without mutation. Coordination read-only modes disable inputs. */}
-        <fieldset disabled={demoReadOnly && state.status !== "read-error"} className="demo-edit-boundary" aria-label="Upplýsingar um íbúð">
+        <fieldset disabled={demoReadOnly} className="demo-edit-boundary" aria-label="Upplýsingar um íbúð">
         <section className="panel form-panel">
           <div className="panel-heading"><h2>Skráning og eign</h2><p>* Má fylla út síðar</p></div>
           <Field id="inspectionContext" label="Tengsl við íbúðarleigu" className="core-context">

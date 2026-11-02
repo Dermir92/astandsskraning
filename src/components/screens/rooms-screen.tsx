@@ -20,9 +20,7 @@ const roomOptions: RoomType[] = [
   "balcony",
 ];
 export function RoomsScreen() {
-  const { report, id, store, state, mode, demoReadOnly: coordinationReadOnly } = useReport();
-  // Legacy read-error fixture controls still exercise rejection by the store.
-  const demoReadOnly = coordinationReadOnly && state.status !== "read-error";
+  const { report, id, store, state, mode, demoReadOnly } = useReport();
   const [customName, setCustomName] = useState("");
   const [customError, setCustomError] = useState("");
   const [pendingRemove, setPendingRemove] = useState<{ id: string; epoch: number } | null>(null);
@@ -223,9 +221,9 @@ export function RoomsScreen() {
                       <div>
                         <button
                           className="button button-small button-danger"
-                          disabled={demoReadOnly || (state.status !== "read-error" && pendingRemove.epoch !== store.mutationEpoch)}
+                          disabled={demoReadOnly || pendingRemove.epoch !== store.mutationEpoch}
                           onClick={() => {
-                            if (state.status !== "read-error" && pendingRemove.epoch !== store.mutationEpoch) return;
+                            if (pendingRemove.epoch !== store.mutationEpoch) return;
                             store.removeRoom(id, room.id);
                             setPendingRemove(null);
                           }}
@@ -239,7 +237,7 @@ export function RoomsScreen() {
                           Hætta við
                         </button>
                       </div>
-                      {state.status !== "read-error" && pendingRemove.epoch !== store.mutationEpoch ? <p role="status">Breytingaréttur hefur breyst. Hættu við og veldu rýmið aftur til að yfirfara eyðinguna.</p> : null}
+                      {pendingRemove.epoch !== store.mutationEpoch ? <p role="status">Breytingaréttur hefur breyst. Hættu við og veldu rýmið aftur til að yfirfara eyðinguna.</p> : null}
                     </div>
                   ) : null}
                 </li>

@@ -146,6 +146,48 @@ test("T11 stale checkpoint after successful save is not replayed when cleanup fa
   expect(reload.getSnapshot().status).toBe("saved"); expect(reload.demoRecoveryJSON()).toBeNull(); expect(a.local.writes).toHaveLength(count);
 });
 
+test("F2 T11 different successful candidate preserves stale checkpoint conservatively without overwriting canonical", async () => {
+  const a = setup(), s0 = raw(a.local);
+  a.local.failWrite = true; expect(edit(a.store, a.report.id, "Candidate A")).toBe(true);
+  const checkpointA = a.session.getItem(DEMO_RECOVERY_KEY)!;
+  expect(JSON.parse(checkpointA).baseRaw).toBe(s0);
+  expect(JSON.parse(JSON.parse(checkpointA).candidateRaw).reports[0].title).toBe("Candidate A");
+  expect(raw(a.local)).toBe(s0);
+
+  a.local.failWrite = false; a.session.failRemove = true;
+  expect(edit(a.store, a.report.id, "Candidate B saved")).toBe(true);
+  const canonicalB = raw(a.local);
+  expect(JSON.parse(canonicalB!).reports[0].title).toBe("Candidate B saved");
+  expect(a.store.getSnapshot().status).toBe("saved"); expect(a.store.demoRecoveryJSON()).toBeNull();
+  expect(a.session.getItem(DEMO_RECOVERY_KEY)).toBe(checkpointA);
+  const writesAfterB = a.local.writes.length;
+  a.store.disconnectDemo(); await Promise.resolve();
+
+  const reload = open(demoTab(a.local, a.locks, a.session)); await reload.whenReady();
+  const restoredWarning = reload.getSnapshot().warning;
+  expect(reload.getSnapshot().status).toBe("recovery"); expect(reload.editingAllowed).toBe(false);
+  expect(reload.getSnapshot().reports[0].title).toBe("Candidate A");
+  expect(raw(a.local)).toBe(canonicalB); expect(a.local.writes).toHaveLength(writesAfterB);
+  const exported = JSON.parse(reload.demoRecoveryJSON()!);
+  expect(exported.baseRaw).toBe(s0); expect(exported.candidateRaw).toBe(JSON.parse(checkpointA).candidateRaw);
+  reload.retrySave(); expect(edit(reload, a.report.id, "Forbidden")).toBe(false); expect(reload.createReport()).toBeNull();
+  const oldToken = reload.demoRecoveryToken();
+  expect(reload.resumeDemoRecovery(oldToken)).toBe(false);
+  expect(a.session.getItem(DEMO_RECOVERY_KEY)).toBe(checkpointA);
+  expect(reload.reloadDemoLatest(oldToken)).toBe(true);
+  expect(reload.getSnapshot().reports[0].title).toBe("Candidate B saved"); expect(reload.editingAllowed).toBe(false);
+  expect(reload.demoRecoveryJSON()).toContain("Candidate A");
+  expect(reload.finishDemoRecovery(oldToken)).toBe(false);
+  expect(reload.finishDemoRecovery(reload.demoRecoveryToken())).toBe(false); // Cleanup is still failing.
+  expect(a.session.getItem(DEMO_RECOVERY_KEY)).toBe(checkpointA);
+  a.session.failRemove = false;
+  expect(reload.finishDemoRecovery(reload.demoRecoveryToken())).toBe(true);
+  expect(reload.getSnapshot().status).toBe("saved"); expect(reload.editingAllowed).toBe(true);
+  expect(reload.demoRecoveryJSON()).toBeNull(); expect(a.session.getItem(DEMO_RECOVERY_KEY)).toBeNull();
+  expect(raw(a.local)).toBe(canonicalB); expect(a.local.writes).toHaveLength(writesAfterB);
+  expect(restoredWarning).toContain("Endurheimtarafrit getur verið eldra en nýjasta heppnaða vistun");
+});
+
 test("T12 checkpoint failure is visible and never grants a stale recovery confirmation", () => {
   const a = setup(); a.local.failWrite = true; a.session.failWrite = true;
   edit(a.store, a.report.id, "Memory only");

@@ -219,7 +219,7 @@ test("new controls preserve unreadable raw data and valid failed writes still re
   const protectedRow = page.locator('.checklist-item[data-item="walls"]');
   await protectedRow.locator(".checklist-toggle").click();
   await expandAssessment(protectedRow);
-  await protectedRow.getByRole("radio", { name: "Í lagi", exact: true }).click();
+  await expect(protectedRow.getByRole("radio", { name: "Í lagi", exact: true })).toBeDisabled();
   expect(await raw(page)).toBe(unsupported);
   await expect(page.getByRole("button", { name: "Reyna vistun aftur", exact: true })).toHaveCount(0);
   const document = JSON.stringify({ version: 1, reports: [checklistReport()] });

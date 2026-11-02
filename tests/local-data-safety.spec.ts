@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { STORAGE_KEY } from "../src/components/demo-provider";
 import { DemoStore } from "./demo-store-helpers";
-import { EMPTY_DETAILS, MAX_REPORTS, isReportList, makeRoom, type Report } from "../src/lib/model";
+import { EMPTY_DETAILS, EMPTY_OBSERVATION, MAX_REPORTS, isReportList, makeRoom, type Report } from "../src/lib/model";
 
 function reportsOf(count: number): Report[] {
   return Array.from({ length: count }, (_, index) => ({
@@ -46,14 +46,14 @@ for (const [name, raw] of [
     await page.goto("/skyrslur/syni-ibud/upplysingar");
     const address = page.getByRole("textbox", { name: /^Heimilisfang/ });
     await expect(address).toHaveValue("Sýnigata 14");
-    await address.fill("Má ekki vista yfir frumgögn");
+    await expect(address).toBeDisabled();
     await expect(address).toHaveValue("Sýnigata 14");
     await page.goto("/skyrslur/syni-ibud/rymi");
     const roomName = page.getByRole("textbox", { name: "Heiti rýmis 1", exact: true });
-    await roomName.fill("Má ekki breyta");
+    await expect(roomName).toBeDisabled();
     await expect(roomName).toHaveValue("Forstofa");
-    await page.getByRole("button", { name: "Fjarlægja Stofa", exact: true }).click();
-    await page.getByRole("button", { name: "Fjarlægja rými", exact: true }).click();
+    await expect(page.getByRole("button", { name: "Fjarlægja Stofa", exact: true })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Fjarlægja rými", exact: true })).toHaveCount(0);
     await expect(page.getByRole("textbox", { name: "Heiti rýmis 2", exact: true })).toHaveValue("Stofa");
     await page.goto("/skyrslur/ny");
     await expect(page.getByRole("button", { name: "Velja íbúð", exact: true })).toBeDisabled();
@@ -193,6 +193,9 @@ test.describe("store safety contracts", () => {
       const before = store.getSnapshot().reports;
       store.retrySave();
       store.updateReport("syni-ibud", r => ({ ...r, title: "Blocked fallback edit" }));
+      expect(store.editingAllowed).toBe(false);
+      expect(store.updateRoom("syni-ibud", "demo-entry", room => ({ ...room, name: "Blocked room edit" }))).toBe(false);
+      store.updateObservation("syni-ibud", "demo-entry", "walls", { ...EMPTY_OBSERVATION, note: "Blocked observation" });
       store.removeRoom("syni-ibud", "demo-living");
       expect(store.createReport()).toBeNull();
       store.retrySave();

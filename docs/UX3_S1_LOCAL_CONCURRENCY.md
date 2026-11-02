@@ -32,7 +32,7 @@ Notandi getur sótt endurheimtarafrit og síðan, með staðfestingu bundinni vi
 
 Við checkpoint-bilun kemur skýr viðvörun um að afrit sé aðeins í minni og að sækja þurfi það fyrir reload/lokun. `beforeunload` er viðbótarviðvörun, ekki varðveislutrygging. Óstofnað rýmisheiti helst á skjánum við árekstur og blokkar skipti á working view; það þarf að afrita/afgreiða sérstaklega. Engin sjálfvirk reload/remount hreinsar innslátt.
 
-Núverandi SaveStatus, warning-svæði, litir og button-stílar eru notuð. Nýir samhæfingar-/leshamir gera mutation-stýringar óvirkar; store sjálft er alltaf authoritative. Fyrirliggjandi `read-error` sýnigagnareitir í upplýsingum, rýmum og almennu atriðamati halda eldri hegðun: innsláttartilraun er hafnað af store og fyrra gildi helst, án skrifa eða minnisbreytingar. Þetta varðveitir líka óbreyttu read-protection regressjónirnar. Skoðun, leiðsögn og niðurhal haldast tiltæk. Myndaforskoðanir eru áfram tímabundnar; árekstur eða höfnun revokar ekki fyrirliggjandi myndir.
+Núverandi SaveStatus, warning-svæði, litir og button-stílar eru notuð. Allir Demo-leshamir, þar á meðal `read-error`, gera mutation-stýringar óvirkar; store sjálft er alltaf authoritative. Upplýsingar, rými og atriðamat gefa því ekki til kynna breytingarétt á sýnigögnum þegar upprunaleg gögn eru ólæsileg. Óstofnað rýmisheiti er read-only og áfram hægt að velja/afrita textann. Skoðun, leiðsögn og niðurhal haldast tiltæk. Myndaforskoðanir eru áfram tímabundnar; árekstur eða höfnun revokar ekki fyrirliggjandi myndir.
 
 ## C1-einangrun
 
@@ -40,7 +40,7 @@ CloudStore heldur sínum synchronous memory mutations og eigin database revision
 
 ## Acceptance baseline T01–T25
 
-`tests/demo-concurrency-contract.spec.ts` hefur eitt nafngreint próf fyrir hvert T01–T25, með stýrðum locks/storage og Deferred/barriers. `tests/demo-concurrency.spec.ts` bætir ellefu raunverulegum Chromium-vafraprófum við, með tveimur síðum í sama browser context/origin og stýrðu release/reacquire meðan staðfestingar eru opnar. Tilvikin nota ekki handahófskenndar biðir til að framkalla árekstur.
+`tests/demo-concurrency-contract.spec.ts` hefur eitt nafngreint próf fyrir hvert T01–T25, ásamt viðbótar-F2-prófi fyrir ólíkt checkpoint A og vistað B, með stýrðum locks/storage og Deferred/barriers. `tests/demo-concurrency.spec.ts` hefur fjórtán raunveruleg Chromium-vafrapróf. Samhliða-tilvikin nota tvær síður í sama browser context/origin og stýrt release/reacquire meðan staðfestingar eru opnar. F1/F2 bæta við lestrarbilun, læstum stýringum og A→B/sessionStorage-reload. Tilvikin nota ekki handahófskenndar biðir til að framkalla árekstur.
 
 | Tilvik | Athugun | Viðbótar vafrapróf |
 |---|---|---|
@@ -54,10 +54,10 @@ CloudStore heldur sínum synchronous memory mutations og eigin database revision
 | T08 | Retry eftir nýjan, eyddan, skemmdan eða óstuddan grunn skrifar ekkert | Nýrri canonical gögn eru ekki yfirskrifuð |
 | T09 | Reentrant listener og listener-villa eftir commit | Store-contract |
 | T10 | Reload endurheimtir candidate án replay/merge | Raunveruleg sessionStorage reload |
-| T11 | Checkpoint cleanup bilar eftir heppnað commit; ekkert duplicate/replay | Store-contract |
+| T11 | Checkpoint cleanup bilar eftir sama candidate við retry eða ólíkt B; B helst vistað og A er ekki sjálfkrafa hreinsað | Store-contract og F2 sessionStorage-reload, export og meðvituð afgreiðsla án canonical skrifa |
 | T12 | Bæði canonical og checkpoint skrif bregðast; newest candidate í minni | Skýr viðvörun, engin saved staða eða óheimiluð endursókn |
 | T13 | Vantar API, óöruggt context, synjun og ógilt grant | Navigator án Web Locks, engin fallback-vistun |
-| T14 | Skemmd/óstudd canonical og recovery-gögn; lestrarbilun | Fyrirliggjandi read-protection próf í fullri svítu |
+| T14 | Skemmd/óstudd canonical og recovery-gögn; lestrarbilun | F1 læsir upplýsingum/rýmum/atriðamati; fyrri raw-varðveislufullyrðingar og beinar store-hafnanir haldast |
 | T15 | Unknown envelope, revision-sentinel og nested gildi | Fyrirliggjandi compatibility-próf í fullri svítu |
 | T16 | Missing/null, remove/clear og seinkuð/óviðkomandi events | Storage-event á milli raunverulegra flipa |
 | T17 | Deferred hash, ownership-epoch og linked-final idempotency | Opin linked-final staðfesting verður úrelt eftir release/reacquire |
@@ -74,13 +74,13 @@ Eldri domain/compatibility próf nota áfram raunverulegan DemoStore með inject
 
 Ein eldri UI1-prófunaruppsetning gerði ráð fyrir að annað app-tilvik gæti skrifað á meðan fyrra var opið. Það er einmitt hegðunin sem S1 lokar á. Hún hermir nú sérstaklega eftir legacy-skrifara með beinu synthetic `setItem`, eftir nýja assertion um að hinn flipinn sé í lesham. Allar fyrri assertions um external bytes, óbreytta working view og cancellation án skrifa eru varðveittar.
 
-## Keyrsla og niðurstöður
+## Fyrri afhending — keyrsla og niðurstöður
 
 Full Demo-regressjón er keyrð með `node node_modules/@playwright/test/cli.js test --config playwright.ux3.config.ts --reporter=list,json`. Config erfir sömu þrjú viewport-project, workers=2, retries=0 og tímamörk og upprunalega config; aðeins eigið Demo-port 3103, engin server-endurnotkun, óvirkir C1/hosted fánar og aðskilin artifact-mappa eru afmörkuð.
 
 Store-/compatibility- og C1 fake-transport prófin má endurtaka án server eða gagnagrunns með `node node_modules/@playwright/test/cli.js test --config playwright.ux3-unit.config.ts`. TestMatch er explicit allowlist; C1 database/UI próf eru ekki hluti hennar. Niðurstöður og test-output hafa eigin artifact-möppur svo keyrslur yfirskrifi ekki trace-gögn annarra svíta.
 
-Staðfest 2. nóvember 2026 með Node 22.22.2, Next 16.4.3 og Playwright 1.64.1:
+Fyrri afhending, head `1a198efa51871208cef40beed38b9a1a55892066`, staðfest 2. nóvember 2026 með Node 22.22.2, Next 16.4.3 og Playwright 1.64.1:
 
 | Athugun | Niðurstaða |
 |---|---|
@@ -92,13 +92,41 @@ Staðfest 2. nóvember 2026 með Node 22.22.2, Next 16.4.3 og Playwright 1.64.1:
 | Lint, typecheck og production build | Allt staðist; engin deployment |
 | Óbreytt sérstök endurkeyrsla eina tímamarksfallsins | 1/1 staðist, um 2,1 mínúta, sömu assertions og 180 sekúndna mörk, retries=0 |
 
-Heila lokakeyrslan er **ekki alveg græn**: `tests/inspection-evidence.spec.ts:388`, „five-width visual, accessibility and 200 percent text verification“, fór yfir fyrirliggjandi 180 sekúndna tímamark (180189 ms), án sértæks assertion-falls í skýrslunni. Sama próf hafði staðist í fyrri heilli keyrslu á 178097 ms og stóðst síðan óbreytt í sérkeyrslu. Orsök tímabreytileikans er ekki fullstaðfest; þetta er opið prófunaróstöðugleikaatriði til rýni, ekki tilefni til að hækka tímamörk eða fela fallið. Trace/JSON úr heilu keyrslunni og sérkeyrslunni eru varðveitt í aðskildum artifact-möppum.
+Heila lokakeyrsla fyrri afhendingar á head `1a198efa51871208cef40beed38b9a1a55892066` var **ekki alveg græn**: `tests/inspection-evidence.spec.ts:388`, „five-width visual, accessibility and 200 percent text verification“, fór yfir fyrirliggjandi 180 sekúndna tímamark (180189 ms), án sértæks assertion-falls í skýrslunni. Sama próf hafði staðist í fyrri heilli keyrslu á 178097 ms og stóðst síðan óbreytt í sérkeyrslu. Orsök tímabreytileikans er ekki fullstaðfest; þetta er opið prófunaróstöðugleikaatriði til rýni, ekki tilefni til að hækka tímamörk eða fela fallið. Trace/JSON úr heilu keyrslunni og sérkeyrslunni eru varðveitt í aðskildum artifact-möppum. Niðurstöður framhaldsins eru skráðar hér fyrir neðan.
 
 Fyrsta heila keyrslan lauk með 1141 staðist, 35 sleppt og 3 föllum: sama eldra UI1-prófið reyndi að nota seinni app-flipa sem writer í öllum þremur projectum. Uppsetning þess var síðan aðlöguð eins og lýst er hér að ofan. Fyrri hlutakeyrslur fundu líka upphafsfókus-/read-error-regressjónir sem voru leiðréttar án breytinga á assertions. Þær keyrslur eru ekki lagðar saman við lokatölurnar.
 
 Sjálfstæð AST-yfirferð staðfesti öll 1642 fyrri expect-/prófstýringarköll í 11 breyttum eldri spec-skrám. SHA-256 af 159 kóða-, prófunar- og config-skrám var óbreytt meðan lokaheila svítan keyrði. 35 skips eru fyrirliggjandi skilyrt próf; engum skip-skilyrðum, retries eða tímamörkum var breytt.
 
 Vinnan er einangruð á `codex/ux3-s1-local-concurrency-safety`. Varðveisluyfirferð staðfesti allar 786 fyrirliggjandi skrár í aðalvinnusvæðinu, sömu SHA-256 gildi og sama Git-status/HEAD/tree, ásamt óbreyttum fyrri branch-/remote-refs og worktrees. Þar með eru sex fyrirliggjandi tracked M-slóðir og 48 untracked QA-skrár varðveittar. Eitt innra Codex snapshot-ref, `refs/codex/turn-diffs/captures/1793613348249/1854d909-66dc-45cf-abce-b8fa96ed5c7b/base`, var ekki lengur til við lokasamanburð (upphafsgildi `5d078f8e08255d09a1ffbbdf4a5fc78d674992cb`); verkefnið gaf enga skipun um að eyða því og reynir ekki að endurstilla innri app-stöðu. Öll önnur 55 fyrri refs héldust. PR #19 / Docker/D1 er ósnert.
+
+## Framhald óháðrar yfirferðar — F1/F2
+
+F1 var staðfest á yfirförnu head: tvö ný Chromium-próf (skemmt canonical skjal og `getItem`-lestrarbilun) féllu á að heimilisfangsreitur var enabled þótt staðan væri `read-error`. Undanþágur voru fjarlægðar í DetailsScreen, ObservationEditor og RoomsScreen. „Breyta fráviki“ er líka óvirkt þegar Demo-breytingarétt vantar; hreint skoðunar-/leiðsagnarviðmót er áfram virkt. `demoReadOnly` er áfram bundið við Demo-mode og engin CloudStore-heimild er breytt.
+
+Eldri read-protection próf staðfesta nú disabled/read-only stýringar í stað þess að reyna venjulegan innslátt í þær. Allar fyrri fullyrðingar um sömu fallback-gildi, exact raw, óviðkomandi sentinel, reload og núll skrif haldast. Beinu store-prófin voru styrkt með updateRoom/updateObservation höfnun; engin gagnavörn var felld niður. Nýju vafraprófin fara í gegnum upplýsingar, rými, atriðamat og stofnun og athuga núll canonical skrif við hver skjáskipti.
+
+F2 notar nákvæma röð S0 → misheppnað A/checkpoint A → ólíkt B vistað → cleanup A bilar → reload. Stýrða store-prófið staðfesti þegar á yfirförnu head að B héldist byte-identical, A kæmi aftur sem recovery, mutation/retry/resume A gætu ekki skrifað yfir B og að hægt væri að afgreiða A með ferskri staðfestingu eftir skoðun B. Prófið féll aðeins á lokafullyrðingu um nýja skýringartextann, eftir að allar gagnavarðveislufullyrðingarnar höfðu staðist.
+
+**F2 breytir ekki vistunar-/hreinsunaralgríminu.** Af ólíku A og B verður ekki sannað að A megi henda. Afrit A er því varðveitt og export-hæft, jafnvel þótt B hafi verið vistað síðar. Notandatextinn segir nú skýrt að endurheimtarafrit geti verið eldra en nýjasta heppnaða vistun og biður um að skoða nýjustu vistuðu gögn áður en framhald er valið. Sama-candidate T11-prófið helst óbreytt; sjálfvirk cleanup á reload er aðeins leyfð þegar candidateRaw er nákvæmlega canonical raw.
+
+Viðbótar-Chromium-próf sannreynir raunverulegt sessionStorage-reload, niðurhal A, höfnun á resume A, endursókn B og meðvitaða afgreiðslu A, allt með núll canonical skrifum eftir reload. Store-prófið sannreynir líka að misheppnuð cleanup við afgreiðslu haldi A og læsi áfram þar til hreinsun tekst.
+
+| Athugun í framhaldi | Niðurstaða |
+|---|---|
+| Markkeyrsla: concurrency, local-data-safety, UI1 assessment, inspection navigation, desktop | 60/60 staðist |
+| Sérkeyrsla aðlagaðs unreadable checklist-prófs, desktop | 1/1 staðist |
+| Offline T01–T25 + F2 + compatibility + C1 fake-transport | 147/147 staðist; þar af 17 C1-store-próf |
+| Lint, typecheck og production build | Staðist |
+| Full regressjón á frystum kóða, þrjú project, retries=0 | **1156 staðist, 35 sleppt, 0 föll**, 1191 alls; 28,0 mínútur |
+| F1/F2 og upphafleg concurrency-tilvik í heilu svítunni | T01–T25: 75/75; F2-store: 3/3; Chromium: 42/42, þar af F1: 6/6 og F2: 3/3 |
+| Eldra five-width myndapróf í heilu svítunni | Staðist á 172152 ms, innan óbreytts 180000 ms marks |
+
+Samanburður five-width: fyrri heilar keyrslur tóku 178097 ms (staðist) og 180189 ms (tímamarksfall); sérstök óbreytt endurkeyrsla tók 128315 ms (staðist). Nýjasta heila keyrslan stóðst á 172152 ms. Tímabreytileikinn er áfram skráður til rýni; hvorki tímamörkum, assertions né retries var breytt og engin almenn prófunarendurskipulagning var gerð.
+
+Hlutakeyrsla fullu svítunnar fann einnig eldra checklist-próf sem reyndi venjulegan smell á read-error radio-stýringu. Það stöðvaðist á óbreyttu 45 sekúndna tímamarki. Smellinum var skipt út fyrir disabled-fullyrðingu; allar fyrri raw-/retry-fullyrðingar prófsins haldast. Hlutakeyrslan var stöðvuð og ný heil keyrsla ræst; hlutaniðurstöður eru ekki lagðar saman við lokatölur.
+
+AST-samanburður við yfirfarið head staðfesti öll 902 fyrri expect-/prófstýringarköll í fjórum breyttum prófunarskrám. CloudStore-skráin hefur sama SHA-256 og fyrir framhaldið; T23 og öll 17 C1 fake-transport prófin standast. Raunveruleg C1 UI/database integration er áfram óstaðfest og var ekki ræst.
 
 ## Takmarkanir og áhætta
 

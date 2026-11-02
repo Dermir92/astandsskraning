@@ -120,7 +120,7 @@ export function ObservationEditor({
   reference?: ReactNode;
 }) {
   const { store, state, demoReadOnly } = useDemo();
-  const coordinationLocked = demoReadOnly && state.status !== "read-error";
+  const coordinationLocked = demoReadOnly;
   const fieldPrefix = useId();
   const headingRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -458,7 +458,7 @@ export function ObservationEditor({
             </div>
           ) : null}
           <section className={damage && complete && !editDefect ? styles.defectSummary : undefined} aria-label={damage && complete && !editDefect ? "Skráð frávik" : undefined}>
-            {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
+            {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" disabled={coordinationLocked} onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
             <div className={damage && complete && !editDefect ? styles.findingOverview : undefined}>
               {damage && complete && !editDefect ? <div><span>Staðsetning</span><p>{o.location}</p></div> : null}
               <PhotoPreview key="item-photos" photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item featured={damage && complete && !editDefect} />
