@@ -12,7 +12,7 @@ function current(store: DemoStore, target: Target) {
   const report = snapshot.reports.find(r => r.id === target.reportId);
   const room = report?.rooms.find(r => r.id === target.roomId);
   const item = room?.items.find(i => i.id === target.itemId);
-  if (locked(snapshot.status) || !report || report.assetType !== "apartment" || report.sampleReviewed || !room || !item || item.kind === "space_heating") return null;
+  if (locked(snapshot.status) || (snapshot.local && !store.editingAllowed) || !report || report.assetType !== "apartment" || report.sampleReviewed || !room || !item || item.kind === "space_heating") return null;
   return { report, room, item, observation: room.observations[item.id] ?? EMPTY_OBSERVATION };
 }
 
@@ -20,6 +20,7 @@ function current(store: DemoStore, target: Target) {
 // Observe intervening changes too: A → B → A must invalidate an old confirmation/undo.
 export function prepareAssessmentChange(store: DemoStore, target: Target, patch: Partial<Observation>, watchKeys = assessmentKeys): AssessmentChange | null {
   const start = current(store, target);
+  const epoch = store.mutationEpoch;
   if (!start) return null;
   const reportContext = (report: typeof start.report) => context(report, ["rooms", "updatedAt"]);
   const roomContext = (room: typeof start.room) => context(room, ["observations", "items"]);
@@ -29,7 +30,7 @@ export function prepareAssessmentChange(store: DemoStore, target: Target, patch:
   let valid = true;
   const matches = () => {
     const live = current(store, target);
-    return !!live && live.report.details === start.report.details && live.report.linkedInitial === start.report.linkedInitial &&
+    return epoch === store.mutationEpoch && !!live && live.report.details === start.report.details && live.report.linkedInitial === start.report.linkedInitial &&
       reportContext(live.report) === expectedReport && roomContext(live.room) === expectedRoom &&
       live.room.items === start.room.items && live.item === start.item &&
       watchKeys.every(key => Object.is(live.observation[key], start.observation[key]));

@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { EMPTY_OBSERVATION, initialRooms, isReportList, makeRoom, observationComplete, reportStats, reportStatus, requiresDamage } from "../src/lib/model";
 import { heatingItem, heatingState, validHeating } from "../src/lib/heating";
 import { itemProgress, missingAnswers, nextIncomplete } from "../src/lib/inspection-navigation";

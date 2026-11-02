@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Check, Info, Minus, Plus, Trash2, TriangleAlert } from "lucide-react";
 import { useReport, MissingReport } from "../report-context";
@@ -20,11 +20,21 @@ const roomOptions: RoomType[] = [
   "balcony",
 ];
 export function RoomsScreen() {
-  const { report, id, store, state } = useReport();
+  const { report, id, store, state, mode, demoReadOnly: coordinationReadOnly } = useReport();
+  // Legacy read-error fixture controls still exercise rejection by the store.
+  const demoReadOnly = coordinationReadOnly && state.status !== "read-error";
   const [customName, setCustomName] = useState("");
   const [customError, setCustomError] = useState("");
-  const [pendingRemove, setPendingRemove] = useState<string | null>(null);
+  const [pendingRemove, setPendingRemove] = useState<{ id: string; epoch: number } | null>(null);
   const router = useRouter();
+  const draftKey = `rooms:${id}:custom-name`;
+  useEffect(() => {
+    if (mode === "demo") return () => store.setDemoUiDraft(draftKey, "");
+  }, [store, draftKey, mode]);
+  const changeCustomName = (value: string) => {
+    setCustomName(value);
+    if (mode === "demo") store.setDemoUiDraft(draftKey, value);
+  };
   if (state.status === "loading" || !report)
     return <MissingReport loading={state.status === "loading"} />;
   if (report.sampleReviewed || report.assetType !== "apartment")
@@ -46,7 +56,7 @@ export function RoomsScreen() {
       ([key, photos]) => key.startsWith(`${id}:${room.id}:`) && photos.length,
     );
     if (Object.keys(room.observations).length || hasPhotos)
-      setPendingRemove(room.id);
+      setPendingRemove({ id: room.id, epoch: store.mutationEpoch });
     else store.removeRoom(id, room.id);
   };
   const invalidNames = report.rooms.some((r) => !r.name.trim());
@@ -74,7 +84,7 @@ export function RoomsScreen() {
                     <button
                       className="icon-button"
                       aria-label={`Fækka: ${is.rooms[type]}`}
-                      disabled={!rooms.length}
+                      disabled={demoReadOnly || !rooms.length}
                       onClick={() => remove(rooms[rooms.length - 1])}
                     >
                       <Minus size={16} aria-hidden="true" />
@@ -88,7 +98,7 @@ export function RoomsScreen() {
                     <button
                       className="icon-button"
                       aria-label={`Fjölga: ${is.rooms[type]}`}
-                      disabled={roomCount >= 50}
+                      disabled={demoReadOnly || roomCount >= 50}
                       onClick={() => addRoom(type)}
                     >
                       <Plus size={16} aria-hidden="true" />
@@ -106,12 +116,11 @@ export function RoomsScreen() {
                 setCustomError("Skrifaðu heiti sérsniðins rýmis.");
                 return;
               }
-              store.updateReport(id, (r) => ({
+              const accepted = store.updateReport(id, (r) => ({
                 ...r,
                 rooms: [...r.rooms, makeRoom("custom", customName.trim(), undefined, { includeHeating: true })],
               }));
-              setCustomName("");
-              setCustomError("");
+              if (accepted) { changeCustomName(""); setCustomError(""); }
             }}
           >
             <label htmlFor="custom-room">Bæta við sérsniðnu rými</label>
@@ -120,22 +129,24 @@ export function RoomsScreen() {
                 id="custom-room"
                 placeholder="T.d. vinnuherbergi"
                 value={customName}
+                readOnly={demoReadOnly}
                 aria-invalid={!!customError}
                 aria-describedby={customError ? "custom-room-error" : undefined}
                 onChange={(e) => {
-                  setCustomName(e.target.value);
+                  changeCustomName(e.target.value);
                   setCustomError("");
                 }}
               />
               <button
                 className="button button-secondary"
-                disabled={roomCount >= 50}
+                disabled={demoReadOnly || roomCount >= 50}
                 type="submit"
               >
                 <Plus size={17} aria-hidden="true" />
                 <span>Bæta við</span>
               </button>
             </div>
+            {demoReadOnly && customName ? <button type="button" className="text-button" onClick={() => changeCustomName("")}>Hætta við óstofnað rýmisheiti</button> : null}
             {customError ? (
               <p className="field-error" id="custom-room-error" role="alert">
                 {customError}
@@ -173,6 +184,7 @@ export function RoomsScreen() {
                       <input
                         id={`room-name-${room.id}`}
                         value={room.name}
+                        disabled={demoReadOnly}
                         aria-invalid={!room.name.trim()}
                         aria-describedby={
                           !room.name.trim()
@@ -195,13 +207,14 @@ export function RoomsScreen() {
                     </div>
                     <button
                       className="icon-button remove-room"
+                      disabled={demoReadOnly}
                       aria-label={`Fjarlægja ${room.name || `rými ${index + 1}`}`}
                       onClick={() => remove(room)}
                     >
                       <Trash2 size={16} aria-hidden="true" />
                     </button>
                   </div>
-                  {pendingRemove === room.id ? (
+                  {pendingRemove?.id === room.id ? (
                     <div className="remove-confirmation" role="alert">
                       <p>
                         <TriangleAlert size={16} aria-hidden="true" />
@@ -210,7 +223,9 @@ export function RoomsScreen() {
                       <div>
                         <button
                           className="button button-small button-danger"
+                          disabled={demoReadOnly || (state.status !== "read-error" && pendingRemove.epoch !== store.mutationEpoch)}
                           onClick={() => {
+                            if (state.status !== "read-error" && pendingRemove.epoch !== store.mutationEpoch) return;
                             store.removeRoom(id, room.id);
                             setPendingRemove(null);
                           }}
@@ -224,6 +239,7 @@ export function RoomsScreen() {
                           Hætta við
                         </button>
                       </div>
+                      {state.status !== "read-error" && pendingRemove.epoch !== store.mutationEpoch ? <p role="status">Breytingaréttur hefur breyst. Hættu við og veldu rýmið aftur til að yfirfara eyðinguna.</p> : null}
                     </div>
                   ) : null}
                 </li>

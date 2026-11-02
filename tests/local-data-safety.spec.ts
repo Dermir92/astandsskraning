@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { EMPTY_DETAILS, MAX_REPORTS, isReportList, makeRoom, type Report } from "../src/lib/model";
 
 function reportsOf(count: number): Report[] {

@@ -8,7 +8,7 @@ import { is } from "@/lib/locale/is";
 import type { AssetType } from "@/lib/model";
 
 export function NewReportScreen() {
-  const { store, state } = useDemo();
+  const { store, state, demoReadOnly } = useDemo();
   const router = useRouter();
   return (
     <div className="narrow-page">
@@ -43,7 +43,7 @@ export function NewReportScreen() {
               <button
                 className="button button-primary"
                 disabled={
-                  state.status === "loading" || state.status === "read-error"
+                  demoReadOnly || state.status === "loading" || state.status === "read-error"
                 }
                 onClick={() => {
                   const id = store.createReport();

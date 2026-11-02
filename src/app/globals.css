@@ -308,6 +308,24 @@ select:focus-visible {
 .storage-warning p {
   flex: 1;
 }
+.demo-edit-boundary {
+  display: contents;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.demo-save-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.demo-save-actions p:empty { display: none; }
+.demo-save-actions p, .demo-recovery-confirm { flex-basis: 100%; }
+.demo-recovery-confirm { display: flex; align-items: flex-start; gap: 8px; }
+.demo-recovery-confirm input { margin-top: 2px; }
 .main-content {
   width: 100%;
   max-width: 1450px;

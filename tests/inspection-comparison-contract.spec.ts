@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { EMPTY_OBSERVATION, MAX_REPORTS, isReportList, reportStats, makeRoom, type Observation, type Report } from "../src/lib/model";
 import { COPIED_PROPERTY_FIELDS, COPIED_RENTAL_FIELDS, buildInspectionComparison, compareOrdinary, contentFingerprint, initialEligible, sourceContent, validLinkedInitial } from "../src/lib/inspection-comparison";
 import { linkedInitialFixture, linkedPair } from "./inspection-comparison-fixtures";

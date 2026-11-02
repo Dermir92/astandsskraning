@@ -145,7 +145,15 @@ test("UI1 guard observes its own store, not another tab's storage writes", async
   await expect(dialog).toBeVisible();
   const other = await context.newPage();
   await other.goto("/skyrslur/checklist-report/skraning?rymi=checklist-entry&atridi=walls");
-  await row(other).getByRole("textbox", { name: /^Athugasemd/ }).fill("Breytt í öðrum flipa");
+  // UX3-S1 intentionally forbids a second application's writer. Preserve all
+  // original assertions about external bytes and the first tab's working view
+  // by modeling a legacy writer that does not participate in Web Locks.
+  await expect(row(other).getByRole("textbox", { name: /^Athugasemd/ })).toBeDisabled();
+  await other.evaluate(key => {
+    const saved = JSON.parse(localStorage.getItem(key)!);
+    saved.reports[0].rooms[0].observations.walls.note = "Breytt í öðrum flipa";
+    localStorage.setItem(key, JSON.stringify(saved));
+  }, STORAGE_KEY);
   await expect.poll(() => page.evaluate(() => (window as unknown as { reviewStorageEvents: number }).reviewStorageEvents)).toBeGreaterThan(0);
   const externalBytes = await raw(page);
   expect(JSON.parse(externalBytes).reports[0].rooms[0].observations.walls.note).toBe("Breytt í öðrum flipa");

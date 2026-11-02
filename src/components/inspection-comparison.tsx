@@ -25,9 +25,9 @@ function useComparison(report: Report) {
   return { pending: !!report.linkedInitial && !current, value: current ? resolved.value : null, failed: current && resolved.failed };
 }
 export function LinkedFinalCreate({ report }: { report: Report }) {
-  const { store, state, mode } = useDemo();
+  const { store, state, mode, demoReadOnly } = useDemo();
   const router = useRouter();
-  const [confirmation, setConfirmation] = useState<{ fingerprint: string; operation: string } | null>(null);
+  const [confirmation, setConfirmation] = useState<{ fingerprint: string; operation: string; epoch: number } | null>(null);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const working = useRef(false);
@@ -38,12 +38,17 @@ export function LinkedFinalCreate({ report }: { report: Report }) {
   const begin = async () => {
     if (working.current) return;
     working.current = true; setBusy(true); setMessage("");
-    try { setConfirmation({ fingerprint: await contentFingerprint(sourceContent(report)), operation: crypto.randomUUID() }); }
+    const epoch = store.mutationEpoch;
+    try {
+      const fingerprint = await contentFingerprint(sourceContent(report));
+      if (epoch === store.mutationEpoch && store.editingAllowed) setConfirmation({ fingerprint, operation: crypto.randomUUID(), epoch });
+      else setMessage("Breytingaréttur breyttist meðan tengingin var undirbúin. Reyndu aftur.");
+    }
     catch { setMessage("Ekki tókst að undirbúa tenginguna. Engin skýrsla var stofnuð."); }
     finally { working.current = false; setBusy(false); }
   };
   const create = async () => {
-    if (!confirmation || working.current) return;
+    if (!confirmation || confirmation.epoch !== store.mutationEpoch || working.current) return;
     working.current = true; setBusy(true); setMessage("");
     try {
       const id = await store.createLinkedFinal(report.id, confirmation.fingerprint, confirmation.operation);
@@ -53,11 +58,12 @@ export function LinkedFinalCreate({ report }: { report: Report }) {
     finally { working.current = false; setBusy(false); }
   };
   return <section className={styles.create} aria-label="Hefja tengda lokaskoðun">
-    {!confirmation ? <button ref={start} type="button" className="text-button" disabled={busy || state.status === "read-error" || state.status === "loading"} onClick={begin}>Hefja lokaskoðun</button> : <div className={styles.confirm}>
+    {!confirmation ? <button ref={start} type="button" className="text-button" disabled={demoReadOnly || busy || state.status === "read-error" || state.status === "loading"} onClick={begin}>Hefja lokaskoðun</button> : <div className={styles.confirm}>
       <h2>Stofna lokaskoðun úr þessari upphafsskráningu?</h2><p><strong>{report.details.address || report.title} · {report.details.unit || "Íbúð óskráð"}</strong></p>
       <p>Rými og gátlisti verða endurnotuð ásamt eignarupplýsingum og viðeigandi uppgefnum leiguupplýsingum. Farið verður yfir þær í nýjum drögum. Öll ástandssvör, dagsetningar, skráningaraðili, fyrirsvar, umfang, athugasemdir, húsgagnamat, brunavarnir, hitasvör, mælar og myndir byrja óskráð.</p>
       <p>Með stofnun velur þú tengingu við sömu eign og sama skoðunar-/leigutilvik. Þetta staðfestir ekki réttmæti upplýsinganna eða að skoðun hafi farið fram.</p>
-      <div className={styles.actions}><button ref={cancel} className="button button-secondary" type="button" disabled={busy} onClick={() => { setConfirmation(null); setMessage(""); requestAnimationFrame(() => start.current?.focus()); }}>Hætta við</button><button className="button button-primary" type="button" disabled={busy} onClick={create}>Stofna tengda lokaskoðun</button></div>
+      {confirmation.epoch !== store.mutationEpoch ? <p role="status">Breytingaréttur hefur breyst. Hættu við og yfirfarðu stofnunina aftur.</p> : null}
+      <div className={styles.actions}><button ref={cancel} className="button button-secondary" type="button" disabled={busy} onClick={() => { setConfirmation(null); setMessage(""); requestAnimationFrame(() => start.current?.focus()); }}>Hætta við</button><button className="button button-primary" type="button" disabled={demoReadOnly || busy || confirmation.epoch !== store.mutationEpoch} onClick={create}>Stofna tengda lokaskoðun</button></div>
     </div>}
     <p role="status">{busy ? "Undirbý tengda lokaskoðun…" : message}</p>
   </section>;
@@ -73,14 +79,14 @@ function Facts({ record }: { record: DeepReadonly<PreviewRecord> }) {
   </div>;
 }
 function Reconfirm({ comparison }: { comparison: InspectionComparison }) {
-  const { store, state } = useDemo();
+  const { store, state, demoReadOnly } = useDemo();
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const working = useRef(false);
   return <details className={styles.confirm}><summary>Yfirfara breytt samanburðarviðmið</summary>
     <p>Fyrri útgáfa upphafsgagnanna er ekki varðveitt. Hér velur þú núverandi upphafsskráningu og núverandi eignar-/leigusamhengi sem viðmið. Lokasvör og eldri atriðatengingar breytast ekki.</p>
     <Link className="text-link" href={`/skyrslur/${encodeURIComponent(comparison.initial!.id)}/forskodun`}>Lesa núverandi upphafsskráningu</Link>
-    <button className="button button-secondary" type="button" disabled={busy || state.status === "read-error"} onClick={async event => {
+    <button className="button button-secondary" type="button" disabled={demoReadOnly || busy || state.status === "read-error"} onClick={async event => {
       if (working.current) return; working.current = true; setBusy(true);
       const landing = event.currentTarget.closest<HTMLElement>("section[tabindex]");
       try { const accepted = await store.reconfirmInitial(comparison.final.id, comparison.sourceFingerprint!, comparison.finalContextFingerprint!); setMessage(accepted ? "Núverandi viðmið valið. Engin ástandssvör voru afrituð." : "Gögn breyttust eða ekki var hægt að staðfesta. Skoðaðu stöðuna aftur."); if (accepted) requestAnimationFrame(() => { landing?.focus(); landing?.scrollIntoView({ block: "nearest" }); }); }

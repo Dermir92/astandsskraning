@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { DemoStore, STORAGE_KEY } from "../src/components/demo-provider";
+import { STORAGE_KEY } from "../src/components/demo-provider";
+import { DemoStore } from "./demo-store-helpers";
 import { fireGroupIssues, fireGroupStatus, fireState, hasFireExtensions, meaningfulFireRow, patchFireGroup, patchFireRow } from "../src/lib/fire-observations";
 import { fireCorrectionHref, resolveFireCorrection } from "../src/lib/fire-navigation";
 import { isReportList, reportStats, reportStatus, type Report, type ResidentialFireObservations } from "../src/lib/model";

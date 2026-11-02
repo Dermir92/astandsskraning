@@ -27,7 +27,7 @@ function Retained({ children }: { children: ReactNode }) {
 export function HeatingObservationEditor({ item, observation, reportId, roomId, roomName, index, open, onToggle, onClose, nextAction, reference }: {
   item: ChecklistItem; observation?: Observation; reportId: string; roomId: string; roomName: string; index: number; open: boolean; onToggle: () => void; onClose: () => void; nextAction: ReactNode; reference?: ReactNode;
 }) {
-  const { store, state } = useDemo(); const prefix = useId(); const heading = useRef<HTMLButtonElement>(null); const o = observation ?? EMPTY_OBSERVATION; const h = o.heating ?? {}; const status = heatingState(o);
+  const { store, state, demoReadOnly } = useDemo(); const prefix = useId(); const heading = useRef<HTMLButtonElement>(null); const o = observation ?? EMPTY_OBSERVATION; const h = o.heating ?? {}; const status = heatingState(o);
   const update = (patch: (current: Observation) => Observation) => store.updateRoom(reportId, roomId, room => ({ ...room, observations: { ...room.observations, [item.id]: patch(room.observations[item.id] ?? EMPTY_OBSERVATION) } }));
   const set = <K extends keyof HeatingObservation>(key: K, value: HeatingObservation[K]) => update(current => {
     const heating = { ...current.heating, [key]: value }; if (value === undefined) delete heating[key];
@@ -44,7 +44,7 @@ export function HeatingObservationEditor({ item, observation, reportId, roomId, 
     <h3><button ref={heading} className="checklist-toggle" id={`${prefix}-title`} data-navigation-heading aria-expanded={open} aria-controls={`${prefix}-body`} onClick={onToggle}><span className="item-completion">{index + 1}</span><span><span className="item-title">Hiti</span><span className={styles.status}>{status.status}{status.defect ? " · Skráð frávik" : ""}{status.limitations.length ? " · Skráð takmörkun" : ""}</span></span><span aria-hidden="true">{open ? "−" : "+"}</span></button></h3>
     <div id={`${prefix}-body`} className={`observation-body ${styles.body}`} hidden={!open}>
       {open ? reference : null}
-      {open ? <><p className={styles.hint}>{t.limit}</p><fieldset className={styles.editable} disabled={state.status === "loading" || state.status === "read-error"}><legend className="sr-only">Hitaskráning</legend>
+      {open ? <><p className={styles.hint}>{t.limit}</p><fieldset className={styles.editable} disabled={demoReadOnly || state.status === "loading" || state.status === "read-error"}><legend className="sr-only">Hitaskráning</legend>
         <Choices prefix={prefix} field="visibility" label="Hvað sást?" options={t.visibility} value={h.visibility} change={v => set("visibility", v)} />
         {visibility ? <>{equipment}<details className={styles.scope} open={h.visibility === "reported_concealed" || undefined}><summary>Afmörkun og heimild</summary>{scope}</details></> : h.equipment?.length || h.scope || h.informationSource ? <Retained>{equipment}{scope}</Retained> : null}
         {h.visibility === "visible_parts" ? condition : h.visibleCondition ? <Retained>{condition}</Retained> : null}

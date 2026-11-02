@@ -14,7 +14,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
   item?: boolean;
   featured?: boolean;
 }) {
-  const { state, store, mode } = useDemo();
+  const { state, store, mode, demoReadOnly } = useDemo();
   const [error, setError] = useState("");
   const [pending, setPending] = useState(0);
   const [announcement, setAnnouncement] = useState("");
@@ -55,7 +55,7 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
     pendingFeaturedDisclosure.current = false;
     if (photos.length && !controls.contains(document.activeElement)) controls.open = false;
   }, [featured, pending, photos.length]);
-  const locked = mode === "cloud" || state.status === "loading" || state.status === "read-error";
+  const locked = demoReadOnly || mode === "cloud" || state.status === "loading" || state.status === "read-error";
   const addPhotos = async (files: FileList | null) => {
     if (!files?.length || locked) return;
     restoreUploadFocus.current = featured && document.activeElement === inputRef.current;
