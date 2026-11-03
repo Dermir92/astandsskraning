@@ -4,7 +4,7 @@ import { useId, useRef, type ReactNode } from "react";
 import type { ChecklistItem, HeatingObservation, Observation } from "@/lib/model";
 import { EMPTY_OBSERVATION } from "@/lib/model";
 import { HEATING_KINDS, hasHeatingExtensions, heatingAnswered, heatingState } from "@/lib/heating";
-import { navigationTargetId } from "@/lib/inspection-navigation";
+import { navigationTargetId, photoTargetId } from "@/lib/inspection-navigation";
 import { is } from "@/lib/locale/is";
 import { useDemo } from "./demo-provider";
 import { PhotoPreview } from "./photo-preview";
@@ -53,7 +53,7 @@ export function HeatingObservationEditor({ item, observation, reportId, roomId, 
         {status.defect ? <div className="damage-fields">{defect}</div> : o.damageType || o.location || o.description ? <Retained>{defect}</Retained> : null}
         <Text prefix={prefix} field="note" label="Athugasemd um hita" value={o.note} change={v => shared("note", v)} />
       </fieldset>{hasHeatingExtensions(h) ? <p className={styles.hint}>Önnur varðveitt gögn fylgja hitaskráningunni og haldast við breytingar.</p> : null}
-      <PhotoPreview photoKey={`${reportId}:${roomId}:${item.id}`} context={`${roomName} · Hiti`} title="Myndir við atriði" item detail={status.defect} />
+      <PhotoPreview targetId={photoTargetId(reportId, roomId, item.id)} photoKey={`${reportId}:${roomId}:${item.id}`} context={`${roomName} · Hiti`} title="Myndir við atriði" item detail={status.defect} />
       <div className={styles.footer}>{nextAction}<button className="text-button" type="button" onClick={() => { heading.current?.focus({ preventScroll: true }); onClose(); }}>Loka atriði</button></div></> : null}
     </div>
   </section>;

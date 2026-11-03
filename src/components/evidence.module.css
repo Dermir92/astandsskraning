@@ -34,6 +34,9 @@
 .retained dd { margin: 0; }
 .gallery button:focus-visible, .gallery summary:focus-visible, .retained summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .captureControls { min-width: 0; }
+.photoCorrection { gap: 6px; }
+.photoCorrection > svg { flex-shrink: 0; }
+.capture:focus, .capture :global(.photo-title):focus, .captureControls > summary:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
 .captureControls > summary { min-height: 44px; align-content: center; font-size: 14px; font-weight: 650; color: var(--teal-dark); cursor: pointer; }
 .captureControls > summary[hidden] { display: none; }
 .featuredCapture:global(.photo-preview) { margin: 0; padding: 0; border: 0; background: transparent; }

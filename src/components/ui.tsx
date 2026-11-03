@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Building2,
   CarFront,
-  Check,
   Circle,
   House,
   Warehouse,
@@ -116,16 +115,14 @@ export function Stepper({
         {is.steps.map((name, i) => (
           <li
             key={name}
-            className={
-              i === step ? "step-current" : i < step ? "step-previous" : ""
-            }
+            className={i === step ? "step-current" : ""}
           >
             <Link
               href={`/skyrslur/${reportId}/${stepPaths[i]}`}
               aria-current={i === step ? "step" : undefined}
             >
-              <span className="step-number">
-                {i < step ? <Check size={14} aria-hidden="true" /> : i + 1}
+              <span className="step-number" aria-hidden="true">
+                {i + 1}
               </span>
               <span>{name}</span>
             </Link>

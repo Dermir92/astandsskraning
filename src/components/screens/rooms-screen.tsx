@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Check, Info, Minus, Plus, Trash2, TriangleAlert } from "lucide-react";
+import { Info, Minus, Plus, Trash2, TriangleAlert } from "lucide-react";
 import { useReport, MissingReport } from "../report-context";
 import { BackLink, FlowFooter, PageHeading, Stepper } from "../ui";
 import { makeRoom, type Room, type RoomType } from "@/lib/model";
@@ -297,7 +297,6 @@ export function RoomsScreen() {
             </ol>
           )}
           <div className="selected-room-total">
-            <Check size={16} aria-hidden="true" />
             <span>
               {roomCount} rými ·{" "}
               {report.rooms.reduce((sum, r) => sum + r.items.length, 0)}{" "}

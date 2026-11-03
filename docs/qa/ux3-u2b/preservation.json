@@ -1,0 +1,132 @@
+{
+  "priorWorktrees": [
+    {
+      "path": "C:\\Users\\Danni\\Desktop\\Repos\\Ástandskoðun",
+      "files": 786,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\h1b4-gate-c-prerequisites\\Ástandskoðun",
+      "files": 374,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\phase-1b1a-local-recovery\\Ástandskoðun",
+      "files": 99,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\phase-1b2a-inspection-checklist\\Ástandskoðun",
+      "files": 103,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ui1-a22-inspection\\Ástandskoðun",
+      "files": 426,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-design\\Ástandskoðun",
+      "files": 485,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ui2a-mobile-implementation\\Ástandskoðun",
+      "files": 738,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ux-mobile-inspection-concepts\\Ástandskoðun",
+      "files": 889,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ux3-s1-local-concurrency-safety\\Ástandskoðun",
+      "files": 746,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ux3-u1a-investigation\\Ástandskoðun",
+      "files": 756,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\.codex\\worktrees\\ux3-u2a-investigation\\Ástandskoðun",
+      "files": 890,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    {
+      "path": "C:\\Users\\Danni\\Desktop\\Repos\\astandsskodun-docker-local",
+      "files": 377,
+      "entrySame": true,
+      "statusSame": true,
+      "changedOrMissing": [],
+      "addedFiles": []
+    }
+  ],
+  "priorFileCount": 6669,
+  "priorRefs": 59,
+  "changedOrMissingRefs": {},
+  "addedRefs": {
+    "refs/heads/codex/ux3-u2b-implementation": "43ba3d1a371cb03323181e9ed782576a735cfcf7"
+  },
+  "originalIndexSame": true,
+  "evidence": {
+    "historical": {
+      "files": 1116,
+      "changedOrMissing": [],
+      "addedFiles": []
+    },
+    "u2aEvidence": {
+      "files": 162,
+      "changedOrMissing": [],
+      "addedFiles": []
+    }
+  },
+  "manifestSHA256": {
+    "preservation-initial.json": "412982b9ffd7574f0693f29d5bea2578197cc6bc4ddcedd3f5b248a2f0aff619",
+    "preservation-final.json": "bde8befa6d243bfca7d0389e3e2cf809e8bc2db0672210744e54fb1aef7b7409"
+  },
+  "passed": true,
+  "phase": "pre-commit final comparison; repeat after commit/push retained externally",
+  "originalDirtyCheckout": {
+    "trackedModifications": 6,
+    "untrackedQAFiles": 48,
+    "head": "ee03e4b2402ff57c4bd9e7062f5baf5f9b65176c",
+    "trackedAndNonignoredUntrackedFiles": 786
+  },
+  "scopeLimit": "Tracked/nonignored worktree files plus explicitly inventoried historical/U2A evidence; not every dependency or older ignored cache"
+}

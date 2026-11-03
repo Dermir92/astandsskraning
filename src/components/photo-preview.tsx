@@ -6,8 +6,9 @@ import { useDemo } from "./demo-provider";
 import { EvidenceGallery } from "./evidence-gallery";
 import styles from "./evidence.module.css";
 
-export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail = false, context, item = false, featured = false }: {
+export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rýmis", detail = false, context, item = false, featured = false }: {
   photoKey: string;
+  targetId?: string;
   title?: string;
   detail?: boolean;
   context: string;
@@ -99,8 +100,8 @@ export function PhotoPreview({ photoKey, title = "Yfirlitsmyndir rýmis", detail
       setPending(count => count - 1);
     }
   };
-  if (mode === "cloud") return <section className={`photo-preview ${styles.capture}`} aria-label={title}><p><strong>Myndir eru óvirkar í C1.</strong> Þessi prófun vistar aðeins texta og svör. Engin myndageymsla eða tímabundin myndaforskoðun er virk hér.</p></section>;
-  return <section className={`photo-preview ${styles.capture} ${featured ? styles.featuredCapture : ""} ${detail ? "photo-preview-detail" : ""}`} aria-label={title} aria-busy={pending > 0}>
+  if (mode === "cloud") return <section id={targetId} tabIndex={-1} className={`photo-preview ${styles.capture}`} aria-label={title}><p><strong>Myndir eru óvirkar í C1.</strong> Þessi prófun vistar aðeins texta og svör. Engin myndageymsla eða tímabundin myndaforskoðun er virk hér.</p></section>;
+  return <section id={targetId} tabIndex={-1} className={`photo-preview ${styles.capture} ${featured ? styles.featuredCapture : ""} ${detail ? "photo-preview-detail" : ""}`} aria-label={title} aria-busy={pending > 0}>
     <div className="photo-heading">
       <span className="photo-title" ref={titleRef} tabIndex={-1}><Camera size={18} aria-hidden="true" />{title}</span>
       <span className="preview-only-label">Aðeins forskoðun</span>

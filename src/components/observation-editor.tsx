@@ -9,7 +9,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { itemProgress, navigationTargetId } from "@/lib/inspection-navigation";
+import { itemProgress, navigationTargetId, photoTargetId } from "@/lib/inspection-navigation";
 import {
   CONDITIONS,
   FUNCTIONALITIES,
@@ -461,7 +461,7 @@ export function ObservationEditor({
             {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" disabled={coordinationLocked} onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
             <div className={damage && complete && !editDefect ? styles.findingOverview : undefined}>
               {damage && complete && !editDefect ? <div><span>Staðsetning</span><p>{o.location}</p></div> : null}
-              <PhotoPreview key="item-photos" photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item featured={damage && complete && !editDefect} />
+              <PhotoPreview key="item-photos" targetId={photoTargetId(reportId, roomId, item.id)} photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item featured={damage && complete && !editDefect} />
             </div>
             {damage && complete && !editDefect ? <p className={styles.findingDescription}>{o.description}</p> : null}
             {damage && complete && !editDefect && !state.photos[photoKey]?.length ? <p className="missing-photo">Mynd af fráviki vantar. Atriðið má áfram vera í drögum.</p> : null}

@@ -689,11 +689,6 @@ select:focus-visible {
   border-color: var(--teal);
   color: white;
 }
-.step-previous .step-number {
-  background: #e2ebe1;
-  color: var(--teal);
-  border-color: var(--teal);
-}
 .form-page {
   max-width: 920px;
 }

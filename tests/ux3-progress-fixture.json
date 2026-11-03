@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "reports": [
+    {
+      "id": "u2a-synthetic",
+      "assetType": "apartment",
+      "title": "UX3-U2A tilbúin skýrsla",
+      "subtitle": "Aðeins tilbúin rannsóknargögn",
+      "updatedAt": "2026-11-02T12:00:00.000Z",
+      "details": {
+        "inspectionContext": "standalone",
+        "inspectionDate": "",
+        "recorderName": "",
+        "scopeDescription": "",
+        "scopeLimitations": "",
+        "inspectionType": "initial",
+        "address": "Prófunargata U2A",
+        "postalCode": "101",
+        "municipality": "Reykjavík",
+        "unit": "",
+        "role": "",
+        "deliveryDate": "",
+        "furnished": "",
+        "notes": "",
+        "u2bExtension": {
+          "preserve": [
+            false,
+            0,
+            null,
+            "valid extension"
+          ]
+        }
+      },
+      "rooms": [
+        {
+          "id": "u2a-entry",
+          "type": "entry",
+          "name": "Forstofa",
+          "items": [
+            {
+              "id": "blank",
+              "name": "Ósvarað atriði"
+            },
+            {
+              "id": "note",
+              "name": "Aðeins athugasemd"
+            },
+            {
+              "id": "partial",
+              "name": "Ástand skráð, virkni vantar",
+              "functionality": true
+            },
+            {
+              "id": "partial-defect",
+              "name": "Frávik ófullskráð"
+            },
+            {
+              "id": "good",
+              "name": "Í lagi fullskráð"
+            },
+            {
+              "id": "defect",
+              "name": "Frávik fullskráð"
+            },
+            {
+              "id": "limited",
+              "name": "Óskoðað fullskráð"
+            },
+            {
+              "id": "na",
+              "name": "Á ekki við"
+            }
+          ],
+          "observations": {
+            "note": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "Varðveislumerki A"
+            },
+            "partial": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "condition": "good"
+            },
+            "partial-defect": {
+              "damageType": "Rispa",
+              "location": "",
+              "description": "",
+              "note": "",
+              "condition": "damaged"
+            },
+            "good": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "condition": "good"
+            },
+            "defect": {
+              "damageType": "Rispa",
+              "location": "Við karm",
+              "description": "Tilbúin rispa fyrir UX rannsókn",
+              "note": "",
+              "condition": "damaged",
+              "u2bExtension": "keep nested observation bytes"
+            },
+            "limited": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "condition": "uninspected"
+            },
+            "na": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "condition": "na"
+            }
+          }
+        },
+        {
+          "id": "u2a-living",
+          "type": "living",
+          "name": "Stofa",
+          "items": [
+            {
+              "id": "good",
+              "name": "Veggir"
+            },
+            {
+              "id": "defect",
+              "name": "Gólf með skráðu fráviki"
+            }
+          ],
+          "observations": {
+            "good": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "condition": "good"
+            },
+            "defect": {
+              "damageType": "Rispa",
+              "location": "Við karm",
+              "description": "Tilbúin rispa fyrir UX rannsókn",
+              "note": "",
+              "condition": "damaged"
+            }
+          }
+        },
+        {
+          "id": "u2a-heating",
+          "type": "bedroom",
+          "name": "Hitapróf",
+          "items": [
+            {
+              "id": "heat-blank",
+              "name": "Hiti blank",
+              "kind": "space_heating"
+            },
+            {
+              "id": "heat-partial",
+              "name": "Hiti partial",
+              "kind": "space_heating"
+            },
+            {
+              "id": "heat-limited",
+              "name": "Hiti limited",
+              "kind": "space_heating"
+            },
+            {
+              "id": "heat-defect",
+              "name": "Hiti defect",
+              "kind": "space_heating"
+            }
+          ],
+          "observations": {
+            "heat-partial": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "heating": {
+                "visibility": "visible_parts",
+                "equipment": [
+                  "radiators"
+                ]
+              }
+            },
+            "heat-limited": {
+              "damageType": "",
+              "location": "",
+              "description": "",
+              "note": "",
+              "heating": {
+                "visibility": "none_visible",
+                "operation": "not_tried"
+              }
+            },
+            "heat-defect": {
+              "damageType": "Rispa",
+              "location": "Við karm",
+              "description": "Tilbúin rispa fyrir UX rannsókn",
+              "note": "",
+              "condition": "damaged",
+              "heating": {
+                "visibility": "visible_parts",
+                "equipment": [
+                  "radiators"
+                ],
+                "visibleCondition": "damaged",
+                "operation": "not_tried"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "u2aSentinel": "unchanged"
+}
