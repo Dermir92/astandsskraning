@@ -1,12 +1,10 @@
 # Ástandsskráning
 
-**Current implementation — 16 October 2026:** Phase 1A/1A.1, the approved Phase 1A.2 refinements, Phase 1B.1a local-data safety fixes, and the bounded Phase 1B.2a residential checklist are integrated. The active inspection implementation is in `src/components/screens/inspection-screen.tsx` and `src/components/observation-editor.tsx`. See [the implementation review](docs/PHASE_1B2A_INSPECTION_CHECKLIST.md) and [publication and development continuity](docs/PUBLICATION.md).
+**Staða — 3. nóvember 2026 (`main` við PR #25):** Staðbundin íslensk frumgerð fyrir ástandsskráningu íbúðarhúsnæðis við afhendingu og skil. Íbúðarflæðið er útfært frá stofnun draga að yfirferð, ásamt leiguupplýsingum, brunavörnum, kyndingu, mælastöðum, lesútgáfu skýrslu og tengdri lokaskoðun með samanburði. Aðskilin þróunarleið (Supabase C1) sannreynir eigandabundna vistun í staðbundnum gagnagrunni. Ekkert hefur verið gefið út eða sett í hýsingu.
 
-**Archived concepts:** `/hugmyndir`, `/hugmyndir/a` and `/hugmyndir/b` preserve the earlier A/B design comparison. Their scenario data and session storage are isolated demonstrations; their UI and historical approval language do not describe the active inspection workflow. The [concept archive](docs/PHASE_1B_CONCEPTS.md) and [approval record](docs/PHASE_1B_CONCEPT_B_APPROVAL.md) remain available. Exact item continuation and broader optional photo access remain outside the integrated Phase 1B.2a slice.
+Vöruforskriftin er í [docs/astandsskraning-mvp-v1.md](docs/astandsskraning-mvp-v1.md). Kerfið skráir ástand og afstöðu aðila en **kveður aldrei upp úrskurð um ábyrgð á tjóni**.
 
-Earlier Phase 1A test counts, audit results and next-step recommendations below are historical. Use the dated publication verification for the current candidate.
-
-Staðbundin íslensk framendafrumgerð í Next.js App Router, TypeScript og Tailwind CSS. Hún styður samfellda leið frá stofnun íbúðardraga, gegnum rýmaval og ástandsskráningu, að yfirferð.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 og Playwright. Lestu `AGENTS.md` áður en kóða er breytt: uppsett Next-útgáfa víkur frá eldri venjum.
 
 ## Ræsing
 
@@ -28,25 +26,43 @@ npm run start
 
 ## Það sem má prófa
 
-1. **Mínar skýrslur:** sex tilbúnar færslur, leit, stöðusíur, eignategund og röðun.
-2. **Ný skýrsla:** allar fjórar eignategundir sýndar. Íbúð er virk; aðrar tegundir eru merktar „Í undirbúningi“.
-3. **Upplýsingar um íbúð:** upphaf, lok eða sjálfstæð skráning; heimilisfang, póstnúmer, sveitarfélag, íbúð/hæð, hlutverk, dagsetning, húsgögn og athugasemdir. Drög mega vera ófullgerð.
-4. **Velja rými:** breyta fjölda rýma, endurnefna, bæta við sérsniðnu rými og fjarlægja. Þegar rými hefur svör eða myndaforskoðanir þarf að staðfesta fjarlægingu.
-5. **Ástandsskráning:** eitt rými í einu, sex ástandssvör, aðskilin virkni og þrif, frávikalýsing, athugasemdir og myndaforskoðun. Svör eru aldrei sjálfkrafa „Í lagi“.
-6. **Yfirferð:** samantekt, ófullgerð svör, óskoðuð atriði, athugasemdir, frávik og myndir sem vantar; tenglar til baka í viðeigandi rými.
+Fjögur skref: **Upplýsingar → Rými → Skráning → Yfirferð**.
 
-Fljótleg prófun: opnaðu **Sýnigötu 14**, íbúð með sex rýmum og 53 skoðunaratriðum. Eða veldu **Ný skýrsla → Velja íbúð** og farðu í gegnum öll fjögur skrefin. Breytingar halda sér þegar farið er milli skjáa og við endurhleðslu, ef vafrinn leyfir vistun.
+1. **Mínar skýrslur** (`/`): sex tilbúnar færslur, leit, stöðusíur, eignategund og röðun. Aðeins íbúðarhúsnæði er virkt; bíll, geymsla og atvinnuhúsnæði eru sýnd sem „Í undirbúningi“.
+2. **Upplýsingar** (`/skyrslur/[id]/upplysingar`): tegund skoðunar (upphaf, lok eða sjálfstæð), heimilisfang og grunnreitir. Í leigusamhengi bætast við leigusalar, leigjendur, leigusamningur, fasteignanúmer og lýsing á húsnæði. Drög mega vera ófullgerð.
+3. **Rými** (`/skyrslur/[id]/rymi`): fjölgun, nafnabreyting, sérsniðin rými og fjarlæging með sýnilegri staðfestingu þegar rými hefur svör eða myndir.
+4. **Skráning** (`/skyrslur/[id]/skraning`): eitt rými í einu með aðskildu ástandi, virkni og þrifum, frávikum, athugasemdum og myndaforskoðun. Kynding er skráð eftir rýmum; brunavarnir og mælastöður eftir eign. Engin svör eru sjálfkrafa „Í lagi“ og „ekki skoðað“ er aðskilið frá „á ekki við“.
+5. **Yfirferð** (`/skyrslur/[id]/yfirferd`): ófullgerð svör, óskoðuð atriði, frávik og myndir sem vantar, með beinum tenglum aftur á nákvæman reit.
+6. **Forskoða skýrslu** (`/skyrslur/[id]/forskodun`): lesútgáfa (Concept C) með niðurstöðum, ástandsfærslum og myndum í samhengi. Engin PDF-útgáfa eða prentun.
+7. **Hefja lokaskoðun**: úr yfirferð upphafsskoðunar má stofna sjálfstæð lokadrög með sömu rýmum og atriðum. Upphafssvar birtist aðeins til viðmiðunar og yfirferð sýnir samanburð hlið við hlið. Samanburðurinn lýsir mismun, ekki ábyrgð.
+
+Fljótleg prófun: opnaðu **Sýnigötu 14**, eða veldu **Ný skýrsla → Velja íbúð** og farðu í gegnum öll skrefin. `/hugmyndir` varðveitir eldri A/B-hönnunarsamanburð; hann lýsir ekki virka flæðinu.
 
 ## Sýnihamur og vistun
 
-- Eingöngu tilbúin, óviðkvæm sýnigögn. Heimilisföng og ökutæki eru dæmi; engar raunverulegar persónuupplýsingar eru notaðar.
-- Texti, rými og svör vistast í `localStorage` undir `astandsskraning-demo-v1`. Þetta er **ekki örugg geymsla úttektargagna**. Gögnin eru bundin við viðkomandi vafra og slóð/port.
-- Vistunarstaða verður „Vistað í þessum vafra“ aðeins þegar `localStorage.setItem` tekst. Bilun birtir viðvörun og aðgerð til að reyna aftur; breytingar haldast í minni gluggans.
-- Myndir eru staðbundnar `blob:`-forskoðanir, bundnar við rými eða atriði. Þær fara ekki á þjón, vistast ekki í `localStorage` og **hverfa við endurhleðslu eða lokun gluggans**. Stuðningur er við JPG, PNG og WebP, mest 10 MB á mynd og átta myndir á svæði.
-- „Yfirfarið · sýni“ á tilbúnum yfirlitsfærslum er sýnd dæmistaða. Þær færslur eru ekki frágengnar úttektir. Nýjar skráningar haldast alltaf í drögum eða skráningu.
-- Engin innskráning, gagnagrunnur, Supabase, tölvupóstur, boð, OTP, greiðsla, rafræn undirritun eða óafturkræfur frágangur. Engin dreifing forritsins fylgir þessum þróunargrunni.
+- Eingöngu tilbúin, óviðkvæm sýnigögn. Engar raunverulegar persónuupplýsingar.
+- Texti, rými og svör vistast í `localStorage` undir `astandsskraning-demo-v1` (útgáfa 1). Þetta er **ekki örugg geymsla úttektargagna** og gögnin eru bundin við vafra og slóð/port.
+- **Einn breytingarflipi:** aðeins einn flipi í senn fær breytingarétt á öllu safninu (Web Lock); aðrir flipar eru í lesham. Áður gat eldri flipi skrifað yfir nýrri breytingar annars flipa.
+- „Vistað í þessum vafra“ birtist aðeins eftir heppnuð skrif. Ef vistun bregst eða árekstur greinist fer óvistað drag í endurheimtarafrit í `sessionStorage` (`astandsskraning-demo-recovery-v1`) og notandi velur sjálfur framhaldið. Skemmd gögn eru ekki hljóðlega skipt út fyrir sýnigögn.
+- Myndir eru staðbundnar `blob:`-forskoðanir sem **hverfa við endurhleðslu eða lokun gluggans**. JPG, PNG og WebP, mest 10 MB á mynd og átta myndir á svæði.
+- „Yfirfarið · sýni“ á tilbúnum færslum er dæmistaða, ekki frágengin úttekt.
 
-Til að byrja aftur með upprunalegum sýnigögnum: opnaðu síðuna í einkaglugga. Einnig má fjarlægja eingöngu þennan lykil í þróunartólum vafrans; það eyðir staðbundnum sýnidrögum.
+Til að byrja aftur með upprunalegum sýnigögnum: opnaðu síðuna í einkaglugga. Einnig má fjarlægja eingöngu lykilinn hér að ofan í þróunartólum vafrans; það eyðir staðbundnum sýnidrögum.
+
+## Supabase C1 — staðbundin gagnagrunnsprófun
+
+C1 er aðskilin þróunarleið á **http://127.0.0.1:3101** sem vistar skoðanir eiganda í staðbundnum Supabase-gagnagrunni (PostgreSQL 17) með RLS, atómískum skrifum og útgáfuvörn. Krefst Docker og Supabase CLI sem fylgir verkefninu; engin hýst tenging eða innskráning í Supabase þarf.
+
+```powershell
+npm run c1:start
+npm run c1:reset
+npm run c1:prepare
+npm run dev:c1
+```
+
+`npm run test:c1` keyrir C1-prófin og `npm run c1:stop` stöðvar staðbundna stakkinn. C1 hefur hvorki myndir, boð né innflutning úr sýniham. Nánar í [docs/SUPABASE_C1.md](docs/SUPABASE_C1.md).
+
+**Hýst Supabase:** H1a/H1b útfæra aðeins undirbúning og ótengda forathugun ([H1a](docs/SUPABASE_H1A.md), [H1b.1](docs/SUPABASE_H1B1.md), [Gate C ákvörðunarpakki](docs/review/H1B3_GATE_C_RELEASE_DECISION.md)). **Gate C er LOKAÐ:** engin hýst SQL-keyrsla, uppsetning eða gagnaaðgangur er heimilaður.
 
 ## Gæðapróf
 
@@ -58,23 +74,25 @@ npx playwright install chromium
 npm test
 ```
 
-Playwright-prófin keyra í Chromium við 1440 × 1000, 360 × 800 og 390 × 844. Þau prófa stofnun og yfirferð, leit og síur, breytingar á rýmum og svörum, frávik, myndaforskoðun, endurhleðslu, vistunarbilun, skemmd staðbundin gögn, lyklaborðsfókus og óþekktar slóðir. Axe athugar alla sex aðalskjáina og opna frávikareiti gegn WCAG A/AA-reglum. Skjámyndir, villur og HTML-prófunarskýrsla fara í `test-results/` og `playwright-report/`.
+`npm test` keyrir sýnihamssvítuna í Chromium við 1440 × 1000, 360 × 800 og 390 × 844, með axe-athugunum gegn WCAG A/AA. C1-, H1a- og H1b-prófin hafa eigin stillingar (`npm run test:c1`, `test:h1a`, `test:h1b`). Síðasta skráða heildarkeyrsla (PR #24, 3. nóvember 2026): **1.309 stóðust, 35 viljandi sleppt, 0 féllu**. Niðurstöður fara í `test-results/` og `playwright-report/`.
 
-Þessar sjálfvirku athuganir eru ekki full WCAG-vottun. Handvirk skjálesaraprófun og prófun í raunverulegum iOS/Android-tækjum eru eftir.
+Sjálfvirkar athuganir eru ekki full WCAG-vottun.
 
-Síðasta keyrsla, 14. október 2026: **46 vafrapróf stóðust, 2 viljandi sleppt** (sama millibreiddapróf endurtekið í farsímaverkefnum). Engin axe-brot fundust á sex aðalskjáum eða opnum frávikareitum. Ekkert lárétt skroll fannst við 360, 390, 641, 768, 1024, 1280 og 1440 px. Skjámyndir voru teknar af öllum sex skjám á tölvu og báðum farsímastærðum; tölvu- og símaútlit var einnig yfirfarið sjónrænt. Afrit af skjámyndunum eru undir `artifacts/screenshots/`.
+## Takmarkanir
 
-## Takmarkanir og næsta skref
+- **Ekki útfært:** innskráning í sýniham, boð og einnota kóðar, þátttaka mótaðila, ágreiningur, óbreytanlegur frágangur, varanleg myndageymsla, PDF, greiðslur og rafræn undirritun.
+- **Ekki sannreynt:** raunveruleg iOS/Android-tæki, skjálesarar, 200–400% aðdráttur, myndavél/myndasafn í síma og aðrir vafrar en Chromium.
+- Gátlisti íbúðar styðst við HMS-úttektir en hefur ekki verið sannreyndur sjálfstætt gegn núverandi framkvæmd HMS.
+- Við uppsetningu 3. nóvember 2026 sýndi `npm audit` 16 færslur af miðlungsalvarleika; þær hafa ekki verið yfirfarnar.
 
-- Engin samstilling milli glugga, tækja eða notenda. Ef sama dragi er breytt í tveimur gluggum getur síðari vistun yfirskrifað fyrri breytingu.
-- Myndaforskoðun er tímabundin; HEIC, myndamerkingar og eiginleg myndavistun eru ekki útfærð.
-- Staða mótaðila, lokaskoðun með samanburði og PDF eru utan áfanga 1A.
-- `npm audit --omit=dev` finnur engar veikleikatilkynningar. Fullt `npm audit` skilar fimm `high` færslum í þróunarverkfærakeðju Next/ESLint vegna `braces`/glob. Engin leiðrétt útgáfa `braces` var tiltæk við innleiðingu; ekki var farið í ósamhæfa lækkun Next/ESLint til að fela niðurstöðuna.
+## Verklag
 
-Næsta afmarkaða skref: notendaprófa skráningu einnar íbúðar á síma, sérstaklega svör við virkni/þrifum, myndaleiðsögn og ófullgerðum drögum. Laga það sem kemur fram áður en öruggur gagnagrunns- og myndageymslugrunnur er hannaður í sér áfanga.
+Hver áfangi er afmarkaður og þarf skýrt samþykki eiganda áður en hafist er handa, og aftur áður en sameinað er í `main`. Vinna fer fram á eigin grein, fer í gegnum óháða yfirferð og fulla prófunarsvítu og er sameinuð með squash. Engin dreifing hefur verið heimiluð.
 
-Grunnforskriftin er í [docs/astandsskraning-mvp-v1.md](docs/astandsskraning-mvp-v1.md). Upprunalega skjalið í rótinni er varðveitt óbreytt. Forsendur og tækniskipan eru í [docs/afangi-1a.md](docs/afangi-1a.md).
+## Skjöl
 
-## Lesanleiki og litastefna
-
-Litastefna A (dökk petrol og blágrænar áherslur) var valin eftir samanburð á raunverulega skýrsluyfirlitinu. Texti og merkingar eru dekkri og stærri, með ógegnsæjum óvirkum aðgerðum og skýrum fókus. Lægstu mældu birtuskil eru 5,98:1 fyrir texta og 3,31:1 fyrir prófaðar stjórneiningar. Samanburður, mælingar og prófunarumfang eru í [docs/readability-and-colour.md](docs/readability-and-colour.md).
+- Vara og ákvarðanir: [MVP-forskrift](docs/astandsskraning-mvp-v1.md), [vöruákvarðanir](docs/PRODUCT_DECISIONS.md), [birting og samfella þróunar](docs/PUBLICATION.md).
+- Íbúðarflæði: [gátlisti 1B.2a](docs/PHASE_1B2A_INSPECTION_CHECKLIST.md), [leiðsögn 1B.2b](docs/PHASE_1B2B_INSPECTION_NAVIGATION.md), [sönnunargögn 1B.2c](docs/PHASE_1B2C_EVIDENCE_REVIEW.md), [leiguupplýsingar](docs/PHASE_1B3B2_RENTAL_INFORMATION_REVIEW.md), [brunavarnir](docs/PHASE_1B3B3_FIRE_OBSERVATIONS_REVIEW.md), [kynding](docs/PHASE_1B3B4_HEATING_REVIEW.md), [mælastöður](docs/PHASE_1B3B5_METER_READINGS_REVIEW.md), [lesútgáfa skýrslu](docs/PHASE_1B3B6_REPORT_PREVIEW_REVIEW.md), [tengd lokaskoðun](docs/PHASE_1B3B7A_LINKED_COMPARISON_REVIEW.md).
+- Gagnaöryggi: [staðbundin gagnavernd 1B.1a](docs/PHASE_1B1A_LOCAL_DATA_SAFETY.md), [einn breytingarflipi UX3-S1](docs/UX3_S1_LOCAL_CONCURRENCY.md).
+- Hönnun og lesanleiki: [UX/UI-afhending](docs/UX_UI_HANDOFF.md), [lesanleiki og litastefna](docs/readability-and-colour.md), [hugmyndasafn](docs/PHASE_1B_CONCEPTS.md).
+- Eldri áfangar og afhendingar ([1A](docs/afangi-1a.md), [PROJECT_HANDOFF](docs/PROJECT_HANDOFF.md), [IMPLEMENTATION_NEXT_STEPS](docs/IMPLEMENTATION_NEXT_STEPS.md)) eru varðveittar sögulegar heimildir og lýsa ekki núverandi stöðu.
