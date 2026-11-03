@@ -5,9 +5,9 @@ Status (2026-11-03, each stage approved by the owner): **C1** inventory complete
 ([notes](#c2-implementation-notes)); **C3** old CLI state removed; **C4** first
 start succeeded; **C5** verified, except that egress is open
 ([results](../DOCKER_LOCAL_D1.md#verification-c5-2026-11-03)); **C6** per-container
-egress isolation implemented and tested in isolation
-([design](../DOCKER_LOCAL_D1.md#egress-isolation-c6)), not yet applied to a running
-stack. The C1 inventory
+egress isolation implemented, tested in isolation and applied to a fresh stack
+([design](../DOCKER_LOCAL_D1.md#egress-isolation-c6),
+[results](../DOCKER_LOCAL_D1.md#c6-applied-2026-11-03)). The C1 inventory
 itself created no container and ran no CLI, SQL or Docker network command; only
 read-only Docker metadata (`image inspect`, `context inspect`) and GitHub source
 were read. Gate C remains CLOSED; Gate E / PUBLIC TEMPORARY remains unresolved.

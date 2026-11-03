@@ -231,10 +231,29 @@ The first path-C start took 42 seconds; the launcher's own checks and
   `http://example.com` and `https://github.com` answered, and DNS resolves through
   Docker's resolver. The services need no egress and the database holds no data,
   but the network does not provide the egress isolation once intended. This
-  led to [C6](#egress-isolation-c6). The stack started in C4 predates C6, so
-  `d1:verify` now refuses it (`CONTAINER_NOT_ISOLATED`) until a fresh start.
+  led to [C6](#egress-isolation-c6); that stack was replaced (below).
 - `/rest-admin/v1/ready` answers without a key, as with the CLI: that Kong route
   has no authentication, and it is reachable only on `127.0.0.1`.
+
+## C6 applied (2026-11-03)
+
+With owner approval, the C4 stack (four containers, its volume and its keys file)
+was removed by exact name, and a fresh start with C6 succeeded in 42 seconds,
+including `gotrue migrate` in the database's namespace. Then:
+
+- `npm run d1:verify` passed: no default route in any of the four containers,
+  DNS `192.0.2.1` on all of them, no added capabilities, restart policy `no`.
+- The ports behave as in C5: open on `127.0.0.1`, refused on `::1`, the LAN
+  address and the WSL/Hyper-V adapters; `HEAD /rest-admin/v1/ready` through Kong
+  answers 200.
+- From the GoTrue container, `http://1.1.1.1` fails with "Network unreachable",
+  and `example.com` and `github.com` do not resolve. D1 container names resolve
+  and GoTrue reaches PostgREST by name.
+- The migration history again holds both files with their pinned hashes; 74
+  GoTrue migrations, no Auth users, no rows, `c1_executor` NOLOGIN. No helper
+  container was left behind.
+- Containers, volumes and networks outside the D1 stack were compared before
+  and after and are unchanged.
 
 Containers use restart policy `no`, so they do not return after a Docker Desktop
 or Windows restart. The launcher supports a first start only; resuming the
