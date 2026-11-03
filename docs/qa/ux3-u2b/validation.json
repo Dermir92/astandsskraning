@@ -1,0 +1,501 @@
+{
+  "scope": [
+    "F03",
+    "F05",
+    "F06"
+  ],
+  "baseCommit": "43ba3d1a371cb03323181e9ed782576a735cfcf7",
+  "baseTree": "747f4e80402e4b9396c6293179c17ee77fd484b3",
+  "branch": "codex/ux3-u2b-implementation",
+  "fullRegressionGreen": false,
+  "fullRegression": {
+    "run": "full-5",
+    "passed": 1306,
+    "skipped": 35,
+    "failed": 3,
+    "flaky": 0,
+    "retries": 0,
+    "executions": 1344,
+    "durationMs": 2375872.245,
+    "failures": [
+      {
+        "file": "tests/demo-concurrency.spec.ts",
+        "line": 116,
+        "project": "desktop",
+        "observed": "45-second timeout waiting for writer retry button",
+        "separateUnchangedRerun": "passed",
+        "cause": "unproven"
+      },
+      {
+        "file": "tests/inspection-evidence.spec.ts",
+        "line": 388,
+        "project": "desktop",
+        "observed": "180-second timeout in existing five-width AX/visual test",
+        "separateUnchangedRerun": "passed",
+        "cause": "unproven"
+      },
+      {
+        "file": "tests/mobile-refinement.spec.ts",
+        "line": 168,
+        "project": "desktop",
+        "observed": "bare inspection URL expected; canonical room query received",
+        "separateUnchangedRerun": "passed",
+        "cause": "unproven"
+      }
+    ]
+  },
+  "baselineCoverage": {
+    "baselineCaseCount": 1296,
+    "missingBaselineCases": [],
+    "changedBaselineExpectedStatuses": []
+  },
+  "f03F06": {
+    "preF05GatePassed": 12,
+    "completedFullRun": {
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    }
+  },
+  "f05": {
+    "separateDesktopGatePassed": 12,
+    "completedFullRun": {
+      "passed": 36,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    }
+  },
+  "broaderFocusedRegression": {
+    "passed": 197,
+    "skipped": 4,
+    "failed": 0
+  },
+  "finalNewFeatureGate": {
+    "passed": 48,
+    "failed": 0
+  },
+  "metricExpectationGate": {
+    "passed": 3
+  },
+  "stepperAccessibleNameGate": {
+    "passed": 6
+  },
+  "separateFailureDiagnostic": {
+    "run": "failure-rerun",
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "amendsFullResult": false,
+    "durationMs": 90994.01999999999
+  },
+  "offlineContracts": {
+    "passed": 147,
+    "realDatabaseUsed": false
+  },
+  "staticChecks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "productionBuild": "passed"
+  },
+  "partialFullAttempts": {
+    "full": {
+      "completedExecutions": 41,
+      "passed": 30,
+      "failed": 11,
+      "skipped": 0,
+      "complete": false
+    },
+    "full-final": {
+      "completedExecutions": 126,
+      "passed": 125,
+      "failed": 1,
+      "skipped": 0,
+      "complete": false
+    },
+    "full-3": {
+      "completedExecutions": 340,
+      "passed": 339,
+      "failed": 1,
+      "skipped": 0,
+      "complete": false
+    },
+    "full-4": {
+      "completedExecutions": 70,
+      "passed": 60,
+      "failed": 10,
+      "skipped": 0,
+      "complete": false
+    }
+  },
+  "suiteResults": {
+    "c1-demo-isolation.spec.ts": {
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "demo-concurrency-contract.spec.ts": {
+      "passed": 78,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "demo-concurrency.spec.ts": {
+      "passed": 41,
+      "skipped": 0,
+      "failed": 1,
+      "flaky": 0
+    },
+    "fire-observations-capture.spec.ts": {
+      "passed": 44,
+      "skipped": 4,
+      "failed": 0,
+      "flaky": 0
+    },
+    "fire-observations-compatibility.spec.ts": {
+      "passed": 33,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "heating-capture.spec.ts": {
+      "passed": 31,
+      "skipped": 2,
+      "failed": 0,
+      "flaky": 0
+    },
+    "heating-compatibility.spec.ts": {
+      "passed": 33,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-checklist.spec.ts": {
+      "passed": 27,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-comparison-contract.spec.ts": {
+      "passed": 66,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-comparison.spec.ts": {
+      "passed": 19,
+      "skipped": 2,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-concepts.spec.ts": {
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-core-capture.spec.ts": {
+      "passed": 41,
+      "skipped": 4,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-core-compatibility.spec.ts": {
+      "passed": 15,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "inspection-evidence.spec.ts": {
+      "passed": 39,
+      "skipped": 2,
+      "failed": 1,
+      "flaky": 0
+    },
+    "inspection-navigation.spec.ts": {
+      "passed": 60,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "local-data-safety.spec.ts": {
+      "passed": 36,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "meter-readings-capture.spec.ts": {
+      "passed": 112,
+      "skipped": 2,
+      "failed": 0,
+      "flaky": 0
+    },
+    "meter-readings-compatibility.spec.ts": {
+      "passed": 105,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "mobile-refinement.spec.ts": {
+      "passed": 14,
+      "skipped": 0,
+      "failed": 1,
+      "flaky": 0
+    },
+    "prototype.spec.ts": {
+      "passed": 37,
+      "skipped": 2,
+      "failed": 0,
+      "flaky": 0
+    },
+    "readability.spec.ts": {
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "rental-information-capture.spec.ts": {
+      "passed": 44,
+      "skipped": 4,
+      "failed": 0,
+      "flaky": 0
+    },
+    "rental-information-compatibility.spec.ts": {
+      "passed": 27,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "report-preview-contract.spec.ts": {
+      "passed": 33,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "report-preview.spec.ts": {
+      "passed": 34,
+      "skipped": 2,
+      "failed": 0,
+      "flaky": 0
+    },
+    "reports-shell.spec.ts": {
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "rooms-accessibility.spec.ts": {
+      "passed": 105,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ui1-assessment.spec.ts": {
+      "passed": 42,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ui1-review-followup.spec.ts": {
+      "passed": 10,
+      "skipped": 5,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ui1-visual.spec.ts": {
+      "passed": 0,
+      "skipped": 3,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ui2a-capture.spec.ts": {
+      "passed": 0,
+      "skipped": 3,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ui2a-context-visibility.spec.ts": {
+      "passed": 36,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ui2a-inspection.spec.ts": {
+      "passed": 18,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ux-refinements.spec.ts": {
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ux3-photo-corrections.spec.ts": {
+      "passed": 36,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    },
+    "ux3-progress-correction.spec.ts": {
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0,
+      "flaky": 0
+    }
+  },
+  "projectPolicies": [
+    {
+      "name": "desktop",
+      "timeout": 45000,
+      "retries": 0,
+      "testIgnore": [
+        "**/c1/**",
+        "**/h1a/**",
+        "**/h1b/**"
+      ]
+    },
+    {
+      "name": "mobile-360",
+      "timeout": 45000,
+      "retries": 0,
+      "testIgnore": [
+        "**/c1/**",
+        "**/h1a/**",
+        "**/h1b/**"
+      ]
+    },
+    {
+      "name": "mobile-390",
+      "timeout": 45000,
+      "retries": 0,
+      "testIgnore": [
+        "**/c1/**",
+        "**/h1a/**",
+        "**/h1b/**"
+      ]
+    }
+  ],
+  "sourceVerification": {
+    "files": 155,
+    "changed": [],
+    "snapshot": "source-delivery.json",
+    "snapshotSHA256": "9daa4b0f016a68f989a9b76b7455d9a29dba599dd249d21845a6863cbb886397"
+  },
+  "captures": {
+    "chromium": "156.0.8078.4",
+    "results": [
+      {
+        "width": 320,
+        "canonicalBytesUnchanged": true,
+        "fileChooserEvents": 0,
+        "readOnlyFallback": "visible Myndaaðgerðir summary",
+        "overviewFocus": "enabled native file input",
+        "temporaryPhotoWarning": true,
+        "longDuplicateReviewOverflow": false,
+        "enlargedLongDuplicateReviewOverflow": false,
+        "zeroRoomsSuccessMarker": false
+      },
+      {
+        "width": 360,
+        "canonicalBytesUnchanged": true,
+        "fileChooserEvents": 0,
+        "readOnlyFallback": "visible Myndaaðgerðir summary",
+        "overviewFocus": "enabled native file input",
+        "temporaryPhotoWarning": true,
+        "longDuplicateReviewOverflow": false,
+        "enlargedLongDuplicateReviewOverflow": false,
+        "zeroRoomsSuccessMarker": false
+      },
+      {
+        "width": 390,
+        "canonicalBytesUnchanged": true,
+        "fileChooserEvents": 0,
+        "readOnlyFallback": "visible Myndaaðgerðir summary",
+        "overviewFocus": "enabled native file input",
+        "temporaryPhotoWarning": true,
+        "longDuplicateReviewOverflow": false,
+        "enlargedLongDuplicateReviewOverflow": false,
+        "zeroRoomsSuccessMarker": false
+      },
+      {
+        "width": 768,
+        "canonicalBytesUnchanged": true,
+        "fileChooserEvents": 0,
+        "readOnlyFallback": "visible Myndaaðgerðir summary",
+        "overviewFocus": "enabled native file input",
+        "temporaryPhotoWarning": true,
+        "longDuplicateReviewOverflow": false,
+        "enlargedLongDuplicateReviewOverflow": false,
+        "zeroRoomsSuccessMarker": false
+      },
+      {
+        "width": 1440,
+        "canonicalBytesUnchanged": true,
+        "fileChooserEvents": 0,
+        "readOnlyFallback": "visible Myndaaðgerðir summary",
+        "overviewFocus": "enabled native file input",
+        "temporaryPhotoWarning": true,
+        "longDuplicateReviewOverflow": false,
+        "enlargedLongDuplicateReviewOverflow": false,
+        "zeroRoomsSuccessMarker": false
+      }
+    ]
+  },
+  "limitations": [
+    "Chromium only",
+    "CSS text enlargement; no native zoom claim",
+    "No physical-device or manual screen-reader certification",
+    "No real database, deployment or infrastructure test",
+    "Full-suite failures unresolved despite separate diagnostic passes",
+    "Next dev reload-loop root cause unproven"
+  ],
+  "rawEvidenceRoot": "C:\\Users\\Danni\\.codex\\investigations\\ux3-u2b-20261102",
+  "fileInventory": [
+    "docs/qa/ux3-u2b/README.md",
+    "docs/qa/ux3-u2b/preservation.json",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-1440.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-320.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-360.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-390.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-768.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-1440.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-320.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-360.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-390.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-768.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-1440.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-320.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-360.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-390.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-768.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-1440.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-320.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-360.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-390.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-768.png",
+    "docs/qa/ux3-u2b/validation.json",
+    "src/app/globals.css",
+    "src/components/evidence.module.css",
+    "src/components/heating-observation.tsx",
+    "src/components/observation-editor.tsx",
+    "src/components/photo-preview.tsx",
+    "src/components/report-overview.tsx",
+    "src/components/screens/inspection-screen.tsx",
+    "src/components/screens/review-screen.tsx",
+    "src/components/screens/rooms-screen.tsx",
+    "src/components/ui.tsx",
+    "src/components/use-inspection-navigation.ts",
+    "src/lib/inspection-navigation.ts",
+    "tests/inspection-checklist.spec.ts",
+    "tests/reports-shell.spec.ts",
+    "tests/ux3-photo-corrections.spec.ts",
+    "tests/ux3-progress-correction.spec.ts",
+    "tests/ux3-progress-fixture.json"
+  ],
+  "deliveryGate": "Draft only; independent review and explicit owner approval required before merge; no deployment"
+}

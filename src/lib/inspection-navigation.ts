@@ -3,6 +3,7 @@ import { heatingAnswered, heatingState } from "./heating";
 
 export const POSITION_PREFIX = "astandsskraning-navigation-v1:";
 export type InspectionPosition = { roomId: string; itemId: string | null };
+export type PhotoIntent = "yfirlit" | "atridi";
 export type PositionEntry = { position: InspectionPosition | null; unavailable: boolean };
 type PositionStorage = Pick<Storage, "getItem" | "setItem">;
 const MAX_POSITION_LENGTH = 4096;
@@ -98,7 +99,19 @@ export function resolveInspection(report: Report, params: URLSearchParams, saved
   };
 }
 
-export function inspectionHref(reportId: string, position?: InspectionPosition | null, origin?: InspectionPosition | null) {
+export function resolvePhotoIntent(report: Report, params: URLSearchParams): PhotoIntent | null {
+  const intent = params.get("mynd");
+  if (params.getAll("mynd").length !== 1 || (intent !== "yfirlit" && intent !== "atridi") ||
+    params.getAll("rymi").length !== 1 || !params.get("rymi") || params.getAll("atridi").length > 1) return null;
+  const position = { roomId: params.get("rymi")!, itemId: params.get("atridi") };
+  const valid = validPosition(report, position);
+  if (!valid || valid.itemId !== position.itemId) return null;
+  return intent === "yfirlit" ? position.itemId === null ? intent : null : position.itemId ? intent : null;
+}
+export const photoTargetId = (reportId: string, roomId: string, itemId: string | null) =>
+  `inspection-photo-${encodeURIComponent(JSON.stringify([reportId, roomId, itemId]))}`;
+
+export function inspectionHref(reportId: string, position?: InspectionPosition | null, origin?: InspectionPosition | null, photo?: PhotoIntent | null) {
   const params = new URLSearchParams();
   if (position) {
     params.set("rymi", position.roomId);
@@ -109,6 +122,7 @@ export function inspectionHref(reportId: string, position?: InspectionPosition |
     params.set("yfirferdRymi", origin.roomId);
     if (origin.itemId !== null) params.set("yfirferdAtridi", origin.itemId);
   }
+  if (photo) params.set("mynd", photo);
   return `/skyrslur/${encodeURIComponent(reportId)}/skraning${params.size ? `?${params}` : ""}`;
 }
 export function reviewOrigin(params: URLSearchParams): InspectionPosition | null {

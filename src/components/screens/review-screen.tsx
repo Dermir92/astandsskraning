@@ -30,7 +30,7 @@ import { RentalInformationSummary } from "../rental-information-summary";
 import { rentalInformationIssues } from "@/lib/rental-information";
 import { detailsCorrectionHref } from "../use-details-correction";
 import { useReviewNavigation } from "../use-inspection-navigation";
-import { inspectionHref, itemProgress, missingAnswers, navigationTargetId } from "@/lib/inspection-navigation";
+import { inspectionHref, itemProgress, missingAnswers, navigationTargetId, type InspectionPosition } from "@/lib/inspection-navigation";
 import styles from "../inspection-checklist.module.css";
 import { EvidenceGallery, RetainedDefectDetails } from "../evidence-gallery";
 import { hasRetainedDefect } from "@/lib/inspection-evidence";
@@ -79,16 +79,17 @@ export function ReviewScreen() {
     .reduce((sum, [, p]) => sum + p.length, 0);
   const roomHref = (roomId: string) =>
     inspectionHref(id, { roomId, itemId: null }, { roomId, itemId: null });
-  const missingDamagePhotos = report.rooms.reduce(
-    (sum, r) =>
-      sum +
-      r.items.filter(
-        (i) =>
-          requiresDamage(r.observations[i.id], i) &&
-          !state.photos[`${id}:${r.id}:${i.id}`]?.length,
-      ).length,
-    0,
-  );
+  const missingDamagePhotoItems = report.rooms.flatMap(room => room.items
+    .filter(item => requiresDamage(room.observations[item.id], item) && !state.photos[`${id}:${room.id}:${item.id}`]?.length)
+    .map(item => ({ room, item })));
+  const missingDamagePhotos = missingDamagePhotoItems.length;
+  const photoLink = (position: InspectionPosition, label: string, context: string) => {
+    const intent = position.itemId === null ? "yfirlit" : "atridi";
+    return <Link className={`${styles.reviewItemLink} ${evidenceStyles.photoCorrection}`} href={navigation.itemHref(position, intent)}
+      onNavigate={() => navigation.leave(position, intent)} aria-label={`${context} · ${label}`}>
+      <Camera size={14} aria-hidden="true" /><span>{label}</span>
+    </Link>;
+  };
   const hasAttention =
     meters.hasAttention ||
     fire.hasAttention ||
@@ -146,8 +147,8 @@ export function ReviewScreen() {
           <span>atriði skráð</span>
         </div>
         <div>
-          <strong>{stats.unanswered}</strong>
-          <span>ástand vantar</span>
+          <strong>{stats.total - stats.recorded}</strong>
+          <span>ófullskráð atriði</span>
         </div>
         <div>
           <strong>{stats.deviations}</strong>
@@ -270,6 +271,8 @@ export function ReviewScreen() {
                   {room.items.some(i => i.kind === "space_heating") ? room.items.filter(i => i.kind === "space_heating").map(item => <section key={item.id} data-heating-review={item.id}>
                     <h4><Link className={styles.reviewItemLink} href={navigation.itemHref({ roomId: room.id, itemId: item.id })} onNavigate={() => navigation.leave({ roomId: room.id, itemId: item.id })}>Hiti · Breyta skráningu</Link></h4>
                     <HeatingFacts observation={room.observations[item.id]} />
+                    {requiresDamage(room.observations[item.id], item) && !state.photos[`${id}:${room.id}:${item.id}`]?.length ?
+                      <p className="review-missing">{photoLink({ roomId: room.id, itemId: item.id }, "Mynd af fráviki vantar", `${room.name || "Ónefnt rými"} · ${item.name}`)}</p> : null}
                     <EvidenceGallery photos={state.photos[`${id}:${room.id}:${item.id}`] ?? []} context={`${room.name || "Ónefnt rými"} · Hiti`} />
                   </section>) : <p className="field-hint">Sérstök hitaskráning er ekki í gátlista þessa rýmis.</p>}
                   {flagged.length ? (
@@ -310,8 +313,7 @@ export function ReviewScreen() {
                                 {!state.photos[`${id}:${room.id}:${item.id}`]
                                   ?.length ? (
                                   <span className="review-missing">
-                                    <Camera size={13} aria-hidden="true" />
-                                    Mynd af fráviki vantar
+                                    {photoLink({ roomId: room.id, itemId: item.id }, "Mynd af fráviki vantar", `${room.name || "Ónefnt rými"} · ${item.name}`)}
                                   </span>
                                 ) : null}
                               </>
@@ -347,8 +349,7 @@ export function ReviewScreen() {
                   ) : null}
                   {!state.photos[`${id}:${room.id}:overview`]?.length ? (
                     <p className="review-missing overview-missing">
-                      <Camera size={14} aria-hidden="true" />
-                      Yfirlitsmynd rýmis vantar
+                      {photoLink({ roomId: room.id, itemId: null }, "Yfirlitsmynd rýmis vantar", room.name || "Ónefnt rými")}
                     </p>
                   ) : (
                     <p className="review-photo-count">
@@ -447,6 +448,14 @@ export function ReviewScreen() {
                   : ""}
                 .
               </p>
+              <ul className="core-missing-links">
+                {missingOverviews.map(room => <li key={`overview-${room.id}`}>
+                  {photoLink({ roomId: room.id, itemId: null }, `${room.name || "Ónefnt rými"} · bæta við yfirlitsmynd`, "Myndaforskoðun vantar")}
+                </li>)}
+                {missingDamagePhotoItems.map(({ room, item }) => <li key={JSON.stringify([room.id, item.id])}>
+                  {photoLink({ roomId: room.id, itemId: item.id }, `${room.name || "Ónefnt rými"} · ${item.name} · bæta við mynd af fráviki`, "Myndaforskoðun vantar")}
+                </li>)}
+              </ul>
               <p className="field-hint">
                 Myndir eru aðeins forskoðaðar í þessari setu og hverfa við
                 endurhleðslu.

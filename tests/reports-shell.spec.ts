@@ -187,7 +187,7 @@ test("context reflects room edits, answers and temporary photos after returning 
   await expect(
     overview.getByRole("link", { name: /Nýr gangur/ }),
   ).toBeVisible();
-  await expect(overview).toContainText("28 ósvarað · 3 frávik");
+  await expect(overview).toContainText("28 ófullskráð atriði · 3 frávik");
   await closeOverview(page);
   await page.reload();
   const reloaded = await openOverview(page, "Sýnigata 14");

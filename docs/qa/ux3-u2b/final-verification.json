@@ -1,0 +1,434 @@
+{
+  "reviewedHead": "ee5f7131d8ba0308dbf6ec8fcb717a3deb8278ae",
+  "baseCommit": "43ba3d1a371cb03323181e9ed782576a735cfcf7",
+  "applicationCodeChangedSinceReview": false,
+  "changedFilesSinceReview": [
+    "docs/qa/ux3-u2b/FINAL-VERIFICATION.md",
+    "docs/qa/ux3-u2b/README.md",
+    "docs/qa/ux3-u2b/final-verification.json",
+    "tests/mobile-refinement.spec.ts"
+  ],
+  "prFileInventory": [
+    "docs/qa/ux3-u2b/FINAL-VERIFICATION.md",
+    "docs/qa/ux3-u2b/README.md",
+    "docs/qa/ux3-u2b/final-verification.json",
+    "docs/qa/ux3-u2b/preservation.json",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-1440.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-320.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-360.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-390.png",
+    "docs/qa/ux3-u2b/screenshots/after/overview-focus-768.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-1440.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-320.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-360.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-390.png",
+    "docs/qa/ux3-u2b/screenshots/after/readonly-focus-768.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-1440.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-320.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-360.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-390.png",
+    "docs/qa/ux3-u2b/screenshots/after/review-768.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-1440.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-320.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-360.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-390.png",
+    "docs/qa/ux3-u2b/screenshots/before/review-768.png",
+    "docs/qa/ux3-u2b/validation.json",
+    "src/app/globals.css",
+    "src/components/evidence.module.css",
+    "src/components/heating-observation.tsx",
+    "src/components/observation-editor.tsx",
+    "src/components/photo-preview.tsx",
+    "src/components/report-overview.tsx",
+    "src/components/screens/inspection-screen.tsx",
+    "src/components/screens/review-screen.tsx",
+    "src/components/screens/rooms-screen.tsx",
+    "src/components/ui.tsx",
+    "src/components/use-inspection-navigation.ts",
+    "src/lib/inspection-navigation.ts",
+    "tests/inspection-checklist.spec.ts",
+    "tests/mobile-refinement.spec.ts",
+    "tests/reports-shell.spec.ts",
+    "tests/ux3-photo-corrections.spec.ts",
+    "tests/ux3-progress-correction.spec.ts",
+    "tests/ux3-progress-fixture.json"
+  ],
+  "canonicalization": {
+    "baseline": {
+      "link": "/skyrslur/syni-ibud/skraning",
+      "settledURL": "http://127.0.0.1:3107/skyrslur/syni-ibud/skraning?rymi=demo-kitchen",
+      "oldBareAssertionAfterSettlement": false,
+      "events": [
+        {
+          "before": "/",
+          "after": "/"
+        },
+        {
+          "before": "/skyrslur/syni-ibud/skraning",
+          "after": "/skyrslur/syni-ibud/skraning?rymi=demo-kitchen"
+        },
+        {
+          "before": "/skyrslur/syni-ibud/skraning?rymi=demo-kitchen",
+          "after": "/skyrslur/syni-ibud/skraning?rymi=demo-kitchen"
+        }
+      ]
+    },
+    "reviewedApplication": {
+      "link": "/skyrslur/syni-ibud/skraning",
+      "settledURL": "http://127.0.0.1:3106/skyrslur/syni-ibud/skraning?rymi=demo-kitchen",
+      "oldBareAssertionAfterSettlement": false,
+      "events": [
+        {
+          "before": "/",
+          "after": "/"
+        },
+        {
+          "before": "/skyrslur/syni-ibud/skraning",
+          "after": "/skyrslur/syni-ibud/skraning?rymi=demo-kitchen"
+        },
+        {
+          "before": "/skyrslur/syni-ibud/skraning?rymi=demo-kitchen",
+          "after": "/skyrslur/syni-ibud/skraning?rymi=demo-kitchen"
+        }
+      ]
+    },
+    "correction": "Wait for exact report path, exactly one rymi=demo-kitchen parameter for the fresh inspection destination, no fragment; retain bare exact details/review destinations"
+  },
+  "concurrency": {
+    "baseline": {
+      "syntheticSchedulingOnly": true,
+      "storeCodeUnchanged": true,
+      "beforeRelease": {
+        "disabled": true,
+        "status": "Undirbý staðbundin drög…"
+      },
+      "afterRelease": {
+        "enabled": true,
+        "retryButtons": 0,
+        "canonicalBytesUnchanged": true
+      }
+    },
+    "reviewedApplication": {
+      "syntheticSchedulingOnly": true,
+      "storeCodeUnchanged": true,
+      "beforeRelease": {
+        "disabled": true,
+        "status": "Undirbý staðbundin drög…"
+      },
+      "afterRelease": {
+        "enabled": true,
+        "retryButtons": 0,
+        "canonicalBytesUnchanged": true
+      }
+    },
+    "conclusion": "Pre-existing admission timing race reproduced with real Web Locks and a synthetic scheduling gate on main and head. Disabled creation alone does not prove completed reader admission. Original and new interrupted-run failure snapshots show enabled creation, saved status and no retry button. No store/test changes."
+  },
+  "visualAX": {
+    "existingTimeoutMs": 180000,
+    "baselineAndHeadFocusedPassed": true,
+    "controlledFullResult": {
+      "expected": 40,
+      "skipped": 2
+    },
+    "conclusion": "The prior failure exhausted the cumulative 180-second test budget without a preceding AX assertion failure. No PR-specific AX defect reproduced. Baseline and reviewed application both pass; wall-clock attribution of the original timeout cannot be proven retrospectively."
+  },
+  "unchangedFromMainGitBlobs": {
+    "src/components/demo-provider.tsx": "db0ecc9b8c8d18dc74513622f26195c11f32bb39",
+    "src/components/demo-save-actions.tsx": "3d72d54000618015d182e7863c3d638d61286d7e",
+    "src/components/screens/new-report-screen.tsx": "84e6419bfe8b615e012bec5ede8258e803a6a2c5",
+    "tests/demo-concurrency.spec.ts": "880210501ace2605b8edc925335d0c44a20a4b4b",
+    "tests/inspection-evidence.spec.ts": "cc883577c362795f32f97f4c97133ebda57b3da9",
+    "tests/inspection-accessibility.ts": "db3a791e85a3fa3512801e478acbccad215255df",
+    "tests/contrast-helpers.ts": "eef7b0da93614d36f46081c3f5fdd8af97b1257c"
+  },
+  "baselineAffected": {
+    "stats": {
+      "startTime": "2026-11-03T08:56:40.671Z",
+      "duration": 145105.41,
+      "expected": 7,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "caseCount": 9,
+    "retryResults": 0,
+    "groups": {
+      "demo-concurrency.spec.ts": {
+        "expected": 3
+      },
+      "inspection-evidence.spec.ts": {
+        "expected": 1,
+        "skipped": 2
+      },
+      "mobile-refinement.spec.ts": {
+        "expected": 3
+      }
+    },
+    "failures": []
+  },
+  "focused": {
+    "stats": {
+      "startTime": "2026-11-03T09:00:55.465Z",
+      "duration": 221019.91499999998,
+      "expected": 55,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "caseCount": 57,
+    "retryResults": 0,
+    "groups": {
+      "demo-concurrency.spec.ts": {
+        "expected": 3
+      },
+      "inspection-evidence.spec.ts": {
+        "expected": 1,
+        "skipped": 2
+      },
+      "mobile-refinement.spec.ts": {
+        "expected": 3
+      },
+      "ux3-photo-corrections.spec.ts": {
+        "expected": 36
+      },
+      "ux3-progress-correction.spec.ts": {
+        "expected": 12
+      }
+    },
+    "failures": []
+  },
+  "fixturePreflight": {
+    "stats": {
+      "startTime": "2026-11-03T09:11:42.351Z",
+      "duration": 13817.744999999999,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "caseCount": 6,
+    "retryResults": 0,
+    "groups": {
+      "inspection-concepts.spec.ts": {
+        "expected": 6
+      }
+    },
+    "failures": []
+  },
+  "interruptedRunnerAttempt": {
+    "complete": false,
+    "interruptedForRunnerError": true,
+    "passed": 156,
+    "failed": 3,
+    "reason": "external cwd omitted public/concepts/synthetic-wall-damage.png; two concept cases failed ENOENT",
+    "knownUnchangedConcurrencyFailure": true,
+    "fixtureCopySHA256": "e0e1256e79a572b392a2e09769bb0e6e3b8902c1d1e637fbac605756ed26901e"
+  },
+  "controlledCompleteRegression": {
+    "stats": {
+      "startTime": "2026-11-03T09:13:19.615Z",
+      "duration": 2163773.688,
+      "expected": 1309,
+      "skipped": 35,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "caseCount": 1344,
+    "retryResults": 0,
+    "groups": {
+      "c1-demo-isolation.spec.ts": {
+        "expected": 3
+      },
+      "demo-concurrency-contract.spec.ts": {
+        "expected": 78
+      },
+      "demo-concurrency.spec.ts": {
+        "expected": 42
+      },
+      "fire-observations-capture.spec.ts": {
+        "expected": 44,
+        "skipped": 4
+      },
+      "fire-observations-compatibility.spec.ts": {
+        "expected": 33
+      },
+      "heating-capture.spec.ts": {
+        "expected": 31,
+        "skipped": 2
+      },
+      "heating-compatibility.spec.ts": {
+        "expected": 33
+      },
+      "inspection-checklist.spec.ts": {
+        "expected": 27
+      },
+      "inspection-comparison-contract.spec.ts": {
+        "expected": 66
+      },
+      "inspection-comparison.spec.ts": {
+        "expected": 19,
+        "skipped": 2
+      },
+      "inspection-concepts.spec.ts": {
+        "expected": 21
+      },
+      "inspection-core-capture.spec.ts": {
+        "expected": 41,
+        "skipped": 4
+      },
+      "inspection-core-compatibility.spec.ts": {
+        "expected": 15
+      },
+      "inspection-evidence.spec.ts": {
+        "expected": 40,
+        "skipped": 2
+      },
+      "inspection-navigation.spec.ts": {
+        "expected": 60
+      },
+      "local-data-safety.spec.ts": {
+        "expected": 36
+      },
+      "meter-readings-capture.spec.ts": {
+        "expected": 112,
+        "skipped": 2
+      },
+      "meter-readings-compatibility.spec.ts": {
+        "expected": 105
+      },
+      "mobile-refinement.spec.ts": {
+        "expected": 15
+      },
+      "prototype.spec.ts": {
+        "expected": 37,
+        "skipped": 2
+      },
+      "readability.spec.ts": {
+        "expected": 9
+      },
+      "rental-information-capture.spec.ts": {
+        "expected": 44,
+        "skipped": 4
+      },
+      "rental-information-compatibility.spec.ts": {
+        "expected": 27
+      },
+      "report-preview-contract.spec.ts": {
+        "expected": 33
+      },
+      "report-preview.spec.ts": {
+        "expected": 34,
+        "skipped": 2
+      },
+      "reports-shell.spec.ts": {
+        "expected": 24
+      },
+      "rooms-accessibility.spec.ts": {
+        "expected": 105
+      },
+      "ui1-assessment.spec.ts": {
+        "expected": 42
+      },
+      "ui1-review-followup.spec.ts": {
+        "expected": 10,
+        "skipped": 5
+      },
+      "ui1-visual.spec.ts": {
+        "skipped": 3
+      },
+      "ui2a-capture.spec.ts": {
+        "skipped": 3
+      },
+      "ui2a-context-visibility.spec.ts": {
+        "expected": 36
+      },
+      "ui2a-inspection.spec.ts": {
+        "expected": 18
+      },
+      "ux-refinements.spec.ts": {
+        "expected": 21
+      },
+      "ux3-photo-corrections.spec.ts": {
+        "expected": 36
+      },
+      "ux3-progress-correction.spec.ts": {
+        "expected": 12
+      }
+    },
+    "failures": []
+  },
+  "policyVerification": {
+    "referenceCaseCount": 1344,
+    "missingCases": [],
+    "extraCases": [],
+    "changedPolicies": [],
+    "configPolicies": {
+      "workers": 2,
+      "fullyParallel": true,
+      "globalTimeout": 0,
+      "maxFailures": 0
+    },
+    "projectPolicies": [
+      {
+        "name": "desktop",
+        "timeout": 45000,
+        "retries": 0,
+        "testIgnore": [
+          "**/c1/**",
+          "**/h1a/**",
+          "**/h1b/**"
+        ]
+      },
+      {
+        "name": "mobile-360",
+        "timeout": 45000,
+        "retries": 0,
+        "testIgnore": [
+          "**/c1/**",
+          "**/h1a/**",
+          "**/h1b/**"
+        ]
+      },
+      {
+        "name": "mobile-390",
+        "timeout": 45000,
+        "retries": 0,
+        "testIgnore": [
+          "**/c1/**",
+          "**/h1a/**",
+          "**/h1b/**"
+        ]
+      }
+    ],
+    "configPoliciesChanged": false,
+    "projectPoliciesChanged": false
+  },
+  "sourceVerification": {
+    "files": 155,
+    "changedDuringRun": [],
+    "snapshotSHA256": "a3096653af0c752cc4b5529087ab2571e1fbb1f8cefce782f2b44bf6f9be1122"
+  },
+  "staticChecks": {
+    "changedTestLint": "passed",
+    "fullTypecheck": "passed",
+    "newProductionBuild": "not repeated; application/config unchanged since reviewed passing build"
+  },
+  "preservationInventory": {
+    "priorWorktrees": 13,
+    "priorWorktreeFiles": 7451,
+    "priorRefs": 61,
+    "historicalEvidenceFiles": 11020,
+    "u2aEvidenceFiles": 162,
+    "existingIgnoredArtifacts": 118,
+    "approvedChangesOnly": [
+      "docs/qa/ux3-u2b/FINAL-VERIFICATION.md",
+      "docs/qa/ux3-u2b/README.md",
+      "docs/qa/ux3-u2b/final-verification.json",
+      "tests/mobile-refinement.spec.ts"
+    ],
+    "postCommitComparison": "retained externally as preservation-comparison.json"
+  },
+  "rawEvidenceRoot": "C:\\Users\\Danni\\.codex\\investigations\\ux3-u2b-final-verification-20261103",
+  "draftPR": "https://github.com/Dermir92/astandsskraning/pull/24",
+  "approvalGate": "Draft only; stop for explicit owner approval. No ready marking, merge, deployment, backend work or new UX phase."
+}

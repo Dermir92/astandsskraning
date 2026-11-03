@@ -130,7 +130,8 @@ test("existing draft values, associations, status distinctions and review statis
   await page.getByRole("link", { name: "Yfirferð", exact: true }).first().click();
   const numbers = page.locator(".review-summary > div > strong");
   await expect(numbers.nth(1)).toHaveText(`${stats.recorded} / ${stats.total}`);
-  await expect(numbers.nth(2)).toHaveText(String(stats.unanswered));
+  await expect(numbers.nth(2)).toHaveText(String(stats.total - stats.recorded));
+  await expect(numbers.nth(2).locator("..")).toContainText("ófullskráð atriði");
   await expect(numbers.nth(3)).toHaveText(String(stats.deviations));
   await expect(page.getByRole("heading", { name: `${stats.attention} atriði þarfnast athygli`, exact: true })).toBeVisible();
   await page.reload();

@@ -139,7 +139,7 @@ export function ReportOverview({ report }: { report: Report }) {
                   label={`Framvinda: ${reportTitle(report)}`}
                 />
                 <p>
-                  {stats.unanswered} ósvarað · {stats.deviations} frávik
+                  {stats.total - stats.recorded} ófullskráð atriði · {stats.deviations} frávik
                 </p>
               </>
             ) : (
@@ -163,7 +163,8 @@ export function ReportOverview({ report }: { report: Report }) {
               ) : null}
               {stats.attention ? (
                 <li>
-                  {stats.attention} atriði með ófullgerð eða óstaðfest svör
+                  {stats.attention} atriði þarfnast athygli
+                  <p className="field-hint">Ófullskráning, skráðar athuganir eða takmarkanir skoðunar.</p>
                 </li>
               ) : null}
               {!report.rooms.length || !stats.total ? (

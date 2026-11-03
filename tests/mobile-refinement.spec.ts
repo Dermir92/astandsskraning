@@ -210,7 +210,14 @@ test("mobile report names open quick context and labelled actions directly open 
           : "Halda áfram",
     );
     await next.click();
-    await expect(page).toHaveURL(new RegExp(suffix + "$"));
+    // Inspection resolves its canonical room after client-side navigation.
+    await expect(page).toHaveURL((url) =>
+      url.pathname === `/skyrslur${suffix}` &&
+      url.hash === "" &&
+      (suffix.endsWith("/skraning")
+        ? url.searchParams.size === 1 && url.searchParams.get("rymi") === "demo-kitchen"
+        : url.search === ""),
+    );
     await expect(page.locator("main h1")).toBeVisible();
     await expect(page.getByRole("dialog")).toHaveCount(0);
     await page

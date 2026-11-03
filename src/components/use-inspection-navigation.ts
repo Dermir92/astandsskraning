@@ -2,9 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { InspectionPositions, inspectionHref, missingAnswers, navigationTargetId, resolveInspection, reviewHref, reviewOrigin, type InspectionPosition, type PositionEntry } from "@/lib/inspection-navigation";
+import { InspectionPositions, inspectionHref, missingAnswers, navigationTargetId, photoTargetId, resolvePhotoIntent, resolveInspection, reviewHref, reviewOrigin, type InspectionPosition, type PhotoIntent, type PositionEntry } from "@/lib/inspection-navigation";
 import type { Report } from "@/lib/model";
 import { useDemo } from "./demo-provider";
+import { scrollInspectionField } from "./inspection-focus";
 
 const EMPTY: Record<string, PositionEntry> = {};
 const browserPositions = new Map<string, InspectionPositions>();
@@ -57,6 +58,27 @@ function inspectionFocus(root: HTMLElement | null, key?: string) {
     (key ? root?.querySelector<HTMLElement>(".damage-fields") : null) ?? root;
 }
 
+function revealPhoto(reportId: string, position: InspectionPosition) {
+  const area = document.getElementById(photoTargetId(reportId, position.roomId, position.itemId));
+  if (!area) return;
+  for (let parent = area.parentElement; parent; parent = parent.parentElement) {
+    if (parent instanceof HTMLDetailsElement) parent.open = true;
+  }
+  const input = area.querySelector<HTMLInputElement>('input[type="file"]');
+  for (let parent = input?.parentElement; parent && parent !== area; parent = parent.parentElement) {
+    if (parent instanceof HTMLDetailsElement) parent.open = true;
+  }
+  const visible = (element: HTMLElement | null): element is HTMLElement => !!element &&
+    !!element.getClientRects().length && !element.closest("[hidden]") && getComputedStyle(element).visibility !== "hidden";
+  // The featured title is hidden. A visible action summary is the fallback for
+  // readers, decoding and full capture areas; this never grants editing rights.
+  const summary = input?.closest("details")?.querySelector<HTMLElement>(':scope > summary:not([hidden])') ?? null;
+  const title = area.querySelector<HTMLElement>(".photo-title");
+  const target = input && !input.disabled && visible(input) ? input : visible(summary) ? summary : visible(title) ? title : area;
+  target.focus({ preventScroll: true });
+  scrollInspectionField(area, target);
+}
+
 export function useInspectionNavigation(report: Report, canRemember: boolean, fireCorrection = false) {
   const { navigationScope: scope } = useDemo();
   const router = useRouter();
@@ -66,6 +88,7 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
   const ready = fireCorrection || !canRemember || !!entry;
   const params = new URLSearchParams(query);
   const destination = resolveInspection(report, params, canRemember ? entry?.position : null);
+  const photo = resolvePhotoIntent(report, params);
   const origin = reviewOrigin(params);
   const returnHref = reviewHref(report.id, origin);
   const [editor, setEditor] = useState<{ query: string; itemId: string | null } | null>(null);
@@ -78,9 +101,12 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
   const directReview = useRef<string | null>(null);
   const mounted = useRef(false);
   const itemId = editor?.query === query ? editor.itemId : destination.item?.id ?? null;
-  const canonical = inspectionHref(report.id, destination.position, origin);
+  const canonical = inspectionHref(report.id, destination.position, origin, photo);
   const freshVisit = !params.has("rymi") && !params.has("atridi") && !entry?.position && !destination.invalid && !origin;
-  if (!fireCorrection && ready && destination.invalid && !notice) setNotice("Staðsetningin fannst ekki lengur. Tiltækt rými er opið.");
+  if (!fireCorrection && ready && !notice) {
+    if (destination.invalid) setNotice("Staðsetningin fannst ekki lengur. Tiltækt rými er opið.");
+    else if (params.has("mynd") && !photo) setNotice("Myndasvæðið fannst ekki. Tiltæk skráning er opin.");
+  }
 
   useEffect(() => {
     // Native history updates before the router's query snapshot catches up.
@@ -114,12 +140,13 @@ export function useInspectionNavigation(report: Report, canRemember: boolean, fi
     if (local || fresh) return;
     requestAnimationFrame(() => {
       if (`${window.location.pathname}${window.location.search}` !== canonical) return;
+      if (photo) { revealPhoto(report.id, destination.position!); return; }
       const root = document.getElementById(navigationTargetId("inspection", destination.position!.roomId, destination.position!.itemId));
       const missing = destination.item ? missingAnswers(destination.item, destination.room?.observations[destination.item.id])[0] : null;
       const target = inspectionFocus(root, missing?.key);
       reveal(target ?? null, !wasReload);
     });
-  }, [ready, query, canonical, destination, canRemember, report, fireCorrection, scope, freshVisit]);
+  }, [ready, query, canonical, destination, canRemember, report, fireCorrection, scope, freshVisit, photo]);
 
   useEffect(() => {
     if (fireCorrection || !focusRequest || focusRequest.query !== query || focusedRequest.current === focusRequest.token) return;
@@ -179,11 +206,11 @@ export function useReviewNavigation(report?: Report) {
     return () => cancelAnimationFrame(frame);
   }, [query, report]);
   return {
-    itemHref: (position: InspectionPosition) => inspectionHref(report!.id, position, position),
-    leave: (position: InspectionPosition) => {
+    itemHref: (position: InspectionPosition, photo?: PhotoIntent) => inspectionHref(report!.id, position, position, photo),
+    leave: (position: InspectionPosition, photo?: PhotoIntent) => {
       const review = reviewHref(report!.id, position);
       window.history.replaceState(null, "", review);
-      reviewTrip = { inspection: inspectionHref(report!.id, position, position), review };
+      reviewTrip = { inspection: inspectionHref(report!.id, position, position, photo), review };
     },
   };
 }

@@ -6,7 +6,6 @@ import {
   ArrowLeft,
   ArrowRight,
   Camera,
-  Check,
   ChevronDown,
   Pencil,
   TriangleAlert,
@@ -29,7 +28,7 @@ import { is } from "@/lib/locale/is";
 import { inspectionSectionStatus } from "../inspection-section-status";
 import { useInspectionSections, type InspectionSection } from "../use-inspection-sections";
 import { useInspectionNavigation } from "../use-inspection-navigation";
-import { inspectionItems, itemProgress, missingAnswers, navigationTargetId, nextIncomplete, type InspectionPosition } from "@/lib/inspection-navigation";
+import { inspectionItems, itemProgress, missingAnswers, navigationTargetId, nextIncomplete, photoTargetId, type InspectionPosition } from "@/lib/inspection-navigation";
 import { observationComplete } from "@/lib/model";
 import { FireObservationFields } from "../fire-observation-fields";
 import { useFireCorrection } from "../use-fire-correction";
@@ -92,7 +91,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
       {!room.items.some(i => i.kind === "space_heating") ? <button type="button" className="text-button" disabled={demoReadOnly || state.status === "loading" || state.status === "read-error" || room.items.length >= 100} onClick={() => { const itemId = store.addHeating(report.id, room.id); if (itemId) navigation.activate({ roomId: room.id, itemId }, true, true); }}>Bæta við hitaskráningu</button> : null}
       <details className={styles.roomPhotos}>
         <summary><Camera size={18} aria-hidden="true" />Yfirlitsmyndir rýmis</summary>
-        <PhotoPreview photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />
+        <PhotoPreview targetId={photoTargetId(report.id, room.id, null)} photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />
       </details>
     </div>
   );
@@ -171,7 +170,7 @@ function InspectionBody({ report }: { report: Report }) {
             <nav aria-label="Velja rými"><ol>{report.rooms.map((r, index) => {
               const s = roomStats(r);
               return <li key={r.id}><Link href={navigation.roomHref(r.id)} replace scroll={false} onNavigate={go({ roomId: r.id, itemId: null })} className={r.id === room.id ? "room-link-active" : ""} aria-current={r.id === room.id ? "page" : undefined}>
-                <span className="room-link-number">{s.recorded === s.total && s.attention === 0 ? <Check size={15} aria-hidden="true" /> : index + 1}</span>
+                <span className="room-link-number">{index + 1}</span>
                 <span className="room-link-text"><strong>{r.name || "Ónefnt rými"}</strong><span>{s.recorded} / {s.total} skráð{s.deviations ? ` · ${s.deviations} frávik` : ""}</span></span>
                 {s.deviations ? <TriangleAlert className="room-deviation-icon" size={14} aria-label="Skráð frávik" /> : null}
               </Link></li>;
