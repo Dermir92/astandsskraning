@@ -4,7 +4,10 @@ Status (2026-11-03, each stage approved by the owner): **C1** inventory complete
 (read-only); **C2** implemented in `scripts/d1-local.mjs`
 ([notes](#c2-implementation-notes)); **C3** old CLI state removed; **C4** first
 start succeeded; **C5** verified, except that egress is open
-([results](../DOCKER_LOCAL_D1.md#verification-c5-2026-11-03)). The C1 inventory
+([results](../DOCKER_LOCAL_D1.md#verification-c5-2026-11-03)); **C6** per-container
+egress isolation implemented and tested in isolation
+([design](../DOCKER_LOCAL_D1.md#egress-isolation-c6)), not yet applied to a running
+stack. The C1 inventory
 itself created no container and ran no CLI, SQL or Docker network command; only
 read-only Docker metadata (`image inspect`, `context inspect`) and GitHub source
 were read. Gate C remains CLOSED; Gate E / PUBLIC TEMPORARY remains unresolved.
@@ -81,6 +84,8 @@ and Kong bindings.
 | 4 | `kong.yml` | All 17 services; 9 point at containers that do not run, graphql targets an unexposed schema | Keep the 8 services whose upstream runs, drop the 9 others |
 | 5 | Migration execution | Host pgx connection to `127.0.0.1:56422` | `docker exec` + `psql -v ON_ERROR_STOP=1 --single-transaction` inside the db container, history row in the same transaction; no host SQL client and no dependence on the published port |
 | 6 | History `statements` column | CLI parser split (16 and 3 statements) | The whole file as one element (not the CLI parser split) |
+| 7 | Default route (C6) | Present; egress open on Docker Desktop | Removed in each container right after start by a short-lived `NET_ADMIN` helper; the `gotrue migrate` job shares the database's namespace |
+| 8 | DNS (C6) | Docker's resolver forwards external lookups | `Dns: ["192.0.2.1"]` (TEST-NET-1) on every service container; D1 names still resolve |
 
 ## C2 implementation notes
 

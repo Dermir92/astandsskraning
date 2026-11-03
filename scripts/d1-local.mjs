@@ -55,6 +55,9 @@ const API_URL = "http://127.0.0.1:56421";
 const SITE_URL = "http://127.0.0.1:3101";
 const VOLUME = `supabase_db_${PROJECT}`;
 const ALIASES = { db: ["db", "db.supabase.internal"], kong: ["kong", "api.supabase.internal"], auth: ["auth"], rest: ["rest"] };
+// Owner decision 8: Docker's resolver still answers D1 names, but forwards every
+// external lookup to TEST-NET-1 (RFC 5737), which goes nowhere.
+export const NO_EGRESS_DNS = ["192.0.2.1"];
 const ownerLabel = "is.astandsskodun.local.project";
 const bindingOption = "com.docker.network.bridge.host_binding_ipv4";
 const masqueradeOption = "com.docker.network.bridge.enable_ip_masquerade";
@@ -152,7 +155,7 @@ export function parseContainer(text) {
 function inspectContainers() {
   const ids = docker(["ps", "--all", "--format", "{{.ID}}"]);
   if (!ids) return [];
-  const format = `{"Id":"{{.Id}}","Name":"{{.Name}}","Owner":"{{index .Config.Labels "${ownerLabel}"}}","Project":"{{index .Config.Labels "com.supabase.cli.project"}}","ComposeProject":"{{index .Config.Labels "com.docker.compose.project"}}","Image":"{{.Config.Image}}","ImageId":"{{.Image}}","Running":{{.State.Running}},"RestartPolicy":"{{.HostConfig.RestartPolicy.Name}}","Ports":{{json .HostConfig.PortBindings}},"ActualPorts":{{json .NetworkSettings.Ports}},"Networks":{{json .NetworkSettings.Networks}},"Mounts":{{json .Mounts}}}`;
+  const format = `{"Id":"{{.Id}}","Name":"{{.Name}}","Owner":"{{index .Config.Labels "${ownerLabel}"}}","Project":"{{index .Config.Labels "com.supabase.cli.project"}}","ComposeProject":"{{index .Config.Labels "com.docker.compose.project"}}","Image":"{{.Config.Image}}","ImageId":"{{.Image}}","Running":{{.State.Running}},"RestartPolicy":"{{.HostConfig.RestartPolicy.Name}}","Dns":{{json .HostConfig.Dns}},"CapAdd":{{json .HostConfig.CapAdd}},"Ports":{{json .HostConfig.PortBindings}},"ActualPorts":{{json .NetworkSettings.Ports}},"Networks":{{json .NetworkSettings.Networks}},"Mounts":{{json .Mounts}}}`;
   return ids.split(/\r?\n/).map(id => parseContainer(docker(["inspect", "--format", format, id])));
 }
 function inspectNetwork() {
@@ -225,6 +228,7 @@ export function assertStarted(snapshot, expectedNetworkId = snapshot.network?.Id
     // Owner decision 3: only the D1 label, so `supabase stop` can never act on D1.
     assert(expectedNames.includes(name) && container.Owner === PROJECT && !container.Project && !container.ComposeProject && container.Running, "UNEXPECTED_RUNTIME_CONTAINER");
     assert(container.RestartPolicy === "no", "UNEXPECTED_RESTART_POLICY");
+    assert(JSON.stringify(container.Dns) === JSON.stringify(NO_EGRESS_DNS) && !container.CapAdd?.length, "CONTAINER_NOT_ISOLATED");
     const service = name.slice("supabase_".length, -(PROJECT.length + 1));
     assert(container.Image === IMAGES[service] && container.ImageId === expectedImages[IMAGES[service]], "UNEXPECTED_RUNTIME_IMAGE");
     assert(JSON.stringify(Object.keys(container.Networks ?? {})) === JSON.stringify([NETWORK]), "CONTAINER_ON_WRONG_NETWORK");
@@ -245,8 +249,9 @@ export function assertStarted(snapshot, expectedNetworkId = snapshot.network?.Id
   }
   assert(!snapshot.listeners.some(item => [56421, 56422].includes(item.LocalPort) && !["127.0.0.1", "::1"].includes(item.LocalAddress)), "WINDOWS_PUBLIC_PORT_BINDING");
 }
-// Not --internal (host ports must be forwarded); outbound NAT is disabled instead,
-// although Docker Desktop still routes container egress (verified in C5).
+// Not --internal (host ports must be forwarded); outbound NAT is disabled too,
+// although Docker Desktop still routes container egress (C5). Egress is blocked per
+// container instead: no default route and no external DNS (owner decisions 7 and 8).
 export function networkCreateArguments() {
   return ["network", "create", "--driver", "bridge", "--opt", `${bindingOption}=127.0.0.1`,
     "--opt", `${masqueradeOption}=false`, "--label", `${ownerLabel}=${PROJECT}`, NETWORK];
@@ -346,7 +351,7 @@ const loopbackPort = (port, hostPort) => ({ [`${port}/tcp`]: [{ HostIp: "127.0.0
 const healthcheck = Test => ({ Test, Interval: 10e9, Timeout: 2e9, Retries: 3 });
 // Owner decisions 2 and 3: no restart policy, D1 label only.
 const serviceSpec = (service, config, hostConfig = {}) => ({ ...config, Image: IMAGES[service], Labels: { [ownerLabel]: PROJECT },
-  HostConfig: { ...hostConfig, RestartPolicy: { Name: "no" }, NetworkMode: NETWORK },
+  HostConfig: { ...hostConfig, RestartPolicy: { Name: "no" }, NetworkMode: NETWORK, Dns: NO_EGRESS_DNS },
   NetworkingConfig: { EndpointsConfig: { [NETWORK]: { Aliases: ALIASES[service] } } } });
 export function containerSpecs(secrets, embeds) {
   const kongTemplate = trimKongTemplate(embeds.kong);
@@ -369,7 +374,9 @@ export function containerSpecs(secrets, embeds) {
       "PGRST_DB_EXTRA_SEARCH_PATH=public,extensions", "PGRST_DB_MAX_ROWS=500", "PGRST_DB_ANON_ROLE=anon",
       `PGRST_JWT_SECRET=${jwks(secrets)}`, "PGRST_ADMIN_SERVER_PORT=3001"] }),
     // One-off schema job, as the CLI runs it on a new volume: no name, aliases or ports.
-    authMigrate: { Image: IMAGES.auth, Cmd: ["gotrue", "migrate"], Labels: { [ownerLabel]: PROJECT }, HostConfig: { NetworkMode: NETWORK },
+    // It shares the database's network namespace, which already has no default route.
+    authMigrate: { Image: IMAGES.auth, Cmd: ["gotrue", "migrate"], Labels: { [ownerLabel]: PROJECT },
+      HostConfig: { NetworkMode: `container:${containerName("db")}` },
       Env: [`API_EXTERNAL_URL=${API_URL}`, "GOTRUE_LOG_LEVEL=error", "GOTRUE_DB_DRIVER=postgres",
         `GOTRUE_DB_DATABASE_URL=${databaseUrl("supabase_auth_admin", secrets)}`, `GOTRUE_SITE_URL=${SITE_URL}`,
         `GOTRUE_JWT_SECRET=${secrets.jwtSecret}`] },
@@ -426,6 +433,30 @@ const healthy = service => () => {
 };
 const restReady = secretKey => () => fetch(`${API_URL}/rest-admin/v1/ready`, { method: "HEAD",
   headers: { apikey: secretKey }, signal: AbortSignal.timeout(10_000) }).then(response => response.status === 200, () => false);
+// A labelled one-off container, removed after it exits; a non-zero exit is an error.
+async function runOnce(spec, timeout = 120_000) {
+  const id = await createContainer("", spec);
+  try { return docker(["container", "start", "--attach", id], { timeout }); }
+  finally { docker(["container", "rm", "--force", id]); }
+}
+
+// Owner decision 7: no default route, so container egress is "Network unreachable",
+// while forwarded host connections (from the on-link bridge gateway) and service
+// traffic still arrive. Busybox `ip` from the cached GoTrue image runs in the
+// service's network namespace; only this short-lived helper holds NET_ADMIN.
+export function routeSpec(service, ...args) {
+  return { Image: IMAGES.auth, User: "root", Entrypoint: ["ip"], Cmd: ["route", ...args], Labels: { [ownerLabel]: PROJECT },
+    HostConfig: { NetworkMode: `container:${containerName(service)}`, ...(args[0] === "del" ? { CapAdd: ["NET_ADMIN"] } : {}) } };
+}
+export function assertNoDefaultRoute(routes) {
+  const lines = routes.split(/\r?\n/).filter(Boolean);
+  assert(lines.length && !lines.some(line => line.startsWith("default")), "CONTAINER_HAS_DEFAULT_ROUTE");
+}
+const routes = service => runOnce(routeSpec(service, "show"));
+async function isolate(service) {
+  await runOnce(routeSpec(service, "del", "default"));
+  assertNoDefaultRoute(await routes(service));
+}
 
 async function startStack(snapshot, secrets) {
   const specs = containerSpecs(secrets, snapshot.embeds);
@@ -435,13 +466,12 @@ async function startStack(snapshot, secrets) {
   assert(docker(["volume", "inspect", "--format", `{{index .Labels "${ownerLabel}"}}`, VOLUME]) === PROJECT, "VOLUME_NOT_OWNED_BY_D1");
   await createContainer(containerName("db"), specs.db);
   docker(["container", "start", containerName("db")]);
+  await isolate("db");
   await waitUntil({ db: healthy("db") }, 120, "SERVICE_NOT_READY");
   // migrate.sh applies the CLI schema file only during initdb; _supabase is created last.
   const initialised = docker(psqlArguments("--tuples-only", "--no-align", "--command", "SELECT count(*) FROM pg_database WHERE datname = '_supabase'"));
   assert(initialised === "1", "DATABASE_INIT_SCHEMA_NOT_APPLIED");
-  const job = await createContainer("", specs.authMigrate);
-  try { docker(["container", "start", "--attach", job], { timeout: 120_000 }); }
-  finally { docker(["container", "rm", "--force", job]); }
+  await runOnce(specs.authMigrate);
   psql(HISTORY_TABLE_SQL);
   for (const file of Object.keys(MIGRATIONS).sort()) {
     const bytes = fs.readFileSync(path.join(ROOT, "supabase/migrations", file));
@@ -451,6 +481,7 @@ async function startStack(snapshot, secrets) {
   for (const service of ["kong", "auth", "rest"]) {
     await createContainer(containerName(service), specs[service]);
     docker(["container", "start", containerName(service)]);
+    await isolate(service);
   }
   await waitUntil({ kong: healthy("kong"), auth: healthy("auth"), rest: restReady(secrets.secretKey) }, 30, "SERVICE_NOT_READY");
 }
@@ -493,7 +524,9 @@ export async function main(command, args) {
   const snapshot = inspectHost(command === "verify");
   if (command === "verify") {
     assertStarted(snapshot);
-    console.log("LOCAL RUNTIME VERIFIED: four D1 containers; 127.0.0.1-only ports; dedicated network (egress not blocked on Docker Desktop). No SQL/Auth connection attempted.");
+    // Reading routes needs a short-lived helper per service: PostgREST has no shell.
+    for (const service of Object.keys(IMAGES)) assertNoDefaultRoute(await routes(service));
+    console.log("LOCAL RUNTIME VERIFIED: four D1 containers; 127.0.0.1-only ports; no default route or external DNS. No SQL/Auth connection attempted.");
     return;
   }
   const issues = evaluatePreflight(snapshot, command !== "network");

@@ -32,7 +32,8 @@ The dedicated bridge network is `astandsskodun-docker-c1-loopback`, with
 `com.docker.network.bridge.host_binding_ipv4=127.0.0.1`, IPv6 off, and
 `com.docker.network.bridge.enable_ip_masquerade=false` (no outbound NAT). **This
 does not restrict egress on Docker Desktop:** C5 showed the containers still reach
-the internet. It has a D1 ownership label, no Supabase CLI project
+the internet. Egress is blocked per container instead ([C6](#egress-isolation-c6)).
+It has a D1 ownership label, no Supabase CLI project
 label, and is never silently replaced or adopted from a foreign owner. No global
 daemon settings change.
 
@@ -43,8 +44,35 @@ forwarded no host port. The CLI removed its own new container and volume; no SQL
 ran. That earlier internal network is refused (`NETWORK_INTERNAL_BLOCKS_HOST_PORTS`)
 and must be removed manually while it has no members before `d1:network` creates
 the reviewed one. Like `host_binding_ipv4`, Docker Desktop's own networking stack
-ignores the disabled masquerade. Blocking egress needs a separate, reviewed design;
-an internal network alone also blocks the host ports.
+ignores the disabled masquerade: Docker documents that all outbound container
+traffic originates from the `com.docker.backend` process.
+
+### Egress isolation (C6)
+
+Docker Desktop's air-gapped containers need Docker Business and apply to every
+container, and an internal network loses the host ports. D1 therefore isolates
+each of its own containers (owner decisions 7 and 8, 2026-11-03):
+
+- **No default route.** Right after each container starts, a short-lived helper
+  (busybox `ip` from the cached GoTrue image, `NET_ADMIN`, joined to that
+  container's network namespace) runs `ip route del default`; a second helper
+  confirms the route is gone. Forwarded host connections reach the containers
+  from the bridge gateway, which is on the container subnet, so the
+  `127.0.0.1` ports and service-to-service traffic keep working, while internet
+  connections fail with "Network unreachable". The services themselves get no
+  extra capability.
+- **No external DNS.** Containers are created with DNS server `192.0.2.1`
+  (RFC 5737 TEST-NET-1). Docker's resolver still answers D1 container names but
+  forwards external lookups to an address that goes nowhere.
+- The one-off `gotrue migrate` job joins the database container's namespace,
+  which has no default route by then.
+
+An isolated test (2026-11-03, throwaway network and containers, removed
+afterwards) confirmed each point: the `127.0.0.1` port and name-based traffic
+between containers kept working, `http://1.1.1.1`, `http://example.com` and
+`https://github.com` became unreachable, and external lookups failed only with
+the DNS setting. The route stays removed while a container runs; restarting a
+container restores it, which is one reason D1 supports a first start only.
 
 ## Why D1 creates the containers itself (path C)
 
@@ -58,7 +86,7 @@ kept as defense in depth, but the explicit bindings are what keep D1 local.
 
 D1 therefore creates the same four containers itself. [docs/d1-c/](d1-c/README.md)
 records, with source citations, everything CLI 2.76.10 would have created. D1
-mirrors it exactly except for the port host IP and six owner-approved deviations
+mirrors it exactly except for the port host IP and eight owner-approved deviations
 (2026-11-03):
 
 1. **Keys:** every start generates a new database password, pgsodium root key,
@@ -77,6 +105,8 @@ mirrors it exactly except for the port host IP and six owner-approved deviations
    one transaction per file), never from Windows and never over the published port.
 6. **Migration history** stores each file as a single `statements` element
    instead of the CLI parser's split.
+7. **No default route** in any D1 container ([C6](#egress-isolation-c6)).
+8. **No external DNS**: DNS server `192.0.2.1` on every service container.
 
 The CLI templates (schema, webhook and `_supabase` SQL, `kong.yml`, nginx template
 and Kong's localhost certificate) are read byte-exact from the pinned binary. Each
@@ -108,15 +138,18 @@ arbitrary manual commands outside the launcher.
 The start follows the CLI's order:
 
 1. Write new keys to `artifacts/d1-local/stack-secrets.json` (refused if present).
-2. Create the labelled volume and the database container; wait up to 2 minutes
-   for `healthy`. Confirm the CLI schema file ran during init (`_supabase` exists).
-3. Run the one-off `gotrue migrate` container, then remove it.
+2. Create the labelled volume and the database container, remove its default
+   route, then wait up to 2 minutes for `healthy`. Confirm the CLI schema file ran
+   during init (`_supabase` exists).
+3. Run the one-off `gotrue migrate` container in the database's namespace, then
+   remove it.
 4. Create `supabase_migrations.schema_migrations` and apply exactly, each with its
    history row in the same transaction:
    1. `20261024000100_c1_owner_inspections.sql`.
    2. `20261027000100_c1_hosted_acl_hardening.sql`.
-5. Start Kong, GoTrue and PostgREST; wait up to 30 seconds for Kong and GoTrue to
-   be `healthy` and for `HEAD /rest-admin/v1/ready` through Kong to answer 200.
+5. Start Kong, GoTrue and PostgREST, removing each one's default route; wait up
+   to 30 seconds for Kong and GoTrue to be `healthy` and for
+   `HEAD /rest-admin/v1/ready` through Kong to answer 200.
 6. Verify the runtime metadata (below).
 
 Containers are created through the verified `desktop-linux` named pipe, so the
@@ -153,14 +186,18 @@ H1b SQL fixtures used 17.11. Hosted Gate D assertions are not local certificatio
   label, a restart policy other than `no`, wrong network ID, extra mounts, extra
   ports, or any binding other than `127.0.0.1:56421` and `127.0.0.1:56422` in
   both the requested and the effective port maps. `0.0.0.0`, `[::]`/`::`, blank
-  bindings and Windows wildcard listeners are STOP.
+  bindings and Windows wildcard listeners are STOP. So are a DNS setting other than
+  `192.0.2.1`, any added capability on a service container, and a default route
+  left in any of the four containers.
 
 On failure the launcher stops only its own exactly named, D1-labelled containers.
 It keeps the volume, network and keys file for inspection; it removes nothing.
 It writes the failure, with this stack's keys, JWTs, API/hex keys, URL passwords
 and labelled secrets masked, only to the ignored
-`artifacts/d1-local/start-failure.log`. `npm run d1:verify` repeats the
-metadata-only runtime checks; it opens no database/Auth session. The launcher
+`artifacts/d1-local/start-failure.log`. `npm run d1:verify` repeats the runtime
+checks from Docker metadata, plus one short-lived, labelled helper per container to
+read its routes (PostgREST has no shell); it opens no database/Auth session. The
+launcher
 supports **first start only**; existing D1 data requires a separately reviewed
 resume/recovery path, never reset or implicit reuse.
 
@@ -193,7 +230,9 @@ The first path-C start took 42 seconds; the launcher's own checks and
 - **Egress is open.** From the GoTrue container, `http://1.1.1.1`,
   `http://example.com` and `https://github.com` answered, and DNS resolves through
   Docker's resolver. The services need no egress and the database holds no data,
-  but the network does not provide the egress isolation once intended.
+  but the network does not provide the egress isolation once intended. This
+  led to [C6](#egress-isolation-c6). The stack started in C4 predates C6, so
+  `d1:verify` now refuses it (`CONTAINER_NOT_ISOLATED`) until a fresh start.
 - `/rest-admin/v1/ready` answers without a key, as with the CLI: that Kong route
   has no authentication, and it is reachable only on `127.0.0.1`.
 

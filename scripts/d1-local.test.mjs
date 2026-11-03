@@ -9,7 +9,7 @@ import { ROOT, PROJECT, NETWORK, IMAGES, MIGRATIONS, MIN_FREE_RAM, MIN_DOCKER_RA
   HISTORY_TABLE_SQL, assertConfig, assertSources, cleanEnvironment, evaluatePreflight, networkIssues,
   assertStarted, parseExclusions, networkCreateArguments, validateCommand, redactCliOutput, main,
   findCli, extractEmbeds, generateStackSecrets, jwks, containerSpecs, trimKongTemplate, databaseEntrypoint,
-  migrationSql, psqlArguments, parseContainer } from "./d1-local.mjs";
+  migrationSql, psqlArguments, parseContainer, routeSpec, assertNoDefaultRoute, NO_EGRESS_DNS } from "./d1-local.mjs";
 
 const sha = value => createHash("sha256").update(value).digest("hex");
 let cachedEmbeds;
@@ -38,7 +38,7 @@ function running() {
     const ports = service === "db" ? { "5432/tcp": [{ HostIp: "127.0.0.1", HostPort: "56422" }] }
       : service === "kong" ? { "8000/tcp": [{ HostIp: "127.0.0.1", HostPort: "56421" }] } : {};
     return { Id: id, Name: `/supabase_${service}_${PROJECT}`, Owner: PROJECT, Project: "", ComposeProject: "",
-      Image: image, ImageId: state.images[image], Running: true, RestartPolicy: "no",
+      Image: image, ImageId: state.images[image], Running: true, RestartPolicy: "no", Dns: ["192.0.2.1"], CapAdd: null,
       ActualPorts: structuredClone(ports), Ports: structuredClone(ports),
       Networks: { [NETWORK]: { NetworkID: state.network.Id } },
       Mounts: service === "db" ? [{ Type: "volume", Name: `supabase_db_${PROJECT}`, Destination: "/var/lib/postgresql/data" }] : [] };
@@ -203,15 +203,19 @@ test("containers mirror the CLI except explicit 127.0.0.1 ports, no restart poli
   assert.deepEqual(Object.keys(specs), ["db", "kong", "auth", "rest", "authMigrate"]);
   for (const [service, spec] of Object.entries(specs)) {
     assert.deepEqual(spec.Labels, { "is.astandsskodun.local.project": PROJECT }, service);
-    assert.equal(spec.HostConfig.NetworkMode, NETWORK);
     assert.equal(spec.Image, IMAGES[service === "authMigrate" ? "auth" : service]);
     assert.ok(!JSON.stringify(spec).includes("unless-stopped"));
-    assert.ok(!spec.HostConfig.PublishAllPorts && !spec.HostConfig.Privileged && !spec.HostConfig.ExtraHosts);
+    assert.ok(!spec.HostConfig.PublishAllPorts && !spec.HostConfig.Privileged && !spec.HostConfig.ExtraHosts && !spec.HostConfig.CapAdd);
+    if (service === "authMigrate") continue;
+    assert.equal(spec.HostConfig.NetworkMode, NETWORK);
+    assert.deepEqual(spec.HostConfig.Dns, NO_EGRESS_DNS, service);
   }
   assert.deepEqual(specs.db.HostConfig, { PortBindings: { "5432/tcp": [{ HostIp: "127.0.0.1", HostPort: "56422" }] },
-    Binds: [`supabase_db_${PROJECT}:/var/lib/postgresql/data`], RestartPolicy: { Name: "no" }, NetworkMode: NETWORK });
+    Binds: [`supabase_db_${PROJECT}:/var/lib/postgresql/data`], RestartPolicy: { Name: "no" }, NetworkMode: NETWORK, Dns: NO_EGRESS_DNS });
   assert.deepEqual(specs.kong.HostConfig.PortBindings, { "8000/tcp": [{ HostIp: "127.0.0.1", HostPort: "56421" }] });
   for (const service of ["auth", "rest", "authMigrate"]) assert.equal(specs[service].HostConfig.PortBindings, undefined);
+  // The job joins the database's namespace, which has no default route by then.
+  assert.deepEqual(specs.authMigrate.HostConfig, { NetworkMode: `container:supabase_db_${PROJECT}` });
   assert.equal(specs.authMigrate.NetworkingConfig, undefined);
   assert.deepEqual(specs.authMigrate.Cmd, ["gotrue", "migrate"]);
   assert.deepEqual(specs.db.NetworkingConfig.EndpointsConfig[NETWORK].Aliases, ["db", "db.supabase.internal"]);
@@ -225,6 +229,20 @@ test("containers mirror the CLI except explicit 127.0.0.1 ports, no restart poli
   assert.ok(kong.includes(`headers.apikey == '${secrets.secretKey}' and 'Bearer ${secrets.serviceRoleKey}'`));
   for (const missing of ["realtime-dev", "storage", "edge_runtime", "pg_meta", "analytics", "pooler", "studio"]) assert.ok(!kong.includes(missing), missing);
   assert.ok(specs.db.Entrypoint[2].includes(`\n${secrets.pgsodiumRootKey}\nEOF\n`));
+});
+test("egress isolation removes only the default route, with NET_ADMIN held by a short-lived helper alone", () => {
+  for (const service of Object.keys(IMAGES)) {
+    const remove = routeSpec(service, "del", "default");
+    assert.deepEqual(remove, { Image: IMAGES.auth, User: "root", Entrypoint: ["ip"], Cmd: ["route", "del", "default"],
+      Labels: { "is.astandsskodun.local.project": PROJECT },
+      HostConfig: { NetworkMode: `container:supabase_${service}_${PROJECT}`, CapAdd: ["NET_ADMIN"] } });
+    assert.deepEqual(routeSpec(service, "show").HostConfig, { NetworkMode: `container:supabase_${service}_${PROJECT}` });
+  }
+  assertNoDefaultRoute("172.19.0.0/16 dev eth0 scope link  src 172.19.0.2 \n");
+  for (const routes of ["default via 172.19.0.1 dev eth0 \n172.19.0.0/16 dev eth0 scope link  src 172.19.0.2", "", "\n"]) {
+    assert.throws(() => assertNoDefaultRoute(routes), /CONTAINER_HAS_DEFAULT_ROUTE/);
+  }
+  assert.deepEqual(NO_EGRESS_DNS, ["192.0.2.1"]); // RFC 5737 TEST-NET-1: external lookups go nowhere.
 });
 test("migrations run through psql inside the database container, each with its history row in one transaction", () => {
   assert.equal(HISTORY_TABLE_SQL.split(";\n").filter(Boolean).length, 5);
@@ -285,6 +303,9 @@ test("runtime rejects wildcard/IPv6/extra ports, wrong network, unexpected image
     s => { s.containers[0].Project = PROJECT; },
     s => { s.containers[0].ComposeProject = PROJECT; },
     s => { s.containers[0].Owner = ""; },
+    s => { s.containers[1].Dns = null; },
+    s => { s.containers[1].Dns = ["192.0.2.1", "1.1.1.1"]; },
+    s => { s.containers[2].CapAdd = ["NET_ADMIN"]; },
     s => { s.containers[0].ActualPorts["5432/tcp"][0].HostPort = "55422"; },
     s => { s.containers[0].ActualPorts["5432/tcp"].push({ HostIp: "::", HostPort: "56422" }); },
     s => { s.containers[1].ActualPorts["9999/tcp"] = [{ HostIp: "127.0.0.1", HostPort: "9999" }]; },
