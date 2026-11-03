@@ -1,8 +1,9 @@
 # Docker-first local setup — D1
 
-D1 prepares the first isolated local start. Gate C remains CLOSED; Gate E /
-PUBLIC TEMPORARY remains unresolved. No app connection, Auth user or executor
-LOGIN is part of D1.
+D1 is the isolated local stack. Its first start (path C) ran on 2026-11-03 with
+owner approval and was verified ([results](#verification-c5-2026-11-03)). Gate C
+remains CLOSED; Gate E / PUBLIC TEMPORARY remains unresolved. No app connection,
+Auth user or executor LOGIN is part of D1.
 
 ## Identity and services
 
@@ -29,8 +30,9 @@ npm run d1:network  # Create/verify only the dedicated network, never a containe
 
 The dedicated bridge network is `astandsskodun-docker-c1-loopback`, with
 `com.docker.network.bridge.host_binding_ipv4=127.0.0.1`, IPv6 off, and
-`com.docker.network.bridge.enable_ip_masquerade=false` (no outbound NAT) to
-restrict container egress. It has a D1 ownership label, no Supabase CLI project
+`com.docker.network.bridge.enable_ip_masquerade=false` (no outbound NAT). **This
+does not restrict egress on Docker Desktop:** C5 showed the containers still reach
+the internet. It has a D1 ownership label, no Supabase CLI project
 label, and is never silently replaced or adopted from a foreign owner. No global
 daemon settings change.
 
@@ -40,8 +42,9 @@ connection from Windows to `127.0.0.1:56422` was refused, because Docker Desktop
 forwarded no host port. The CLI removed its own new container and volume; no SQL
 ran. That earlier internal network is refused (`NETWORK_INTERNAL_BLOCKS_HOST_PORTS`)
 and must be removed manually while it has no members before `d1:network` creates
-the reviewed one. Whether disabled masquerade fully blocks egress under Docker
-Desktop's own networking stack is not yet verified.
+the reviewed one. Like `host_binding_ipv4`, Docker Desktop's own networking stack
+ignores the disabled masquerade. Blocking egress needs a separate, reviewed design;
+an internal network alone also blocks the host ports.
 
 ## Why D1 creates the containers itself (path C)
 
@@ -163,9 +166,40 @@ resume/recovery path, never reset or implicit reuse.
 
 The CLI start of 2026-11-03 left four stopped CLI-labelled containers, the volume
 `supabase_db_astandsskodun-docker-c1` and CLI-written `supabase/.temp/cli-latest`
-and `supabase/.branches/_current_branch`. Preflight refuses all of them; their
-removal needs separate owner approval. Until then two `test:d1` cases fail on the
-worktree's CLI state by design.
+and `supabase/.branches/_current_branch`. With owner approval (C3), the
+containers and volume were removed by exact name, and the two files were moved
+out of the worktree. Other Docker projects' containers and volumes were compared
+before and after and are unchanged.
+
+## Verification (C5, 2026-11-03)
+
+The first path-C start took 42 seconds; the launcher's own checks and
+`npm run d1:verify` passed. Then, read-only and with owner approval:
+
+- **Port exposure.** `docker ps` shows `127.0.0.1:56422->5432/tcp` and
+  `127.0.0.1:56421->8000/tcp`; GoTrue and PostgREST publish nothing. Docker
+  Desktop's backend log records only `tcp4 forward from 127.0.0.1` for both ports,
+  with no wildcard or IPv6 forward. TCP connections succeed on `127.0.0.1` and are
+  refused on `::1`, the PC's LAN address and the WSL/Hyper-V adapter addresses.
+- **Database** (`psql` inside the container, `default_transaction_read_only=on`).
+  `supabase_migrations.schema_migrations` has `version text, statements text[],
+  name text` and exactly the two migrations, each stored as one element whose
+  SHA-256 equals the pinned file hash. `public.c1_inspections` and
+  `c1_private.operation_receipts` exist with RLS and owner `postgres`, as the CLI
+  would create them. Only `c1_executor` (NOLOGIN) and the owner may execute
+  `c1_private.save_inspection`. There are no rows and no Auth users. The CLI init
+  ran (`_supabase` exists, two webhook versions, 74 GoTrue migrations), and the
+  server is PostgreSQL 17.6.
+- **Egress is open.** From the GoTrue container, `http://1.1.1.1`,
+  `http://example.com` and `https://github.com` answered, and DNS resolves through
+  Docker's resolver. The services need no egress and the database holds no data,
+  but the network does not provide the egress isolation once intended.
+- `/rest-admin/v1/ready` answers without a key, as with the CLI: that Kong route
+  has no authentication, and it is reachable only on `127.0.0.1`.
+
+Containers use restart policy `no`, so they do not return after a Docker Desktop
+or Windows restart. The launcher supports a first start only; resuming the
+existing stack needs a separately reviewed path.
 
 All six legacy C1 entry points now refuse this D1 config before resolving any CLI,
 reading runtime or loading database/Auth dependencies. In particular stop/reset

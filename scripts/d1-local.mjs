@@ -245,7 +245,8 @@ export function assertStarted(snapshot, expectedNetworkId = snapshot.network?.Id
   }
   assert(!snapshot.listeners.some(item => [56421, 56422].includes(item.LocalPort) && !["127.0.0.1", "::1"].includes(item.LocalAddress)), "WINDOWS_PUBLIC_PORT_BINDING");
 }
-// Not --internal (host ports must be forwarded); outbound NAT is disabled instead.
+// Not --internal (host ports must be forwarded); outbound NAT is disabled instead,
+// although Docker Desktop still routes container egress (verified in C5).
 export function networkCreateArguments() {
   return ["network", "create", "--driver", "bridge", "--opt", `${bindingOption}=127.0.0.1`,
     "--opt", `${masqueradeOption}=false`, "--label", `${ownerLabel}=${PROJECT}`, NETWORK];
@@ -492,7 +493,7 @@ export async function main(command, args) {
   const snapshot = inspectHost(command === "verify");
   if (command === "verify") {
     assertStarted(snapshot);
-    console.log("LOCAL RUNTIME VERIFIED: four D1 containers; 127.0.0.1-only ports; dedicated network without outbound NAT. No SQL/Auth connection attempted.");
+    console.log("LOCAL RUNTIME VERIFIED: four D1 containers; 127.0.0.1-only ports; dedicated network (egress not blocked on Docker Desktop). No SQL/Auth connection attempted.");
     return;
   }
   const issues = evaluatePreflight(snapshot, command !== "network");

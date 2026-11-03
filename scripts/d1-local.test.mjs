@@ -47,7 +47,8 @@ function running() {
 }
 
 test("approved D1 config and unchanged canonical migrations are usable without dependencies or runtime", () => {
-  assertSources();
+  // A running stack's keys may be present; refusing them before a first start is tested on a copy below.
+  assertSources(ROOT, true);
   assert.equal(fs.existsSync(path.join(ROOT, "artifacts/c1-local/runtime.json")), false);
 });
 test("config changes cannot redirect D1, enable seeds/services or introduce hosted configuration", () => {

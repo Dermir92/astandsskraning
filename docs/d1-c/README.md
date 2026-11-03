@@ -1,12 +1,13 @@
 # D1 path C — C1 parity inventory
 
-Status: **C1 complete, read-only. C2 implemented (not yet run).** No container
-was created and no CLI, SQL or Docker network command was run for this inventory;
-only read-only Docker metadata (`image inspect`, `context inspect`) and GitHub
-source were read. The owner approved the six deviations below on 2026-11-03, and
-`scripts/d1-local.mjs` implements them ([C2 notes](#c2-implementation-notes)).
-Nothing here authorizes C3–C5. Gate C remains CLOSED; Gate E / PUBLIC TEMPORARY
-remains unresolved.
+Status (2026-11-03, each stage approved by the owner): **C1** inventory complete
+(read-only); **C2** implemented in `scripts/d1-local.mjs`
+([notes](#c2-implementation-notes)); **C3** old CLI state removed; **C4** first
+start succeeded; **C5** verified, except that egress is open
+([results](../DOCKER_LOCAL_D1.md#verification-c5-2026-11-03)). The C1 inventory
+itself created no container and ran no CLI, SQL or Docker network command; only
+read-only Docker metadata (`image inspect`, `context inspect`) and GitHub source
+were read. Gate C remains CLOSED; Gate E / PUBLIC TEMPORARY remains unresolved.
 
 ## Why path C
 
@@ -122,7 +123,7 @@ default (empty `GOTRUE_URI_ALLOW_LIST`), as recorded in C1; not executed.
 - Kong keeps the CLI's public localhost certificate and key, because only port
   8000 is published and 8443 never leaves the D1 network.
 
-## Existing state that C3 must resolve (still present)
+## Existing state that C3 resolved (removed 2026-11-03)
 
 - Four stopped CLI-created D1 containers and volume
   `supabase_db_astandsskodun-docker-c1` (from the 0.0.0.0 start). They cannot be
