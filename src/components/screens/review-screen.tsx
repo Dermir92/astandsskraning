@@ -43,6 +43,7 @@ import { MeterReadingSummary } from "../meter-readings";
 import { meterState } from "@/lib/meter-readings";
 import { ReportPreviewEntry } from "../report-preview-entry";
 import { InspectionComparisonPanel, LinkedFinalCreate } from "../inspection-comparison";
+import { RoomProgressContext } from "../room-progress-context";
 
 export function ReviewScreen() {
   const { report, id, state } = useReport();
@@ -144,7 +145,7 @@ export function ReviewScreen() {
             {stats.recorded}
             <span> / {stats.total}</span>
           </strong>
-          <span>atriði skráð</span>
+          <span>rýmisatriði skráð</span>
         </div>
         <div>
           <strong>{stats.total - stats.recorded}</strong>
@@ -156,9 +157,10 @@ export function ReviewScreen() {
         </div>
         <div>
           <strong>{photos}</strong>
-          <span>myndaforskoðanir</span>
+          <span>{photos === 1 ? "myndaforskoðun" : "myndaforskoðanir"}</span>
         </div>
       </div>
+      <RoomProgressContext report={report} linkToReview={false} />
       <div className="review-layout">
         <div className="review-main">
           <section className="panel review-property">
@@ -355,7 +357,7 @@ export function ReviewScreen() {
                     <p className="review-photo-count">
                       <Check size={14} aria-hidden="true" />
                       {state.photos[`${id}:${room.id}:overview`].length}{" "}
-                      yfirlitsmyndir í tímabundinni forskoðun
+                      {state.photos[`${id}:${room.id}:overview`]?.length === 1 ? "yfirlitsmynd" : "yfirlitsmyndir"} í tímabundinni forskoðun
                     </p>
                   )}
                   <EvidenceGallery photos={state.photos[`${id}:${room.id}:overview`] ?? []} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />

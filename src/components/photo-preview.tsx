@@ -96,7 +96,7 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
       }
     } finally {
       setError(previous => [previous, ...new Set(errors)].filter(Boolean).join(" "));
-      setAnnouncement(`${accepted} myndum bætt við tímabundna forskoðun.`);
+      setAnnouncement(`${accepted} ${accepted === 1 ? "mynd" : "myndum"} bætt við tímabundna forskoðun.`);
       setPending(count => count - 1);
     }
   };

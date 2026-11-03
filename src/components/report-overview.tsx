@@ -15,8 +15,9 @@ import {
   type Report,
 } from "@/lib/model";
 import { is } from "@/lib/locale/is";
-import { validPosition, type InspectionPosition } from "@/lib/inspection-navigation";
+import { inspectionHref, validPosition, type InspectionPosition } from "@/lib/inspection-navigation";
 import { useInspectionPositions } from "./use-inspection-navigation";
+import { RoomProgressContext } from "./room-progress-context";
 
 export function reportHref(report: Report, position?: InspectionPosition | null) {
   if (report.sampleReviewed || report.assetType !== "apartment")
@@ -127,7 +128,7 @@ export function ReportOverview({ report }: { report: Report }) {
               <>
                 <div>
                   <strong>
-                    {stats.recorded} af {stats.total} atriðum skráð
+                    {stats.recorded} af {stats.total} rýmisatriðum skráð
                   </strong>
                   <span>
                     {Math.round((stats.recorded / stats.total) * 100)}%
@@ -150,6 +151,7 @@ export function ReportOverview({ report }: { report: Report }) {
               </p>
             )}
           </div>
+          <RoomProgressContext report={report} />
           {actions}
           <div className="context-section">
             <h3>Til að yfirfara</h3>
@@ -194,7 +196,7 @@ export function ReportOverview({ report }: { report: Report }) {
             !missingOverviews &&
             !missingDamagePhotos &&
             report.rooms.every((room) => room.name.trim()) ? (
-              <p>Svör og myndaforskoðanir til staðar. Drögin haldast opin.</p>
+              <p>Rýmisatriði og myndaforskoðanir til staðar. Sjá heildaryfirferð skráningar. Drögin haldast opin.</p>
             ) : null}
           </div>
           {report.rooms.length ? (
@@ -239,7 +241,7 @@ export function ReportOverview({ report }: { report: Report }) {
               <ul className="context-deviations">
                 {previewedDeviations.map(({ room, item, observation }) => (
                   <li key={`${room.id}:${item.id}`}>
-                    <Link href={roomHref(room.id)}>
+                    <Link href={inspectionHref(report.id, { roomId: room.id, itemId: item.id })}>
                       {room.name || "Ónefnt rými"} · {item.name}
                     </Link>
                     <p>

@@ -285,7 +285,7 @@ export function ObservationEditor({
             >
               {o.condition ? `${is.conditions[o.condition]} · ` : ""}
               {status}{flags.length ? ` · ${flags.join(" · ")}` : ""}
-              {state.photos[photoKey]?.length ? ` · ${state.photos[photoKey].length} myndir` : ""}
+              {state.photos[photoKey]?.length ? ` · ${state.photos[photoKey].length} ${state.photos[photoKey].length === 1 ? "mynd" : "myndir"}` : ""}
               {o.note.trim() ? " · Athugasemd" : ""}
               {hasRetainedDefect(o) ? " · Varðveitt frávikslýsing" : ""}
             </span>

@@ -36,6 +36,7 @@ import { HeatingObservationEditor } from "../heating-observation";
 import { MeterReadingFields } from "../meter-readings";
 import { useMeterCorrection } from "../use-meter-correction";
 import { PreviousInspectionAnswer } from "../inspection-comparison";
+import { RoomProgressContext } from "../room-progress-context";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
   const { store, state, demoReadOnly } = useReport();
@@ -156,6 +157,7 @@ function InspectionBody({ report }: { report: Report }) {
             <div className={ui.sectionStatus}><a href="#meter-readings" onClick={openSection("meter-readings")}><strong>Mælastöður · {status.meters.short}</strong></a><p>{status.meters.context}</p><ul>{status.meters.details.map(text => <li key={text}>{text}</li>)}</ul></div>
           </div>
         </details>
+        <RoomProgressContext report={report} />
       </div>
       {fromReview ? <p className={ui.correction}>Leiðrétting úr yfirferð</p> : null}
       <nav className={ui.sections} data-inspection-sections aria-label="Hlutar skráningar">
