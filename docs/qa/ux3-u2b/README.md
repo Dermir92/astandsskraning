@@ -1,3 +1,5 @@
+> Latest evidence: [final focused verification](FINAL-VERIFICATION.md) and [machine-readable results](final-verification.json). The original implementation results below, including the earlier failed full run, remain historical evidence.
+
 # UX3-U2B — progress, counts and photograph correction
 
 Approved base: `43ba3d1a371cb03323181e9ed782576a735cfcf7`, tree `747f4e80402e4b9396c6293179c17ee77fd484b3`. Implementation is isolated on `codex/ux3-u2b-implementation`. Delivery is a **Draft PR for independent review**, with no merge or deployment authority.
