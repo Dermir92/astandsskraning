@@ -135,6 +135,7 @@ export function ObservationEditor({
   if (wasOpen !== open) {
     setWasOpen(open);
     setConfirmation(null);
+    if (!open) setEditDefect(false);
   }
   useEffect(() => () => {
     transactions.current.pending?.dispose();
@@ -388,7 +389,9 @@ export function ObservationEditor({
           )}
           </details>
           {damage && (!complete || editDefect) ? (
-            <div className="damage-fields" tabIndex={-1} role="group" aria-labelledby={`${fieldPrefix}-damage-title`}>
+            <div className="damage-fields" tabIndex={-1} role="group" aria-labelledby={`${fieldPrefix}-damage-title`}
+              // Keep the active editor mounted when its last required field becomes valid.
+              onFocusCapture={() => setEditDefect(true)}>
               <div className="damage-heading">
                 <TriangleAlert size={17} aria-hidden="true" />
                 <h4 id={`${fieldPrefix}-damage-title`}>Lýsing á fráviki</h4>

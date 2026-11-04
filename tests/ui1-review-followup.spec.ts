@@ -71,7 +71,7 @@ test("native accessibility tree preserves the selected item and its assessment g
   expect(await raw(page)).toBe(before);
 });
 
-test("completing an existing defect keeps the same photo controls as reopening the item", async ({ page }, info) => {
+test("completing a defect keeps its editor and photo controls until the item is closed", async ({ page }, info) => {
   await seed(page, true); await addPhoto(page);
   const picker = row(page).getByLabel("Myndir við atriði: velja myndir", { exact: true });
   await picker.evaluate(el => { el.setAttribute("data-review-live-input", "same"); });
@@ -79,7 +79,7 @@ test("completing an existing defect keeps the same photo controls as reopening t
   const imageUrl = await row(page).getByRole("img").getAttribute("src");
   await row(page).getByRole("textbox", { name: /^Lýsing/ }).fill("Tilbúin 8 cm rispa");
   await expect(row(page)).toHaveAttribute("data-state", "deviation");
-  await expect(row(page).getByRole("button", { name: "Breyta fráviki", exact: true })).toBeVisible();
+  await expect(row(page).getByRole("textbox", { name: /^Lýsing/ })).toBeFocused();
   await expect(picker).toHaveAttribute("data-review-live-input", "same");
   const summary = row(page).locator("summary").filter({ hasText: /^Myndaaðgerðir$/ });
   const completedOpen = await summary.locator("..").evaluate(el => (el as HTMLDetailsElement).open);
@@ -94,15 +94,15 @@ test("completing an existing defect keeps the same photo controls as reopening t
   const output = info.outputPath("photo-disclosure.json");
   await writeFile(output, JSON.stringify({ completedOpen, reopenedOpen, samePhotoId: true, sameBlobUrl: true, unchangedOnReopen: true }, null, 2));
   await info.attach("photo-disclosure", { path: output, contentType: "application/json" });
-  expect(completedOpen).toBe(reopenedOpen);
-  expect(completedOpen).toBe(false);
+  expect(completedOpen).toBe(true);
+  expect(reopenedOpen).toBe(false);
   await row(page).getByRole("button", { name: "Breyta fráviki", exact: true }).click();
   await expect(picker).toBeVisible();
   await expect(summary.locator("..")).toHaveJSProperty("open", true);
   expect(await raw(page)).toBe(completedBytes);
 });
 
-test("completion defers its photo disclosure default until decoding finishes without stealing note focus", async ({ page }) => {
+test("completion and pending photo decoding keep the active editor open without stealing note focus", async ({ page }) => {
   await seed(page, true); await addPhoto(page);
   const picker = row(page).getByLabel("Myndir við atriði: velja myndir", { exact: true });
   await picker.evaluate(el => { el.setAttribute("data-review-live-input", "same"); });
@@ -127,7 +127,7 @@ test("completion defers its photo disclosure default until decoding finishes wit
   const beforeRelease = await raw(page);
   await page.evaluate(() => (window as unknown as { releaseReviewImages: () => void }).releaseReviewImages());
   await expect(row(page).locator("button[data-photo-id]")).toHaveCount(2);
-  await expect(summary.locator("..")).toHaveJSProperty("open", false);
+  await expect(summary.locator("..")).toHaveJSProperty("open", true);
   await expect(note).toBeFocused();
   await expect(picker).toHaveAttribute("data-review-live-input", "same");
   await expect(row(page).locator("button[data-photo-id]").first()).toHaveAttribute("data-photo-id", originalId!);
