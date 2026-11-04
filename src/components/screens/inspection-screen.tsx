@@ -37,11 +37,13 @@ import { MeterReadingFields } from "../meter-readings";
 import { useMeterCorrection } from "../use-meter-correction";
 import { PreviousInspectionAnswer } from "../inspection-comparison";
 import { RoomProgressContext } from "../room-progress-context";
+import stofa from "../stofa-inspection.module.css";
 
 function RoomInspection({ report, room, navigation }: { report: Report; room: Room; navigation: ReturnType<typeof useInspectionNavigation> }) {
   const { store, state, demoReadOnly } = useReport();
   const openItem = navigation.itemId;
   const stats = roomStats(room);
+  const photoFirst = room.type === "living";
   const unanswered = room.items.filter(item => itemProgress(item, room.observations[item.id]) === "unanswered").length;
   const nextPosition = openItem ? nextIncomplete(report, { roomId: room.id, itemId: openItem }) : null;
   return (
@@ -61,6 +63,8 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
         </div>
         <p className={ui.roomStatus}>{stats.recorded} af {stats.total} skráð{unanswered ? ` · ${unanswered} ósvarað` : ""}{stats.total - stats.recorded - unanswered ? ` · ${stats.total - stats.recorded - unanswered} ófullskráð` : ""}{stats.deviations ? ` · ${stats.deviations} frávik` : ""}</p>
       </div>
+      {photoFirst ? <PhotoPreview compact targetId={photoTargetId(report.id, room.id, null)} photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} /> : null}
+      {photoFirst ? <div className={stofa.listHeading}><h3>Skoðunaratriði</h3><span>Ástand</span></div> : null}
       <h3 className="sr-only">Skoðunaratriði</h3>
       <div className="checklist">
         {room.items.map((item, index) => {
@@ -73,6 +77,7 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
             roomId={room.id}
             roomName={room.name || "Ónefnt rými"}
             index={index}
+            {...(item.kind !== "space_heating" ? { photoFirst } : {})}
             open={openItem === item.id}
             reference={report.linkedInitial && openItem === item.id ? <PreviousInspectionAnswer report={report} roomId={room.id} itemId={item.id} /> : null}
             onActivate={() => navigation.activate({ roomId: room.id, itemId: item.id }, openItem === item.id)}
@@ -90,10 +95,10 @@ function RoomInspection({ report, room, navigation }: { report: Report; room: Ro
         })}
       </div>
       {!room.items.some(i => i.kind === "space_heating") ? <button type="button" className="text-button" disabled={demoReadOnly || state.status === "loading" || state.status === "read-error" || room.items.length >= 100} onClick={() => { const itemId = store.addHeating(report.id, room.id); if (itemId) navigation.activate({ roomId: room.id, itemId }, true, true); }}>Bæta við hitaskráningu</button> : null}
-      <details className={styles.roomPhotos}>
+      {!photoFirst ? <details className={styles.roomPhotos}>
         <summary><Camera size={18} aria-hidden="true" />Yfirlitsmyndir rýmis</summary>
         <PhotoPreview targetId={photoTargetId(report.id, room.id, null)} photoKey={`${report.id}:${room.id}:overview`} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />
-      </details>
+      </details> : null}
     </div>
   );
 }
@@ -115,6 +120,7 @@ function InspectionBody({ report }: { report: Report }) {
   const navigation = useInspectionNavigation(report, state.status !== "read-error", propertyCorrection);
   const sections = useInspectionSections(root, navigation.ready);
   const { room } = navigation;
+  const photoFirst = room?.type === "living";
   if (!navigation.ready) return <p role="status">Hleð staðsetningu…</p>;
   const currentIndex = room ? report.rooms.indexOf(room) : -1;
   const returnHref = fireCorrection.active ? fireCorrection.reviewHref : meterCorrection.active ? meterCorrection.reviewHref : navigation.returnHref;
@@ -133,15 +139,15 @@ function InspectionBody({ report }: { report: Report }) {
   const returnRoom = (event: MouseEvent<HTMLAnchorElement>) => { event.preventDefault(); sections.returnToRoom(); };
   const reviewLink = <Link className={ui.review} href={returnHref} replace={fromReview} onNavigate={propertyCorrection ? undefined : navigation.returnToReview}>{fromReview ? "Aftur í yfirferð" : "Yfirferð"}<ArrowRight size={16} aria-hidden="true" /></Link>;
   return (
-    <div ref={root} className={`inspection-page ${styles.page} ${ui.page}`}>
+    <div ref={root} data-stofa-inspection={photoFirst || undefined} className={`inspection-page ${styles.page} ${ui.page} ${photoFirst ? stofa.page : ""}`}>
       <header className={ui.property}>
         <Link className={ui.reportsLink} href="/" aria-label="Mínar skýrslur"><ArrowLeft size={18} aria-hidden="true" /></Link>
         <div className={ui.identity}><h1>{reportTitle(report)}</h1><p>{report.details.inspectionType ? is.inspectionTypes[report.details.inspectionType] : "Tegund óskráð"}{report.details.unit ? ` · ${report.details.unit}` : ""}</p></div>
         {reviewLink}
       </header>
+      <details open={photoFirst ? undefined : true} className={photoFirst ? stofa.navigation : undefined}>
+      <summary hidden={!photoFirst}>Skoðun eignar · {stats.recorded}/{stats.total} atriði skráð</summary>
       <nav className={ui.steps} aria-label="Skref skráningar">{is.steps.map((label, index) => <Link key={label} href={`/skyrslur/${id}/${stepPaths[index]}`} aria-current={index === 2 ? "step" : undefined}>{index + 1} {label}</Link>)}</nav>
-      {navigation.notice ? <p className={styles.navigationNotice} role="status">{navigation.notice}</p> : null}
-      {navigation.unavailable ? <p className={styles.navigationNotice} role="status">Ekki tókst að muna staðsetningu milli heimsókna. Vistunarstaða draga er sýnd efst.</p> : null}
       <div className="inspection-overall">
         <details className={ui.overall}>
           <summary><span><strong>{stats.recorded} af {stats.total}</strong> rýmisatriðum skráð</span><span>{incomplete.length} eftir<ChevronDown size={16} aria-hidden="true" /></span></summary>
@@ -159,6 +165,9 @@ function InspectionBody({ report }: { report: Report }) {
         </details>
         <RoomProgressContext report={report} />
       </div>
+      </details>
+      {navigation.notice ? <p className={styles.navigationNotice} role="status">{navigation.notice}</p> : null}
+      {navigation.unavailable ? <p className={styles.navigationNotice} role="status">Ekki tókst að muna staðsetningu milli heimsókna. Vistunarstaða draga er sýnd efst.</p> : null}
       {fromReview ? <p className={ui.correction}>Leiðrétting úr yfirferð</p> : null}
       <nav className={ui.sections} data-inspection-sections aria-label="Hlutar skráningar">
         <a href="#inspection-room" aria-current={sections.active === "inspection-room" ? "location" : undefined} onClick={openSection("inspection-room")}><strong>Rými</strong><span>{incomplete.length} atriði eftir</span></a>
@@ -181,6 +190,7 @@ function InspectionBody({ report }: { report: Report }) {
           </aside>
           <div className="inspection-main">
             <RoomInspection key={room.id} report={report} room={room} navigation={navigation} />
+            {photoFirst ? <p className={stofa.completion} role="status">{roomStats(room).recorded === room.items.length ? "Rýmisatriði fullskráð." : `${room.items.length - roomStats(room).recorded} atriði ófullskráð.`} Yfirferð stofu lýkur ekki skoðun eignarinnar.{state.status !== "saved" ? " Vistun er óstaðfest; sjá vistunarstöðu efst." : ""}</p> : null}
             <nav className="inspection-footer" aria-label="Fara á milli rýma">
               {currentIndex > 0 ? <Link className="button button-secondary" href={navigation.roomHref(report.rooms[currentIndex - 1].id)} replace scroll={false} onNavigate={go({ roomId: report.rooms[currentIndex - 1].id, itemId: null })}><ArrowLeft size={17} aria-hidden="true" />Fyrra rými</Link> : <Link className="button button-secondary" href={`/skyrslur/${id}/rymi`}><ArrowLeft size={17} aria-hidden="true" />Rými</Link>}
               <span className="room-nav-count">{currentIndex + 1} / {report.rooms.length}</span>

@@ -30,6 +30,7 @@ import { hasRetainedDefect } from "@/lib/inspection-evidence";
 import { ContextDialog } from "./context-dialog";
 import { prepareAssessmentChange, type AssessmentChange } from "./assessment-change";
 import styles from "./inspection-checklist.module.css";
+import stofa from "./stofa-inspection.module.css";
 
 type Question = "condition" | "functionality" | "cleanliness";
 const answerLabels: Record<Question, Record<string, string>> = {
@@ -104,6 +105,7 @@ export function ObservationEditor({
   onActivate,
   nextAction,
   reference,
+  photoFirst = false,
 }: {
   item: ChecklistItem;
   observation?: Observation;
@@ -118,6 +120,7 @@ export function ObservationEditor({
   onActivate: () => void;
   nextAction: ReactNode;
   reference?: ReactNode;
+  photoFirst?: boolean;
 }) {
   const { store, state, demoReadOnly } = useDemo();
   const coordinationLocked = demoReadOnly;
@@ -150,10 +153,12 @@ export function ObservationEditor({
   } | null>(null);
   const o = observation ?? EMPTY_OBSERVATION;
   const complete = observationComplete(item, o);
-  const [showAssessment, setShowAssessment] = useState(!complete);
+  const [showAssessment, setShowAssessment] = useState(photoFirst ? false : !complete);
+  const [initialSimpleOpen] = useState(!observation?.condition);
   const damage = requiresDamage(o);
   const attention = needsAttention(item, o);
   const deviation = damage || (o.condition !== "na" && o.cleanliness === "dirty");
+  const simpleCondition = o.condition === "damaged" || o.condition === "defect" ? "Frávik" : o.condition ? is.conditions[o.condition] : "Ósvarað";
   const progress = itemProgress(item, o);
   const status = progress === "unanswered" ? "Ósvarað" : !complete ? "Ófullskráð" : "Fullskráð";
   const flags = [
@@ -243,6 +248,60 @@ export function ObservationEditor({
       conditions
     />
   );
+  const assessment = (
+    <details className={styles.assessment} open={photoFirst ? showAssessment : !complete || showAssessment} onToggle={event => { if (photoFirst) setShowAssessment(event.currentTarget.open); }}>
+          <summary hidden={!photoFirst && !complete} onClick={event => { event.preventDefault(); setShowAssessment(value => !value); }}>
+            <span>{photoFirst ? "Ítarlegt mat · " : "Ástand "}<strong>{o.condition ? is.conditions[o.condition] : "Ósvarað"}</strong>{o.condition !== "na" && item.functionality ? ` · Virkni: ${o.functionality ? is.functionality[o.functionality] : "Ósvarað"}` : ""}{o.condition !== "na" && item.cleanliness ? ` · Þrif: ${o.cleanliness ? is.cleanliness[o.cleanliness] : "Ósvarað"}` : ""}</span><span>Breyta mati</span>
+          </summary>
+          {foldCondition && o.condition ? (
+            <details className={styles.foldedCondition}>
+              <summary>
+                Ástand <strong>{is.conditions[o.condition]}</strong><span>Breyta</span>
+              </summary>
+              {conditions}
+            </details>
+          ) : conditions}
+          <p className="condition-hint">
+            {o.condition
+              ? is.conditionHelp[o.condition]
+              : "Veldu ástand eftir skoðun. Ekkert svar er valið sjálfkrafa."}
+          </p>
+          {photoFirst ? <p className="field-hint">Ástand segir ekki til um virkni eða þrif. Fyrri svör haldast óbreytt þar til þú breytir þeim.</p> : null}
+          {o.condition !== "na" ? (
+            <div className="secondary-answers">
+              {item.functionality ? (
+                <AnswerGroup
+                  label="Virkni"
+                  question="functionality"
+                  disabled={coordinationLocked}
+                  values={FUNCTIONALITIES}
+                  labels={is.functionality}
+                  value={o.functionality}
+                  onChange={(value) => change("functionality", value)}
+                  name={`${fieldPrefix}-functionality`}
+                />
+              ) : null}
+              {item.cleanliness ? (
+                <AnswerGroup
+                  label="Þrif"
+                  question="cleanliness"
+                  disabled={coordinationLocked}
+                  values={CLEANLINESS}
+                  labels={is.cleanliness}
+                  value={o.cleanliness}
+                  onChange={(value) => change("cleanliness", value)}
+                  name={`${fieldPrefix}-cleanliness`}
+                />
+              ) : null}
+            </div>
+          ) : (
+            <div className="not-applicable-note">
+              <Circle size={14} aria-hidden="true" />
+              Virkni og þrif eru ekki krafa þegar atriðið á ekki við.
+            </div>
+          )}
+          </details>
+  );
   return (
     <section
       className={`checklist-item ${styles.ordinary} ${open ? "checklist-item-open" : ""}`}
@@ -284,11 +343,11 @@ export function ObservationEditor({
               className={styles.rowStatus}
               data-attention={!!o.condition && (!complete || attention || deviation)}
             >
-              {o.condition ? `${is.conditions[o.condition]} · ` : ""}
+              {photoFirst ? `${simpleCondition}${deviation && simpleCondition !== "Frávik" ? " · Frávik" : ""}${o.condition && !complete ? " · Ófullskráð" : complete && attention && o.condition !== "uninspected" ? " · Takmörkun" : ""}` : <>{o.condition ? `${is.conditions[o.condition]} · ` : ""}
               {status}{flags.length ? ` · ${flags.join(" · ")}` : ""}
               {state.photos[photoKey]?.length ? ` · ${state.photos[photoKey].length} ${state.photos[photoKey].length === 1 ? "mynd" : "myndir"}` : ""}
               {o.note.trim() ? " · Athugasemd" : ""}
-              {hasRetainedDefect(o) ? " · Varðveitt frávikslýsing" : ""}
+              {hasRetainedDefect(o) ? " · Varðveitt frávikslýsing" : ""}</>}
             </span>
           </span>
           {open ? (
@@ -298,7 +357,7 @@ export function ObservationEditor({
           )}
         </button>
       </h3>
-      {progress === "unanswered" ? <div className={styles.rowActions}>
+      {progress === "unanswered" && !photoFirst ? <div className={styles.rowActions}>
         <button
           className={styles.rowAnswer}
           aria-label={`Ástand í lagi: ${item.name}`}
@@ -329,6 +388,16 @@ export function ObservationEditor({
       {open ? <>
           <div className={styles.editorHeading}><span>{roomName} · atriði {index + 1}</span><h4>{item.name}</h4><p>{status}{deviation ? " · Frávik" : attention ? " · Þarf athygli" : ""}</p></div>
           {reference}
+          {photoFirst ? <details className={stofa.simpleAssessment} open={initialSimpleOpen || undefined}>
+            <summary>Ástand · {simpleCondition}<span>Breyta</span></summary>
+            <AnswerGroup
+            label="Ástand" question="condition" disabled={coordinationLocked}
+            values={["good", "defect", "na", "uninspected"]}
+            labels={{ good: "Í lagi", defect: "Frávik", na: "Á ekki við", uninspected: "Ekki skoðað", wear: "Slit" }}
+            value={o.condition === "damaged" ? "defect" : o.condition}
+            onChange={value => { if (value !== "defect" || (o.condition !== "damaged" && o.condition !== "defect")) change("condition", value); }}
+            name={`${fieldPrefix}-simple-condition`} conditions
+          /></details> : null}
           {message ? <div className={styles.undoMessage} role="status"><p>{message}</p>{canUndo ? <button className="text-button" disabled={coordinationLocked} onClick={() => {
             const redo = transactions.current.undo?.apply();
             redo?.dispose();
@@ -337,57 +406,7 @@ export function ObservationEditor({
             setMessage(redo ? "Breyting afturkölluð. Önnur gögn eru varðveitt." : "Matið hefur breyst eða er læst. Ekki var hægt að afturkalla; skoðaðu núverandi svör.");
             headingRef.current?.focus({ preventScroll: true });
           }}>Afturkalla breytingu</button> : null}</div> : null}
-          <details className={styles.assessment} open={!complete || showAssessment}>
-          <summary hidden={!complete} onClick={event => { event.preventDefault(); setShowAssessment(value => !value); }}>
-            <span>Ástand <strong>{o.condition ? is.conditions[o.condition] : "Ósvarað"}</strong>{o.condition !== "na" && item.functionality ? ` · Virkni: ${o.functionality ? is.functionality[o.functionality] : "Ósvarað"}` : ""}{o.condition !== "na" && item.cleanliness ? ` · Þrif: ${o.cleanliness ? is.cleanliness[o.cleanliness] : "Ósvarað"}` : ""}</span><span>Breyta mati</span>
-          </summary>
-          {foldCondition && o.condition ? (
-            <details className={styles.foldedCondition}>
-              <summary>
-                Ástand <strong>{is.conditions[o.condition]}</strong><span>Breyta</span>
-              </summary>
-              {conditions}
-            </details>
-          ) : conditions}
-          <p className="condition-hint">
-            {o.condition
-              ? is.conditionHelp[o.condition]
-              : "Veldu ástand eftir skoðun. Ekkert svar er valið sjálfkrafa."}
-          </p>
-          {o.condition !== "na" ? (
-            <div className="secondary-answers">
-              {item.functionality ? (
-                <AnswerGroup
-                  label="Virkni"
-                  question="functionality"
-                  disabled={coordinationLocked}
-                  values={FUNCTIONALITIES}
-                  labels={is.functionality}
-                  value={o.functionality}
-                  onChange={(value) => change("functionality", value)}
-                  name={`${fieldPrefix}-functionality`}
-                />
-              ) : null}
-              {item.cleanliness ? (
-                <AnswerGroup
-                  label="Þrif"
-                  question="cleanliness"
-                  disabled={coordinationLocked}
-                  values={CLEANLINESS}
-                  labels={is.cleanliness}
-                  value={o.cleanliness}
-                  onChange={(value) => change("cleanliness", value)}
-                  name={`${fieldPrefix}-cleanliness`}
-                />
-              ) : null}
-            </div>
-          ) : (
-            <div className="not-applicable-note">
-              <Circle size={14} aria-hidden="true" />
-              Virkni og þrif eru ekki krafa þegar atriðið á ekki við.
-            </div>
-          )}
-          </details>
+          {!photoFirst ? assessment : null}
           {damage && (!complete || editDefect) ? (
             <div className="damage-fields" tabIndex={-1} role="group" aria-labelledby={`${fieldPrefix}-damage-title`}
               // Keep the active editor mounted when its last required field becomes valid.
@@ -397,6 +416,10 @@ export function ObservationEditor({
                 <h4 id={`${fieldPrefix}-damage-title`}>Lýsing á fráviki</h4>
               </div>
               <div className="form-grid">
+                {photoFirst ? <Field id={`${fieldPrefix}-description`} label="Lýsing á fráviki" className="field-full"><textarea id={`${fieldPrefix}-description`} disabled={coordinationLocked} rows={3} value={o.description} onChange={e => change("description", e.target.value)} placeholder="Hvað sést og hvar? Stutt lýsing nægir." /></Field> : null}
+                <details className={photoFirst ? `field-full ${stofa.supporting}` : "field-full"} open={photoFirst ? undefined : true}>
+                <summary hidden={!photoFirst}>Tegund og staðsetning{!o.damageType.trim() || !o.location.trim() ? " · Vantar" : ` · ${o.damageType}, ${o.location}`}</summary>
+                <div className="form-grid">
                 <Field
                   id={`${fieldPrefix}-damage-type`}
                   label="Tegund skemmdar / galla"
@@ -432,7 +455,10 @@ export function ObservationEditor({
                     placeholder="T.d. við dyrakarm"
                   />
                 </Field>
-                <Field
+                </div>
+                </details>
+                {photoFirst ? <p className={`field-hint field-full ${stofa.validationNote}`}>Fullskráning krefst lýsingar, tegundar og staðsetningar. Tímabundin mynd kemur ekki í stað þeirra.</p> : null}
+                {!photoFirst ? <Field
                   id={`${fieldPrefix}-description`}
                   label="Lýsing"
                   className="field-full"
@@ -445,14 +471,14 @@ export function ObservationEditor({
                     onChange={(e) => change("description", e.target.value)}
                     placeholder="Lýstu því sem sést, stærð og umfangi."
                   />
-                </Field>
+                </Field> : null}
               </div>
               {missingDamage ? (
                 <p className="damage-draft-note">
                   Drög eru leyfð. Tegund, staðsetning og lýsing vantar að hluta.
                 </p>
               ) : null}
-              {!state.photos[photoKey]?.length ? (
+              {!photoFirst && !state.photos[photoKey]?.length ? (
                 <p className="missing-photo">
                   <TriangleAlert size={14} aria-hidden="true" />
                   Mynd af fráviki vantar. Atriðið má áfram vera í drögum.
@@ -464,11 +490,14 @@ export function ObservationEditor({
             {damage && complete && !editDefect ? <div className={styles.findingTitle}><h4>{o.damageType}</h4><button className="text-button" disabled={coordinationLocked} onClick={() => setEditDefect(true)}>Breyta fráviki</button></div> : null}
             <div className={damage && complete && !editDefect ? styles.findingOverview : undefined}>
               {damage && complete && !editDefect ? <div><span>Staðsetning</span><p>{o.location}</p></div> : null}
-              <PhotoPreview key="item-photos" targetId={photoTargetId(reportId, roomId, item.id)} photoKey={photoKey} title="Myndir við atriði" context={`${roomName} · ${item.name}`} detail={damage} item featured={damage && complete && !editDefect} />
+              <PhotoPreview key="item-photos" targetId={photoTargetId(reportId, roomId, item.id)} photoKey={photoKey} title={photoFirst && damage ? "Fráviksmyndir" : "Myndir við atriði"} context={`${roomName} · ${item.name}`} detail={damage} item featured={!photoFirst && damage && complete && !editDefect} compact={photoFirst} />
             </div>
             {damage && complete && !editDefect ? <p className={styles.findingDescription}>{o.description}</p> : null}
-            {damage && complete && !editDefect && !state.photos[photoKey]?.length ? <p className="missing-photo">Mynd af fráviki vantar. Atriðið má áfram vera í drögum.</p> : null}
+            {!photoFirst && damage && complete && !editDefect && !state.photos[photoKey]?.length ? <p className="missing-photo">Mynd af fráviki vantar. Atriðið má áfram vera í drögum.</p> : null}
           </section>
+          {photoFirst ? assessment : null}
+          <details open={photoFirst ? undefined : true} className={photoFirst ? stofa.notes : undefined}>
+          <summary hidden={!photoFirst}>Athugasemd (valfrjálst){o.note ? " · Skráð" : ""}</summary>
           <Field id={`${fieldPrefix}-note`} label="Athugasemd" optional>
             <textarea
               id={`${fieldPrefix}-note`}
@@ -479,8 +508,10 @@ export function ObservationEditor({
               placeholder="Bættu við samhengi ef þörf er á."
             />
           </Field>
+          </details>
           <RetainedDefectDetails observation={o} />
           <div className="observation-footer">
+            {photoFirst ? <button className="button button-primary" disabled={!complete || state.status !== "saved" || coordinationLocked} onClick={() => { onClose(); headingRef.current?.focus({ preventScroll: true }); }}>Ljúka atriði</button> : null}
             {nextAction}
             <span role="status">
               {complete ? (
@@ -517,8 +548,9 @@ export function ObservationEditor({
                 onClose();
               }}
             >
-              Loka atriði
+              {photoFirst ? "Loka ritli" : "Loka atriði"}
             </button>
+            {photoFirst ? <span>Lokun heldur gögnunum og lýkur ekki atriðinu.</span> : null}
           </div>
       </> : null}
       </div>
