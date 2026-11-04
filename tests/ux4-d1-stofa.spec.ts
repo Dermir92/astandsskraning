@@ -292,4 +292,3 @@ test("a fully recorded last-room Stofa leads to review without completing the pr
   expect(await raw(page)).toBe(before);
   expect(JSON.parse(await raw(page)).reports[0].sampleReviewed).not.toBe(true);
 });
-
