@@ -5,8 +5,9 @@ import { Camera, ImagePlus } from "lucide-react";
 import { useDemo } from "./demo-provider";
 import { EvidenceGallery } from "./evidence-gallery";
 import styles from "./evidence.module.css";
+import stofa from "./stofa-inspection.module.css";
 
-export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rýmis", detail = false, context, item = false, featured = false }: {
+export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rýmis", detail = false, context, item = false, featured = false, compact = false }: {
   photoKey: string;
   targetId?: string;
   title?: string;
@@ -14,12 +15,15 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
   context: string;
   item?: boolean;
   featured?: boolean;
+  compact?: boolean;
 }) {
   const { state, store, mode, demoReadOnly } = useDemo();
   const [error, setError] = useState("");
   const [pending, setPending] = useState(0);
   const [announcement, setAnnouncement] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const cameraRef = useRef<HTMLInputElement>(null);
+  const activeUpload = useRef<HTMLInputElement | null>(null);
   const titleRef = useRef<HTMLSpanElement>(null);
   const controlsRef = useRef<HTMLDetailsElement>(null);
   const restoreUploadFocus = useRef(false);
@@ -36,9 +40,9 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
     // Disabling the picker during decoding can leave focus on the body.
     // Respect any later explicit focus move, including typing in another field.
     if (document.activeElement !== document.body && document.activeElement !== document.documentElement) return;
-    const target = inputRef.current?.disabled ? controlsRef.current?.querySelector("summary") : inputRef.current;
+    const target = activeUpload.current?.disabled ? compact ? titleRef.current : controlsRef.current?.querySelector("summary") : activeUpload.current ?? inputRef.current;
     target?.focus({ preventScroll: true });
-  }, [pending, photos.length]);
+  }, [pending, photos.length, compact]);
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
@@ -59,7 +63,8 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
   const locked = demoReadOnly || mode === "cloud" || state.status === "loading" || state.status === "read-error";
   const addPhotos = async (files: FileList | null) => {
     if (!files?.length || locked) return;
-    restoreUploadFocus.current = featured && document.activeElement === inputRef.current;
+    activeUpload.current = document.activeElement === cameraRef.current ? cameraRef.current : inputRef.current;
+    restoreUploadFocus.current = (featured || compact) && document.activeElement === activeUpload.current;
     const selected = Array.from(files);
     setError("");
     setAnnouncement("");
@@ -101,6 +106,33 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
     }
   };
   if (mode === "cloud") return <section id={targetId} tabIndex={-1} className={`photo-preview ${styles.capture}`} aria-label={title}><p><strong>Myndir eru óvirkar í C1.</strong> Þessi prófun vistar aðeins texta og svör. Engin myndageymsla eða tímabundin myndaforskoðun er virk hér.</p></section>;
+  if (compact) return <section id={targetId} tabIndex={-1} className={stofa.photos} aria-label={title} aria-busy={pending > 0}>
+    <div className={stofa.photoHeading}><h3><span ref={titleRef} tabIndex={-1}>{title}</span></h3><span>{photos.length}/8 · Tímabundnar</span></div>
+    <p className={stofa.photoLimit}>Myndir hverfa við endurhleðslu eða lokun. Ekki varanlega vistaðar.</p>
+    <div className={stofa.photoStrip}>
+      <EvidenceGallery photos={photos} context={context}
+        onRemove={locked ? undefined : id => { store.removePhoto(photoKey, id); setAnnouncement("Mynd fjarlægð úr tímabundinni forskoðun."); }}
+        onEmpty={() => inputRef.current?.focus({ preventScroll: true })} />
+      {!photos.length ? <span className={stofa.emptyPhoto}><Camera size={20} aria-hidden="true" /><span>Engar myndir</span></span> : null}
+      <div className={stofa.photoButtons}>
+        <label className="button button-secondary photo-upload" htmlFor={`${inputId}-camera`}>
+          <Camera size={16} aria-hidden="true" />Mynd
+          <input className="file-input" id={`${inputId}-camera`} ref={cameraRef} type="file" accept="image/jpeg,image/png,image/webp" capture="environment"
+            aria-label={`${title}: taka mynd`} disabled={pending > 0 || photos.length >= 8 || locked}
+            onChange={event => { void addPhotos(event.target.files); event.target.value = ""; }} />
+        </label>
+        <label className="button button-secondary photo-upload" htmlFor={inputId}>
+          <ImagePlus size={16} aria-hidden="true" />Úr safni
+          <input className="file-input" id={inputId} ref={inputRef} type="file" multiple accept="image/jpeg,image/png,image/webp"
+            aria-label={`${title}: velja myndir`} disabled={pending > 0 || photos.length >= 8 || locked}
+            onChange={event => { void addPhotos(event.target.files); event.target.value = ""; }} />
+        </label>
+      </div>
+    </div>
+    <details className={stofa.photoHelp}><summary>Um myndir</summary><p>{context}. {detail ? "Taktu nærmynd og mynd sem sýnir staðsetningu fráviks." : item ? "Myndir tengjast aðeins þessu atriði." : "Taktu yfirlitsmynd úr dyrum og frá gagnstæðu horni."} JPG, PNG eða WebP, að hámarki 10 MB. HEIC er ekki stutt. Aðgangur að myndavél fer eftir tæki og vafra.</p></details>
+    <p role="status">{pending ? "Les mynd…" : announcement}</p>
+    {error ? <p className="field-error" role="alert">{error}</p> : null}
+  </section>;
   return <section id={targetId} tabIndex={-1} className={`photo-preview ${styles.capture} ${featured ? styles.featuredCapture : ""} ${detail ? "photo-preview-detail" : ""}`} aria-label={title} aria-busy={pending > 0}>
     <div className="photo-heading">
       <span className="photo-title" ref={titleRef} tabIndex={-1}><Camera size={18} aria-hidden="true" />{title}</span>

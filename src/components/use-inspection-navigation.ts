@@ -50,7 +50,7 @@ function reveal(target: HTMLElement | null, focus: boolean) {
 }
 function inspectionFocus(root: HTMLElement | null, key?: string) {
   const group = root?.querySelector<HTMLElement>(key ? `[data-question="${key}"]` : "[data-navigation-heading]");
-  if (root?.dataset.kind === "space_heating" && group && key) {
+  if ((root?.dataset.kind === "space_heating" || root?.closest("[data-stofa-inspection]")) && group && key) {
     for (let parent = group.parentElement; parent && parent !== root; parent = parent.parentElement) if (parent instanceof HTMLDetailsElement) parent.open = true;
     return group.querySelector<HTMLElement>('input:checked:not(:disabled)') ?? group.querySelector<HTMLElement>('input:not(:disabled), textarea:not(:disabled)') ?? group;
   }
