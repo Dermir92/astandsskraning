@@ -2,7 +2,7 @@ import { test, expect, type Page } from "@playwright/test";
 import { auditInspectionA11y } from "./inspection-accessibility";
 import { mkdir } from "node:fs/promises";
 import { STORAGE_KEY } from "../src/components/demo-provider";
-import { DemoStore } from "./demo-store-helpers";
+import { DemoStore, MemoryPhotos } from "./demo-store-helpers";
 import { CONDITIONS, EMPTY_OBSERVATION, reportStats, type Report } from "../src/lib/model";
 import { is } from "../src/lib/locale/is";
 import { hasRetainedDefect } from "../src/lib/inspection-evidence";
@@ -271,14 +271,14 @@ test("decoding result is rejected when its room is removed, without orphan photo
   expect(await raw(page)).toBe(before);
 });
 
-test("reload loses only session previews, retains text and exact navigation, restores missing-photo warnings", async ({ page }) => {
+test("reload retains photos, text and exact navigation without false missing-photo warnings", async ({ page }) => {
   await seed(page);
   await picker(page).setInputFiles(await image(page)); await count(page, 1);
   const before = await storage(page), stats = reportStats(await stored(page));
   await page.reload();
   await expect(row(page).locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "true");
-  await count(page, 0); await unchanged(page, before, stats);
-  await expect(row(page)).toContainText("Mynd af fráviki vantar");
+  await count(page, 1); await unchanged(page, before, stats);
+  await expect(row(page)).not.toContainText("Mynd af fráviki vantar");
   await editDefect(row(page));
   await expect(row(page).getByRole("textbox", { name: /^Lýsing/ })).toHaveValue("Tilbúin 8 cm rispa");
 });
@@ -288,7 +288,9 @@ test("protected source locks uploads and photo operations preserve pending-write
   await page.evaluate(key => localStorage.setItem(key, '{"version":9,"reports":[]}'), STORAGE_KEY);
   await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living");
   await page.locator('.checklist-item[data-item="walls"] .checklist-toggle').click();
-  await expect(picker(page)).toBeDisabled();
+  const protectedPickers = page.locator('.checklist-item[data-item="walls"] input[type="file"]');
+  await expect(protectedPickers).toHaveCount(2);
+  for (const input of await protectedPickers.all()) await expect(input).toBeDisabled();
   expect(await raw(page)).toBe('{"version":9,"reports":[]}');
   await page.evaluate(({ key, report }) => localStorage.setItem(key, JSON.stringify({ version: 1, reports: [report] })), { key: STORAGE_KEY, report: checklistReport(true) });
   await page.goto(route); await open(page);
@@ -300,12 +302,13 @@ test("protected source locks uploads and photo operations preserve pending-write
   await row(page).getByRole("textbox", { name: /^Athugasemd/ }).fill("Tilbúin óvistuð breyting");
   await expect(page.locator(".topbar .save-status")).toHaveText("Ekki tókst að vista í vafra");
   const before = await raw(page);
-  await picker(page).setInputFiles(await image(page)); await count(page, 1);
+  await expect(picker(page)).toBeDisabled(); await count(page, 0);
   await expect(page.locator(".topbar .save-status")).toHaveText("Ekki tókst að vista í vafra");
   expect(await raw(page)).toBe(before);
   await page.evaluate(() => (window as unknown as { restoreWrites: () => void }).restoreWrites());
   await page.getByRole("button", { name: "Reyna vistun aftur", exact: true }).click();
   expect((await stored(page)).rooms[0].observations.walls.note).toBe("Tilbúin óvistuð breyting");
+  await picker(page).setInputFiles(await image(page));
   await count(page, 1);
 });
 
@@ -346,23 +349,26 @@ test.describe("photo store acceptance contracts", () => {
   });
   const key = "checklist-report:checklist-entry:walls";
   const photo = (id: string) => ({ id, name: "synthetic.png", url: `blob:synthetic-${id}` });
-  test("atomic limit, unknown/deleted items/rooms, rejected URL release and existing removal cleanup", () => {
-    const store = new DemoStore(); store.hydrate();
+  test("atomic limit, unknown targets and explicit deletion before removing rooms/items", async () => {
+    const store = new DemoStore(undefined, new MemoryPhotos()); store.hydrate(); await store.reloadDemoPhotos();
     const original = store.getSnapshot();
-    for (let i = 0; i < 8; i++) expect(store.addPhoto(key, photo(`${i}`))).toBe(true);
-    expect(store.addPhoto(key, photo("ninth"))).toBe(false);
+    const blob = new Blob(["synthetic"], { type: "image/png" });
+    for (let i = 0; i < 8; i++) expect(await store.addPhoto(key, photo(`${i}`), blob)).toBe(true);
+    expect(await store.addPhoto(key, photo("ninth"), blob)).toBe(false);
     expect(revoked).toContain("blob:synthetic-ninth");
-    expect(store.addPhoto("missing:room:item", photo("missing"))).toBe(false);
+    expect(await store.addPhoto("missing:room:item", photo("missing"), blob)).toBe(false);
     expect(store.getSnapshot().reports).toBe(original.reports);
     expect(store.getSnapshot().status).toBe(original.status); expect(writes).toEqual([]);
-    store.removePhoto(key, "0"); expect(revoked).toContain("blob:synthetic-0");
+    expect(store.updateRoom("checklist-report", "checklist-entry", room => ({ ...room, items: room.items.filter(item => item.id !== "walls") }))).toBe(false);
+    expect(store.removeRoom("checklist-report", "checklist-entry")).toBe(false);
+    for (let i = 0; i < 8; i++) expect(await store.removePhoto(key, `${i}`)).toBe(true);
     store.updateRoom("checklist-report", "checklist-entry", room => ({ ...room, items: room.items.filter(item => item.id !== "walls") }));
     const afterItemRemoval = writes.length;
-    expect(store.addPhoto(key, photo("removed-item"))).toBe(false); expect(writes).toHaveLength(afterItemRemoval);
+    expect(await store.addPhoto(key, photo("removed-item"), blob)).toBe(false); expect(writes).toHaveLength(afterItemRemoval);
     store.removeRoom("checklist-report", "checklist-entry");
     const afterRoomRemoval = writes.length;
-    expect(store.addPhoto(key, photo("removed-room"))).toBe(false); expect(writes).toHaveLength(afterRoomRemoval);
-    expect(store.getSnapshot().photos[key]).toEqual([]);
+    expect(await store.addPhoto(key, photo("removed-room"), blob)).toBe(false); expect(writes).toHaveLength(afterRoomRemoval);
+    expect(store.getSnapshot().photos[key] ?? []).toEqual([]);
     for (let i = 0; i < 8; i++) expect(revoked).toContain(`blob:synthetic-${i}`);
   });
   test("photo addition cannot bypass loading/read protection or authorize storage retry", () => {

@@ -11,6 +11,7 @@ import {
 import { demoReports } from "@/lib/fixtures";
 import { heatingItem } from "@/lib/heating";
 import { browserDemoEnvironment, DEMO_LOCK_NAME, DEMO_RECOVERY_KEY, readDemoDocument, readDemoRecovery, STORAGE_KEY, type DemoEnvironment, type DemoRecovery } from "@/lib/demo-storage";
+import { browserDemoPhotos, DEMO_PHOTO_CHANNEL, photoKey, photoTargets, validPhotoTarget, type DemoPhotoRepository, type PhotoChange, type StoredDemoPhoto } from "@/lib/demo-photos";
 import { buildInspectionComparison, contentFingerprint, copiedFinal, finalContext, initialAssociations, initialEligible, retireMissingAssociations, sourceContent } from "@/lib/inspection-comparison";
 import {
   EMPTY_DETAILS,
@@ -59,6 +60,7 @@ export interface Snapshot {
   status: SaveStatus;
   warning: string;
   photos: Record<string, PreviewPhoto[]>;
+  photoStorage?: { status: "loading" | "ready" | "error" | "stale"; busy: boolean; warning: string };
   local?: LocalSaveState;
 }
 
@@ -70,7 +72,8 @@ export class DemoStore {
     photos: {},
   };
   protected snapshot = this.initial;
-  constructor(reports?: Report[], private environment: DemoEnvironment = browserDemoEnvironment) {
+  constructor(reports?: Report[], private environment: DemoEnvironment = browserDemoEnvironment,
+    private photoRepository: DemoPhotoRepository | null = environment === browserDemoEnvironment ? browserDemoPhotos : null) {
     if (reports) this.initial = { ...this.initial, reports };
     this.snapshot = this.initial;
   }
@@ -99,6 +102,12 @@ export class DemoStore {
   private viewingLatest = false;
   private uiDrafts = new Map<string, string>();
   private uiGeneration = 0;
+  private photoRows: StoredDemoPhoto[] = [];
+  private photoLoad = 0;
+  private photoAbort?: AbortController;
+  private photoQueue: Promise<void> = Promise.resolve();
+  private photoPending = 0;
+  private photoChannel?: BroadcastChannel;
   // Retain the validated envelope's extension keys without rewriting on read.
   private envelope: object = {};
   private linkedCreations = new Map<string, { sourceId: string; pending: Promise<string | null> }>();
@@ -170,6 +179,13 @@ export class DemoStore {
   hydrate = () => {
     if (this.connected) return;
     this.connected = true;
+    if (this.photoRepository && typeof window !== "undefined" && typeof BroadcastChannel !== "undefined") {
+      this.photoChannel = new BroadcastChannel(DEMO_PHOTO_CHANNEL);
+      this.photoChannel.onmessage = () => {
+        this.photoLoad++; this.photoAbort?.abort();
+        this.publish({ ...this.snapshot, photoStorage: { status: "stale", busy: false, warning: "Geymdar myndir hafa breyst í öðrum flipa. Sæktu myndir aftur áður en þú heldur áfram." } });
+      };
+    }
     this.cleanups = [
       this.environment.listen("storage", event => this.storageChanged(event as StorageEvent)),
       this.environment.listen("pagehide", () => { this.invalidateLease(); this.publish({ ...this.snapshot }); }),
@@ -180,7 +196,7 @@ export class DemoStore {
         } else if (this.access === "inactive") this.retryDemoAccess();
       }),
       this.environment.listen("beforeunload", event => {
-        if (this.dirty || this.recovery || this.uiDrafts.size) { event.preventDefault(); (event as BeforeUnloadEvent).returnValue = ""; }
+        if (this.dirty || this.recovery || this.uiDrafts.size || this.photoPending) { event.preventDefault(); (event as BeforeUnloadEvent).returnValue = ""; }
       }),
     ];
     if (!this.loaded) this.loadInitial();
@@ -189,10 +205,12 @@ export class DemoStore {
   disconnectDemo = () => {
     this.connected = false;
     this.cleanups.splice(0).forEach(cleanup => cleanup());
+    this.photoChannel?.close(); this.photoChannel = undefined; this.photoLoad++;
     this.invalidateLease();
     this.publish({ ...this.snapshot });
   };
   private invalidateLease() {
+    this.photoAbort?.abort();
     this.ownsLock = false; this.access = "inactive"; this.epoch++; this.leaseEpoch++;
     const release = this.releaseLock; this.releaseLock = undefined;
     release?.(); this.finishReady?.();
@@ -201,6 +219,7 @@ export class DemoStore {
     if (!this.connected || this.ownsLock) return;
     const leaseEpoch = ++this.leaseEpoch; this.epoch++;
     this.access = "initializing";
+    void this.reloadDemoPhotos();
     this.ready = new Promise(resolve => { this.finishReady = resolve; });
     const finish = this.finishReady!;
     this.publish({ ...this.snapshot });
@@ -220,10 +239,12 @@ export class DemoStore {
           return held;
         })).then(() => {
           if (leaseEpoch === this.leaseEpoch && this.connected) {
+            this.photoAbort?.abort();
             this.ownsLock = false; this.releaseLock = undefined; this.access = "reader"; this.publishAccess();
           }
         }, () => {
           if (leaseEpoch === this.leaseEpoch && this.connected) {
+            this.photoAbort?.abort();
             this.ownsLock = false; this.epoch++;
             const release = this.releaseLock; this.releaseLock = undefined; release?.();
             this.access = "unsupported"; this.publishAccess();
@@ -270,11 +291,13 @@ export class DemoStore {
       if (event.storageArea && event.storageArea !== this.environment.local()) return;
       if (this.environment.local().getItem(STORAGE_KEY) === this.baseRaw) return;
       this.epoch++;
+      this.photoAbort?.abort();
       this.blocked = "changed";
       if (this.dirty && !this.viewingLatest) this.checkpoint();
       this.publish({ ...this.snapshot, status: this.dirty ? "conflict" : this.recovery ? "recovery" : "refresh-required", warning: this.dirty ? this.conflictWarning() : `Geymd gögn hafa breyst í öðrum flipa. Þessi skoðunarmynd er óbreytt; sæktu nýjustu gögnin sérstaklega.${this.recovery ? ` ${this.recoveryWarning()}` : ""}` });
     } catch {
       this.epoch++;
+      this.photoAbort?.abort();
       this.blocked = "read";
       this.publish({ ...this.snapshot, status: this.dirty ? "error" : "refresh-required", warning: "Ekki tókst að sannreyna vistuð gögn. Innsláttur er varðveittur hér; frekari breytingar bíða öruggs endurlesturs." });
     }
@@ -297,6 +320,17 @@ export class DemoStore {
   protected persist(reports: Report[]) {
     // Never turn fallback fixtures into a replacement for unreadable source data.
     if (!this.canEdit()) return false;
+    // JSON and IndexedDB cannot commit together. Require explicit photo deletion
+    // before removing its report/room/item, and never guess while photos are unreadable.
+    const removedTarget = this.snapshot.reports.some(report => report.rooms.some(room => {
+      const next = reports.find(r => r.id === report.id)?.rooms.find(r => r.id === room.id);
+      return !next || room.items.some(item => !next.items.some(i => i.id === item.id));
+    }));
+    if (removedTarget && this.snapshot.photoStorage && (this.snapshot.photoStorage.status !== "ready" || this.photoPending ||
+      this.photoRows.some(row => validPhotoTarget(this.snapshot.reports, row.target) && !validPhotoTarget(reports, row.target)))) {
+      this.rejectMutation("Ekki var hægt að fjarlægja svæðið. Sæktu myndirnar og fjarlægðu tengdar myndir sérstaklega fyrst. Gögn og myndir eru varðveitt.");
+      return false;
+    }
     if (!isReportList(reports)) {
       this.rejectMutation(
         "Ekki var hægt að samþykkja breytinguna: gögnin uppfylla ekki skilyrði fyrir vistun og endurhleðslu. Fyrri gögn eru óbreytt.",
@@ -356,15 +390,17 @@ export class DemoStore {
       storage.removeItem(DEMO_RECOVERY_KEY); this.checkpointRaw = null; this.checkpointFailed = false; return true;
     } catch { this.checkpointFailed = true; return false; }
   }
-  demoRecoveryJSON = () => this.recovery ? JSON.stringify({ ...this.recovery, note: "Óvistað drag; enginn sjálfvirkur innflutningur. Tímabundnar myndir og óstofnuð UI-drög eru ekki í afritinu." }, null, 2) : null;
+  demoRecoveryJSON = () => this.recovery ? JSON.stringify({ ...this.recovery, note: "Óvistað drag; enginn sjálfvirkur innflutningur. Myndir eru geymdar sér í þessum vafra og eru ekki í afritinu. Óstofnuð UI-drög eru ekki í afritinu." }, null, 2) : null;
   reloadDemoLatest = (expected: string) => {
     if (!this.connected || expected !== this.demoRecoveryToken() || this.uiDrafts.size || this.recoveryUnreadable) return false;
     let current: ReturnType<DemoStore["readCurrent"]>;
     try { current = this.readCurrent(); } catch { return false; }
     this.epoch++; // Domain confirmations expire; lease lifetime is tracked separately.
+    this.photoAbort?.abort();
     this.envelope = current.document; this.baseRaw = current.raw; this.verified = true;
     this.viewingLatest = !!this.recovery; this.dirty = false;
     this.blocked = this.recovery ? "recovery" : null;
+    void this.reloadDemoPhotos();
     this.publish({ ...this.snapshot, reports: current.document.reports,
       status: this.recovery ? "recovery" : this.ownsLock ? current.raw === null ? "memory" : "saved" : "read-only",
       warning: this.recovery ? this.recoveryWarning() : this.ownsLock ? "" : "Gögn sótt til skoðunar. Reyndu breytingarétt aftur til að vinna með þau.",
@@ -491,52 +527,96 @@ export class DemoStore {
     if (!item) return null;
     return this.updateRoom(reportId, roomId, r => ({ ...r, items: [...r.items, item] })) ? item.id : null;
   };
-  addPhoto = (key: string, photo: PreviewPhoto) => {
-    const targetExists = this.snapshot.reports.some(report =>
-      report.assetType === "apartment" && !report.sampleReviewed && report.rooms.some(room =>
-        key === `${report.id}:${room.id}:overview` ||
-        room.items.some(item => key === `${report.id}:${room.id}:${item.id}`),
-      ),
-    );
-    if (!this.canEdit() || !targetExists || (this.snapshot.photos[key]?.length ?? 0) >= 8) {
+  reloadDemoPhotos = async () => {
+    if (!this.connected || !this.photoRepository || this.photoAbort) return;
+    const load = ++this.photoLoad;
+    this.publish({ ...this.snapshot, photoStorage: { status: "loading", busy: false, warning: "" } });
+    try {
+      const rows = await this.photoRepository.read();
+      if (!this.connected || load !== this.photoLoad) return;
+      this.showPhotos(rows);
+    } catch {
+      if (!this.connected || load !== this.photoLoad) return;
+      this.publish({ ...this.snapshot, photoStorage: { status: "error", busy: false, warning: "Ekki tókst að lesa myndageymslu. Fyrri myndum er ekki breytt; engin tóm myndageymsla kemur í þeirra stað. Myndaaðgerðir og fjarlæging svæða eru læstar. Reyndu að sækja myndir aftur." } });
+    }
+  };
+  private showPhotos(rows: StoredDemoPhoto[]) {
+    const photos: Snapshot["photos"] = {};
+    let unassigned = 0;
+    try {
+      for (const row of rows) {
+        if (!validPhotoTarget(this.snapshot.reports, row.target)) { unassigned++; continue; }
+        const key = photoKey(row.target);
+        (photos[key] ??= []).push({ id: row.id, name: row.name, url: URL.createObjectURL(row.blob) });
+      }
+    } catch (error) { Object.values(photos).flat().forEach(photo => URL.revokeObjectURL(photo.url)); throw error; }
+    Object.values(this.snapshot.photos).flat().forEach(photo => URL.revokeObjectURL(photo.url));
+    this.photoRows = rows;
+    this.publish({ ...this.snapshot, photos, photoStorage: { status: "ready", busy: false,
+      warning: unassigned ? `${unassigned} geymdar myndir hafa ekki ótvíræða tengingu við núverandi gögn. Þær eru varðveittar í myndageymslu með upprunalegum auðkennum og hafa ekki verið færðar eða eytt. Endurheimta þarf tengdu skráninguna sérstaklega.` : "" } });
+  }
+  private canChangePhotos() {
+    return this.canEdit() && !this.dirty && !this.recovery && this.snapshot.photoStorage?.status === "ready";
+  }
+  private queuePhotoChange(change: PhotoChange, epoch: number) {
+    this.photoPending++;
+    const pending = this.photoQueue.then(() => this.changePhotos(change, epoch));
+    this.photoQueue = pending.then(() => {}, () => {});
+    return pending.finally(() => { this.photoPending--; });
+  }
+  private async changePhotos(change: PhotoChange, epoch: number) {
+    if (!this.canChangePhotos() || !this.photoRepository || epoch !== this.epoch) return false;
+    if ("add" in change && (this.snapshot.photos[photoKey(change.add.target)]?.length ?? 0) >= 8) return false;
+    const abort = new AbortController(); this.photoAbort = abort; this.photoLoad++;
+    this.publish({ ...this.snapshot, photoStorage: { ...this.snapshot.photoStorage!, busy: true, warning: "" } });
+    const check = () => {
+      if (abort.signal.aborted || !this.canEdit() || this.dirty || this.recovery || epoch !== this.epoch) throw Error("photo-stale-lease");
+      if (this.environment.local().getItem(STORAGE_KEY) !== this.baseRaw) {
+        this.blocked = "changed"; this.epoch++;
+        this.publish({ ...this.snapshot, status: "refresh-required", warning: "Geymd gögn hafa breyst. Sæktu nýjustu gögnin áður en þú heldur áfram." });
+        throw Error("photo-stale-document");
+      }
+      const target = "add" in change ? change.add.target : this.photoRows.find(row => row.id === change.remove)?.target;
+      if (!target || !validPhotoTarget(this.snapshot.reports, target)) throw Error("photo-target-missing");
+    };
+    try {
+      const rows = await this.photoRepository.change(change, check, abort.signal);
+      // A transaction completion is the sole acknowledgement. Never undo a
+      // committed write in response to a later navigation or ownership change.
+      try { this.showPhotos(rows); }
+      catch {
+        this.photoRows = rows;
+        this.publish({ ...this.snapshot, photoStorage: { status: "error", busy: false, warning: "Myndabreytingin var vistuð en ekki tókst að birta myndirnar. Sæktu myndir aftur; ekki bæta sömu mynd við aftur." } });
+      }
+      try { this.photoChannel?.postMessage("changed"); } catch { /* Notification is not a storage receipt. */ }
+      return true;
+    } catch (error) {
+      const quota = error instanceof DOMException && error.name === "QuotaExceededError";
+      this.publish({ ...this.snapshot, photoStorage: { status: "error", busy: false,
+        warning: `${quota ? "Myndageymsla vafrans er full." : "Ekki tókst að staðfesta myndabreytinguna."} ${"add" in change ? "Nýja myndin var ekki vistuð; veldu hana aftur eftir að myndir hafa verið sóttar. Varðveittu frumritið." : "Myndinni var ekki eytt og hún er enn varðveitt."} Fyrri myndum er ekki breytt. Sæktu myndir aftur áður en þú reynir aðgerðina aftur.` } });
+      return false;
+    } finally { if (this.photoAbort === abort) this.photoAbort = undefined; }
+  }
+  addPhoto = (key: string, photo: PreviewPhoto, blob?: Blob, epoch = this.epoch): boolean | Promise<boolean> => {
+    const targets = photoTargets(this.snapshot.reports, key);
+    if (!this.canChangePhotos() || epoch !== this.epoch || targets.length !== 1 || !blob || (this.snapshot.photos[key]?.length ?? 0) >= 8) {
       URL.revokeObjectURL(photo.url);
       return false;
     }
-    this.emit({
-      ...this.snapshot,
-      photos: {
-        ...this.snapshot.photos,
-        [key]: [...(this.snapshot.photos[key] ?? []), photo],
-      },
-    });
-    return true;
+    // Anchor untouched Demo fixtures in the existing canonical document first.
+    if (this.baseRaw === null && (!this.persist(this.snapshot.reports) || this.dirty)) { URL.revokeObjectURL(photo.url); return false; }
+    return this.queuePhotoChange({ add: { version: 1, id: photo.id, name: photo.name, target: targets[0], blob } }, epoch)
+      .finally(() => URL.revokeObjectURL(photo.url));
   };
   removePhoto = (key: string, id: string) => {
-    if (!this.canEdit()) return;
-    const photo = this.snapshot.photos[key]?.find((p) => p.id === id);
-    if (!photo) return;
-    if (photo) URL.revokeObjectURL(photo.url);
-    this.emit({
-      ...this.snapshot,
-      photos: {
-        ...this.snapshot.photos,
-        [key]: (this.snapshot.photos[key] ?? []).filter((p) => p.id !== id),
-      },
-    });
+    if (!this.canChangePhotos() || !this.snapshot.photos[key]?.some(photo => photo.id === id)) return false;
+    return this.queuePhotoChange({ remove: id }, this.epoch);
   };
   removeRoom = (reportId: string, roomId: string) => {
-    if (
-      !this.updateReport(reportId, (r) => ({
-        ...r,
-        rooms: r.rooms.filter((room) => room.id !== roomId),
-      }))
-    )
-      return;
-    Object.keys(this.snapshot.photos)
-      .filter((k) => k.startsWith(`${reportId}:${roomId}:`))
-      .forEach((key) => {
-        this.snapshot.photos[key].forEach((p) => this.removePhoto(key, p.id));
-      });
+    return this.updateReport(reportId, (r) => ({
+      ...r,
+      rooms: r.rooms.filter((room) => room.id !== roomId),
+    }));
   };
 }
 const DemoContext = createContext<{ state: Snapshot; store: DemoStore; mode: "demo" | "cloud"; navigationScope: string } | null>(

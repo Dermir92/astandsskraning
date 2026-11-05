@@ -40,11 +40,14 @@ for (const readFailure of [false, true]) {
     expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
     await page.goto("/skyrslur/syni-ibud/skraning?rymi=demo-living&atridi=walls");
     const item = page.locator('.checklist-item[data-item="walls"]');
+    await item.locator("summary").filter({ hasText: /^Athugasemd \(valfrjálst\)/ }).click();
     await expect(item.getByRole("textbox", { name: /^Athugasemd/ })).toBeDisabled(); await expandAssessment(item);
     for (const answer of await item.getByRole("radio").all()) await expect(answer).toBeDisabled();
     await expect(item.getByRole("button", { name: "Breyta fráviki", exact: true })).toBeDisabled();
     await expect(item.getByRole("button", { name: "Hreinsa svör", exact: true })).toBeDisabled();
-    await expect(item.locator('input[type="file"]')).toBeDisabled(); await expect(item.locator(".checklist-toggle")).toBeEnabled();
+    await expect(item.locator('input[type="file"]')).toHaveCount(2);
+    for (const input of await item.locator('input[type="file"]').all()) await expect(input).toBeDisabled();
+    await expect(item.locator(".checklist-toggle")).toBeEnabled();
     expect(await page.evaluate(() => (window as unknown as { f1Raw: () => string | null }).f1Raw())).toBe(initial);
     expect(await page.evaluate(() => (window as unknown as { f1Writes: number }).f1Writes)).toBe(0);
     await page.goto("/skyrslur/ny"); await expect(page.getByRole("button", { name: "Velja íbúð", exact: true })).toBeDisabled();
@@ -98,6 +101,7 @@ test("T01/T02 actual Web Locks: stale same-report reader cannot write; handoff p
   const other = await context.newPage(); await other.goto(details()); await expect(other.locator("#address")).toBeDisabled();
   await other.goto("/skyrslur/core-legacy/skraning?rymi=legacy-room&atridi=walls");
   const observation = other.locator('.checklist-item[data-item="walls"]');
+  await observation.locator("summary").filter({ hasText: /^Athugasemd \(valfrjálst\)/ }).click();
   await expect(observation.getByRole("textbox", { name: /^Athugasemd/ })).toBeDisabled();
   await expandAssessment(observation);
   await expect(observation.getByRole("radio", { name: "Í lagi", exact: true })).toBeDisabled();

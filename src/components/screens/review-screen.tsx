@@ -357,7 +357,7 @@ export function ReviewScreen() {
                     <p className="review-photo-count">
                       <Check size={14} aria-hidden="true" />
                       {state.photos[`${id}:${room.id}:overview`].length}{" "}
-                      {state.photos[`${id}:${room.id}:overview`]?.length === 1 ? "yfirlitsmynd" : "yfirlitsmyndir"} í tímabundinni forskoðun
+                      {state.photos[`${id}:${room.id}:overview`]?.length === 1 ? "yfirlitsmynd" : "yfirlitsmyndir"} í þessum vafra
                     </p>
                   )}
                   <EvidenceGallery photos={state.photos[`${id}:${room.id}:overview`] ?? []} context={`${room.name || "Ónefnt rými"} · Yfirlitsmyndir rýmis`} />

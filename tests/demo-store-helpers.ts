@@ -1,6 +1,20 @@
 import { DemoStore as RealDemoStore } from "../src/components/demo-provider";
 import type { DemoEnvironment } from "../src/lib/demo-storage";
 import type { Report } from "../src/lib/model";
+import { samePhotoTarget, type DemoPhotoRepository, type PhotoChange, type StoredDemoPhoto } from "../src/lib/demo-photos";
+
+export class MemoryPhotos implements DemoPhotoRepository {
+  rows: StoredDemoPhoto[] = [];
+  async read() { return this.rows; }
+  async change(change: PhotoChange, check: () => void, signal: AbortSignal) {
+    check(); if (signal.aborted) throw Error("aborted");
+    if ("add" in change) {
+      if (this.rows.some(row => row.id === change.add.id) || this.rows.filter(row => samePhotoTarget(row.target, change.add.target)).length >= 8) throw Error("collision/limit");
+      this.rows = [...this.rows, { ...change.add, order: this.rows.length }];
+    } else this.rows = this.rows.filter(row => row.id !== change.remove);
+    return this.rows;
+  }
+}
 
 export function deferred<T = void>() {
   let resolve!: (value: T) => void;
@@ -65,9 +79,9 @@ export function demoTab(local = new MemoryStorage(), locks = new ControlledLocks
 // Only their synthetic storage is global; each gets its own synchronous lock
 // adapter and tab session. Cross-tab tests below explicitly share ControlledLocks.
 export class DemoStore extends RealDemoStore {
-  constructor(reports?: Report[]) {
+  constructor(reports?: Report[], photos: DemoPhotoRepository | null = null) {
     const tab = demoTab();
     tab.env.local = () => globalThis.localStorage;
-    super(reports, tab.env);
+    super(reports, tab.env, photos);
   }
 }
