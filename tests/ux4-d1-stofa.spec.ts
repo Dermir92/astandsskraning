@@ -114,10 +114,10 @@ test("BUG-01: concise defect edit preserves legacy fields, focus, navigation and
 
 const testPhoto = "public/concepts/synthetic-wall-damage.png";
 
-test("defect photos are item-specific and temporary; evidence never bypasses required legacy validation", async ({ page }) => {
+test("defect photos are item-specific and persist; evidence never bypasses required legacy validation", async ({ page }) => {
   await seed(page);
   const overview = page.getByRole("region", { name: "Yfirlitsmyndir rýmis", exact: true });
-  await expect(overview).toContainText("hverfa við endurhleðslu");
+  await expect(overview).toContainText("ekki afritaðar, samstilltar");
   await expect(overview.getByLabel("Yfirlitsmyndir rýmis: taka mynd", { exact: true })).toHaveAttribute("capture", "environment");
   await overview.getByLabel("Yfirlitsmyndir rýmis: velja myndir", { exact: true }).setInputFiles(testPhoto);
   await expect(overview.getByRole("button", { name: /^Forskoða/ })).toHaveCount(1);
@@ -140,7 +140,7 @@ test("defect photos are item-specific and temporary; evidence never bypasses req
   await row(page, "ceiling").locator(".checklist-toggle").click();
   await expect(row(page, "ceiling").getByRole("button", { name: /^Forskoða/ })).toHaveCount(0);
   await page.reload();
-  await expect(overview.getByRole("button", { name: /^Forskoða/ })).toHaveCount(0);
+  await expect(overview.getByRole("button", { name: /^Forskoða/ })).toHaveCount(1);
   expect(JSON.parse(await raw(page)).reports[0].rooms[1].observations.walls).toEqual({ ...EMPTY_OBSERVATION, condition: "defect", damageType: "Rispa", location: "Við glugga", description: "Sýnileg rispa" });
 });
 

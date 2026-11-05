@@ -16,6 +16,7 @@ import { useState, type ReactNode } from "react";
 import { ContextDialog } from "./context-dialog";
 import { C1Panel } from "./cloud/c1-root";
 import { DemoSaveActions } from "./demo-save-actions";
+import { DEMO_PHOTO_NOTICE } from "@/lib/demo-photos";
 
 export function SaveStatus() {
   const { state, mode } = useDemo();
@@ -133,6 +134,10 @@ export function AppShell({ children }: { children: ReactNode }) {
             {mode === "demo" ? <DemoSaveActions /> : null}
           </div>
         ) : null}
+        {mode === "demo" && state.photoStorage?.warning ? <div className="storage-warning photo-storage-warning" role="alert">
+          <TriangleAlert size={18} aria-hidden="true" /><p>{state.photoStorage.warning}</p>
+          <button className="button button-small button-secondary" disabled={state.photoStorage.busy} onClick={() => void store.reloadDemoPhotos()}>Sækja myndir aftur</button>
+        </div> : null}
         {mode === "cloud" ? <C1Panel /> : null}
         <main id="main" tabIndex={-1} className="main-content">
           {children}
@@ -149,8 +154,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             þessum vafra. Notaðu eingöngu tilbúin gögn.
           </p>
           <p>
-            Myndir eru aðeins tímabundnar forskoðanir meðan glugginn er opinn.
-            Þær hverfa við endurhleðslu og fara ekki á þjón.
+            {DEMO_PHOTO_NOTICE}
           </p>
           <p>Áfangi 1A · v0.1 · Enginn frágangur eða boð.</p>
         </ContextDialog>

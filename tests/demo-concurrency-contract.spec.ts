@@ -8,14 +8,14 @@ import { EMPTY_OBSERVATION, type Report } from "../src/lib/model";
 import { prepareAssessmentChange } from "../src/components/assessment-change";
 import { legacyCoreReport } from "./inspection-core-fixtures";
 import { linkedInitialFixture, linkedPair } from "./inspection-comparison-fixtures";
-import { ControlledLocks, deferred, demoTab, MemoryStorage } from "./demo-store-helpers";
+import { ControlledLocks, deferred, demoTab, MemoryStorage, MemoryPhotos } from "./demo-store-helpers";
 
 const stores: DemoStore[] = [];
 const documentOf = (reports: Report[]) => JSON.stringify({ version: 1, extension: { keep: [0, false, null] }, reports }, null, 2);
-function open(tab: ReturnType<typeof demoTab>) { const store = new DemoStore(undefined, tab.env); stores.push(store); store.hydrate(); return store; }
-function setup(reports = [legacyCoreReport()]) {
+function open(tab: ReturnType<typeof demoTab>, photos?: MemoryPhotos) { const store = new DemoStore(undefined, tab.env, photos); stores.push(store); store.hydrate(); return store; }
+function setup(reports = [legacyCoreReport()], photos?: MemoryPhotos) {
   const tab = demoTab(); tab.local.values.set(STORAGE_KEY, documentOf(reports));
-  return { ...tab, store: open(tab), report: reports[0] };
+  return { ...tab, store: open(tab, photos), report: reports[0] };
 }
 function edit(store: DemoStore, id: string, title: string) { return store.updateReport(id, report => ({ ...report, title })); }
 function raw(local: MemoryStorage) { return local.getItem(STORAGE_KEY); }
@@ -321,9 +321,10 @@ test("T21 unsubmitted UI text blocks view replacement and beforeunload warns", a
   expect(fallback.editingAllowed).toBe(false); expect(unreadable.local.writes).toEqual([]);
 });
 
-test("T22 conflict and rejected mutations preserve existing temporary photos and export excludes them", () => {
-  const a = setup(), key = `${a.report.id}:${a.report.rooms[0].id}:overview`, photo = { id: "photo", url: "blob:synthetic-photo", name: "Sýnismynd" };
-  expect(a.store.addPhoto(key, photo)).toBe(true);
+test("T22 conflict and rejected mutations preserve saved photos and recovery export excludes their bytes", async () => {
+  const a = setup(undefined, new MemoryPhotos()), key = `${a.report.id}:${a.report.rooms[0].id}:overview`, photo = { id: "photo", url: "blob:synthetic-photo", name: "Sýnismynd" };
+  await a.store.reloadDemoPhotos();
+  expect(await a.store.addPhoto(key, photo, new Blob(["synthetic"], { type: "image/png" }))).toBe(true);
   a.local.failWrite = true; edit(a.store, a.report.id, "Candidate"); a.local.failWrite = false;
   a.local.values.set(STORAGE_KEY, documentOf([])); a.storageEvent(STORAGE_KEY);
   const before = a.store.getSnapshot().photos, originalRevoke = URL.revokeObjectURL, revoked: string[] = [];
@@ -334,15 +335,17 @@ test("T22 conflict and rejected mutations preserve existing temporary photos and
     expect(a.store.addPhoto(key, { ...photo, id: "rejected", url: "blob:rejected" })).toBe(false);
     expect(revoked).toEqual(["blob:rejected"]);
     revoked.length = 0;
-    const deletion = setup(); expect(deletion.store.addPhoto(key, photo)).toBe(true);
+    const deletion = setup(undefined, new MemoryPhotos()); await deletion.store.reloadDemoPhotos();
+    expect(await deletion.store.addPhoto(key, photo, new Blob(["synthetic"], { type: "image/png" }))).toBe(true);
+    revoked.length = 0;
     deletion.local.values.set(STORAGE_KEY, documentOf([{ ...deletion.report, title: "Newer canonical" }]));
     deletion.store.removeRoom(deletion.report.id, deletion.report.rooms[0].id);
-    expect(deletion.store.getSnapshot().status).toBe("conflict");
-    expect(deletion.store.getSnapshot().reports[0].rooms).toEqual([]);
-    expect(deletion.store.getSnapshot().photos[key]).toEqual([photo]); expect(revoked).toEqual([]);
+    expect(deletion.store.getSnapshot().status).toBe("validation-error");
+    expect(deletion.store.getSnapshot().reports[0].rooms).toEqual(deletion.report.rooms);
+    expect(deletion.store.getSnapshot().photos[key]).toEqual([expect.objectContaining({ id: photo.id, name: photo.name })]); expect(revoked).toEqual([]);
   } finally { URL.revokeObjectURL = originalRevoke; }
   expect(a.store.getSnapshot().photos).toBe(before); expect(a.store.demoRecoveryJSON()).not.toContain(photo.url);
-  expect(a.store.getSnapshot().photos[key]).toEqual([photo]);
+  expect(a.store.getSnapshot().photos[key]).toEqual([expect.objectContaining({ id: photo.id, name: photo.name })]);
 });
 
 test("T23 CloudStore keeps its own acknowledgement, conflict and recovery without any Demo APIs", async () => {

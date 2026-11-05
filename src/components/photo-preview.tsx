@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Camera, ImagePlus } from "lucide-react";
 import { useDemo } from "./demo-provider";
+import { DEMO_PHOTO_NOTICE } from "@/lib/demo-photos";
 import { EvidenceGallery } from "./evidence-gallery";
 import styles from "./evidence.module.css";
 import stofa from "./stofa-inspection.module.css";
@@ -60,9 +61,10 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
     pendingFeaturedDisclosure.current = false;
     if (photos.length && !controls.contains(document.activeElement)) controls.open = false;
   }, [featured, pending, photos.length]);
-  const locked = demoReadOnly || mode === "cloud" || state.status === "loading" || state.status === "read-error";
+  const locked = demoReadOnly || mode === "cloud" || state.status === "loading" || state.status === "read-error" || state.local?.dirty || state.local?.recovery || state.photoStorage?.status !== "ready";
   const addPhotos = async (files: FileList | null) => {
     if (!files?.length || locked) return;
+    const epoch = store.mutationEpoch;
     activeUpload.current = document.activeElement === cameraRef.current ? cameraRef.current : inputRef.current;
     restoreUploadFocus.current = (featured || compact) && document.activeElement === activeUpload.current;
     const selected = Array.from(files);
@@ -92,8 +94,8 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
           url = URL.createObjectURL(file);
           // The store checks the live target and limit after asynchronous decoding.
           // It owns URL cleanup for rejected additions as well as accepted photos.
-          if (store.addPhoto(photoKey, { id: crypto.randomUUID(), name: file.name, url })) accepted++;
-          else errors.push(`${file.name}: myndasvæðið er óaðgengilegt eða átta mynda hámarki náð.`);
+          if (await store.addPhoto(photoKey, { id: crypto.randomUUID(), name: file.name, url }, file, epoch)) accepted++;
+          else errors.push(`${file.name}: myndin var ekki vistuð. Athugaðu myndageymslu, breytingarétt og átta mynda hámark. Varðveittu frumritið og veldu myndina aftur.`);
         } catch {
           if (url) URL.revokeObjectURL(url);
           errors.push(`${file.name}: ekki tókst að lesa myndina.`);
@@ -101,17 +103,23 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
       }
     } finally {
       setError(previous => [previous, ...new Set(errors)].filter(Boolean).join(" "));
-      setAnnouncement(`${accepted} ${accepted === 1 ? "mynd" : "myndum"} bætt við tímabundna forskoðun.`);
+      setAnnouncement(`${accepted} ${accepted === 1 ? "mynd vistuð" : "myndir vistaðar"} í þessum vafra.`);
       setPending(count => count - 1);
     }
   };
+  const removePhoto = async (id: string) => {
+    const removed = await store.removePhoto(photoKey, id);
+    if (removed) setAnnouncement("Mynd fjarlægð úr þessum vafra.");
+    else requestAnimationFrame(() => document.querySelector<HTMLButtonElement>(".photo-storage-warning button")?.focus({ preventScroll: true }));
+    return removed;
+  };
   if (mode === "cloud") return <section id={targetId} tabIndex={-1} className={`photo-preview ${styles.capture}`} aria-label={title}><p><strong>Myndir eru óvirkar í C1.</strong> Þessi prófun vistar aðeins texta og svör. Engin myndageymsla eða tímabundin myndaforskoðun er virk hér.</p></section>;
   if (compact) return <section id={targetId} tabIndex={-1} className={stofa.photos} aria-label={title} aria-busy={pending > 0}>
-    <div className={stofa.photoHeading}><h3><span ref={titleRef} tabIndex={-1}>{title}</span></h3><span>{photos.length}/8 · Tímabundnar</span></div>
-    <p className={stofa.photoLimit}>Myndir hverfa við endurhleðslu eða lokun. Ekki varanlega vistaðar.</p>
+    <div className={stofa.photoHeading}><h3><span ref={titleRef} tabIndex={-1}>{title}</span></h3><span>{photos.length}/8 · Í þessum vafra</span></div>
+    <p className={stofa.photoLimit}>{DEMO_PHOTO_NOTICE}</p>
     <div className={stofa.photoStrip}>
       <EvidenceGallery photos={photos} context={context}
-        onRemove={locked ? undefined : id => { store.removePhoto(photoKey, id); setAnnouncement("Mynd fjarlægð úr tímabundinni forskoðun."); }}
+        onRemove={locked ? undefined : removePhoto}
         onEmpty={() => inputRef.current?.focus({ preventScroll: true })} />
       {!photos.length ? <span className={stofa.emptyPhoto}><Camera size={20} aria-hidden="true" /><span>Engar myndir</span></span> : null}
       <div className={stofa.photoButtons}>
@@ -136,13 +144,13 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
   return <section id={targetId} tabIndex={-1} className={`photo-preview ${styles.capture} ${featured ? styles.featuredCapture : ""} ${detail ? "photo-preview-detail" : ""}`} aria-label={title} aria-busy={pending > 0}>
     <div className="photo-heading">
       <span className="photo-title" ref={titleRef} tabIndex={-1}><Camera size={18} aria-hidden="true" />{title}</span>
-      <span className="preview-only-label">Aðeins forskoðun</span>
+      <span className="preview-only-label">Í þessum vafra</span>
     </div>
     {!featured ? <><p>{context}</p><p>{detail ? "Taktu nærmynd og mynd sem sýnir staðsetningu skemmdar í rýminu."
       : item ? "Myndir tengjast atriðinu. Þær breyta ekki svörum eða staðfesta tiltekið ástand."
       : "Taktu yfirlitsmynd úr dyrum og aðra frá gagnstæðu horni. Hafðu góða lýsingu."}</p></> : null}
     <EvidenceGallery photos={photos} context={context} featured={featured}
-      onRemove={locked ? undefined : id => { store.removePhoto(photoKey, id); setAnnouncement("Mynd fjarlægð úr tímabundinni forskoðun."); }}
+      onRemove={locked ? undefined : removePhoto}
       onEmpty={() => {
         pendingFeaturedDisclosure.current = false;
         if (controlsRef.current) controlsRef.current.open = true;
@@ -165,7 +173,7 @@ export function PhotoPreview({ photoKey, targetId, title = "Yfirlitsmyndir rými
       </label>
       <span>{photos.length}/8 myndir · JPG, PNG, WebP · Hámark 10 MB</span>
     </div>
-    <p className="photo-storage-note">Myndir fara ekki á þjón og hverfa við endurhleðslu eða lokun. Þær eru ekki vistaðar varanlega. Texti og svör vistast sér í vafranum.</p>
+    <p className="photo-storage-note">{DEMO_PHOTO_NOTICE}</p>
     <p className="field-hint">HEIC er ekki stutt. Á iPhone fer aðgangur að myndavél og myndasafni eftir vafra og stillingum símans; veldu JPG, PNG eða WebP.</p>
     </details>
     <p className="field-hint" role="status">{announcement}</p>
