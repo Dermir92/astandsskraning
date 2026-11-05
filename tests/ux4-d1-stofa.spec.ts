@@ -53,13 +53,27 @@ test("unanswered stays neutral; a good condition never infers functionality or c
   expected.reports[0].updatedAt = after.reports[0].updatedAt;
   expect(after).toEqual(expected);
   await expect(row(page, "windows").getByRole("button", { name: "Ljúka atriði", exact: true })).toBeDisabled();
-  await row(page, "windows").getByText("Breyta mati", { exact: true }).click();
+  await row(page, "windows").getByRole("button", { name: "Loka ritli", exact: true }).click();
+  await expect(row(page, "windows").locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "false");
+  const missing = row(page, "windows").getByRole("group", { name: "Ósvarað ítarlegt mat", exact: true });
+  await expect(missing.getByRole("button", { name: "Virkni vantar", exact: true })).toBeVisible();
+  await expect(missing.getByRole("button", { name: "Þrif vantar", exact: true })).toBeVisible();
+  await missing.getByRole("button", { name: "Virkni vantar", exact: true }).focus();
+  await page.keyboard.press("Enter");
+  await expect(row(page, "windows").locator('[data-question="functionality"]')).toBeFocused();
+  expect(JSON.parse(await raw(page))).toEqual(after);
   await expect(row(page, "windows").getByRole("radio", { name: "Virkar", exact: true })).not.toBeChecked();
   await expect(row(page, "windows").getByRole("radio", { name: "Hreint", exact: true })).not.toBeChecked();
   await row(page, "windows").getByRole("radio", { name: "Virkar", exact: true }).check();
+  await expect(missing.getByRole("button", { name: "Virkni vantar", exact: true })).toHaveCount(0);
+  const withFunctionality = await raw(page);
+  await missing.getByRole("button", { name: "Þrif vantar", exact: true }).click();
+  await expect(row(page, "windows").locator('[data-question="cleanliness"]')).toBeFocused();
+  expect(await raw(page)).toBe(withFunctionality);
   await row(page, "windows").getByRole("radio", { name: "Hreint", exact: true }).check();
   await row(page, "windows").getByRole("button", { name: "Ljúka atriði", exact: true }).click();
   await expect(row(page, "windows").locator(".checklist-toggle")).toBeFocused();
+  await expect(missing).toHaveCount(0);
   await page.reload();
   const saved = JSON.parse(await raw(page)).reports[0].rooms[1].observations.windows;
   expect(saved).toEqual({ ...EMPTY_OBSERVATION, condition: "good", functionality: "works", cleanliness: "clean" });
@@ -147,6 +161,17 @@ test("changing a legacy defect requires confirmation and retains all supporting 
   await expect(row(page, "walls").getByText("Varðveitt frávikslýsing", { exact: true }).last()).toBeVisible();
   await row(page, "walls").getByRole("button", { name: "Afturkalla breytingu", exact: true }).click();
   expect(JSON.parse(await raw(page)).reports[0].rooms[1].observations.walls.condition).toBe("damaged");
+  await row(page, "walls").getByRole("radio", { name: "Í lagi", exact: true }).click();
+  await dialog.getByRole("button", { name: "Staðfesta breytingu", exact: true }).click();
+  const retained = await raw(page);
+  await row(page, "walls").getByRole("button", { name: "Loka ritli", exact: true }).click();
+  await expect(row(page, "walls").locator(".checklist-toggle")).toContainText("Varðveitt frávikslýsing");
+  await expect(row(page, "walls").locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "false");
+  await page.getByRole("combobox", { name: "Velja rými", exact: true }).selectOption("checklist-entry");
+  await page.getByRole("combobox", { name: "Velja rými", exact: true }).selectOption("checklist-living");
+  await page.reload();
+  await expect(row(page, "walls").locator(".checklist-toggle")).toContainText("Varðveitt frávikslýsing");
+  expect(await raw(page)).toBe(retained);
 });
 
 test("failed persistence keeps the active editor and draft; retry persists without data loss", async ({ page }) => {
@@ -291,4 +316,33 @@ test("a fully recorded last-room Stofa leads to review without completing the pr
   await expect(page.getByRole("heading", { name: "Yfirferð skráningar", exact: true })).toBeVisible();
   expect(await raw(page)).toBe(before);
   expect(JSON.parse(await raw(page)).reports[0].sampleReviewed).not.toBe(true);
+});
+
+test("targeted refinement: detailed-answer prompts respect required fields and N/A; retained legacy prose stays visible", async ({ page }) => {
+  const before = await seed(page, true, report => {
+    const observations = report.rooms[1].observations;
+    delete observations.floor.cleanliness;
+    delete observations.windows.functionality;
+    observations.walls.condition = "good";
+  });
+  for (const id of ["ceiling", "doors", "walls"]) {
+    await expect(row(page, id).getByRole("group", { name: "Ósvarað ítarlegt mat", exact: true })).toHaveCount(0);
+  }
+  await expect(row(page, "floor").getByRole("button", { name: "Þrif vantar", exact: true })).toBeVisible();
+  await expect(row(page, "floor").getByRole("button", { name: "Virkni vantar", exact: true })).toHaveCount(0);
+  await expect(row(page, "windows").getByRole("button", { name: "Virkni vantar", exact: true })).toBeVisible();
+  await expect(row(page, "windows").getByRole("button", { name: "Þrif vantar", exact: true })).toHaveCount(0);
+  await expect(row(page, "walls").locator(".checklist-toggle")).toContainText("Varðveitt frávikslýsing");
+  await expect(row(page, "walls").locator(".checklist-toggle")).toHaveAttribute("aria-expanded", "false");
+  await row(page, "floor").getByRole("button", { name: "Þrif vantar", exact: true }).click();
+  await expect(row(page, "floor").locator('[data-question="cleanliness"]')).toBeFocused();
+  await expect(row(page, "floor").getByRole("radio", { checked: true, name: "Hreint", exact: true })).toHaveCount(0);
+  expect(await raw(page)).toBe(before);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const audit = await new AxeBuilder({ page }).include(".inspection-page").withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
+  expect(audit.violations).toEqual([]);
+  if (page.viewportSize()!.width !== 320) {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ path: `docs/qa/ux4-d1/refinement-${page.viewportSize()!.width}.png`, fullPage: true });
+  }
 });

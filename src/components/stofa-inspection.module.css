@@ -67,6 +67,9 @@
 .validationNote { margin: 0; font-size: 12px; }
 .notes { border-bottom: 1px solid var(--line); }
 .completion { color: var(--muted); font-size: 13px; margin-top: 16px; }
+.retainedIndicator { display: block; font-size: 12px; color: var(--muted); }
+.missingAssessments { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; width: 100%; font-size: 13px; color: var(--muted); }
+.missingAssessments .text-button { min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 .page[data-stofa-inspection] [data-inspection-sections] { position: static; min-height: 44px; }
 .page[data-stofa-inspection] [data-inspection-sections] a { min-height: 44px; padding-block: 6px; }
 .page[data-stofa-inspection] [data-inspection-sections] a span { display: none; }

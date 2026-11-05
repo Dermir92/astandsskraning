@@ -9,7 +9,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { itemProgress, navigationTargetId, photoTargetId } from "@/lib/inspection-navigation";
+import { itemProgress, missingAnswers, navigationTargetId, photoTargetId } from "@/lib/inspection-navigation";
 import {
   CONDITIONS,
   FUNCTIONALITIES,
@@ -160,6 +160,9 @@ export function ObservationEditor({
   const deviation = damage || (o.condition !== "na" && o.cleanliness === "dirty");
   const simpleCondition = o.condition === "damaged" || o.condition === "defect" ? "Frávik" : o.condition ? is.conditions[o.condition] : "Ósvarað";
   const progress = itemProgress(item, o);
+  const missingDetailed = photoFirst ? missingAnswers(item, o).filter(
+    (answer): answer is { key: "functionality" | "cleanliness"; label: string } => answer.key === "functionality" || answer.key === "cleanliness",
+  ) : [];
   const status = progress === "unanswered" ? "Ósvarað" : !complete ? "Ófullskráð" : "Fullskráð";
   const flags = [
     deviation && "Frávik",
@@ -206,6 +209,11 @@ export function ObservationEditor({
     const group = panelRef.current?.querySelector<HTMLElement>(
       `[data-question="${focusRequest.question}"]`,
     );
+    if (photoFirst) {
+      group?.focus({ preventScroll: true });
+      group?.scrollIntoView({ block: "nearest" });
+      return;
+    }
     const target =
       group?.querySelector<HTMLInputElement>("input:checked") ??
       group?.querySelector<HTMLInputElement>(
@@ -214,7 +222,7 @@ export function ObservationEditor({
     target?.focus({ preventScroll: true });
     // Radios are visually hidden; scroll their group above the room footer.
     group?.scrollIntoView({ block: "nearest" });
-  }, [open, focusRequest]);
+  }, [open, focusRequest, photoFirst]);
   const chooseGood = () => {
     onActivate();
     change("condition", "good");
@@ -343,7 +351,9 @@ export function ObservationEditor({
               className={styles.rowStatus}
               data-attention={!!o.condition && (!complete || attention || deviation)}
             >
-              {photoFirst ? `${simpleCondition}${deviation && simpleCondition !== "Frávik" ? " · Frávik" : ""}${o.condition && !complete ? " · Ófullskráð" : complete && attention && o.condition !== "uninspected" ? " · Takmörkun" : ""}` : <>{o.condition ? `${is.conditions[o.condition]} · ` : ""}
+              {photoFirst ? <>{`${simpleCondition}${deviation && simpleCondition !== "Frávik" ? " · Frávik" : ""}${o.condition && !complete ? " · Ófullskráð" : complete && attention && o.condition !== "uninspected" ? " · Takmörkun" : ""}`}
+                {hasRetainedDefect(o) ? <span className={stofa.retainedIndicator}>Varðveitt frávikslýsing</span> : null}
+              </> : <>{o.condition ? `${is.conditions[o.condition]} · ` : ""}
               {status}{flags.length ? ` · ${flags.join(" · ")}` : ""}
               {state.photos[photoKey]?.length ? ` · ${state.photos[photoKey].length} ${state.photos[photoKey].length === 1 ? "mynd" : "myndir"}` : ""}
               {o.note.trim() ? " · Athugasemd" : ""}
@@ -368,6 +378,14 @@ export function ObservationEditor({
           <Plus size={16} aria-hidden="true" />
           Ástand í lagi
         </button>
+      </div> : null}
+      {missingDetailed.length ? <div className={stofa.missingAssessments} role="group" aria-label="Ósvarað ítarlegt mat">
+        <span>Til fullskráningar:</span>
+        {missingDetailed.map(answer => <button type="button" key={answer.key} className="text-button" aria-controls={panelId} onClick={() => {
+          setShowAssessment(true);
+          setFocusRequest({ question: answer.key });
+          onOpen();
+        }}>{answer.label}</button>)}
       </div> : null}
       </div>
       <div
