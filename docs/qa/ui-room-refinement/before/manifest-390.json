@@ -1,0 +1,26 @@
+[
+  {
+    "name": "stofa-defect",
+    "textSha256": "d61aea984810f7c4dab14aff02adfccc79a15a4976e2327149dea64cf133ccc7",
+    "controlsSha256": "5b6f073f1e70ce85199b216866a67a50ea057ba826ce6af1fdf38ac96b4fbf70",
+    "textLength": 8186,
+    "controlCount": 157,
+    "height": 2838
+  },
+  {
+    "name": "kitchen-defect",
+    "textSha256": "569e732b629dec2848c93512b4fb824a84ec9fdc11c964252a9f7af32ae3eb0c",
+    "controlsSha256": "4267d3e232fb69bfa6315048030ee1afacc55eaa634c390c1452b4f023aa1e94",
+    "textLength": 8472,
+    "controlCount": 168,
+    "height": 4574
+  },
+  {
+    "name": "review",
+    "textSha256": "c0ec87829d8fa53b8342871eb9c8ab0389ba59a21262d5684069ba4de123829a",
+    "controlsSha256": "b97bbf66580cb4deb737d13693d822ed36c1136b71caa9cb9db301b9b2a7483e",
+    "textLength": 7935,
+    "controlCount": 152,
+    "height": 8648
+  }
+]
