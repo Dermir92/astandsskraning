@@ -1,0 +1,91 @@
+{
+  "baselineCommit": "e4bb7dafec4b1ef3d02fd0a8aff368856f994db4",
+  "date": "2026-11-13",
+  "browser": "Playwright Chromium",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "applicationChanges": "Four CSS modules only; no production TypeScript, JSX or report/PDF files changed.",
+  "results": {
+    "browser": {
+      "startTime": "2026-11-13T09:46:48.246Z",
+      "duration": 41867.763,
+      "expected": 34,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "previewContracts": {
+      "startTime": "2026-11-13T09:45:28.899Z",
+      "duration": 7380.385,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "lint": "passed",
+  "typecheck": "passed",
+  "productionBuild": "npm run build -- --webpack: passed",
+  "contentParity": [
+    {
+      "width": 390,
+      "screen": "stofa-defect",
+      "sameText": true,
+      "sameControls": true,
+      "beforeHeight": 2838,
+      "afterHeight": 3005
+    },
+    {
+      "width": 390,
+      "screen": "kitchen-defect",
+      "sameText": true,
+      "sameControls": true,
+      "beforeHeight": 4574,
+      "afterHeight": 4194
+    },
+    {
+      "width": 390,
+      "screen": "review",
+      "sameText": true,
+      "sameControls": true,
+      "beforeHeight": 8648,
+      "afterHeight": 8113
+    },
+    {
+      "width": 1440,
+      "screen": "stofa-defect",
+      "sameText": true,
+      "sameControls": true,
+      "beforeHeight": 2274,
+      "afterHeight": 2484
+    },
+    {
+      "width": 1440,
+      "screen": "kitchen-defect",
+      "sameText": true,
+      "sameControls": true,
+      "beforeHeight": 3115,
+      "afterHeight": 3006
+    },
+    {
+      "width": 1440,
+      "screen": "review",
+      "sameText": true,
+      "sameControls": true,
+      "beforeHeight": 6495,
+      "afterHeight": 6280
+    }
+  ],
+  "limitations": [
+    "Native iOS/Android camera and independent PDF export were not exercised.",
+    "Default Turbopack build cannot resolve the external node_modules junction in this isolated worktree; production verification used the documented Webpack option."
+  ]
+}

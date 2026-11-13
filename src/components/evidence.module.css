@@ -1,4 +1,5 @@
 .capture { min-width: 0; overflow-wrap: anywhere; }
+.capture:global(.photo-preview) { background: transparent; border: 0; border-radius: 0; padding: 12px 0; margin: 0; }
 .capture :global(.button) { white-space: normal; }
 .capture :global(.photo-heading), .capture :global(.photo-actions) { flex-wrap: wrap; }
 .capture :global(.preview-only-label) { white-space: normal; }
@@ -11,11 +12,11 @@
 }
 .gallery { margin-block: 12px; min-width: 0; font-size: 14px; }
 .caption { color: var(--muted); margin-bottom: 8px; font-size: 14px; }
-.thumbnails { display: grid; grid-template-columns: repeat(2, minmax(0, 136px)); gap: 10px; padding: 0; margin: 0; list-style: none; }
+.thumbnails { display: grid; grid-template-columns: repeat(2, minmax(0, 200px)); gap: 12px; padding: 0; margin: 0; list-style: none; }
 .gallery .thumbnails > li { min-width: 0; margin: 0; padding: 0; border: 0; }
 .thumbnail { display: flex; flex-direction: column; width: 100%; min-height: 44px; min-width: 44px; text-align: left; padding: 5px; border: 1px solid var(--control-border); border-radius: 4px; background: white; color: var(--teal-dark); }
 .thumbnail:hover { background: var(--teal-soft); }
-.thumbnail img { width: 100%; height: 72px; object-fit: cover; border-radius: 2px; }
+.thumbnail img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--soft); border-radius: 2px; }
 .thumbnail span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; font-size: 14px; line-height: 1.5; margin-top: 4px; }
 .remove { display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 44px; min-width: 44px; width: 100%; padding: 6px 2px; color: var(--muted); font-size: 14px; }
 .more summary, .retained summary { min-height: 44px; align-content: center; cursor: pointer; color: var(--teal-dark); font-weight: 700; overflow-wrap: anywhere; }
@@ -43,11 +44,44 @@
 .featuredCapture :global(.photo-heading) { display: none; }
 .featuredCapture .caption { font-size: 14px; }
 .featuredCapture .gallery { margin-top: 0; }
-.featured > .thumbnails { grid-template-columns: minmax(0, 176px); }
+.featured > .thumbnails { grid-template-columns: minmax(0, 320px); }
 .featured > .thumbnails .thumbnail { padding: 0; overflow: hidden; }
-.featured > .thumbnails .thumbnail img { height: 132px; border-radius: 0; }
-.featured > .thumbnails .thumbnail span { display: flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; margin: 0; background: var(--navy); color: white; font-weight: 650; }
+.featured > .thumbnails .thumbnail img { height: auto; border-radius: 0; }
+.featured > .thumbnails .thumbnail span { display: flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; margin: 0; background: var(--soft); color: var(--teal-dark); font-weight: 650; }
+
+/* Review is one reading surface; each room remains a distinct semantic section. */
+.review :global(.review-main) { min-width: 0; background: var(--surface); padding-inline: 24px; }
+.review :global(.review-main > .panel), .review :global(.review-room) { background: transparent; border: 0; border-radius: 0; box-shadow: none; padding: 20px 0; margin: 0; }
+.review :global(.review-main > .panel) { border-bottom: 1px solid var(--line); }
+.review :global(.review-room) { border-top: 1px solid var(--line); }
+.review :global(.review-main h2) { font-size: 18px; }
+.review :global(.review-property .panel-heading) { padding-bottom: 0; border: 0; margin-bottom: 12px; }
+.review :global(.review-context-details) { margin-top: 12px; padding-top: 8px; }
+.review :global(.property-details) { gap: 12px 20px; }
+.review :global(.review-general-note) { padding-top: 12px; margin-top: 12px; }
+.review :global(.review-rooms > .section-heading) { margin: 0; padding-block: 20px 12px; }
+.review :global(.review-room-heading) { margin-bottom: 8px; }
+.review :global(.review-room-heading h3) { font-size: 18px; }
+.review :global(.review-observations) { margin-top: 12px; }
+.review :global(.review-observations > li) { padding-block: 8px; border-color: var(--line); }
+.review :global(.review-observation-heading strong) { font-size: 15px; }
+.review :global(.unanswered-details) { margin-top: 8px; padding-top: 0; border-color: var(--line); }
+.review :global(.review-attention) { background: transparent; border: 0; border-left: 1px solid var(--line); border-radius: 0; padding: 0 0 0 20px; }
+.review :global(.review-attention > h2) { font-size: 16px; margin-bottom: 12px; }
+.review :global(.attention-group) { padding-block: 12px; }
+.review :global(.attention-group h3) { font-size: 14px; }
+.review :global(.review-scope) { background: transparent; border: 0; border-left: 2px solid var(--line); border-radius: 0; padding: 8px 12px; }
+.review :global(.review-state) { padding: 12px 16px; border: 0; border-left: 3px solid currentColor; border-radius: 0; margin-bottom: 16px; }
+.review :global(.review-summary) { padding-bottom: 16px; margin-bottom: 16px; border-color: var(--line); }
+.review :global(.review-summary > div) { border-color: var(--line); }
+.review :global(.review-summary > div > span) { font-size: 13px; }
+
+@media (max-width: 1000px) {
+  .review :global(.review-attention) { border-left: 0; border-top: 1px solid var(--line); padding: 16px 0 0; }
+}
 @media (max-width: 640px) {
-  .featured > .thumbnails { grid-template-columns: minmax(0, 144px); }
-  .featured > .thumbnails .thumbnail img { height: 106px; }
+  .review :global(.review-main) { padding-inline: 16px; }
+  .review :global(.review-room-heading) { align-items: start; }
+  .review :global(.property-details) { gap: 12px 16px; }
+  .review :global(.review-summary > div:last-child) { grid-column: span 2; }
 }
