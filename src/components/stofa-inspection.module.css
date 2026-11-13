@@ -14,6 +14,7 @@
 .page[data-stofa-inspection] :global(.checklist) { border: 0; }
 .page[data-stofa-inspection] :global(.checklist-item) { border: 0; border-radius: 0; margin: 0; }
 .page[data-stofa-inspection] :global(.checklist-item) > div:first-child { min-height: 64px; padding: 4px 0; background: white; border-top: 1px solid var(--line); }
+.page[data-stofa-inspection] :global(.checklist-item[data-state="deviation"]) > div:first-child { background: color-mix(in srgb, var(--warning-bg) 50%, var(--surface)); }
 .page[data-stofa-inspection] :global(.checklist-item-open) > div:first-child { box-shadow: inset 2px 0 var(--teal); padding-left: 10px; }
 .page[data-stofa-inspection] :global(.checklist-toggle) { width: 100%; min-height: 48px; gap: 10px; }
 .page[data-stofa-inspection] :global(.checklist-item) > div:first-child h3 { width: 100%; }
